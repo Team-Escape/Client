@@ -7,6 +7,7 @@ namespace GameManagerSpace.Menu
 {
     public class MenuManager : MonoBehaviour, IMenuManager
     {
+        // Responsible for playing animation only, not the UIs that can be interactived.
         public GameObject animationUI;
         public GameObject buttonUI;
         [SerializeField] string hallScene = "HallScene";
@@ -25,13 +26,18 @@ namespace GameManagerSpace.Menu
 
         public void AnimationEventCallback()
         {
-            AnimatorController ac = FindObjectOfType<AnimatorController>();
-            ac.SetTrigger("prepare");
-            animationUI.SetActive(false);
-            buttonUI.SetActive(true);
+            TimelineController afkTimeline = FindObjectOfType<TimelineController>();
+            afkTimeline.Init();
+            SwitchUICanvas();
             view.InitButton();
             ableToClickButton = true;
             audioAction();
+        }
+
+        void SwitchUICanvas()
+        {
+            animationUI.SetActive(false);
+            buttonUI.SetActive(true);
         }
 
         public void Play()
