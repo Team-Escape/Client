@@ -26,12 +26,20 @@ namespace GameManagerSpace.Menu
 
         public void AnimationEventCallback()
         {
-            TimelineController afkTimeline = FindObjectOfType<TimelineController>();
-            afkTimeline.Init();
+            PlayAFKAnimation();
             SwitchUICanvas();
             view.InitButton();
             ableToClickButton = true;
             audioAction();
+        }
+
+        void PlayAFKAnimation()
+        {
+            float delay = 3f;
+            this.AbleToDo(
+                delay,
+                () => FindObjectOfType<TimelineLoopAfterFinishing>().Init()
+            );
         }
 
         void SwitchUICanvas()
