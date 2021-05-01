@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameManagerSpace.Hall
 {
     public class View : MonoBehaviour
     {
+        public int GetMapLength { get { return mapContainers.Count; } }
         public int GetRolesLength { get { return roleContainers.Count; } }
         public string GetRoleName(int id) { return roleContainers[id].name; }
         [SerializeField] Transform roleUI = null;
@@ -20,6 +21,23 @@ namespace GameManagerSpace.Hall
         public void UpdateMapContainer(int id, int index, bool isActive = true)
         {
             mapContainers[index].GetChild(id + 1).gameObject.SetActive(isActive);
+        }
+
+        public void RoleContainerEffect(int id)
+        {
+
+        }
+
+        public void MapContainerEffect(int id, bool isAdditive)
+        {
+            Image image = mapContainers[id].GetChild(0).GetChild(0).GetComponent<Image>();
+            string name = "_ChromAberrAmount";
+            float amount = 0.2f * (isAdditive ? 1 : -1);
+            float currentAmount = image.materialForRendering.GetFloat(name);
+            image.materialForRendering.SetFloat(
+                name,
+                currentAmount + amount
+            );
         }
 
         private void Awake()

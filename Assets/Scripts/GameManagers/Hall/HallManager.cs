@@ -8,14 +8,14 @@ namespace GameManagerSpace.Hall
 {
     public enum SelectState
     {
-        OnJoining, OnChoosingRole, OnChoosingMap, OnWaiting
+        OnChoosingRole, OnChoosingMap, OnWaiting
     }
     public class PlayerContainer
     {
         public int id = -1;
         public int currentMapIndex = 0;
         public int currentRoleIndex = 0;
-        public SelectState selfSelectState = SelectState.OnJoining;
+        public SelectState selfSelectState = SelectState.OnChoosingRole;
         public GameObject roleModel = null;
         public string choosenMap = "";
     }
@@ -39,85 +39,141 @@ namespace GameManagerSpace.Hall
 
         public void StateBack(int id)
         {
-            ref SelectState state = ref containers.GetID(id).selfSelectState;
-            switch (state)
+            switch (containers.GetID(id).selfSelectState)
             {
-                case SelectState.OnJoining:
-                    return;
                 case SelectState.OnChoosingRole:
                     view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
                     DeassignController(
                         activePlayers[id],
                         activeController[id]
                     );
-                    state--;
                     break;
                 case SelectState.OnChoosingMap:
-                    view.UpdateMapContainer(id, containers.GetID(id).currentRoleIndex, true);
-                    view.UpdateRoleContainer(id, containers.GetID(id).currentMapIndex, false);
-                    state--;
+                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                    view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, true);
+                    this.AbleToDo(
+                        0.1f,
+                        () => containers.GetID(id).selfSelectState--
+                    );
                     break;
                 case SelectState.OnWaiting:
-                    view.UpdateMapContainer(id, containers.GetID(id).currentRoleIndex, true);
-                    state--;
+                    view.MapContainerEffect(id, false);
+                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, true);
+                    this.AbleToDo(
+                        0.1f,
+                        () => containers.GetID(id).selfSelectState--
+                    );
                     break;
             }
         }
 
-        public void SelectMap(int id)
+        public void SelectMap()
         {
-            for (int i = 0; i < ReInput.players.playerCount; i++)
+            for (int i = 0; i < activePlayers.Count; i++)
             {
                 if (!containers[i].selfSelectState.IsState("OnChoosingMap")) continue;
+                int id = i;
+                int columns = 2;
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
                     containers.GetID(id).selfSelectState++;
+                    view.MapContainerEffect(id, true);
                 }
-                if (ReInput.players.GetPlayer(i).GetButtonDown("CursorMoveX"))
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
-                    int nextIndex = (ReInput.players.GetPlayer(i).GetAxis("CursorMoveX") > 0) ? 1 : -1;
-                    PlayerContainer _p = containers.GetID(id);
-
-                    if (nextIndex > 0 && containers.GetID(id).currentMapIndex + nextIndex < view.GetRolesLength)
+                    if (containers.GetID(id).currentMapIndex + 1 < view.GetMapLength)
                     {
-                        containers.GetID(id).currentMapIndex += nextIndex;
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentMapIndex);
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                        containers.GetID(id).currentMapIndex++;
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
                     }
-                    if (nextIndex < 0 && containers.GetID(id).currentMapIndex + nextIndex >= 0)
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
+                {
+                    if (containers.GetID(id).currentMapIndex - 1 >= 0)
                     {
-                        containers.GetID(id).currentMapIndex += nextIndex;
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentMapIndex);
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                        containers.GetID(id).currentMapIndex--;
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
+                    }
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
+                {
+                    if (containers.GetID(id).currentMapIndex - columns >= 0)
+                    {
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                        containers.GetID(id).currentMapIndex -= columns;
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
+                    }
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
+                {
+                    if (containers.GetID(id).currentMapIndex + columns < view.GetMapLength)
+                    {
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                        containers.GetID(id).currentMapIndex += columns;
+                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
                     }
                 }
             }
         }
 
-        public void SelectRole(int id)
+        public void SelectRole()
         {
-            for (int i = 0; i < ReInput.players.playerCount; i++)
+            for (int i = 0; i < activePlayers.Count; i++)
             {
                 if (!containers[i].selfSelectState.IsState("OnChoosingRole")) continue;
+                int id = i;
+                int columns = 4;
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
-                    string path = "Game/";
                     view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
                     view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, true);
-                    containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(containers.GetID(id).currentRoleIndex));
-                    containers.GetID(id).selfSelectState++;
-                }
-                if (ReInput.players.GetPlayer(i).GetButtonDown("CursorMoveX"))
-                {
-                    int nextIndex = (ReInput.players.GetPlayer(i).GetAxis("CursorMoveX") > 0) ? 1 : -1;
 
-                    if (nextIndex > 0 && containers.GetID(id).currentRoleIndex + nextIndex < view.GetRolesLength)
+                    string path = "Game/";
+                    containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(containers.GetID(id).currentRoleIndex));
+
+                    // Delay the state changing for secs.
+                    // Avoid directly dectecting by SelectMap func.
+                    this.AbleToDo(
+                        0.1f,
+                        () => containers.GetID(id).selfSelectState++
+                    );
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
+                {
+                    if (containers.GetID(id).currentRoleIndex + 1 < view.GetRolesLength)
                     {
-                        containers.GetID(id).currentRoleIndex += nextIndex;
+                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
+                        containers.GetID(id).currentRoleIndex++;
                         view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
                     }
-                    if (nextIndex < 0 && containers.GetID(id).currentRoleIndex + nextIndex >= 0)
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
+                {
+                    if (containers.GetID(id).currentRoleIndex - 1 >= 0)
                     {
-                        containers.GetID(id).currentRoleIndex += nextIndex;
+                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
+                        containers.GetID(id).currentRoleIndex--;
+                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
+                    }
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
+                {
+                    if (containers.GetID(id).currentRoleIndex + columns < view.GetRolesLength)
+                    {
+                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
+                        containers.GetID(id).currentRoleIndex += columns;
+                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
+                    }
+                }
+                else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
+                {
+                    if (containers.GetID(id).currentRoleIndex - columns >= 0)
+                    {
+                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
+                        containers.GetID(id).currentRoleIndex -= columns;
                         view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
                     }
                 }
@@ -162,6 +218,10 @@ namespace GameManagerSpace.Hall
         public void DeassignPlayer(int id)
         {
             containers.Remove(containers.GetID(id));
+            ReInput.players.SystemPlayer.controllers.AddController(
+                activeController[id].controller,
+                true
+            );
             activeController.Remove(activeController[id]);
             activePlayers.Remove(activePlayers[id]);
         }
@@ -181,6 +241,8 @@ namespace GameManagerSpace.Hall
                     StateBack(i);
                 }
             }
+            SelectRole();
+            SelectMap();
         }
 
         private void Awake()
