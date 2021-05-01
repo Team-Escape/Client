@@ -12,7 +12,7 @@ namespace GameManagerSpace.Audio
 
         public void ChangeAudio(string newState)
         {
-            audioInScene.ChangeState(newState);
+            audioInScene.Change(newState);
             switch (audioInScene)
             {
                 case AudioInScene.Menu:

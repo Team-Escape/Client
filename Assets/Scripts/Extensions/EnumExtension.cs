@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using GameManagerSpace;
+using GameManagerSpace.Hall;
 using GameManagerSpace.Audio;
 
 public static class EnumExtension
@@ -10,43 +10,28 @@ public static class EnumExtension
     /// Compare Enum state by string name.
     /// </summary>
     /// <param name="CompareState">Enum usage</param>
-    public static bool CompareState<T>(this T state, string index) where T : struct
+    public static bool IsState<T>(this T state, string index) where T : struct
     {
-        var _tState = state.GetType();
-        if (_tState == typeof(SceneState))
-        {
-            return _tState == (object)(SceneState)System.Enum.Parse(typeof(SceneState), index) ? true : false;
-        }
-        else if (_tState == typeof(AudioInScene))
-        {
-            return _tState == (object)(AudioInScene)System.Enum.Parse(typeof(AudioInScene), index) ? true : false;
-        }
-        else
-        {
-            Debug.Log("Data types must be enum like SceneState, GameState.\n You might want to regist it.");
-            return false;
-        }
+        Enum s1 = Enum.Parse(typeof(T), state.ToString()) as Enum;
+        int x1 = Convert.ToInt32(s1);
+
+        Enum s2 = Enum.Parse(typeof(T), index.ToEnum<T>().ToString()) as Enum;
+        int x2 = Convert.ToInt32(s2);
+
+        return (x1 == x2) ? true : false;
+    }
+
+    public static T ToEnum<T>(this string value)
+    {
+        return (T)(object)System.Enum.Parse(typeof(T), value, true);
     }
 
     /// <summary>
     /// Change Enum state by string name.
     /// </summary>
     /// <param name="ChangeState">Enum usage</param>
-    public static void ChangeState<T>(this ref T state, string index) where T : struct
+    public static void Change<T>(this ref T state, string index) where T : struct
     {
-        var _tState = state.GetType();
-        if (_tState == typeof(AudioInScene))
-        {
-            state = (T)(object)(AudioInScene)System.Enum.Parse(typeof(AudioInScene), index);
-        }
-        else if (_tState == typeof(SceneState))
-        {
-            state = (T)(object)(SceneState)System.Enum.Parse(typeof(SceneState), index);
-        }
-        else
-        {
-            Debug.Log("Data types must be enum like SceneState, GameState.\n You might want to regist it.");
-            return;
-        }
+        state = index.ToEnum<T>();
     }
 }

@@ -14,8 +14,8 @@ public class MaskTransitionContainer
 {
     public GameObject GetSelf { get { return selfObject; } }
     [SerializeField] GameObject selfObject = null;
-    public Animator GetTransition { get { return transition; } }
-    [SerializeField] Animator transition = null;
+    public Animator GetTransitionAnimator { get { return transitionAnimator; } }
+    [SerializeField] Animator transitionAnimator = null;
 }
 
 public class CoreView : MonoBehaviour, ICoreViewSceneTransition
@@ -36,7 +36,7 @@ public class CoreView : MonoBehaviour, ICoreViewSceneTransition
 
     public void PlayMaskAnimation(string name)
     {
-        maskContainer.GetTransition.Play(name);
+        maskContainer.GetTransitionAnimator.Play(name);
     }
 
     public void MaskIn(System.Action callback)
@@ -81,7 +81,7 @@ public class CoreView : MonoBehaviour, ICoreViewSceneTransition
     IEnumerator WaitForPlay(string name, System.Action callback)
     {
         isPlaying = true;
-        AnimationClip[] clips = maskContainer.GetTransition.runtimeAnimatorController.animationClips;
+        AnimationClip[] clips = maskContainer.GetTransitionAnimator.runtimeAnimatorController.animationClips;
         float length = 0;
 
         foreach (AnimationClip clip in clips)

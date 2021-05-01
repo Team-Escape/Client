@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: e4de04a16b01840aea3588da6ba7a3e1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6341662449617437971
+    second: ChoosenBar_0
+  - first:
+      213: -1317900372488690266
+    second: ChoosenBar_1
+  - first:
+      213: -5116568468438710459
+    second: ChoosenBar_2
+  - first:
+      213: -3385591148427065466
+    second: ChoosenBar_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -85,7 +97,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ChoosenBar_0
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 867
+        width: 229
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31581eaf56c120850800000000000000
+      internalID: 6341662449617437971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChoosenBar_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 608
+        width: 229
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5e4700890e5bde0800000000000000
+      internalID: -1317900372488690266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChoosenBar_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 357
+        width: 229
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5470fb1361c4ef8b0800000000000000
+      internalID: -5116568468438710459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChoosenBar_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 94
+        width: 229
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6874c43c9c6f301d0800000000000000
+      internalID: -3385591148427065466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
