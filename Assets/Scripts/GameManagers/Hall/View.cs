@@ -7,6 +7,7 @@ namespace GameManagerSpace.Hall
     public class View : MonoBehaviour
     {
         public int GetMapLength { get { return mapContainers.Count; } }
+        public string GetMapName(int id) { return mapContainers[id].name; }
         public int GetRolesLength { get { return roleContainers.Count; } }
         public string GetRoleName(int id) { return roleContainers[id].name; }
         [SerializeField] Transform roleUI = null;

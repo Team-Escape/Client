@@ -21,12 +21,30 @@ namespace GameManagerSpace.Hall
     }
     public class HallManager : MonoBehaviour
     {
-        View view = null;
-        List<InputActionSourceData> activeController = new List<InputActionSourceData>();
-        List<PlayerContainer> containers = new List<PlayerContainer>();
+        // Player type variable of Rewired.
         List<Player> activePlayers = new List<Player>();
+
+        // Controller type variable of Rewired.
+        List<InputActionSourceData> activeController = new List<InputActionSourceData>();
+
+        // Assemble variables handling selecting.
+        List<PlayerContainer> containers = new List<PlayerContainer>();
+
+        bool AbleToStart { get { return containers.FindAll(x => x.selfSelectState == SelectState.OnWaiting).Count == containers.Count; } }
+
+        // Handle finding rewired players unassigned.
         JoinHandler join = new JoinHandler();
+
+        // Handle UI view evenets.
+        View view = null;
+        // Enable players to join.
         bool ableToJoin = false;
+        // Prevent game start againg when counting down.
+        bool isStarting = false;
+        // How many players required to start game.
+        [SerializeField] int requiredPlayers = 1;
+        // Nmae of game scene chosen by players. 
+        string mapName = "";
 
         System.Action<string, bool> loadSceneAction = null;
         System.Action audioAction = null;
@@ -37,34 +55,50 @@ namespace GameManagerSpace.Hall
             ableToJoin = true;
         }
 
-        public void StateBack(int id)
+        public void AssignController(Player player, InputActionSourceData source)
         {
-            switch (containers.GetID(id).selfSelectState)
-            {
-                case SelectState.OnChoosingRole:
-                    view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
-                    DeassignController(
-                        activePlayers[id],
-                        activeController[id]
-                    );
-                    break;
-                case SelectState.OnChoosingMap:
-                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
-                    view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, true);
-                    this.AbleToDo(
-                        0.1f,
-                        () => containers.GetID(id).selfSelectState--
-                    );
-                    break;
-                case SelectState.OnWaiting:
-                    view.MapContainerEffect(id, false);
-                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, true);
-                    this.AbleToDo(
-                        0.1f,
-                        () => containers.GetID(id).selfSelectState--
-                    );
-                    break;
-            }
+            if (player == null) return;
+
+            var controller = source.controller;
+
+            activeController.Add(source);
+            activePlayers.Add(player);
+
+            player.controllers.AddController(controller, true);
+            player.isPlaying = true;
+
+            AssignPlayer(player.id);
+
+            if (activePlayers.Count >= 4) ableToJoin = false;
+        }
+
+        public void AssignPlayer(int id)
+        {
+            PlayerContainer _c = new PlayerContainer();
+            _c.id = id;
+            _c.currentMapIndex = 0;
+            _c.currentRoleIndex = 0;
+            _c.selfSelectState = SelectState.OnChoosingRole;
+            containers.Add(_c);
+            view.UpdateRoleContainer(id, _c.currentRoleIndex, true);
+        }
+
+        public void DeassignController(Player player, InputActionSourceData source)
+        {
+            player.controllers.RemoveController(source.controller);
+            player.isPlaying = false;
+            DeassignPlayer(player.id);
+        }
+
+        public void DeassignPlayer(int id)
+        {
+            containers.Remove(containers.GetID(id));
+            ReInput.players.SystemPlayer.controllers.AddController(
+                activeController[id].controller,
+                true
+            );
+            activeController.Remove(activeController[id]);
+            activePlayers.Remove(activePlayers[id]);
         }
 
         public void SelectMap()
@@ -77,6 +111,7 @@ namespace GameManagerSpace.Hall
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                    containers.GetID(id).choosenMap = view.GetMapName(id);
                     containers.GetID(id).selfSelectState++;
                     view.MapContainerEffect(id, true);
                 }
@@ -180,50 +215,74 @@ namespace GameManagerSpace.Hall
             }
         }
 
-        public void AssignController(Player player, InputActionSourceData source)
+        public void StateBack(int id)
         {
-            if (player == null) return;
-
-            var controller = source.controller;
-
-            activeController.Add(source);
-            activePlayers.Add(player);
-
-            player.controllers.AddController(controller, true);
-            player.isPlaying = true;
-
-            AssignPlayer(player.id);
-
-            if (activePlayers.Count >= 4) ableToJoin = false;
+            switch (containers.GetID(id).selfSelectState)
+            {
+                case SelectState.OnChoosingRole:
+                    view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
+                    DeassignController(
+                        activePlayers[id],
+                        activeController[id]
+                    );
+                    break;
+                case SelectState.OnChoosingMap:
+                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                    view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, true);
+                    this.AbleToDo(
+                        0.1f,
+                        () => containers.GetID(id).selfSelectState--
+                    );
+                    break;
+                case SelectState.OnWaiting:
+                    view.MapContainerEffect(id, false);
+                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, true);
+                    this.AbleToDo(
+                        0.1f,
+                        () => containers.GetID(id).selfSelectState--
+                    );
+                    break;
+            }
         }
 
-        public void AssignPlayer(int id)
+        public void GameStart()
         {
-            PlayerContainer _c = new PlayerContainer();
-            _c.id = id;
-            _c.currentMapIndex = 0;
-            _c.currentRoleIndex = 0;
-            _c.selfSelectState = SelectState.OnChoosingRole;
-            containers.Add(_c);
-            view.UpdateRoleContainer(id, _c.currentRoleIndex, true);
+            if (containers.Count < requiredPlayers || isStarting) return;
+            if (AbleToStart)
+            {
+                isStarting = true;
+                StartCoroutine(GameStartCoroutine());
+            }
         }
 
-        public void DeassignController(Player player, InputActionSourceData source)
+        IEnumerator GameStartCoroutine()
         {
-            player.controllers.RemoveController(source.controller);
-            player.isPlaying = false;
-            DeassignPlayer(player.id);
+            float duration = 0.1f;
+            float counter = duration;
+
+            yield return StartCoroutine(MapPolling());
+
+            while (counter >= 0)
+            {
+                yield return null;
+                counter -= Time.unscaledDeltaTime;
+            }
+
+            if (AbleToStart) loadSceneAction(mapName, true);
+            else isStarting = false;
         }
 
-        public void DeassignPlayer(int id)
+        IEnumerator MapPolling()
         {
-            containers.Remove(containers.GetID(id));
-            ReInput.players.SystemPlayer.controllers.AddController(
-                activeController[id].controller,
-                true
-            );
-            activeController.Remove(activeController[id]);
-            activePlayers.Remove(activePlayers[id]);
+            var polls = new Dictionary<string, int>();
+            foreach (PlayerContainer c in containers)
+            {
+                string key = c.choosenMap;
+                if (polls.ContainsKey(key)) continue;
+                polls.Add(key, containers.FindAll(x => x.choosenMap == key).Count);
+            }
+            mapName = polls.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            yield return null;
         }
 
         void Update()
@@ -243,6 +302,7 @@ namespace GameManagerSpace.Hall
             }
             SelectRole();
             SelectMap();
+            GameStart();
         }
 
         private void Awake()
