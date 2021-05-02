@@ -8,7 +8,7 @@ namespace GameManagerSpace.Hall
     {
         public int GetMapLength { get { return mapContainers.Count; } }
         public string GetMapName(int id) { return mapContainers[id].name; }
-        public int GetRolesLength { get { return roleContainers.Count; } }
+        public int GetRoleLength { get { return roleContainers.Count; } }
         public string GetRoleName(int id) { return roleContainers[id].name; }
         [SerializeField] Transform roleUI = null;
         List<Transform> roleContainers = new List<Transform>();
@@ -22,6 +22,15 @@ namespace GameManagerSpace.Hall
         public void UpdateMapContainer(int id, int index, bool isActive = true)
         {
             mapContainers[index].GetChild(id + 1).gameObject.SetActive(isActive);
+        }
+
+        public void RoleContainerErrorEffect(int id, int index)
+        {
+
+        }
+        public void MapContainerErrorEffect(int id, int index)
+        {
+
         }
 
         public void RoleContainerEffect(int id)

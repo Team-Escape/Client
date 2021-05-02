@@ -107,7 +107,15 @@ namespace GameManagerSpace.Hall
             {
                 if (!containers[i].selfSelectState.IsState("OnChoosingMap")) continue;
                 int id = i;
-                int columns = 2;
+                int rows = 2;
+
+                // Passing values to handler 
+                System.Action<int, int, bool> action = view.UpdateMapContainer;
+                int containerLength = view.GetMapLength;
+                ref int currentIndex = ref containers.GetID(id).currentMapIndex;
+                int index = 0;
+                // Passing values to handler
+
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
@@ -117,39 +125,23 @@ namespace GameManagerSpace.Hall
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
-                    if (containers.GetID(id).currentMapIndex + 1 < view.GetMapLength)
-                    {
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
-                        containers.GetID(id).currentMapIndex++;
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
-                    }
+                    index = 1;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
-                    if (containers.GetID(id).currentMapIndex - 1 >= 0)
-                    {
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
-                        containers.GetID(id).currentMapIndex--;
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
-                    }
+                    index = -1;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
                 {
-                    if (containers.GetID(id).currentMapIndex - columns >= 0)
-                    {
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
-                        containers.GetID(id).currentMapIndex -= columns;
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
-                    }
+                    index = -rows;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
                 {
-                    if (containers.GetID(id).currentMapIndex + columns < view.GetMapLength)
-                    {
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
-                        containers.GetID(id).currentMapIndex += columns;
-                        view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex);
-                    }
+                    index = rows;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
             }
         }
@@ -160,7 +152,15 @@ namespace GameManagerSpace.Hall
             {
                 if (!containers[i].selfSelectState.IsState("OnChoosingRole")) continue;
                 int id = i;
-                int columns = 4;
+                int rows = 4;
+
+                // Passing values to handler 
+                System.Action<int, int, bool> action = view.UpdateRoleContainer;
+                int containerLength = view.GetRoleLength;
+                ref int currentIndex = ref containers.GetID(id).currentRoleIndex;
+                int index = 0;
+                // Passing values to handler
+
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
@@ -178,39 +178,23 @@ namespace GameManagerSpace.Hall
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
-                    if (containers.GetID(id).currentRoleIndex + 1 < view.GetRolesLength)
-                    {
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
-                        containers.GetID(id).currentRoleIndex++;
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
-                    }
+                    index = 1;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
-                    if (containers.GetID(id).currentRoleIndex - 1 >= 0)
-                    {
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
-                        containers.GetID(id).currentRoleIndex--;
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
-                    }
+                    index = -1;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
                 {
-                    if (containers.GetID(id).currentRoleIndex + columns < view.GetRolesLength)
-                    {
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
-                        containers.GetID(id).currentRoleIndex += columns;
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
-                    }
+                    index = rows;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
                 {
-                    if (containers.GetID(id).currentRoleIndex - columns >= 0)
-                    {
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
-                        containers.GetID(id).currentRoleIndex -= columns;
-                        view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex);
-                    }
+                    index = -rows;
+                    containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
                 }
             }
         }
@@ -316,6 +300,17 @@ namespace GameManagerSpace.Hall
         public static PlayerContainer GetID(this List<PlayerContainer> source, int id)
         {
             return source.Find(element => element.id == id);
+        }
+
+        public static void UpdateUIHandler(this PlayerContainer source, System.Action<int, int, bool> callback, int containerLengrh, ref int currentIndex, int index, bool isActive = true)
+        {
+            if (index > 0 && currentIndex + index >= containerLengrh) return;
+            else if (index < 0 && currentIndex + index < 0) return;
+
+            int id = source.id;
+            callback(id, currentIndex, !isActive);
+            currentIndex += index;
+            callback(id, currentIndex, isActive);
         }
     }
 }
