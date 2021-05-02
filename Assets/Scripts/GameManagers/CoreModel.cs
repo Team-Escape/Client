@@ -25,7 +25,7 @@ namespace GameManagerSpace
         SettingsScene,
         RemappingScene,
         HallScene,
-        LabMapScene,
+        LabScene,
         ScoreScene,
         AwardScene,
     };

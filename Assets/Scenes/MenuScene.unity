@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3992,6 +3992,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -2794139383563824988, guid: e1d1cf3a47e3d41479d21d687ff1163d, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 8498366100098624501, guid: e1d1cf3a47e3d41479d21d687ff1163d, type: 2}
+    value: {fileID: 2111141098}
   m_ExposedReferences:
     m_References:
     - 60a6d23e8eca64b76b29fe37f4277a17: {fileID: 2114395826}
@@ -5886,6 +5888,7 @@ GameObject:
   - component: {fileID: 2111141096}
   - component: {fileID: 2111141097}
   - component: {fileID: 2111141095}
+  - component: {fileID: 2111141098}
   m_Layer: 0
   m_Name: AFKTimelineDirector
   m_TagString: Untagged
@@ -5944,6 +5947,35 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - 4429b442a78d6441a833621d72f01859: {fileID: 2114395826}
+--- !u!114 &2111141098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111141094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 54d62bd0ad1aa4a83bf4e51e80f764c1, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2111141095}
+          m_MethodName: Init
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2114395826
 GameObject:
   m_ObjectHideFlags: 0

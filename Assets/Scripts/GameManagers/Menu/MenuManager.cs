@@ -26,23 +26,10 @@ namespace GameManagerSpace.Menu
 
         public void AnimationEventCallback()
         {
-            PlayAFKAnimation();
-
             SwitchUICanvas();
             view.InitButton();
             ableToClickButton = true;
-
             audioAction();
-        }
-
-        void PlayAFKAnimation()
-        {
-            // Delay secs and play the afk animation by calling custom script.
-            float delay = 3f;
-            this.AbleToDo(
-                delay,
-                () => FindObjectOfType<TimelineLoopAfterFinishing>().Init()
-            );
         }
 
         void SwitchUICanvas()

@@ -72,6 +72,12 @@ namespace GameManagerSpace
 
                     coreView.MaskOut();
                     break;
+                case SceneState.LabScene:
+                    ChangeInputMaps("Hall");
+
+
+                    coreView.MaskOut();
+                    break;
             }
         }
         // This function will be called when a controller is connected
