@@ -55,6 +55,27 @@ namespace GameManagerSpace.Hall
             ableToJoin = true;
         }
 
+        public void JoinDetection()
+        {
+            if (ReInput.players.GetSystemPlayer().GetButtonDown("JoinGame"))
+            {
+                if (ableToJoin == false) return;
+                (Player player, InputActionSourceData source) = join.AssignNextPlayer(activeController);
+                if (player != null) AssignController(player, source);
+            }
+        }
+
+        public void StateBackDection()
+        {
+            for (int i = 0; i < ReInput.players.playerCount; i++)
+            {
+                if (ReInput.players.GetPlayer(i).GetButtonDown("StateBack"))
+                {
+                    StateBack(i);
+                }
+            }
+        }
+
         public void AssignController(Player player, InputActionSourceData source)
         {
             if (player == null) return;
@@ -118,11 +139,12 @@ namespace GameManagerSpace.Hall
 
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
-                    view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, false);
+                    view.UpdateMapContainer(id, currentIndex, false);
+                    view.MapContainerEffect(id, true);
                     containers.GetID(id).choosenMap = view.GetMapName(id);
                     containers.GetID(id).selfSelectState++;
-                    view.MapContainerEffect(id, true);
                 }
+                // Update index to change direction.
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
                     index = 1;
@@ -163,19 +185,15 @@ namespace GameManagerSpace.Hall
 
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
-                    view.UpdateRoleContainer(id, containers.GetID(id).currentRoleIndex, false);
+                    view.UpdateRoleContainer(id, currentIndex, false);
                     view.UpdateMapContainer(id, containers.GetID(id).currentMapIndex, true);
 
                     string path = "Game/";
-                    containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(containers.GetID(id).currentRoleIndex));
+                    containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(currentIndex));
+                    containers.GetID(id).selfSelectState++;
 
-                    // Delay the state changing for secs.
-                    // Avoid directly dectecting by SelectMap func.
-                    this.AbleToDo(
-                        0.1f,
-                        () => containers.GetID(id).selfSelectState++
-                    );
                 }
+                // Update index to change direction.
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
                     index = 1;
@@ -271,21 +289,10 @@ namespace GameManagerSpace.Hall
 
         void Update()
         {
-            if (ReInput.players.GetSystemPlayer().GetButtonDown("JoinGame"))
-            {
-                if (ableToJoin == false) return;
-                (Player player, InputActionSourceData source) = join.AssignNextPlayer(activeController);
-                if (player != null) AssignController(player, source);
-            }
-            for (int i = 0; i < ReInput.players.playerCount; i++)
-            {
-                if (ReInput.players.GetPlayer(i).GetButtonDown("StateBack"))
-                {
-                    StateBack(i);
-                }
-            }
-            SelectRole();
+            JoinDetection();
+            StateBackDection();
             SelectMap();
+            SelectRole();
             GameStart();
         }
 
