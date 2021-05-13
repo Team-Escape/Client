@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Rewired;
 namespace GameManagerSpace
 {
     public class CoreModel : MonoBehaviour
     {
+        #region Rewired
+        public static List<Player> ActivePlayers { get; set; }
+        public static List<InputActionSourceData> ActiveController { get; set; }
+        #endregion
+
+        #region Game variables (passed by hallmanager)
         public static string choosenMapName = "";
-        public static int activePlayers = 0;
-        public static List<GameObject> EscaperPrefabs { get; set; }
-        public static List<GameObject> HunterPrefabs { get; set; }
+        public static int activePlayersCount = 0;
+        public static List<GameObject> RolePrefabs { get; set; }
+        #endregion
+
+        #region  Game judgementss (passed by different classes with different scenes)
         public static List<GameObject> WinnerPlayers { get; set; }
-
-        // ------------------------------------
-
-        public static int winningScore = 0;
+        public static int winningScore = 3;
         public static List<int> scores { get; set; }
         public static List<int> obtainScores { get; set; }
+        #endregion
     }
     public enum SceneState
     {
@@ -29,13 +35,4 @@ namespace GameManagerSpace
         ScoreScene,
         AwardScene,
     };
-    public enum GameState
-    {
-        Setting, // On game scene and is setting.
-        Starting, // On game scene and is starting.
-        Playing, // On game scene and is playing.
-        Scoring, // On score scene.
-        GameOver,
-        GameDraw,
-    }
 }
