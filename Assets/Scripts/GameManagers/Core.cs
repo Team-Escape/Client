@@ -73,13 +73,14 @@ namespace GameManagerSpace
                     coreView.MaskOut();
                     break;
                 case SceneState.LabScene:
-                    ChangeInputMaps("Hall");
-
+                    ChangeInputMaps("Game");
+                    audioManager.ChangeAudio("Game");
 
                     coreView.MaskOut();
                     break;
             }
         }
+
         // This function will be called when a controller is connected
         // You can get information about the controller that was connected via the args parameter
         void OnControllerConnected(ControllerStatusChangedEventArgs args)

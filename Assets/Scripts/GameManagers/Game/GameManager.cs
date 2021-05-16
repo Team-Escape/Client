@@ -65,8 +65,8 @@ namespace GameManagerSpace.Game
             yield return StartCoroutine(control.RandomStartItem());
             yield return StartCoroutine(control.RandomPlayerAvatars());
             yield return StartCoroutine(control.SpawnRooms());
-            yield return StartCoroutine(control.SpawnStartItems());
             yield return StartCoroutine(control.SpawnPlayers());
+
             loadedAction(); // Call Scene Transition
         }
 
@@ -80,18 +80,18 @@ namespace GameManagerSpace.Game
 
         IEnumerator Playing()
         {
-            // Init player actions.
-            yield return null;
+            yield return StartCoroutine(control.InitPlayerGame());
         }
 
         IEnumerator Scoring()
         {
-            yield return null;
+            yield return StartCoroutine(control.Scoring());
         }
 
         IEnumerator GameOver()
         {
             yield return null;
+            loadSceneAction(awardScene, false);
         }
 
         IEnumerator GameDraw()

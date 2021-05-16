@@ -4,25 +4,6 @@ using UnityEngine;
 
 public static class CoreExtension
 {
-    /// <param name="RandomSeed">
-    /// Random a list of seed. Length of n, and choose object in prefab pool randomly.
-    ///</param>
-    public static List<T1> RandomSeed<T, T1>(this List<T> source, T1 n)
-    {
-        List<T1> seed = new List<T1>();
-        for (int i = 0; i < (int)(object)n; i++)
-        {
-            // int rnd = UnityEngine.Random.Range(0, max);
-            int r = UnityEngine.Random.Range(0, source.Count);
-            while (true)
-            {
-                if (seed.Contains((T1)(object)r) == false) break;
-                r = UnityEngine.Random.Range(0, source.Count);
-            }
-            seed.Add((T1)(object)r);
-        }
-        return seed;
-    }
     /// <param name="Camera">
     /// Resize all camera rect and field from 1 to 4 players.
     ///</param>

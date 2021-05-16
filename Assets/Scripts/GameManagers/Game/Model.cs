@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using Rewired;
 
 namespace GameManagerSpace.Game
 {
@@ -20,6 +22,49 @@ namespace GameManagerSpace.Game
     }
     public class Model : MonoBehaviour
     {
+        #region StartRoomStuff
+        [Header("Start room")]
+        public Transform startRoom = null;
+        public Tilemap startRoomTilemap = null;
+        public Vector3Int[] wallDestoryInEscape = null;
+        public Vector3Int[] wallDestoryInHunter = null;
+        #endregion
 
+        #region Rooms
+        public List<GameObject> blocks { get; set; }
+        [Header("Room block")]
+        public int roomSize = 5;
+        public BlockContainer blockContainer = null;
+        #endregion
+
+        #region PlayerStuff
+        [Header("Player variable")]
+        public Transform hunterSpawn = null;
+        public Transform escaperSpawn = null;
+        [HideInInspector]
+        public GameObject hunter = null;
+        [HideInInspector]
+        public List<GameObject> escapers = new List<GameObject>();
+        [HideInInspector]
+        public Player hunterPlayer = null;
+        [HideInInspector]
+        public List<Player> escaperPlayers = null;
+        #endregion
+
+        #region StartItem
+        [Header("Start item")]
+        public List<GameObject> startItemGameObjects = new List<GameObject>();
+        public List<GameObject> startItemContainers = new List<GameObject>();
+        #endregion
+
+    }
+
+    [System.Serializable]
+    public class BlockContainer
+    {
+        public List<GameObject> left = new List<GameObject>();
+        public List<GameObject> right = new List<GameObject>();
+        public List<GameObject> up = new List<GameObject>();
+        public List<GameObject> down = new List<GameObject>();
     }
 }
