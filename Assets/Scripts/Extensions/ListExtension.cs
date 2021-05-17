@@ -14,18 +14,20 @@ public static class ListExtension
     ///</param>
     public static List<T> RandomSeed<T>(this List<T> source, int n)
     {
-        List<T> seed = new List<T>();
+        List<int> seed = new List<int>();
+        List<T> container = new List<T>();
         for (int i = 0; i < n; i++)
         {
             // int rnd = UnityEngine.Random.Range(0, max);
             int r = UnityEngine.Random.Range(0, source.Count);
             while (true)
             {
-                if (seed.Contains((T)(object)r) == false) break;
+                if (seed.Contains(r) == false) break;
                 r = UnityEngine.Random.Range(0, source.Count);
             }
-            seed.Add((T)(object)r);
+            seed.Add(r);
+            container.Add(source[r]);
         }
-        return seed;
+        return container;
     }
 }

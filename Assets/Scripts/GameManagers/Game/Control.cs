@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using GameManagerSpace.Game.HunterGame;
@@ -13,7 +14,7 @@ namespace GameManagerSpace.Game
 
         Action<string> changeGameStateAction = null;
         int activePlayers = 0;
-        int gotStartItemPlayers = 0;
+        int playerGotStartItem = 0;
 
         public void Init(Action<string> changeGameStateCallback)
         {
@@ -24,12 +25,14 @@ namespace GameManagerSpace.Game
         public IEnumerator RandomRooms()
         {
             int index = 0;
-            model.blocks.Add(model.blockContainer.right.Random());
+            List<GameObject> blocks = new List<GameObject>();
+            blocks.Add(model.blockContainer.left.Random());
             while (true)
             {
                 if (index > model.roomSize - 1) break;
                 GameObject go = null;
-                switch (model.blocks[index].name.Split(',')[2])
+                string name = blocks[index].name;
+                switch (name.Split(',')[2])
                 {
                     case "left":
                         go = model.blockContainer.right.Random();
@@ -44,9 +47,11 @@ namespace GameManagerSpace.Game
                         go = model.blockContainer.up.Random();
                         break;
                 }
+                blocks.Add(go);
                 index++;
                 yield return null;
             }
+            model.blocks = blocks;
         }
 
         public IEnumerator RandomPlayerAvatars()
@@ -60,7 +65,13 @@ namespace GameManagerSpace.Game
 
         public IEnumerator RandomStartItem()
         {
-            model.startItemGameObjects = model.startItemContainers.RandomSeed(3);
+            List<StartItemContainer> containers = model.startItemContainers.RandomSeed(3);
+            for (int i = 0; i < model.startItemGameObjects.Count; i++)
+            {
+                Debug.Log(containers[i]);
+                model.startItemGameObjects[i].GetComponent<SpriteRenderer>().sprite = containers[i].display;
+                model.startItemGameObjects[i].name = containers[i].name;
+            }
             yield return null;
         }
 
@@ -75,9 +86,14 @@ namespace GameManagerSpace.Game
         {
             for (int i = 0; i < model.blocks.Count; i++)
             {
-                Vector2 pos = (i == 0) ? model.startRoom.GetChild(0).position : model.blocks[i - 1].transform.GetChild(0).position;
-                GameObject go = Instantiate(model.blocks[i]);
-                go.transform.position = new Vector3(pos.x, pos.y, 0);
+                model.blocks[i] = Instantiate(model.blocks[i]);
+            }
+            for (int i = 0; i < model.blocks.Count; i++)
+            {
+                Vector2 pos = (i == 0) ?
+                    model.startRoom.GetChild(0).position :
+                    model.blocks[i - 1].transform.localPosition + model.blocks[i - 1].transform.GetChild(0).localPosition;
+                model.blocks[i].transform.position = pos;
             }
             yield return null;
         }

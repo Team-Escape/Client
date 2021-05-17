@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 2352935426873738005}
   - component: {fileID: 8445725628771329343}
   - component: {fileID: 6889415607779679091}
-  - component: {fileID: 9176062837298596639}
   - component: {fileID: 2291739669804469633}
   m_Layer: 8
   m_Name: Lr1
@@ -395,24 +394,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &9176062837298596639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080235571927347605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  distance: 5
-  goRight: 0
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 7427114249532935160}
 --- !u!50 &2291739669804469633
 Rigidbody2D:
   serializedVersion: 4
@@ -7079,8 +7060,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2199194291694465883}
   - {fileID: 2199194291052513268}
+  - {fileID: 2199194291694465883}
   - {fileID: 2199194290423621209}
   - {fileID: 6414758255851582707}
   m_Father: {fileID: 0}
@@ -7259,7 +7240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2199194290468021735}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2199194291639150894
 GameObject:
@@ -8860,7 +8841,7 @@ Transform:
   - {fileID: 5212645205157170996}
   - {fileID: 2886933855336882971}
   m_Father: {fileID: 2199194290468021735}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &2199194291694465880
 Grid:
@@ -8915,10 +8896,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4540004077404372329}
   - component: {fileID: 714406962375369665}
-  - component: {fileID: 6082953684899326388}
   - component: {fileID: 2056566731846922736}
   - component: {fileID: 7424008685514648461}
-  - component: {fileID: 8658178741246283699}
   m_Layer: 8
   m_Name: Lr1
   m_TagString: Untagged
@@ -8987,72 +8966,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.50000006, y: 0.50000006, z: 0}
     m_Extent: {x: 0.50000006, y: 0.50000006, z: 0}
---- !u!114 &6082953684899326388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4280480065743378146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 1, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
 --- !u!61 &2056566731846922736
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9100,24 +9013,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8658178741246283699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4280480065743378146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  distance: 5
-  goRight: 0
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 7427114249532935160}
 --- !u!1 &5721203040354506195
 GameObject:
   m_ObjectHideFlags: 0
@@ -9130,7 +9025,6 @@ GameObject:
   - component: {fileID: 6358331665466547119}
   - component: {fileID: 1685471091459238219}
   - component: {fileID: 2825540280161529728}
-  - component: {fileID: 1262890751171626872}
   - component: {fileID: 6970047343733608281}
   m_Layer: 8
   m_Name: Lr5
@@ -9423,24 +9317,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &1262890751171626872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5721203040354506195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  distance: 3
-  goRight: 0
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 7427114249532935160}
 --- !u!50 &6970047343733608281
 Rigidbody2D:
   serializedVersion: 4
@@ -9474,7 +9350,6 @@ GameObject:
   - component: {fileID: 2844950585306957997}
   - component: {fileID: 48502887622860496}
   - component: {fileID: 8505888275635619230}
-  - component: {fileID: 8263333651316286327}
   - component: {fileID: 7094505518051213771}
   m_Layer: 8
   m_Name: Lr4
@@ -9767,24 +9642,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &8263333651316286327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6870004177077303616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  distance: 3
-  goRight: 1
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 7427114249532935160}
 --- !u!50 &7094505518051213771
 Rigidbody2D:
   serializedVersion: 4
@@ -9818,7 +9675,6 @@ GameObject:
   - component: {fileID: 5465725063596821345}
   - component: {fileID: 6512212165203711945}
   - component: {fileID: 1301246639481769359}
-  - component: {fileID: 5004268432967562072}
   - component: {fileID: 2771761436809322531}
   m_Layer: 8
   m_Name: Lr2
@@ -10129,24 +9985,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &5004268432967562072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278896453490106550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  distance: 5
-  goRight: 0
-  delay: 0
-  startDelay: 1
-  originSpot: {fileID: 7427114249532935160}
 --- !u!50 &2771761436809322531
 Rigidbody2D:
   serializedVersion: 4
@@ -10180,7 +10018,6 @@ GameObject:
   - component: {fileID: 4878319459113443713}
   - component: {fileID: 1518131133957818087}
   - component: {fileID: 5459215735315136025}
-  - component: {fileID: 7007659712279966928}
   - component: {fileID: 211049599341634700}
   m_Layer: 8
   m_Name: Lr3
@@ -10456,24 +10293,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &7007659712279966928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7940343954335908992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2.2
-  distance: 5
-  goRight: 1
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 7427114249532935160}
 --- !u!50 &211049599341634700
 Rigidbody2D:
   serializedVersion: 4

@@ -10,12 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7523775035024104827}
   - component: {fileID: 8169445188726331392}
-  - component: {fileID: 3480718293623899695}
-  - component: {fileID: 2514011057854340472}
-  - component: {fileID: 2245959789640987699}
   - component: {fileID: 5763564962427861841}
   - component: {fileID: 3786456923338302732}
-  - component: {fileID: 1002685098263580375}
   m_Layer: 9
   m_Name: move (1)
   m_TagString: Untagged
@@ -84,108 +80,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 1.0000001, y: 2.0000002, z: 0}
     m_Extent: {x: 1.0000001, y: 2.0000002, z: 0}
---- !u!114 &3480718293623899695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233871655465106341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 4, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 2, y: 4, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 2, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
---- !u!114 &2514011057854340472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233871655465106341}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30262e64e2fecd4e9785fe751189881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  distance: 14
-  goUp: 1
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 0}
---- !u!114 &2245959789640987699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233871655465106341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  distance: 100
-  goRight: 0
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 8034355231961427260}
 --- !u!50 &5763564962427861841
 Rigidbody2D:
   serializedVersion: 4
@@ -233,20 +127,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0000002, y: 4.0000005}
   m_EdgeRadius: 0
---- !u!114 &1002685098263580375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233871655465106341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70379906661cadb42a629f49003f8a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPlace: {fileID: 8730168186448337575}
-  endPlace: {fileID: 5299327022471327359}
 --- !u!1 &1447504874646909297
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +200,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3560809695765068411}
   - component: {fileID: 1827820404650782236}
-  - component: {fileID: 2965726998442754945}
   - component: {fileID: 475612816054936279}
   m_Layer: 10
   m_Name: slimceGround
@@ -390,72 +269,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.50000006, y: 0.50000006, z: 0}
     m_Extent: {x: 0.50000006, y: 0.50000006, z: 0}
---- !u!114 &2965726998442754945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2916839017495836344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 1, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
 --- !u!61 &475612816054936279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -552,7 +365,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5976262829500867061}
   - component: {fileID: 884973645850191673}
-  - component: {fileID: 4116916972925316724}
   - component: {fileID: 6922018927010960093}
   - component: {fileID: 98936855622725146}
   m_Layer: 11
@@ -623,72 +435,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.50000006, y: 0.50000006, z: 0}
     m_Extent: {x: 0.67599106, y: 0.67599106, z: 0}
---- !u!114 &4116916972925316724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3697575895573476340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0.23570226, y: -0.23570226, z: -0}
-      rightTangent: {x: -0.23570226, y: 0.23570226, z: 0}
-      mode: 1
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 1, z: 0}
-      leftTangent: {x: -0.23570226, y: -0.23570226, z: -0}
-      rightTangent: {x: 0.23570226, y: 0.23570226, z: 0}
-      mode: 1
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 1, z: 0}
-      leftTangent: {x: -0.23570226, y: 0.23570226, z: -0}
-      rightTangent: {x: 0.23570226, y: -0.23570226, z: 0}
-      mode: 1
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 0, z: 0}
-      leftTangent: {x: 0.23570226, y: 0.23570226, z: -0}
-      rightTangent: {x: -0.23570226, y: -0.23570226, z: 0}
-      mode: 1
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
 --- !u!50 &6922018927010960093
 Rigidbody2D:
   serializedVersion: 4
@@ -705,7 +451,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
-  m_Material: {fileID: 6200000, guid: 320dd571d7e6adb478b681b73d34e0c7, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -736,7 +482,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2046670730722067844}
   - component: {fileID: 4844351891931216532}
-  - component: {fileID: 3508016373268792634}
   - component: {fileID: 3863710891618565416}
   m_Layer: 9
   m_Name: iceGround
@@ -806,72 +551,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.50000006, y: 0.50000006, z: 0}
     m_Extent: {x: 0.50000006, y: 0.50000006, z: 0}
---- !u!114 &3508016373268792634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737031371873289177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
 --- !u!61 &3863710891618565416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1014,7 +693,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5365444304533818405}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5365444303625617644
 GameObject:
@@ -2762,7 +2441,7 @@ Transform:
   - {fileID: 5365444304743193054}
   - {fileID: 5365444303625617645}
   m_Father: {fileID: 5365444304533818405}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &5365444303664159386
 Grid:
@@ -9855,9 +9534,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5365444302971924022}
   - {fileID: 7782210086963316072}
   - {fileID: 5365444303664159385}
-  - {fileID: 5365444302971924022}
   - {fileID: 5365444304540798875}
   - {fileID: 1453807956174922535}
   m_Father: {fileID: 0}
@@ -10082,12 +9761,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5867385967737293521}
   - component: {fileID: 392636736870194925}
-  - component: {fileID: 1305033987345643695}
-  - component: {fileID: 5838010351016687168}
-  - component: {fileID: 6791961788946102053}
   - component: {fileID: 711718844319886030}
   - component: {fileID: 5627783806266368244}
-  - component: {fileID: 8690525056040370873}
   m_Layer: 9
   m_Name: move (2)
   m_TagString: Untagged
@@ -10156,108 +9831,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 1.0000001, y: 2.0000002, z: 0}
     m_Extent: {x: 1.0000001, y: 2.0000002, z: 0}
---- !u!114 &1305033987345643695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100078548114193551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 4, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 2, y: 4, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 2, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
---- !u!114 &5838010351016687168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100078548114193551}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30262e64e2fecd4e9785fe751189881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  distance: 14
-  goUp: 1
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 0}
---- !u!114 &6791961788946102053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100078548114193551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  distance: 100
-  goRight: 1
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 6090831960236738751}
 --- !u!50 &711718844319886030
 Rigidbody2D:
   serializedVersion: 4
@@ -10305,20 +9878,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0000002, y: 4.0000005}
   m_EdgeRadius: 0
---- !u!114 &8690525056040370873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100078548114193551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70379906661cadb42a629f49003f8a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPlace: {fileID: 3209106621160083828}
-  endPlace: {fileID: 6525450704397610395}
 --- !u!1 &6525450704397610395
 GameObject:
   m_ObjectHideFlags: 0
@@ -10406,7 +9965,7 @@ Transform:
   - {fileID: 5976262829500867061}
   - {fileID: 4699312261987729622}
   m_Father: {fileID: 5365444304533818405}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6919280624650155780
 GameObject:

@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 1478098756938896508}
   - component: {fileID: 6281533086129885020}
   - component: {fileID: 2105621350087894361}
-  - component: {fileID: 7884238558449174089}
   - component: {fileID: 8057162950597687471}
-  - component: {fileID: 8282350038118147705}
   m_Layer: 8
   m_Name: Ud1
   m_TagString: Untagged
@@ -279,24 +277,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &7884238558449174089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685896593830053743}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30262e64e2fecd4e9785fe751189881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  distance: 6
-  goUp: 0
-  delay: 1
-  startDelay: 0
-  originSpot: {fileID: 4515734240530308453}
 --- !u!50 &8057162950597687471
 Rigidbody2D:
   serializedVersion: 4
@@ -318,32 +298,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!114 &8282350038118147705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685896593830053743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9d6238a0685c48cd8a9372d0570f958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 2
-  testEvniorment: 1
-  unscaledTime: 1
-  startTime: 0
-  duration: 8
-  loopTimes: -1
-  movePos: {x: 0, y: -6}
-  rotateAngle: 360
-  destination: {fileID: 0}
-  activeObject: {fileID: 0}
-  activeState: 0
-  activeFunction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3695950406356231762
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3695950407919174722}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3695950407208896651
 GameObject:
@@ -1998,7 +1952,7 @@ Transform:
   - {fileID: 3695950407208896650}
   - {fileID: 2217987675340313092}
   m_Father: {fileID: 3695950407919174722}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &3695950407266308861
 Grid:
@@ -8363,8 +8317,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3695950407266308862}
   - {fileID: 3695950406356231761}
+  - {fileID: 3695950407266308862}
   - {fileID: 3695950407874775036}
   - {fileID: 9082454845033957657}
   m_Father: {fileID: 0}
@@ -8912,10 +8866,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2680871433900300010}
   - component: {fileID: 6105143382059547076}
-  - component: {fileID: 4124469192464430827}
   - component: {fileID: 6151320277502525445}
   - component: {fileID: 6424760819910718733}
-  - component: {fileID: 4561610907337364791}
   m_Layer: 8
   m_Name: Lr1
   m_TagString: Untagged
@@ -8984,72 +8936,6 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.50000006, y: 0.50000006, z: 0}
     m_Extent: {x: 0.50000006, y: 0.50000006, z: 0}
---- !u!114 &4124469192464430827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904356890790172627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: 1, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 1, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 1, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
 --- !u!61 &6151320277502525445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9097,21 +8983,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4561610907337364791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904356890790172627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ee203802c2934381c8b48cc088370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  distance: 5
-  goRight: 0
-  delay: 0
-  startDelay: 0
-  originSpot: {fileID: 4515734240530308453}

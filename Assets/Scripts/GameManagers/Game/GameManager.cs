@@ -99,13 +99,17 @@ namespace GameManagerSpace.Game
             yield return null;
         }
 
-        void Awake()
+        private void Awake()
         {
-            gameState.Change("Setting");
             control = GetComponent<Control>();
             control.Init(
                 (string name) => GameFlow(name)
             );
+        }
+
+        private void Start()
+        {
+            GameFlow("Setting");
         }
     }
 }

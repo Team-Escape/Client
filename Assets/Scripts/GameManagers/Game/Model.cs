@@ -54,9 +54,16 @@ namespace GameManagerSpace.Game
         #region StartItem
         [Header("Start item")]
         public List<GameObject> startItemGameObjects = new List<GameObject>();
-        public List<GameObject> startItemContainers = new List<GameObject>();
+        public List<StartItemContainer> startItemContainers = new List<StartItemContainer>();
         #endregion
 
+    }
+
+    [System.Serializable]
+    public class StartItemContainer
+    {
+        public Sprite display = null;
+        public string name = "";
     }
 
     [System.Serializable]
