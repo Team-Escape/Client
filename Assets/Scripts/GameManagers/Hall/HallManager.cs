@@ -161,7 +161,7 @@ namespace GameManagerSpace.Hall
                     view.UpdateRoleContainer(id, currentIndex, false);
                     view.UpdateMapContainer(id, model.containers.GetID(id).currentMapIndex, true);
 
-                    string path = "Game/";
+                    string path = "Game/Roles/";
                     model.containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(currentIndex));
                     model.containers.GetID(id).selfSelectState++;
 
@@ -233,6 +233,14 @@ namespace GameManagerSpace.Hall
                 CoreModel.ActivePlayers = model.activePlayers;
                 CoreModel.ActiveController = model.activeController;
                 CoreModel.choosenMapName = model.mapName;
+
+                List<GameObject> playerPrefabs = new List<GameObject>();
+                for (int i = 0; i < CoreModel.activePlayersCount; i++)
+                {
+                    Debug.Log(model.containers[i].roleModel);
+                    playerPrefabs.Add(model.containers[i].roleModel);
+                }
+                CoreModel.RolePrefabs = playerPrefabs;
 
                 StartCoroutine(GameStartCoroutine());
             }

@@ -6,6 +6,7 @@ using Rewired;
 using GameManagerSpace.Audio;
 using GameManagerSpace.Menu;
 using GameManagerSpace.Hall;
+using GameManagerSpace.Game;
 
 namespace GameManagerSpace
 {
@@ -68,13 +69,16 @@ namespace GameManagerSpace
                     ChangeInputMaps("Hall");
 
                     var hall = FindObjectOfType<HallManager>();
-                    hall.Init(MaskChangeScene, () => audioManager.ChangeAudio("Hall"));
+                    hall.Init(MaskChangeScene, coreView.MaskOut);
 
                     coreView.MaskOut();
                     break;
                 case SceneState.LabScene:
                     ChangeInputMaps("Game");
                     audioManager.ChangeAudio("Game");
+
+                    var lab = FindObjectOfType<GameManager>();
+                    lab.Init(MaskChangeScene, () => audioManager.ChangeAudio("Hall"));
 
                     coreView.MaskOut();
                     break;

@@ -51,6 +51,24 @@ namespace GameManagerSpace.Game
                 index++;
                 yield return null;
             }
+
+            string name1 = blocks[blocks.Count - 1].name;
+            switch (name1.Split(',')[2])
+            {
+                case "left":
+                    blocks.Add(model.destinationRoomRight.gameObject);
+                    break;
+                case "right":
+                    blocks.Add(model.destinationRoomLeft.gameObject);
+                    break;
+                case "up":
+                    blocks.Add(model.destinationRoomDown.gameObject);
+                    break;
+                case "down":
+                    blocks.Add(model.destinationRoomUp.gameObject);
+                    break;
+            }
+
             model.blocks = blocks;
         }
 
@@ -68,7 +86,6 @@ namespace GameManagerSpace.Game
             List<StartItemContainer> containers = model.startItemContainers.RandomSeed(3);
             for (int i = 0; i < model.startItemGameObjects.Count; i++)
             {
-                Debug.Log(containers[i]);
                 model.startItemGameObjects[i].GetComponent<SpriteRenderer>().sprite = containers[i].display;
                 model.startItemGameObjects[i].name = containers[i].name;
             }

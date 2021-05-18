@@ -30,6 +30,13 @@ namespace GameManagerSpace.Game
         public Vector3Int[] wallDestoryInHunter = null;
         #endregion
 
+        #region Destination
+        public Transform destinationRoomUp = null;
+        public Transform destinationRoomDown = null;
+        public Transform destinationRoomRight = null;
+        public Transform destinationRoomLeft = null;
+        #endregion        
+
         #region Rooms
         public List<GameObject> blocks { get; set; }
         [Header("Room block")]
