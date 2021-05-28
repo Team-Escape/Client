@@ -22,6 +22,8 @@ namespace GameManagerSpace.Game
     }
     public class Model : MonoBehaviour
     {
+        public Camera mainCam = null;
+
         #region StartRoomStuff
         [Header("Start room")]
         public Transform startRoom = null;
@@ -48,6 +50,8 @@ namespace GameManagerSpace.Game
         [Header("Player variable")]
         public Transform hunterSpawn = null;
         public Transform escaperSpawn = null;
+        [HideInInspector]
+        public List<GameObject> roles = null;
         [HideInInspector]
         public GameObject hunter = null;
         [HideInInspector]

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using GameManagerSpace.Game.HunterGame;
+using PlayerSpace.Game;
 
 namespace GameManagerSpace.Game
 {
@@ -20,6 +21,20 @@ namespace GameManagerSpace.Game
         {
             changeGameStateAction = changeGameStateCallback;
         }
+
+        # region Game Listener
+        public void GetStartItemCallback(PlayerCharacter role)
+        {
+        }
+        public void GetCaught(PlayerCharacter role)
+        {
+
+        }
+        public void GetGoal(PlayerCharacter role)
+        {
+
+        }
+        # endregion
 
         # region Game Setting
         public IEnumerator RandomRooms()
@@ -72,12 +87,44 @@ namespace GameManagerSpace.Game
             model.blocks = blocks;
         }
 
+        public IEnumerator SpawnPlayers()
+        {
+            List<GameObject> _roles = new List<GameObject>();
+
+            for (int i = 0; i < CoreModel.RolePrefabs.Count; i++)
+            {
+                GameObject go = Instantiate(CoreModel.RolePrefabs[i]);
+                go.GetComponentInChildren<PlayerCharacter>().AssignController(i);
+                _roles.Add(go);
+            }
+
+            model.roles = _roles;
+
+            yield return null;
+        }
+
         public IEnumerator RandomPlayerAvatars()
         {
-            model.hunter = CoreModel.RolePrefabs.Random();
+            model.hunter = model.roles.Random();
             model.hunterPlayer = CoreModel.ActivePlayers.Find(x => CoreModel.RolePrefabs[x.id] == model.hunter);
-            model.escapers = CoreModel.RolePrefabs.FindAll(x => (x != model.hunter));
+            model.escapers = model.roles.FindAll(x => (x != model.hunter));
             model.escaperPlayers = CoreModel.ActivePlayers.FindAll(x => x != model.hunterPlayer);
+
+            // ------------------------------
+
+            model.hunter.transform.position = model.hunterSpawn.position;
+            model.escapers.ForEach(x => x.transform.position = model.escaperSpawn.position);
+
+            List<System.Action<PlayerCharacter>> actions = new List<System.Action<PlayerCharacter>>();
+            actions.Add(GetStartItemCallback);
+            actions.Add(GetCaught);
+            actions.Add(GetGoal);
+
+            model.hunter.GetComponentInChildren<PlayerCharacter>().AssignTeam(1, actions);
+            model.escapers.ForEach(x => x.GetComponentInChildren<PlayerCharacter>().AssignTeam(0, actions));
+
+            model.mainCam.enabled = false;
+
             yield return null;
         }
 
@@ -89,13 +136,6 @@ namespace GameManagerSpace.Game
                 model.startItemGameObjects[i].GetComponent<SpriteRenderer>().sprite = containers[i].display;
                 model.startItemGameObjects[i].name = containers[i].name;
             }
-            yield return null;
-        }
-
-        public IEnumerator SpawnPlayers()
-        {
-            model.escapers.ForEach(x => x.transform.position = model.escaperSpawn.position);
-            model.hunter.transform.position = model.hunterSpawn.position;
             yield return null;
         }
 

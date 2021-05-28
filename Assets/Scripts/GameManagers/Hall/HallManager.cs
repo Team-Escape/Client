@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Rewired;
+using PlayerSpace.Game;
 
 namespace GameManagerSpace.Hall
 {
@@ -237,8 +238,8 @@ namespace GameManagerSpace.Hall
                 List<GameObject> playerPrefabs = new List<GameObject>();
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
                 {
-                    Debug.Log(model.containers[i].roleModel);
                     playerPrefabs.Add(model.containers[i].roleModel);
+                    playerPrefabs[i].GetComponentInChildren<PlayerCharacter>().AssignController(0);
                 }
                 CoreModel.RolePrefabs = playerPrefabs;
 

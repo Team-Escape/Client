@@ -62,10 +62,10 @@ namespace GameManagerSpace.Game
         IEnumerator Setting()
         {
             yield return StartCoroutine(control.RandomRooms());
-            yield return StartCoroutine(control.RandomStartItem());
-            yield return StartCoroutine(control.RandomPlayerAvatars());
             yield return StartCoroutine(control.SpawnRooms());
+            yield return StartCoroutine(control.RandomStartItem());
             yield return StartCoroutine(control.SpawnPlayers());
+            yield return StartCoroutine(control.RandomPlayerAvatars());
 
             loadedAction(); // Call Scene Transition
         }

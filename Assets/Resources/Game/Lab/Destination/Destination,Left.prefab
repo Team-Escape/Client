@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1865913170268549718}
   - component: {fileID: 5244166812448230361}
   - component: {fileID: 8033078169125909363}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 5969828437093947512}
   - component: {fileID: 5829404206910019100}
   - component: {fileID: 573040547718316169}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2247176007794744630}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 2813971026183385036}
   - component: {fileID: 4089438513306302717}
   - component: {fileID: 8751429666211099436}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,7 +1362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2940396477434515441}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Destination,Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 7509981847514994657}
   - component: {fileID: 8281009517096046060}
   - component: {fileID: 5132230342281972982}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Door
   m_TagString: Flag
   m_Icon: {fileID: 0}
@@ -1505,7 +1505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707080208928372070}
   - component: {fileID: 3057393778068736054}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

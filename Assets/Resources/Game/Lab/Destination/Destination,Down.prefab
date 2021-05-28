@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8239820253667548706}
   - component: {fileID: 3134517628052404965}
   - component: {fileID: 1629763287144298169}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PlatformCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484267559134445599}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 8038751435965072721}
   - component: {fileID: 7903890734616709941}
   - component: {fileID: 4225977155021692320}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 2644590064562794367}
   - component: {fileID: 8471679285503989488}
   - component: {fileID: 5921473241237384794}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1422,7 +1422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8936441284641220687}
   - component: {fileID: 1673225747438261535}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 6156040473864424136}
   - component: {fileID: 5745037064206618821}
   - component: {fileID: 8822321663655563743}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Door
   m_TagString: Flag
   m_Icon: {fileID: 0}
@@ -1577,7 +1577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1556017340571046616}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Destination,Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1613,7 +1613,7 @@ GameObject:
   - component: {fileID: 1899196604044833509}
   - component: {fileID: 402768889298216404}
   - component: {fileID: 4910371000262946309}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

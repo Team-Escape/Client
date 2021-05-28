@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557714060602914948}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Destination,Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4819889285631285433}
   - component: {fileID: 6714320384013438856}
   - component: {fileID: 2062022541659505753}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 997060005840953492}
   - component: {fileID: 1658057205800696473}
   - component: {fileID: 2510699842873310083}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Door
   m_TagString: Flag
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2647128099796746771}
   - component: {fileID: 5728753586102583107}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8845358658339973699}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 3978793020977311501}
   - component: {fileID: 3821480498080735593}
   - component: {fileID: 7069891850433214460}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1154,7 @@ GameObject:
   - component: {fileID: 8938407613539878179}
   - component: {fileID: 3254292287101598892}
   - component: {fileID: 762707512978080774}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
