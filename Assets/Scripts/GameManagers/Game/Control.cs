@@ -16,11 +16,12 @@ namespace GameManagerSpace.Game
         Action<string> changeGameStateAction = null;
         int activePlayerCounts = 0;
         int playerGotStartItemCounts = 0;
+        bool isGoaled = false;
 
         public void Init(Action<string> changeGameStateCallback)
         {
             changeGameStateAction = changeGameStateCallback;
-            for (int i = 0; i < CoreModel.activePlayersCount; i++)
+            for (int i = 0; i < activePlayerCounts; i++)
             {
                 CoreModel.WinnerAvatars = new List<GameObject>();
                 model.GetCaughtRoles = new List<PlayerCharacter>();
@@ -40,10 +41,27 @@ namespace GameManagerSpace.Game
         public void GetCaught(PlayerCharacter role)
         {
             model.GetCaughtRoles.Add(role);
+            if (model.GetCaughtRoles.Count >= activePlayerCounts - 1)
+            {
+                changeGameStateAction("Scoring");
+            }
         }
         public void GetGoal(PlayerCharacter role)
         {
             model.GoalRoles.Add(role);
+            if (isGoaled) return;
+            StartCoroutine(CountDown());
+        }
+        IEnumerator CountDown()
+        {
+            isGoaled = true;
+            float timer = CoreModel.goalCountDownDuration;
+            while (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+            changeGameStateAction("Scoring");
         }
         # endregion
 
@@ -223,7 +241,7 @@ namespace GameManagerSpace.Game
         #region Game scoring
         public IEnumerator Scoring()
         {
-            for (int i = 0; i < CoreModel.activePlayersCount; i++)
+            for (int i = 0; i < activePlayerCounts; i++)
             {
                 int score = 0;
                 GameObject go = CoreModel.RoleAvatars[i];

@@ -22,6 +22,7 @@ namespace GameManagerSpace
         public static List<GameObject> WinnerAvatars { get; set; }
         public static int winningScore = 3;
         public static List<int> TotalScores { get; set; }
+        public static float goalCountDownDuration = 10f;
         #endregion
     }
     public enum SceneState
