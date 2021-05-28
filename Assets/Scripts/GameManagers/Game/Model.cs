@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Rewired;
+using PlayerSpace.Game;
 
 namespace GameManagerSpace.Game
 {
@@ -12,6 +13,7 @@ namespace GameManagerSpace.Game
         Starting, // On game scene and is starting.
         Playing, // On game scene and is playing.
         Scoring, // On score scene.
+        NewGame,
         GameOver,
         GameDraw,
     }
@@ -46,6 +48,10 @@ namespace GameManagerSpace.Game
         public BlockContainer blockContainer = null;
         #endregion
 
+        #region Game Logic
+        public int goalScore = 2;
+        #endregion
+
         #region PlayerStuff
         [Header("Player variable")]
         public Transform hunterSpawn = null;
@@ -60,6 +66,8 @@ namespace GameManagerSpace.Game
         public Player hunterPlayer = null;
         [HideInInspector]
         public List<Player> escaperPlayers = null;
+        public List<PlayerCharacter> GetCaughtRoles { get; set; }
+        public List<PlayerCharacter> GoalRoles { get; set; }
         #endregion
 
         #region StartItem

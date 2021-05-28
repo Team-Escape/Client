@@ -241,7 +241,7 @@ namespace GameManagerSpace.Hall
                     playerPrefabs.Add(model.containers[i].roleModel);
                     playerPrefabs[i].GetComponentInChildren<PlayerCharacter>().AssignController(0);
                 }
-                CoreModel.RolePrefabs = playerPrefabs;
+                CoreModel.RoleAvatars = playerPrefabs;
 
                 InitCoreModelDatas();
 
@@ -256,9 +256,7 @@ namespace GameManagerSpace.Hall
         /// <param name="CoreModel">Init all CoreModel datas here.</param>
         void InitCoreModelDatas()
         {
-            CoreModel.GetCaughtRoles = new List<PlayerCharacter>();
-            CoreModel.GoalRoles = new List<PlayerCharacter>();
-            CoreModel.ObtainScores = new List<int>();
+            CoreModel.WinnerAvatars = new List<GameObject>();
             CoreModel.TotalScores = new List<int>();
             for (int i = 0; i < CoreModel.activePlayersCount; i++)
             {

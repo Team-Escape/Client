@@ -20,6 +20,12 @@ namespace GameManagerSpace.Game
         public void Init(Action<string> changeGameStateCallback)
         {
             changeGameStateAction = changeGameStateCallback;
+            for (int i = 0; i < CoreModel.activePlayersCount; i++)
+            {
+                CoreModel.WinnerAvatars = new List<GameObject>();
+                model.GetCaughtRoles = new List<PlayerCharacter>();
+                model.GoalRoles = new List<PlayerCharacter>();
+            }
         }
 
         # region Game Listener
@@ -33,11 +39,11 @@ namespace GameManagerSpace.Game
         }
         public void GetCaught(PlayerCharacter role)
         {
-            CoreModel.GetCaughtRoles.Add(role);
+            model.GetCaughtRoles.Add(role);
         }
         public void GetGoal(PlayerCharacter role)
         {
-
+            model.GoalRoles.Add(role);
         }
         # endregion
 
@@ -96,9 +102,9 @@ namespace GameManagerSpace.Game
         {
             List<GameObject> _roles = new List<GameObject>();
 
-            for (int i = 0; i < CoreModel.RolePrefabs.Count; i++)
+            for (int i = 0; i < CoreModel.RoleAvatars.Count; i++)
             {
-                GameObject go = Instantiate(CoreModel.RolePrefabs[i]);
+                GameObject go = Instantiate(CoreModel.RoleAvatars[i]);
                 go.GetComponentInChildren<PlayerCharacter>().AssignController(i);
                 _roles.Add(go);
             }
@@ -113,7 +119,7 @@ namespace GameManagerSpace.Game
         public IEnumerator RandomPlayerAvatars()
         {
             model.hunter = model.roles.Random();
-            model.hunterPlayer = CoreModel.ActivePlayers.Find(x => CoreModel.RolePrefabs[x.id] == model.hunter);
+            model.hunterPlayer = CoreModel.ActivePlayers.Find(x => CoreModel.RoleAvatars[x.id] == model.hunter);
             model.escapers = model.roles.FindAll(x => (x != model.hunter));
             model.escaperPlayers = CoreModel.ActivePlayers.FindAll(x => x != model.hunterPlayer);
 
@@ -204,8 +210,12 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Game playing
-        public IEnumerator InitPlayerGame()
+        public IEnumerator InitGame()
         {
+            foreach (var s in FindObjectsOfType<MapObjectCore>())
+            {
+                s.Init();
+            }
             yield return null;
         }
         #endregion
@@ -213,6 +223,38 @@ namespace GameManagerSpace.Game
         #region Game scoring
         public IEnumerator Scoring()
         {
+            for (int i = 0; i < CoreModel.activePlayersCount; i++)
+            {
+                int score = 0;
+                GameObject go = CoreModel.RoleAvatars[i];
+                if (model.hunter == go)
+                {
+                    score += model.GetCaughtRoles.Count;
+                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? model.goalScore : 0;
+                }
+                else if (model.escapers.Contains(go))
+                {
+                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? model.goalScore : 0;
+                }
+                CoreModel.TotalScores[i] += score;
+                if (CoreModel.TotalScores[i] >= CoreModel.winningScore) CoreModel.WinnerAvatars.Add(go);
+            }
+            yield return null;
+        }
+        public IEnumerator GameJudge()
+        {
+            if (CoreModel.WinnerAvatars.Count > 1)
+            {
+                changeGameStateAction("GameDraw");
+            }
+            else if (CoreModel.WinnerAvatars.Count > 0)
+            {
+                changeGameStateAction("GameOver");
+            }
+            else
+            {
+                changeGameStateAction("NewGame");
+            }
             yield return null;
         }
         #endregion

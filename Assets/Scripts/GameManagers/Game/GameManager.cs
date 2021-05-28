@@ -49,6 +49,9 @@ namespace GameManagerSpace.Game
                 case GameState.Scoring:
                     StartCoroutine(Scoring());
                     break;
+                case GameState.NewGame:
+                    loadSceneAction(CoreModel.choosenMapName, false);
+                    break;
                 case GameState.GameOver:
                     StartCoroutine(GameOver());
                     break;
@@ -79,22 +82,25 @@ namespace GameManagerSpace.Game
 
         IEnumerator Playing()
         {
-            yield return StartCoroutine(control.InitPlayerGame());
+            yield return StartCoroutine(control.InitGame());
         }
 
         IEnumerator Scoring()
         {
             yield return StartCoroutine(control.Scoring());
+            yield return StartCoroutine(control.GameJudge());
         }
 
         IEnumerator GameOver()
         {
-            yield return null;
             loadSceneAction(awardScene, false);
+            yield return null;
         }
 
         IEnumerator GameDraw()
         {
+            loadSceneAction(awardScene, false);
+            // Draw feature
             yield return null;
         }
 

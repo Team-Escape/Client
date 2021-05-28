@@ -35,7 +35,7 @@ namespace GameManagerSpace.Award
 
         void ActorsDressup(List<GameObject> avatars)
         {
-            for (int i = 0; i < avatars.Count; i++)
+            for (int i = 0; i < actors.Length; i++)
             {
                 Animator director = avatars[i].GetComponentInChildren<Animator>();
                 actors[i].GetComponent<Animator>().runtimeAnimatorController = director.runtimeAnimatorController;
