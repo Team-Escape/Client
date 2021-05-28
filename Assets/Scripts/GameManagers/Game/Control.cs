@@ -14,8 +14,8 @@ namespace GameManagerSpace.Game
         View view = null;
 
         Action<string> changeGameStateAction = null;
-        int activePlayers = 0;
-        int playerGotStartItem = 0;
+        int activePlayerCounts = 0;
+        int playerGotStartItemCounts = 0;
 
         public void Init(Action<string> changeGameStateCallback)
         {
@@ -25,10 +25,15 @@ namespace GameManagerSpace.Game
         # region Game Listener
         public void GetStartItemCallback(PlayerCharacter role)
         {
+            playerGotStartItemCounts++;
+            if (playerGotStartItemCounts >= activePlayerCounts - 1)
+            {
+                changeGameStateAction("Starting");
+            }
         }
         public void GetCaught(PlayerCharacter role)
         {
-
+            CoreModel.GetCaughtRoles.Add(role);
         }
         public void GetGoal(PlayerCharacter role)
         {
@@ -99,6 +104,8 @@ namespace GameManagerSpace.Game
             }
 
             model.roles = _roles;
+
+            activePlayerCounts = _roles.Count;
 
             yield return null;
         }

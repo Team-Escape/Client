@@ -13,7 +13,6 @@ namespace PlayerSpace.Game
         Mover mover = new Mover();
         Mover _tempMover = null;
         Combat combat = new Combat();
-        Combat _tempCombat = null;
 
         bool isAttacking = false;
         bool isHurting = false;

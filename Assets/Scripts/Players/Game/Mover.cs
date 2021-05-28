@@ -10,7 +10,6 @@ namespace PlayerSpace.Game
         Model model = null;
         Rigidbody2D rb = null;
         Animator animator = null;
-        Control control = null;
         /* -------------------------------------------------------------------------- */
         /*                                 enum                                       */
         /* -------------------------------------------------------------------------- */

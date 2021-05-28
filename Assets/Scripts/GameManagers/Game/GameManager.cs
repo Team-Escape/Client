@@ -7,7 +7,6 @@ namespace GameManagerSpace.Game
     public class GameManager : MonoBehaviour
     {
         [SerializeField] string awardScene = "AwardScene";
-        [SerializeField] string scoreScene = "ScoreScene";
 
         System.Action<string, bool> loadSceneAction = null;
         System.Action loadedAction = null;

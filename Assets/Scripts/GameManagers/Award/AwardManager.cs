@@ -29,7 +29,7 @@ namespace GameManagerSpace.Award
             }
             else
             {
-                ActorsDressup(CoreModel.WinnerPlayers);
+                ActorsDressup(CoreModel.WinnerAvatars);
             }
         }
 
