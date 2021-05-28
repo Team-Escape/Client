@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 4194881827630755966}
   - component: {fileID: 6527481924303785773}
   - component: {fileID: 4773098963989814310}
+  - component: {fileID: 7205161721870509422}
   - component: {fileID: 1451125523101401555}
   m_Layer: 8
   m_Name: Body
@@ -1021,6 +1022,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotObj: {fileID: 0}
+--- !u!114 &7205161721870509422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5896416214095162057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffb4674de3a0904992099fc17c4b62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 0
+  testState: 0
+  weapon: {fileID: 4830087657987362449}
 --- !u!114 &1451125523101401555
 MonoBehaviour:
   m_ObjectHideFlags: 0

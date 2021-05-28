@@ -36,7 +36,7 @@ namespace PlayerSpace.Game
 
         public void Attack()
         {
-            // if (PlayerState.StateCompare("Hunter") == false) return;
+            if (PlayerState.StateCompare("Hunter") == false) return;
             animator.DoAnimation("attack");
         }
         public void Hurt(System.Action callback)
