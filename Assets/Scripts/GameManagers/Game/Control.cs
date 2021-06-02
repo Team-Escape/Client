@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using Cinemachine;
 using GameManagerSpace.Game.HunterGame;
 using PlayerSpace.Game;
+using Rewired;
 
 namespace GameManagerSpace.Game
 {
@@ -30,6 +31,18 @@ namespace GameManagerSpace.Game
         }
 
         # region Game Listener
+        public void TeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
+        {
+            role.currentRoomId++;
+            confiner.m_BoundingShape2D = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().polygonCollider2D;
+            role.transform.position = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().entrance.position;
+        }
+        public void TeleportPrev(PlayerCharacter role, CinemachineConfiner confiner)
+        {
+            role.currentRoomId--;
+            confiner.m_BoundingShape2D = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().polygonCollider2D;
+            role.transform.position = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().exit.position;
+        }
         public void GetStartItemCallback(PlayerCharacter role)
         {
             playerGotStartItemCounts++;
@@ -68,8 +81,9 @@ namespace GameManagerSpace.Game
         # region Game Setting
         public IEnumerator RandomRooms()
         {
-            int index = 0;
+            int index = 1;
             List<GameObject> blocks = new List<GameObject>();
+            blocks.Add(model.startRoom.gameObject);
             blocks.Add(model.blockContainer.left.Random());
             while (true)
             {
@@ -114,6 +128,11 @@ namespace GameManagerSpace.Game
             }
 
             model.blocks = blocks;
+
+            for (int i = 1; i < model.blocks.Count; i++)
+            {
+                model.blocks[i] = Instantiate(model.blocks[i]);
+            }
         }
 
         public IEnumerator SpawnPlayers()
@@ -124,6 +143,7 @@ namespace GameManagerSpace.Game
             {
                 GameObject go = Instantiate(CoreModel.RoleAvatars[i]);
                 go.GetComponentInChildren<PlayerCharacter>().AssignController(i);
+                go.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = model.startRoom.GetComponent<MapObjectData>().polygonCollider2D;
                 _roles.Add(go);
             }
 
@@ -137,7 +157,7 @@ namespace GameManagerSpace.Game
         public IEnumerator RandomPlayerAvatars()
         {
             model.hunter = model.roles.Random();
-            model.hunterPlayer = CoreModel.ActivePlayers.Find(x => CoreModel.RoleAvatars[x.id] == model.hunter);
+            model.hunterPlayer = ReInput.players.GetPlayer(model.hunter.GetComponentInChildren<PlayerCharacter>().playerId);
             model.escapers = model.roles.FindAll(x => (x != model.hunter));
             model.escaperPlayers = CoreModel.ActivePlayers.FindAll(x => x != model.hunterPlayer);
 
@@ -151,8 +171,12 @@ namespace GameManagerSpace.Game
             actions.Add(GetCaught);
             actions.Add(GetGoal);
 
-            model.hunter.GetComponentInChildren<PlayerCharacter>().AssignTeam(1, actions);
-            model.escapers.ForEach(x => x.GetComponentInChildren<PlayerCharacter>().AssignTeam(0, actions));
+            List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelActions = new List<Action<PlayerCharacter, CinemachineConfiner>>();
+            changeLevelActions.Add(TeleportNext);
+            changeLevelActions.Add(TeleportPrev);
+
+            model.hunter.GetComponentInChildren<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions);
+            model.escapers.ForEach(x => x.GetComponentInChildren<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions));
 
             model.mainCam.enabled = false;
 
@@ -174,15 +198,13 @@ namespace GameManagerSpace.Game
         {
             for (int i = 0; i < model.blocks.Count; i++)
             {
-                model.blocks[i] = Instantiate(model.blocks[i]);
-            }
-            for (int i = 0; i < model.blocks.Count; i++)
-            {
-                Vector2 pos = (i == 0) ?
-                    model.startRoom.GetChild(0).position :
-                    model.blocks[i - 1].transform.localPosition + model.blocks[i - 1].transform.GetChild(0).localPosition;
+                if (i < model.blocks.Count - 1)
+                    model.blocks[i].GetComponent<MapObjectData>().id = i;
+                if (i == 0) continue;
+                Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + (i < model.blocks.Count - 1 ? new Vector3(30, 0, 0) : Vector3.zero);
                 model.blocks[i].transform.position = pos;
             }
+            model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().exit.gameObject.SetActive(false);
             yield return null;
         }
         #endregion
@@ -202,7 +224,7 @@ namespace GameManagerSpace.Game
             hunterGameSetup.Generator(model.hunterPlayer, OpenDoors);
             yield return null;
         }
-        void OpenDoors()
+        public void OpenDoors()
         {
             StartCoroutine(OpenEscaperRoomsDoor());
             StartCoroutine(OpenHunterRoomsDoor());
@@ -248,11 +270,11 @@ namespace GameManagerSpace.Game
                 if (model.hunter == go)
                 {
                     score += model.GetCaughtRoles.Count;
-                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? model.goalScore : 0;
+                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? CoreModel.goalScore : 0;
                 }
                 else if (model.escapers.Contains(go))
                 {
-                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? model.goalScore : 0;
+                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? CoreModel.goalScore : 0;
                 }
                 CoreModel.TotalScores[i] += score;
                 if (CoreModel.TotalScores[i] >= CoreModel.winningScore) CoreModel.WinnerAvatars.Add(go);

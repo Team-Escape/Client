@@ -29,6 +29,7 @@ namespace PlayerSpace.HunterGame
 
         public void Init(Player p, Vector2 size)
         {
+            Debug.Log(p);
             player = p;
             GetComponent<RectTransform>().sizeDelta = size;
             GetComponent<CircleCollider2D>().radius = size.x / 2;
@@ -44,33 +45,18 @@ namespace PlayerSpace.HunterGame
         private void Update()
         {
             if (player != null)
+            {
                 Move();
-            if (player.GetButtonDown("ExitHunterGame"))
-                ExitHunterGame();
+                if (player.GetButtonDown("ExitHunterGame"))
+                    ExitHunterGame();
+            }
         }
 
         void Move()
         {
-            moveVector.x = player.GetAxis("H-Move Horizontal") * speed;
-            moveVector.y = player.GetAxis("H-Move Vertical") * speed;
-
-            if (selfTransform.position.x + moveVector.x > border[0] && selfTransform.position.x + moveVector.x < border[1])
-            {
-                selfTransform.position += new Vector3(moveVector.x, 0, 0);
-            }
-            else
-            {
-                selfTransform.position += new Vector3(-moveVector.x, 0, 0);
-            }
-
-            if (selfTransform.position.y + moveVector.y > border[2] && selfTransform.position.y + moveVector.y < border[3])
-            {
-                selfTransform.position += new Vector3(0, moveVector.y, 0);
-            }
-            else
-            {
-                selfTransform.position += new Vector3(0, -moveVector.y, 0);
-            }
+            moveVector.x = player.GetAxis("H-MoveX") * speed;
+            moveVector.y = player.GetAxis("H-MoveY") * speed;
+            selfTransform.position += moveVector;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

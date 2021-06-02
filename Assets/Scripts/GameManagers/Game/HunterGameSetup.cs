@@ -19,19 +19,13 @@ namespace GameManagerSpace.Game.HunterGame
             canvas.GetComponent<Canvas>().worldCamera = cam;
         }
 
-        private void Update()
-        {
-            // if (Input.GetKeyDown(KeyCode.Space)) Generator(ReInput.players.GetPlayer(0), null);
-        }
-
         public void Generator(Player player, System.Action callback)
         {
-            StartCoroutine(GeneratorCoroutine(player, callback));
+            GeneratorCoroutine(player, callback);
         }
 
-        IEnumerator GeneratorCoroutine(Player player, System.Action callback)
+        void GeneratorCoroutine(Player player, System.Action callback)
         {
-            yield return null;
             float sizeX = 100 * cam.rect.width;
             float sizeY = 100 * cam.rect.height;
 
@@ -58,7 +52,6 @@ namespace GameManagerSpace.Game.HunterGame
                     go.GetComponent<RectTransform>().localPosition = pos;
                     go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                     pos += new Vector2(sizeX, 0);
-                    yield return null;
                 }
                 pos = new Vector2(-width, pos.y);
                 pos += new Vector2(0, -sizeY);

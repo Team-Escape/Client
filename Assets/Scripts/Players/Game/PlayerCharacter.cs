@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using Cinemachine;
 
 namespace PlayerSpace.Game
 {
@@ -10,20 +11,22 @@ namespace PlayerSpace.Game
         public Player GetPlayer { get { return input; } }
 
         [SerializeField] bool testMode = false;
+        [SerializeField] CinemachineConfiner confiner = null;
         Player input = null;
         Control control = null;
         ExecutionManager executionManager = null;
 
         List<System.Action<PlayerCharacter>> gameActions = null;
+        List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevel = null;
         public int playerId = 0;
         public int teamId = 0;
+        public int currentRoomId = 0;
+        bool isTeleporting = false;
 
         public void AssignController(int id)
         {
             playerId = id;
             input = ReInput.players.GetPlayer(playerId);
-            Debug.Log("id: " + id);
-            Debug.Log("player: " + ReInput.players.GetPlayer(playerId));
             SetCamera();
         }
 
@@ -46,10 +49,11 @@ namespace PlayerSpace.Game
             follow.gameObject.layer = layer;
         }
 
-        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks)
+        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks, List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelCallbacks)
         {
             teamId = id;
             gameActions = callbacks;
+            changeLevel = changeLevelCallbacks;
             control.GameSetup(id);
         }
 
@@ -133,6 +137,20 @@ namespace PlayerSpace.Game
                         forceY
                     ));
                     break;
+                case "RoomTeleport":
+                    if (changeLevel == null || isTeleporting) return;
+                    isTeleporting = true;
+                    switch (other.name)
+                    {
+                        case "NextCollider":
+                            changeLevel[0](this, confiner);
+                            break;
+                        case "PrevCollider":
+                            changeLevel[1](this, confiner);
+                            break;
+                    }
+                    this.AbleToDo(0.1f, () => isTeleporting = false);
+                    break;
             }
         }
         private void OnTriggerStay2D(Collider2D other)
@@ -165,6 +183,7 @@ namespace PlayerSpace.Game
                 }
             }
         }
+
         private void Awake()
         {
             control = GetComponent<Control>();

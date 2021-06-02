@@ -1092,7 +1092,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 3
     - _id: 24
-      _name: H-Move Horizontal
+      _name: H-MoveX
       _type: 0
       _descriptiveName: Move Horizontal
       _positiveDescriptiveName: Move Right
@@ -1101,9 +1101,9 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 6
     - _id: 25
-      _name: H-Move Vertical
+      _name: H-MoveY
       _type: 0
-      _descriptiveName: Action0
+      _descriptiveName: Move Vertical
       _positiveDescriptiveName: Move Top
       _negativeDescriptiveName: Move Down
       _behaviorId: 0

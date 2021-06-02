@@ -44,7 +44,7 @@ namespace GameManagerSpace.Game
                     StartCoroutine(Starting());
                     break;
                 case GameState.Playing:
-                    StartCoroutine(Playing());
+                    // StartCoroutine(Playing());
                     break;
                 case GameState.Scoring:
                     StartCoroutine(Scoring());
@@ -78,10 +78,6 @@ namespace GameManagerSpace.Game
             yield return StartCoroutine(control.HunterGameSetup());
             yield return StartCoroutine(control.OpenEscaperRoomsDoor());
             yield return StartCoroutine(control.OpenHunterRoomsDoor());
-        }
-
-        IEnumerator Playing()
-        {
             yield return StartCoroutine(control.InitGame());
         }
 
@@ -115,6 +111,19 @@ namespace GameManagerSpace.Game
         private void Start()
         {
             GameFlow("Setting");
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                GameFlow("Starting");
+            }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                control.OpenDoors();
+            }
+
         }
     }
 }

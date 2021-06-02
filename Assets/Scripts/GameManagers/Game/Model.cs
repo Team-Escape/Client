@@ -26,6 +26,7 @@ namespace GameManagerSpace.Game
     {
         public Camera mainCam = null;
 
+        #region  Game Level : Rooms
         #region StartRoomStuff
         [Header("Start room")]
         public Transform startRoom = null;
@@ -35,6 +36,7 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Destination
+        [Header("Destination")]
         public Transform destinationRoomUp = null;
         public Transform destinationRoomDown = null;
         public Transform destinationRoomRight = null;
@@ -47,9 +49,9 @@ namespace GameManagerSpace.Game
         public int roomSize = 5;
         public BlockContainer blockContainer = null;
         #endregion
+        #endregion
 
         #region Game Logic
-        public int goalScore = 2;
         #endregion
 
         #region PlayerStuff
