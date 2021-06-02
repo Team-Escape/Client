@@ -744,14 +744,32 @@ MonoBehaviour:
     type: 3}
   destinationRoomLeft: {fileID: 2940396477434515441, guid: f5a6e6c80f0f645b69d2b9e9448eee44,
     type: 3}
-  roomSize: 4
+  roomSize: 6
   blockContainer:
     left:
     - {fileID: 5365444304533818404, guid: 020c6766f59a71147bcb264d97713348, type: 3}
     - {fileID: 8127282526758199192, guid: 73e1bb89f9cc94038b1a816eca1ab1fc, type: 3}
-    right: []
-    up: []
-    down: []
+    - {fileID: 8372984381296196128, guid: c92c211dae48049e395c195ed7822ddf, type: 3}
+    - {fileID: 1031244517144723621, guid: a37321c0b511f4dadbe0240165b5e22f, type: 3}
+    - {fileID: 5694942160494089558, guid: cfa1f281e1d720a4286668232ed21226, type: 3}
+    - {fileID: 7963123716387345470, guid: f456ca467e38d114286d2f07f588dd18, type: 3}
+    - {fileID: 8187200662019552360, guid: 108a78f5bff74fd46b25369bec5360ff, type: 3}
+    - {fileID: 9123446402320307796, guid: 2f5c08034c33c1c43a69700321d6ea43, type: 3}
+    right:
+    - {fileID: 2199194290468021734, guid: e0578448dd0241349b81f24c3ce3fc28, type: 3}
+    - {fileID: 2870275761539636961, guid: 4d96a99780641924098caae55aa9f7fd, type: 3}
+    - {fileID: 8103294273405931249, guid: 7462783a28914cc4696180b0484069ec, type: 3}
+    - {fileID: 8550201741223017235, guid: d28668affde9860469fa14f1f34237d1, type: 3}
+    up:
+    - {fileID: 1923847988472588807, guid: e85ba6163d21a2d4d88ef5f9f163c03f, type: 3}
+    - {fileID: 6542310110286390514, guid: 33693ac41c1988246950591aad34ea4b, type: 3}
+    - {fileID: 191180051722021013, guid: 1b7a116c74bc7d94994a0c868df600ad, type: 3}
+    - {fileID: 6372148529829704413, guid: 41fca7961eef1e94283e75e1899ef927, type: 3}
+    down:
+    - {fileID: 1092193738840310439, guid: cdf6aa7eb71fc604086d36d3876a0fae, type: 3}
+    - {fileID: 3695950407919174723, guid: 850bc9a963f3c9248b49263746c4abef, type: 3}
+    - {fileID: 1312063126895967820, guid: dd7cb5991bac9eb4bb75aa86239f9c57, type: 3}
+    - {fileID: 8863045641119396375, guid: 796041b83dba69449bf102276288399d, type: 3}
   hunterSpawn: {fileID: 259729428}
   escaperSpawn: {fileID: 10077022}
   roles: []
