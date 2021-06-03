@@ -201,7 +201,7 @@ namespace GameManagerSpace.Game
                 if (i < model.blocks.Count - 1)
                     model.blocks[i].GetComponent<MapObjectData>().id = i;
                 if (i == 0) continue;
-                Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + (i < model.blocks.Count - 1 ? new Vector3(30, 0, 0) : Vector3.zero);
+                Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + (i < model.blocks.Count - 1 ? new Vector3(100, 100, 0) : Vector3.zero);
                 model.blocks[i].transform.position = pos;
             }
             model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().exit.gameObject.SetActive(false);
