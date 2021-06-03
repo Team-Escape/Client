@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 8352345511778569061}
   - component: {fileID: 6816354175261215284}
   - component: {fileID: 5155643739740095965}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 4327141828002672330}
   - component: {fileID: 5204422390478552426}
   - component: {fileID: 5840443932462021381}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 1577285965020517676}
   - component: {fileID: 1412063517523320015}
   - component: {fileID: 2451848018779369233}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1322,7 +1322,7 @@ GameObject:
   - component: {fileID: 71376414911159468}
   - component: {fileID: 9009735796812193821}
   - component: {fileID: 6174080024229179575}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1929,7 +1929,7 @@ GameObject:
   - component: {fileID: 5982474273578009129}
   - component: {fileID: 1373029089770325622}
   - component: {fileID: 6433900781428263206}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2232,7 +2232,7 @@ GameObject:
   - component: {fileID: 7756619585116751747}
   - component: {fileID: 5996827345760924065}
   - component: {fileID: 605790200726972587}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2535,7 +2535,7 @@ GameObject:
   - component: {fileID: 7623298424694657288}
   - component: {fileID: 1657576229715539006}
   - component: {fileID: 5334172806735786430}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (ice)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3535,7 +3535,7 @@ GameObject:
   - component: {fileID: 2892536524462430264}
   - component: {fileID: 2378767196963924523}
   - component: {fileID: 1772575167702438986}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4123,7 +4123,7 @@ GameObject:
   - component: {fileID: 7963123715747584242}
   - component: {fileID: 7963123715747584245}
   - component: {fileID: 7963123715747584244}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

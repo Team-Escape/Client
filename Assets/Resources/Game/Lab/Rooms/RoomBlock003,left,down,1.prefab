@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7767202721120102602}
   - component: {fileID: 2261758530128627449}
   - component: {fileID: 7124500705307079373}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: slimceGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 7786717373081044406}
   - component: {fileID: 2258781989084269172}
   - component: {fileID: 8585737458789005213}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: iceGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 8372984380394813164}
   - component: {fileID: 8372984380394813163}
   - component: {fileID: 8372984380394813162}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9461,7 +9461,7 @@ GameObject:
   - component: {fileID: 4260922295737601952}
   - component: {fileID: 4550352303224898241}
   - component: {fileID: 3008286647240316956}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: iceGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

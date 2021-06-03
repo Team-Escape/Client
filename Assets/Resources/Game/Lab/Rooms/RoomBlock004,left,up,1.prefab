@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1031244516383430563}
   - component: {fileID: 1031244516383430562}
   - component: {fileID: 1031244516383430565}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Elevatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6476,7 +6476,7 @@ GameObject:
   - component: {fileID: 1031244516590526100}
   - component: {fileID: 1031244516590526103}
   - component: {fileID: 1031244516590526102}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rotate Platte (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7093,7 +7093,7 @@ GameObject:
   - component: {fileID: 1031244517350477231}
   - component: {fileID: 1031244517350477230}
   - component: {fileID: 1031244517350477217}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rotate Platte (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7229,7 +7229,7 @@ GameObject:
   - component: {fileID: 1031244517547505596}
   - component: {fileID: 1031244517547505599}
   - component: {fileID: 1031244517547505598}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9526,7 +9526,7 @@ GameObject:
   - component: {fileID: 1031244518045683661}
   - component: {fileID: 1031244518045683660}
   - component: {fileID: 1031244518045683663}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rotate Platte
   m_TagString: Untagged
   m_Icon: {fileID: 0}

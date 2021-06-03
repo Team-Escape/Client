@@ -40,14 +40,14 @@ namespace GameManagerSpace.Hall
 
         public void MapContainerEffect(int id, bool isAdditive)
         {
-            Image image = mapContainers[id].GetChild(0).GetChild(0).GetComponent<Image>();
+            /*Image image = mapContainers[id].GetChild(0).GetChild(0).GetComponent<Image>();
             string name = "_ChromAberrAmount";
             float amount = 0.2f * (isAdditive ? 1 : -1);
             float currentAmount = image.materialForRendering.GetFloat(name);
             image.materialForRendering.SetFloat(
                 name,
                 currentAmount + amount
-            );
+            );*/
         }
 
         private void Awake()

@@ -9,6 +9,7 @@ TagManager:
   - PlayerWeapon
   - GadgetSpawner
   - RoomTeleport
+  - StartItem
   layers:
   - Default
   - TransparentFX

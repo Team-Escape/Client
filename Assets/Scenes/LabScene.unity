@@ -341,9 +341,10 @@ GameObject:
   m_Component:
   - component: {fileID: 346838209}
   - component: {fileID: 346838210}
-  m_Layer: 0
+  - component: {fileID: 346838211}
+  m_Layer: 23
   m_Name: StartItem
-  m_TagString: Untagged
+  m_TagString: StartItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,6 +413,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &346838211
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346838208}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &537069774
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,9 +439,10 @@ GameObject:
   m_Component:
   - component: {fileID: 537069775}
   - component: {fileID: 537069776}
-  m_Layer: 0
+  - component: {fileID: 537069777}
+  m_Layer: 23
   m_Name: StartItem 3
-  m_TagString: Untagged
+  m_TagString: StartItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,6 +511,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &537069777
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537069774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &738655577
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,9 +602,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1263116825}
   - component: {fileID: 1263116826}
-  m_Layer: 0
+  - component: {fileID: 1263116827}
+  m_Layer: 23
   m_Name: StartItem 2
-  m_TagString: Untagged
+  m_TagString: StartItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,6 +674,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1263116827
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263116824}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1752376602
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,13 +833,13 @@ MonoBehaviour:
   startItemContainers:
   - display: {fileID: -2437031719742495961, guid: d6998357f759c49d585d96a00d77e6b1,
       type: 3}
-    name: Heart
+    name: IceSkate
   - display: {fileID: -1490221186039758273, guid: d6998357f759c49d585d96a00d77e6b1,
       type: 3}
-    name: Note
+    name: IceSkate
   - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
       type: 3}
-    name: Fire
+    name: IceSkate
 --- !u!114 &2017760367
 MonoBehaviour:
   m_ObjectHideFlags: 0

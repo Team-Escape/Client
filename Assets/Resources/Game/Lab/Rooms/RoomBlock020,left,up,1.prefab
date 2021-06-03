@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1001177193807038149}
   - component: {fileID: 3644255535431672426}
   - component: {fileID: 6828309711027852274}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 1792006624207259483}
   - component: {fileID: 2444592313900854569}
   - component: {fileID: 7356690740812998976}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1017,7 @@ GameObject:
   - component: {fileID: 841515248882935934}
   - component: {fileID: 6651156805000478106}
   - component: {fileID: 1549135733504362100}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: Collider Tilemap (slime)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2325,7 +2325,7 @@ GameObject:
   - component: {fileID: 8279762710801851489}
   - component: {fileID: 6050137148413446972}
   - component: {fileID: 4197012868328562301}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2343,8 +2343,8 @@ Transform:
   m_LocalPosition: {x: 21.29, y: -11.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 6
+  m_Father: {fileID: 3471567823275805230}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &2339155484580659806
 SpriteShapeRenderer:
@@ -2518,7 +2518,7 @@ GameObject:
   - component: {fileID: 5297067383554011719}
   - component: {fileID: 730505637894870904}
   - component: {fileID: 238072110561037878}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2786,7 @@ GameObject:
   - component: {fileID: 8010239279860003832}
   - component: {fileID: 2741344235041727588}
   - component: {fileID: 1485563049563949690}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3136,7 +3136,7 @@ Transform:
   - {fileID: 8389438294922014129}
   - {fileID: 8347152692873689227}
   m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &1970493887696043046
 PolygonCollider2D:
@@ -3369,7 +3369,7 @@ GameObject:
   - component: {fileID: 4610057411802779985}
   - component: {fileID: 8292113294950005290}
   - component: {fileID: 6407433010131118026}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (4_4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3755,7 +3755,7 @@ GameObject:
   - component: {fileID: 266943337657042092}
   - component: {fileID: 8993701893182494459}
   - component: {fileID: 4580154899267459108}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4022,7 +4022,7 @@ GameObject:
   - component: {fileID: 3060587949480964156}
   - component: {fileID: 8477275291576931421}
   - component: {fileID: 8079334291848181524}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4290,7 +4290,7 @@ GameObject:
   - component: {fileID: 7417834274590134279}
   - component: {fileID: 5909912932106027601}
   - component: {fileID: 446165793525176325}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4308,8 +4308,8 @@ Transform:
   m_LocalPosition: {x: 9.62, y: -11.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 3
+  m_Father: {fileID: 3471567823275805230}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &220495403714325787
 SpriteShapeRenderer:
@@ -4483,7 +4483,7 @@ GameObject:
   - component: {fileID: 1548933933625917831}
   - component: {fileID: 1847871288136487242}
   - component: {fileID: 775094355360974483}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4750,7 +4750,7 @@ GameObject:
   - component: {fileID: 2724228853532508184}
   - component: {fileID: 7474562869095420971}
   - component: {fileID: 100471901700443805}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5018,7 +5018,7 @@ GameObject:
   - component: {fileID: 6827285386683322369}
   - component: {fileID: 6231821481310787379}
   - component: {fileID: 2507042521764160669}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5348,7 +5348,7 @@ GameObject:
   - component: {fileID: 4155002935290883779}
   - component: {fileID: 6298178688422389410}
   - component: {fileID: 3084803978488139443}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (2_2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5665,6 +5665,42 @@ MonoBehaviour:
   activeFunction:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &5611359337732375911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3471567823275805230}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3471567823275805230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611359337732375911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 334604569082313048}
+  - {fileID: 3050370891409362902}
+  - {fileID: 7259602431091450663}
+  - {fileID: 1400240300643410028}
+  - {fileID: 8606773585832806940}
+  - {fileID: 4800924447068112899}
+  m_Father: {fileID: 9123446402330105323}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6048902380011160742
 GameObject:
   m_ObjectHideFlags: 0
@@ -5678,7 +5714,7 @@ GameObject:
   - component: {fileID: 786179527606298771}
   - component: {fileID: 7899786243229501884}
   - component: {fileID: 9191246494510009967}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5696,8 +5732,8 @@ Transform:
   m_LocalPosition: {x: 21.79, y: -12.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 8
+  m_Father: {fileID: 3471567823275805230}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &7489291991062369933
 SpriteShapeRenderer:
@@ -6060,7 +6096,7 @@ GameObject:
   - component: {fileID: 7799178681398154654}
   - component: {fileID: 3507276842979963856}
   - component: {fileID: 6884411218958343245}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6328,7 +6364,7 @@ GameObject:
   - component: {fileID: 6640072952624097350}
   - component: {fileID: 8066550127308596627}
   - component: {fileID: 6588030701314729143}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6346,8 +6382,8 @@ Transform:
   m_LocalPosition: {x: 9.12, y: -12.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 4
+  m_Father: {fileID: 3471567823275805230}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &9172985921668157599
 SpriteShapeRenderer:
@@ -6522,7 +6558,7 @@ GameObject:
   - component: {fileID: 1781697688666147029}
   - component: {fileID: 7012088997584724211}
   - component: {fileID: 7390560780562193447}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6909,7 +6945,7 @@ GameObject:
   - component: {fileID: 3254381482772728420}
   - component: {fileID: 7192987462397728324}
   - component: {fileID: 5246805613608456892}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6927,8 +6963,8 @@ Transform:
   m_LocalPosition: {x: 20.79, y: -12.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 7
+  m_Father: {fileID: 3471567823275805230}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &5300690228952109250
 SpriteShapeRenderer:
@@ -7292,7 +7328,7 @@ GameObject:
   - component: {fileID: 8558852563838730091}
   - component: {fileID: 4115945781701012216}
   - component: {fileID: 6214643719682556674}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7310,8 +7346,8 @@ Transform:
   m_LocalPosition: {x: 10.12, y: -12.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9123446402320307797}
-  m_RootOrder: 5
+  m_Father: {fileID: 3471567823275805230}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &4286396490792375073
 SpriteShapeRenderer:
@@ -7486,7 +7522,7 @@ GameObject:
   - component: {fileID: 6741102335630167914}
   - component: {fileID: 6173545123127559455}
   - component: {fileID: 1207763716449823326}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (3_3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7815,7 +7851,7 @@ GameObject:
   - component: {fileID: 3205278571695880374}
   - component: {fileID: 5101930822543277745}
   - component: {fileID: 4412855245223709806}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8082,7 +8118,7 @@ GameObject:
   - component: {fileID: 5637490994466459193}
   - component: {fileID: 1707553192434131008}
   - component: {fileID: 8299573737019214029}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8350,7 +8386,7 @@ GameObject:
   - component: {fileID: 5094019786726185068}
   - component: {fileID: 5200875737947173913}
   - component: {fileID: 7778281300932892619}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (1_1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15145,12 +15181,6 @@ Transform:
   - {fileID: 9123446403340959977}
   - {fileID: 9123446402909172806}
   - {fileID: 9123446402330105323}
-  - {fileID: 334604569082313048}
-  - {fileID: 3050370891409362902}
-  - {fileID: 7259602431091450663}
-  - {fileID: 1400240300643410028}
-  - {fileID: 8606773585832806940}
-  - {fileID: 4800924447068112899}
   - {fileID: 2369746005023794822}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -15184,7 +15214,7 @@ GameObject:
   - component: {fileID: 4283703927170089655}
   - component: {fileID: 4656486257198178349}
   m_Layer: 0
-  m_Name: Obstacle
+  m_Name: GameObject
   m_TagString: MapObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15202,6 +15232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6871259115400535331}
+  - {fileID: 3471567823275805230}
   m_Father: {fileID: 9123446402320307797}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15562,7 +15593,7 @@ GameObject:
   - component: {fileID: 9123446403295615640}
   - component: {fileID: 9123446403295615647}
   - component: {fileID: 9123446403295615646}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5763564962427861841}
   - component: {fileID: 3786456923338302732}
   - component: {fileID: 1002685098263580375}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: move (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 875faf644b786cb43bad1af4fdbc2db0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 4116916972925316724}
   - component: {fileID: 6922018927010960093}
   - component: {fileID: 98936855622725146}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (60)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 5365444303625617640}
   - component: {fileID: 5365444303625617647}
   - component: {fileID: 5365444303625617646}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,105 +1201,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: 13, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 14, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 15, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 16, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 17, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 18, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 19, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 20, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 21, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 22, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 23, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 24, y: -5, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 7
@@ -2611,7 +2512,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: f4ac9d8b68ff0436f9eab5d1132c05aa, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 09195b45438ea42b6abdb27ca25a8ddd, type: 2}
-  - m_RefCount: 45
+  - m_RefCount: 34
     m_Data: {fileID: 11400000, guid: f35e4eb497f6a4719904d13593247fea, type: 2}
   - m_RefCount: 51
     m_Data: {fileID: 11400000, guid: dec2f3acce40a480eb74fb3887b56d39, type: 2}
@@ -2659,7 +2560,7 @@ Tilemap:
       type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -12324268454884066, guid: fdfb68580a57f478491900ff511772ae, type: 3}
-  - m_RefCount: 45
+  - m_RefCount: 34
     m_Data: {fileID: -9114847578740223409, guid: fdfb68580a57f478491900ff511772ae,
       type: 3}
   - m_RefCount: 0
@@ -2699,7 +2600,7 @@ Tilemap:
     m_Data: {fileID: -6403107747435768202, guid: fdfb68580a57f478491900ff511772ae,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 174
+  - m_RefCount: 163
     m_Data:
       e00: 1
       e01: 0
@@ -2718,7 +2619,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 174
+  - m_RefCount: 163
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -10214,7 +10115,7 @@ GameObject:
   - component: {fileID: 711718844319886030}
   - component: {fileID: 5627783806266368244}
   - component: {fileID: 8690525056040370873}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: move (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10400,7 +10301,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 875faf644b786cb43bad1af4fdbc2db0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -10611,7 +10512,7 @@ GameObject:
   - component: {fileID: 4499101137673718535}
   - component: {fileID: 3507064268566368893}
   - component: {fileID: 4807157741963480605}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

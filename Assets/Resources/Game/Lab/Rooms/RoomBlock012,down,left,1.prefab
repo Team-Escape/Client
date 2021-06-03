@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5098394624301529262}
   - component: {fileID: 1734005814644644831}
   - component: {fileID: 2576862435092382693}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8558352776803677116}
   - component: {fileID: 3545600937211945244}
   - component: {fileID: 347836880480502137}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 4029312607293129963}
   - component: {fileID: 3048351636192443036}
   - component: {fileID: 7620781726673430485}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 3195875626412909555}
   - component: {fileID: 444307954266217847}
   - component: {fileID: 320591230225971008}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: 3634630162846476253}
   - component: {fileID: 85954127555732373}
   - component: {fileID: 7157313028237442431}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1097,7 @@ GameObject:
   - component: {fileID: 2836808426399252995}
   - component: {fileID: 7489248619153010142}
   - component: {fileID: 3335209117818325013}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1291,7 +1291,7 @@ GameObject:
   - component: {fileID: 1208141808989087625}
   - component: {fileID: 7845597156543757110}
   - component: {fileID: 9159165781572730693}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 3133296299568812269}
   - component: {fileID: 2596934070280409958}
   - component: {fileID: 7638716455528191664}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Collider Tilemap (ice)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2106,7 @@ GameObject:
   - component: {fileID: 653491417319114664}
   - component: {fileID: 3272825391955876617}
   - component: {fileID: 1705384238045484919}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2299,7 +2299,7 @@ GameObject:
   - component: {fileID: 8863045639603289819}
   - component: {fileID: 8863045639603289820}
   - component: {fileID: 8863045639603289821}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10251,7 +10251,7 @@ GameObject:
   - component: {fileID: 2085393264505770912}
   - component: {fileID: 5538782744342264782}
   - component: {fileID: 8542828980424520208}
-  m_Layer: 11
+  m_Layer: 20
   m_Name: obstacle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

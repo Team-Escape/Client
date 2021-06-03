@@ -174,6 +174,7 @@ namespace PlayerSpace.Game
                     case "Detector":
                         if (input.GetButtonDown("Item"))
                         {
+                            Debug.Log("Get item");
                             control.ItemReceived(other.gameObject);
                             control.GetStartItem(other.name, GetItemSuccess);
                         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7884238558449174089}
   - component: {fileID: 8057162950597687471}
   - component: {fileID: 8282350038118147705}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Ud1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 3695950407208896655}
   - component: {fileID: 3695950407208896648}
   - component: {fileID: 3695950407208896649}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

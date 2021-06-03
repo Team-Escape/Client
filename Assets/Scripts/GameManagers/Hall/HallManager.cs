@@ -115,7 +115,7 @@ namespace GameManagerSpace.Hall
                 {
                     view.UpdateMapContainer(id, currentIndex, false);
                     view.MapContainerEffect(id, true);
-                    model.containers.GetID(id).choosenMap = view.GetMapName(id);
+                    model.containers.GetID(id).choosenMap = view.GetMapName(currentIndex);
                     model.containers.GetID(id).selfSelectState++;
                 }
                 // Update index to change direction.

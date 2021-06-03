@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 8127282525320467284}
   - component: {fileID: 8127282525320467283}
   - component: {fileID: 8127282525320467282}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Collider Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
