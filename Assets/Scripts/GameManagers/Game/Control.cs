@@ -138,18 +138,22 @@ namespace GameManagerSpace.Game
         public IEnumerator SpawnPlayers()
         {
             List<GameObject> _roles = new List<GameObject>();
+            List<Camera> cameras = new List<Camera>();
 
             for (int i = 0; i < CoreModel.RoleAvatars.Count; i++)
             {
                 GameObject go = Instantiate(CoreModel.RoleAvatars[i]);
                 go.GetComponentInChildren<PlayerCharacter>().AssignController(i);
                 go.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = model.startRoom.GetComponent<MapObjectData>().polygonCollider2D;
+                cameras.Add(go.GetComponentInChildren<Camera>());
                 _roles.Add(go);
             }
 
             model.roles = _roles;
 
             activePlayerCounts = _roles.Count;
+
+            cameras.Resize();
 
             yield return null;
         }
