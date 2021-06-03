@@ -46,10 +46,6 @@ namespace PlayerSpace.Game
                     break;
             }
         }
-        public void UseItem()
-        {
-
-        }
         public void Move(float value)
         {
             if (OnDisable) return;
@@ -73,7 +69,6 @@ namespace PlayerSpace.Game
         public void Attack()
         {
             if (OnDisable) return;
-
             if (isAttacking) return;
             isAttacking = true;
             this.AbleToDo(1f, () => isAttacking = false);

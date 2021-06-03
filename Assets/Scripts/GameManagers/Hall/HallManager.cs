@@ -114,7 +114,7 @@ namespace GameManagerSpace.Hall
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateMapContainer(id, currentIndex, false);
-                    view.MapContainerEffect(id, true);
+                    view.MapContainerEffect(currentIndex, true);
                     model.containers.GetID(id).choosenMap = view.GetMapName(currentIndex);
                     model.containers.GetID(id).selfSelectState++;
                 }

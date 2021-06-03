@@ -208,7 +208,7 @@ namespace GameManagerSpace.Game
                 Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + (i < model.blocks.Count - 1 ? new Vector3(100, 100, 0) : Vector3.zero);
                 model.blocks[i].transform.position = pos;
             }
-            model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().exit.gameObject.SetActive(false);
+            model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().nextCollider.gameObject.SetActive(false);
             yield return null;
         }
         #endregion
@@ -217,7 +217,9 @@ namespace GameManagerSpace.Game
 
         public IEnumerator HunterGameSetup()
         {
-            HunterGameSetup hunterGameSetup = FindObjectOfType<HunterGameSetup>();
+            int hunterGameLayer = 14;
+            model.hunter.GetComponentInChildren<Camera>().cullingMask = 1 << hunterGameLayer;
+            HunterGameSetup hunterGameSetup = model.hunter.GetComponentInChildren<HunterGameSetup>();
             hunterGameSetup.Generator(model.hunterPlayer, OpenDoors);
             yield return null;
         }

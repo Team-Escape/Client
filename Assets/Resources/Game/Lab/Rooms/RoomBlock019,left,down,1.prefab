@@ -10836,7 +10836,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11733,7 +11733,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13794,6 +13794,7 @@ MonoBehaviour:
   endpoint: {fileID: 8187200661435045498}
   entrance: {fileID: 5681548987591825973}
   exit: {fileID: 2354491254370387648}
+  nextCollider: {fileID: 2538463282987747412}
   polygonCollider2D: {fileID: 2208998068585154685}
 --- !u!1 &8187200662063888342
 GameObject:

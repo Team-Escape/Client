@@ -83,7 +83,6 @@ namespace PlayerSpace.Game
             if (input.GetButtonDown("Run")) control.Run(true);
             else if (input.GetButtonUp("Run")) control.Run(false);
 
-            if (input.GetButtonDown("MapItem")) control.UseItem();
             if (input.GetButtonDown("Execution")) executionManager.DoExecution();
         }
 
@@ -95,7 +94,7 @@ namespace PlayerSpace.Game
         void Update()
         {
             if (input == null || control == null) return;
-            DevInput();
+            // DevInput();
             MoveInput();
             CombatInput();
         }
