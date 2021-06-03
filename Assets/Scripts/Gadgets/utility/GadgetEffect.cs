@@ -1,20 +1,22 @@
 using UnityEngine;
-using Gadget.Effecter;
+using Gadget.Effector;
 using PlayerSpace.Game;
-
 public abstract class GadgetEffect : MonoBehaviour
 {
     protected Model model;
-    protected Camera cam;
+    protected Camera camera;
     protected GameObject owner;
     [SerializeField] protected Sprite sprite;
-    [SerializeField] protected IEffecter effecter;
+    [SerializeField] protected IEffector effecter;
+    [SerializeField] protected int id;
     protected void Awake()
     {
-        effecter = GetComponent<IEffecter>();
+
+        effecter = GetComponent<IEffector>();
         model = effecter.GetPlayer().GetComponent<Model>();
         owner = effecter.GetPlayer();
-        cam = effecter.GetCamera();
+        camera = effecter.GetCamera();
+        enabled = false;
     }
     protected void OnEnable()
     {
@@ -24,5 +26,9 @@ public abstract class GadgetEffect : MonoBehaviour
     public Sprite GetSprite()
     {
         return sprite;
+    }
+    public int GetId()
+    {
+        return id;
     }
 }

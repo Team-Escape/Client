@@ -1,20 +1,20 @@
 using UnityEngine;
 using Gadget.Utility;
 using Gadget.slot;
-using Gadget.Effecter;
+using Gadget.Effector;
 
 public class InteractWithGadget : MonoBehaviour
 {
 
     [SerializeField] GameObject slotObj;
 
-    IEffecter Effecter;
+    IEffector Effecter;
     Slot slot;
 
     private void Start()
     {
         slot = slotObj.GetComponent<Slot>();
-        Effecter = GetComponent<IEffecter>();
+        Effecter = GetComponent<IEffector>();
     }
     private void Update()
     {

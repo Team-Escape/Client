@@ -277,6 +277,7 @@ namespace GameManagerSpace.Game
                     score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? CoreModel.goalScore : 0;
                 }
                 CoreModel.TotalScores[i] += score;
+                Debug.Log("P" + (i + 1) + " score : " + CoreModel.TotalScores);
                 if (CoreModel.TotalScores[i] >= CoreModel.winningScore) CoreModel.WinnerAvatars.Add(go);
             }
             yield return null;

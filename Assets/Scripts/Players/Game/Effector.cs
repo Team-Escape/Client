@@ -3,9 +3,9 @@ using PlayerSpace.Game;
 
 using System.Collections.Generic;
 
-namespace Gadget.Effecter
+namespace Gadget.Effector
 {
-    public class Effecter : MonoBehaviour, IEffecter
+    public class Effector : MonoBehaviour, IEffector
     {
         Model playerModel;
         bool effect;

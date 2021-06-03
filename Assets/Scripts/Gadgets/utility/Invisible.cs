@@ -1,7 +1,7 @@
 using UnityEngine;
-using Gadget.Effecter;
+
 using System.Collections;
-using PlayerSpace.Game;
+
 namespace Gadget.Utility
 {
     public class Invisible : GadgetEffect
@@ -11,11 +11,11 @@ namespace Gadget.Utility
         int invisibleLayer;
         int defultLayer;
         int defultLayerMask;
-
+        // 要改玩家自己的碰撞與shader
         protected override void CallWhenUse()
         {
-            //getEffect.UseInvisible(during);
-            defultLayerMask = cam.cullingMask;
+
+            defultLayerMask = camera.cullingMask;
             invisibleLayer = LayerMask.NameToLayer("Invisible");
             defultLayer = owner.layer;
 
@@ -24,10 +24,10 @@ namespace Gadget.Utility
 
         IEnumerator InvisibleForSeconds(float during)
         {
-            cam.cullingMask = cam.cullingMask | (1 << invisibleLayer);
+            camera.cullingMask = camera.cullingMask | (1 << invisibleLayer);
             owner.layer = invisibleLayer;
             yield return new WaitForSeconds(during);
-            cam.cullingMask = defultLayerMask;
+            camera.cullingMask = defultLayerMask;
             owner.layer = defultLayer;
             enabled = false;
         }

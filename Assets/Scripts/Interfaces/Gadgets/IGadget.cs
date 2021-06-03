@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Gadget.Effecter;
+using Gadget.Effector;
 namespace Gadget.Utility
 {
     public interface IGadget
@@ -9,6 +9,7 @@ namespace Gadget.Utility
         Sprite GetIcon();
         int GetObjType();
         void Use(GameObject owner);
-        void SetID(int id);
+        void InitGadget(int id, bool isEffectOwner);
+
     }
 }

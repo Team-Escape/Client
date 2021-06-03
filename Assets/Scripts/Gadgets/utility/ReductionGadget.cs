@@ -1,5 +1,5 @@
 using UnityEngine;
-using Gadget.Effecter;
+using Gadget.Effector;
 using ObjectPool;
 using System.Collections;
 using PlayerSpace.Game;
@@ -43,7 +43,7 @@ namespace Gadget.Utility
                 yield return new WaitForSeconds(during);
             }
             model.CharacterSize = defultScale;
-            effecter.DistoryEffect(gameObject.GetHashCode());
+
             enabled = false;
         }
 

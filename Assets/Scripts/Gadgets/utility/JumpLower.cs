@@ -1,28 +1,28 @@
 using UnityEngine;
 using Gadget.Effector;
-using PlayerSpace.Game;
 using System.Collections;
 namespace Gadget.Utility
 {
-    public class speedUp : GadgetEffect
+
+    public class JumpLower : GadgetEffect
     {
         [SerializeField] public float delay;
-        [SerializeField] private float addition;
+        [SerializeField] private float divition;
 
         protected override void CallWhenUse()
         {
 
-            StartCoroutine(SpeedUpIEum());
+            StartCoroutine(JumpLowerIEum());
 
         }
-        IEnumerator SpeedUpIEum()
+        IEnumerator JumpLowerIEum()
         {
-            float speed = addition;
-            model.SpeedGain += speed;
+            float force = divition;
+            model.JumpGain -= force;
 
             yield return new WaitForSeconds(delay);
 
-            model.SpeedGain -= speed;
+            model.JumpGain += force;
             yield return null;
             enabled = false;
         }

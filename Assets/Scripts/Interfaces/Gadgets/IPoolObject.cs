@@ -1,5 +1,4 @@
-namespace ObjectPool
-{
+namespace ObjectPool{
     public interface IPoolObject
     {
         void Recycle();

@@ -1,5 +1,5 @@
 using UnityEngine;
-using Gadget.Effecter;
+using Gadget.Effector;
 using System.Collections;
 using ObjectPool;
 
@@ -11,7 +11,8 @@ public class PotionObj : MonoBehaviour, IPoolObject
     [SerializeField] float force;
     [SerializeField] int ID;
     [SerializeField] int pid;
-    Transform avoidStop;
+    Transform owner;
+    bool isEffectOwner;
     //CallWhenTrigger triggerMethod;
 
     float time;
@@ -25,17 +26,19 @@ public class PotionObj : MonoBehaviour, IPoolObject
     }
     //public delegate void CallWhenTrigger(IEffecter effecter);
 
-    public void Setting(Transform owner, Vector2 direction, int id)
+    public void Setting(Transform owner, int id, bool isEffectOwner)
     {
         ID = id;
-        avoidStop = owner;
+        this.owner = owner;
+        this.isEffectOwner = isEffectOwner;
         //triggerMethod = trigger;
-
-        Fly(direction, force);
+        //zone.enabled = false;
+        //body.enabled = false;
+        Fly(owner.transform.localScale, force);
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform == avoidStop) return;
+        if (other.transform.Equals(owner)) return;
         zone.enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         body.enabled = false;
@@ -43,9 +46,17 @@ public class PotionObj : MonoBehaviour, IPoolObject
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<IEffecter>() != null)
+        if (zone.enabled == false) return;
+
+        if (other.GetComponent<IEffector>() != null)
         {
-            other.GetComponent<IEffecter>().UseGadget(ID);
+            IEffector eff = other.GetComponent<IEffector>();
+            if (!isEffectOwner &&
+            eff.GetPlayer().transform.Equals(owner))
+            {
+                return;
+            }
+            eff.UseGadget(ID);
 
         }
     }

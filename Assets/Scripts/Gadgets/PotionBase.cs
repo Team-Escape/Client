@@ -1,5 +1,5 @@
 using UnityEngine;
-using Gadget.Effecter;
+using Gadget.Effector;
 using ObjectPool;
 namespace Gadget.Utility
 {
@@ -12,6 +12,7 @@ namespace Gadget.Utility
         [SerializeField] protected int PID;
         [SerializeField] protected int ID;
         protected int type = 1;
+        protected bool isEffectOwner = false;
         public int GetObjType()
         {
             return type;
@@ -29,13 +30,14 @@ namespace Gadget.Utility
             GameObject potion = GadgetPool.GetObject(this.potion.GetComponent<IPoolObject>().GetPID());
             //float speed =Mathf.Min(maxSpeed,ownerTransform.parent.GetComponent<Rigidbody2D>().velocity.magnitude/flyDivide+speedOffset);
             potion.transform.position = owner.position;
-            potion.GetComponent<PotionObj>().Setting(owner, direction, ID);
+            potion.GetComponent<PotionObj>().Setting(owner, ID, isEffectOwner);
             //CallWhenThrow();
         }
 
-        public void SetID(int id)
+        public void InitGadget(int id, bool isEffectOwner)
         {
             ID = id;
+            this.isEffectOwner = isEffectOwner;
         }
 
 

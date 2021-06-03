@@ -1,5 +1,5 @@
 using UnityEngine;
-using Gadget.Effecter;
+using Gadget.Effector;
 using ObjectPool;
 namespace Gadget.Utility
 {
@@ -15,19 +15,19 @@ namespace Gadget.Utility
         {
             return type;
         }
-
+        public void InitGadget(int id, bool isEffectOwner)
+        {
+            ID = id;
+        }
         public void Use(GameObject owner)
         {
             //write the action when using this gadget
             this.owner = owner;
-
+            owner.GetComponentInChildren<IEffector>().UseGadget(ID);
             //getEffect.UseGadget(ID);
             GadgetPool.PutObject(gameObject);
         }
-        public void SetID(int id)
-        {
-            ID = id;
-        }
+
         public Sprite GetIcon()
         {
             return icon;

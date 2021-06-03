@@ -6,6 +6,7 @@ public class GadgetSpawnController : MonoBehaviour
     [SerializeField] GameObject spawnGadget;
     [SerializeField] int id;
     [SerializeField] GameObject gadget;
+    [SerializeField] bool effectToOwner;
     private void Awake()
     {
 
@@ -25,7 +26,7 @@ public class GadgetSpawnController : MonoBehaviour
         if (gadget == null)
         {
             gadget = GadgetPool.GetObject(spawnGadget.GetComponent<IPoolObject>().GetPID());
-            gadget.GetComponent<IGadget>().SetID(id);
+            gadget.GetComponent<IGadget>().InitGadget(id, effectToOwner);
             gadget.transform.position = transform.position;
             //GetComponent<SpriteRenderer>().sprite = gadget.GetComponent<IGadget>().GetIcon();
         }
