@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 2815393984630494470, guid: 4b32db239654c40ba88224551465beb9, type: 3}
+  id: 0
   healMax: 2
   healperTime: 1
   timeset: 1
@@ -66,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bbd3d492069894985af41da8f01bff83, type: 3}
+  id: 0
   during: 2
 --- !u!114 &8511587722760436027
 MonoBehaviour:
@@ -80,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 6571923465728719629, guid: 4b32db239654c40ba88224551465beb9, type: 3}
+  id: 0
   delay: 2
   addition: 2
 --- !u!114 &5112823643066247704
@@ -95,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: -227550921408885086, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  id: 0
   during: 2
   smallerScale: 2
   stay: 2
@@ -121,11 +125,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8511587722760436018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a137d7e21bd9ecf4980555bdf98921bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 257cced76237a49eca5208a6c2904975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxEffectCount: 10
-  camera: {fileID: 0}
+  cam: {fileID: 0}
   gadgets: []
   player: {fileID: 0}
 --- !u!70 &8511587722760436025

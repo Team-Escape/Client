@@ -214,14 +214,7 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Game starting
-        public IEnumerator InitGameObstacle()
-        {
-            foreach (var go in FindObjectsOfType<MapObjectCore>())
-            {
-                go.Init();
-            }
-            yield return null;
-        }
+
         public IEnumerator HunterGameSetup()
         {
             HunterGameSetup hunterGameSetup = FindObjectOfType<HunterGameSetup>();
@@ -254,14 +247,6 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Game playing
-        public IEnumerator InitGame()
-        {
-            foreach (var s in FindObjectsOfType<MapObjectCore>())
-            {
-                s.Init();
-            }
-            yield return null;
-        }
         #endregion
 
         #region Game scoring

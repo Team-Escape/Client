@@ -4,7 +4,7 @@ using PlayerSpace.Game;
 using System.Collections;
 namespace Gadget.Utility
 {
-    public class speedUp : GadgetEffect
+    public class SpeedUp : GadgetEffect
     {
         [SerializeField] public float delay;
         [SerializeField] private float addition;
