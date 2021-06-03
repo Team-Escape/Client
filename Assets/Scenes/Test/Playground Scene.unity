@@ -225,8 +225,77 @@ Transform:
   m_LocalScale: {x: 100, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &715604789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5694942160494089558, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_Name
+      value: RoomBlock011,left,left,1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 58.911873
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 27.444363
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694942160494089559, guid: cfa1f281e1d720a4286668232ed21226,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfa1f281e1d720a4286668232ed21226, type: 3}
 --- !u!1 &1111229387
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493879240973627835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7896771, y: 1.470125, z: -20}
+  m_LocalPosition: {x: 3.7931376, y: 1.4703095, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4053613532983096032}
@@ -6264,7 +6333,7 @@ Transform:
   - {fileID: 3205794976447030079}
   - {fileID: 3205794976218121858}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3205794976388827798
 GameObject:
@@ -7076,7 +7145,7 @@ Transform:
   - {fileID: 3143708662559758846}
   - {fileID: 2524946353994968598}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4053613532983096033
 GameObject:
@@ -16618,7 +16687,7 @@ Transform:
   - {fileID: 1453807956089742301}
   - {fileID: 4747835313076560217}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5365444304626044768
 GameObject:
@@ -18060,6 +18129,7 @@ MonoBehaviour:
   confiner: {fileID: 0}
   playerId: 0
   teamId: 0
+  currentRoomId: 0
 --- !u!114 &9117249634019070892
 MonoBehaviour:
   m_ObjectHideFlags: 0

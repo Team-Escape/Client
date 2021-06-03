@@ -74,11 +74,9 @@ namespace GameManagerSpace.Game
 
         IEnumerator Starting()
         {
-            yield return StartCoroutine(control.InitGameObstacle());
             yield return StartCoroutine(control.HunterGameSetup());
             yield return StartCoroutine(control.OpenEscaperRoomsDoor());
             yield return StartCoroutine(control.OpenHunterRoomsDoor());
-            yield return StartCoroutine(control.InitGame());
         }
 
         IEnumerator Scoring()
