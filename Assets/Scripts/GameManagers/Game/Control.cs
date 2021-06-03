@@ -22,12 +22,10 @@ namespace GameManagerSpace.Game
         public void Init(Action<string> changeGameStateCallback)
         {
             changeGameStateAction = changeGameStateCallback;
-            for (int i = 0; i < activePlayerCounts; i++)
-            {
-                CoreModel.WinnerAvatars = new List<GameObject>();
-                model.GetCaughtRoles = new List<PlayerCharacter>();
-                model.GoalRoles = new List<PlayerCharacter>();
-            }
+            CoreModel.WinnerAvatars = new List<GameObject>();
+            model.GetCaughtRoles = new List<PlayerCharacter>();
+            model.GoalRoles = new List<PlayerCharacter>();
+            Debug.Log(model.GoalRoles);
         }
 
         # region Game Listener
@@ -61,6 +59,9 @@ namespace GameManagerSpace.Game
         }
         public void GetGoal(PlayerCharacter role)
         {
+            Debug.Log(role);
+            Debug.Log(model);
+            Debug.Log(model.GoalRoles);
             model.GoalRoles.Add(role);
             if (isGoaled) return;
             StartCoroutine(CountDown());
