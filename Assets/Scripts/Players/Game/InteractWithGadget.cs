@@ -31,16 +31,19 @@ public class InteractWithGadget : MonoBehaviour
     public void UseGadget()
     {
         IGadget gadget = slot.Tackout();
-        Effecter.UseGadget(gadget.GetID());
+        //Effecter.UseGadget(gadget.GetID());
         gadget.Use(Effecter.GetPlayer());
 
     }
 
     public bool PickUp(IGadget gadget)
     {
+        
         if (slot == null) return false;
+        
         if (slot.Store(gadget))
         {
+            
             slot.SetSprite(Effecter.GetSprite(gadget.GetID()));
             return true;
         }
