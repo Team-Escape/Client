@@ -11,8 +11,9 @@ namespace GameManagerSpace.Score
         public System.Action<string> changeGameStateAction = null;
         public System.Action scoreFinishedAction = null;
 
-        [SerializeField] Transform scoreObject = null;
         [SerializeField] Camera selfCamera = null;
+        [SerializeField] Canvas selfCanvas = null;
+        [SerializeField] Transform scoreObject = null;
         [SerializeField] string nameOfScoreDisplay = "ScoreDisplay";
 
         View view = null;
@@ -23,25 +24,9 @@ namespace GameManagerSpace.Score
 
         public void Init(int n, List<int> obtainScores, System.Action<string> callback)
         {
-            CloseAllCamerasExceptSelf();
             ActivePlayingScore(n, CoreModel.TotalScores);
             changeGameStateAction = callback;
             model.ObtainScores = obtainScores;
-        }
-
-        void CloseAllCamerasExceptSelf()
-        {
-            Camera[] cameras = FindObjectsOfType<Camera>();
-
-            foreach (Camera cam in cameras)
-            {
-                if (cam == selfCamera) continue;
-                else if (cam.tag == "MainCamera")
-                {
-                    gameSceneMainCamera = cam;
-                }
-                cam.enabled = false;
-            }
         }
 
         public void ActivePlayingScore(int n, List<int> currentScores)
@@ -125,8 +110,6 @@ namespace GameManagerSpace.Score
             CoreModel.TotalScores = currentScores;
 
             yield return new WaitForSeconds(3);
-
-            gameSceneMainCamera.enabled = true;
 
             GameOver();
         }

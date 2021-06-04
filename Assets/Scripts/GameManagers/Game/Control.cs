@@ -253,6 +253,18 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Game scoring
+        public IEnumerator BeforeScoring()
+        {
+            Camera[] cameras = FindObjectsOfType<Camera>();
+
+            foreach (Camera cam in cameras)
+            {
+                cam.enabled = false;
+            }
+
+            model.mainCam.enabled = true;
+            yield return null;
+        }
         public IEnumerator Scoring()
         {
             yield return (SceneManager.LoadSceneAsync("ScoreScene", LoadSceneMode.Additive));

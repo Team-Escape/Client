@@ -81,6 +81,7 @@ namespace GameManagerSpace.Game
 
         IEnumerator Scoring()
         {
+            yield return StartCoroutine(control.BeforeScoring());
             yield return StartCoroutine(control.Scoring());
         }
 
@@ -124,9 +125,13 @@ namespace GameManagerSpace.Game
             {
                 GameFlow("Starting");
             }
-            if (Input.GetKeyDown(KeyCode.O))
+            else if (Input.GetKeyDown(KeyCode.O))
             {
                 control.OpenDoors();
+            }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                GameFlow("Scoring");
             }
 
         }
