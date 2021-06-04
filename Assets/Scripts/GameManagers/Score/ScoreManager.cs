@@ -56,6 +56,9 @@ namespace GameManagerSpace.Score
 
         public IEnumerator StartScoring()
         {
+            List<int> test = new List<int>();
+            test.Add(3);
+            model.ObtainScores = test;
             yield return StartCoroutine(ScoringCoroutine(model.ObtainScores));
         }
 
@@ -103,6 +106,7 @@ namespace GameManagerSpace.Score
                 yield return count;
                 yield return new WaitForSecondsRealtime(0.1f);
                 currentScores[index] += s;
+                if (currentScores[index] >= CoreModel.winningScore) RegisterGoalPlayerCallback(index);
                 Debug.Log("P" + (index + 1) + " score : " + currentScores[index]);
                 index++;
             }
