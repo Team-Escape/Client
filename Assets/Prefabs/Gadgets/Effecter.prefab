@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8511587722760436028}
+  - component: {fileID: 4683774741550840052}
+  - component: {fileID: 8374775995418655200}
+  - component: {fileID: 3150950638436653140}
   - component: {fileID: 8511587722760436029}
   - component: {fileID: 8511587722760436024}
   - component: {fileID: 8511587722760436027}
@@ -16,7 +19,7 @@ GameObject:
   - component: {fileID: 8511587722760436030}
   - component: {fileID: 8511587722760436031}
   - component: {fileID: 8511587722760436025}
-  m_Layer: 24
+  m_Layer: 8
   m_Name: Effecter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,6 +40,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4683774741550840052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f89ff34dd3ba54986cc6bc4af0212b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  id: 7
+  delay: 0
+  fallingDivition: 0
+--- !u!114 &8374775995418655200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495db06ae836e2740b9a373145270c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  id: 3
+  delay: 0
+  divition: 0
+--- !u!114 &3150950638436653140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a652855d151914dbbc1ef9521ce47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  id: 5
+  during: 0
 --- !u!114 &8511587722760436029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 2815393984630494470, guid: 4b32db239654c40ba88224551465beb9, type: 3}
-  id: 0
+  id: 3
   healMax: 2
   healperTime: 1
   timeset: 1
@@ -67,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bbd3d492069894985af41da8f01bff83, type: 3}
-  id: 0
+  id: 1
   during: 2
 --- !u!114 &8511587722760436027
 MonoBehaviour:
@@ -82,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 6571923465728719629, guid: 4b32db239654c40ba88224551465beb9, type: 3}
-  id: 0
+  id: 4
   delay: 2
   addition: 2
 --- !u!114 &5112823643066247704
@@ -98,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: -227550921408885086, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
-  id: 0
-  during: 2
+  id: 2
+  during: 7
   smallerScale: 2
-  stay: 2
+  stay: 7
   limitScale: 2
 --- !u!114 &8511587722760436030
 MonoBehaviour:
