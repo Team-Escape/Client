@@ -76,8 +76,8 @@ namespace PlayerSpace.Game
         {
             PlayerState = PlayerState.Spectator;
 
-            int playerLayer = 24;
-            int specatorLayer = 23;
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int specatorLayer = LayerMask.NameToLayer("invisible");
 
             // Open all layer on culling mask.
             Camera cam = transform.parent.GetChild(1).GetComponent<Camera>();

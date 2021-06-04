@@ -32,14 +32,8 @@ namespace PlayerSpace.Game
 
         void SetCamera()
         {
-            LayerMask layer = 10 + playerId;
+            LayerMask layer = LayerMask.NameToLayer("P" + (playerId + 1) + "Cam");
             Camera camera = transform.parent.GetComponentInChildren<Camera>();
-
-            // Close layer on culling mask of layer ~ layer+4
-            for (int i = 0; i < 4; i++)
-            {
-                camera.cullingMask &= ~(1 << layer + i);
-            }
 
             // Open the layer of layer + playerId
             camera.cullingMask |= 1 << layer;

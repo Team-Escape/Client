@@ -220,8 +220,6 @@ namespace GameManagerSpace.Game
 
         public IEnumerator HunterGameSetup()
         {
-            int hunterGameLayer = 14;
-            model.hunter.transform.parent.GetComponentInChildren<Camera>().cullingMask = 1 << hunterGameLayer;
             HunterGameSetup hunterGameSetup = model.hunter.transform.parent.GetComponentInChildren<HunterGameSetup>();
             hunterGameSetup.Generator(model.hunterPlayer, OpenDoors);
             yield return null;
