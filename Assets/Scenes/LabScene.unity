@@ -38251,6 +38251,7 @@ MonoBehaviour:
   endpoint: {fileID: 1752376603}
   entrance: {fileID: 7187864249778094811}
   exit: {fileID: 7698713363491826621}
+  nextCollider: {fileID: 0}
   polygonCollider2D: {fileID: 5873800768281915931}
 --- !u!61 &7335992533295437990
 BoxCollider2D:

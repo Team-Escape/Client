@@ -164,7 +164,7 @@ public class MapObjectCore : MonoBehaviour
     }
     public void DoTransport(Collider2D other)
     {
-        other.transform.parent.position = destination.position;
+        other.transform.position = destination.position;
     }
     public void DoTrigger()
     {
