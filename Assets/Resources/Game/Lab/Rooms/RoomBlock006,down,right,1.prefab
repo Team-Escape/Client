@@ -13143,7 +13143,7 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnGadget
       value: 
-      objectReference: {fileID: 2046662227075249136, guid: f85f0db1b29399543acebd4cc3d2a4f7,
+      objectReference: {fileID: 2046662227075249136, guid: 63badd2dea0993542b332b3d8a2bdaf2,
         type: 3}
     - target: {fileID: 7493793006389232841, guid: cebb775e5b525fc4a9d9f75b31ae147f,
         type: 3}
