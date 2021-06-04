@@ -56,8 +56,6 @@ namespace GameManagerSpace.Score
 
         public IEnumerator StartScoring()
         {
-            model.ObtainScores = new List<int>();
-            model.ObtainScores.Add(2);
             yield return StartCoroutine(ScoringCoroutine(model.ObtainScores));
         }
 
