@@ -43,6 +43,13 @@ namespace GameManagerSpace.Hall
         {
             for (int i = 0; i < ReInput.players.playerCount; i++)
             {
+                if (model.activePlayers.Count <= 0)
+                {
+                    if (ReInput.players.SystemPlayer.GetButtonDown("StateBack"))
+                    {
+                        loadSceneAction("MenuScene", false);
+                    }
+                }
                 if (ReInput.players.GetPlayer(i).GetButtonDown("StateBack"))
                 {
                     StateBack(i);
@@ -114,7 +121,7 @@ namespace GameManagerSpace.Hall
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateMapContainer(id, currentIndex, false);
-                    view.MapContainerEffect(id, true);
+                    view.MapContainerEffect(currentIndex, true);
                     model.containers.GetID(id).choosenMap = view.GetMapName(currentIndex);
                     model.containers.GetID(id).selfSelectState++;
                 }
@@ -229,11 +236,7 @@ namespace GameManagerSpace.Hall
             if (model.AbleToStart)
             {
                 model.isStarting = true;
-
                 CoreModel.activePlayersCount = model.activePlayers.Count;
-                CoreModel.ActivePlayers = model.activePlayers;
-                CoreModel.ActiveController = model.activeController;
-                CoreModel.choosenMapName = model.mapName;
 
                 List<GameObject> playerPrefabs = new List<GameObject>();
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
@@ -242,6 +245,8 @@ namespace GameManagerSpace.Hall
                     playerPrefabs[i].GetComponentInChildren<PlayerCharacter>().AssignController(0);
                 }
                 CoreModel.RoleAvatars = playerPrefabs;
+                CoreModel.ActivePlayers = model.activePlayers;
+                CoreModel.ActiveController = model.activeController;
 
                 InitCoreModelDatas();
 
@@ -270,6 +275,7 @@ namespace GameManagerSpace.Hall
             float counter = duration;
 
             yield return StartCoroutine(MapPolling());
+            CoreModel.choosenMapName = model.mapName;
 
             while (counter >= 0)
             {
@@ -277,7 +283,7 @@ namespace GameManagerSpace.Hall
                 counter -= Time.unscaledDeltaTime;
             }
 
-            if (model.AbleToStart) loadSceneAction(model.mapName, true);
+            if (model.AbleToStart) loadSceneAction(CoreModel.choosenMapName, true);
             else model.isStarting = false;
         }
 

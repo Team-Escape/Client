@@ -32,14 +32,8 @@ namespace PlayerSpace.Game
 
         void SetCamera()
         {
-            LayerMask layer = 10 + playerId;
+            LayerMask layer = LayerMask.NameToLayer("P" + (playerId + 1) + "Cam");
             Camera camera = transform.parent.GetComponentInChildren<Camera>();
-
-            // Close layer on culling mask of layer ~ layer+4
-            for (int i = 0; i < 4; i++)
-            {
-                camera.cullingMask &= ~(1 << layer + i);
-            }
 
             // Open the layer of layer + playerId
             camera.cullingMask |= 1 << layer;
@@ -83,7 +77,6 @@ namespace PlayerSpace.Game
             if (input.GetButtonDown("Run")) control.Run(true);
             else if (input.GetButtonUp("Run")) control.Run(false);
 
-            if (input.GetButtonDown("MapItem")) control.UseItem();
             if (input.GetButtonDown("Execution")) executionManager.DoExecution();
         }
 
@@ -95,7 +88,7 @@ namespace PlayerSpace.Game
         void Update()
         {
             if (input == null || control == null) return;
-            DevInput();
+            // DevInput();
             MoveInput();
             CombatInput();
         }

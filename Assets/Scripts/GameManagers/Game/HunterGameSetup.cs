@@ -27,7 +27,7 @@ namespace GameManagerSpace.Game.HunterGame
         void GeneratorCoroutine(Player player, System.Action callback)
         {
             float sizeX = 100 * cam.rect.width;
-            float sizeY = 100 * cam.rect.height;
+            float sizeY = sizeX;// 100 * cam.rect.height;
 
             float width = 1920 / 2 * cam.rect.width;
             float height = 1080 / 2 * cam.rect.height;

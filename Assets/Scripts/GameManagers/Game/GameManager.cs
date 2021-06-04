@@ -50,7 +50,7 @@ namespace GameManagerSpace.Game
                     StartCoroutine(Scoring());
                     break;
                 case GameState.NewGame:
-                    loadSceneAction(CoreModel.choosenMapName, false);
+                    StartCoroutine(NewGame());
                     break;
                 case GameState.GameOver:
                     StartCoroutine(GameOver());
@@ -81,13 +81,19 @@ namespace GameManagerSpace.Game
 
         IEnumerator Scoring()
         {
+            yield return StartCoroutine(control.BeforeScoring());
             yield return StartCoroutine(control.Scoring());
-            yield return StartCoroutine(control.GameJudge());
         }
 
         IEnumerator GameOver()
         {
             loadSceneAction(awardScene, false);
+            yield return null;
+        }
+
+        IEnumerator NewGame()
+        {
+            loadSceneAction(CoreModel.choosenMapName, false);
             yield return null;
         }
 
@@ -117,9 +123,13 @@ namespace GameManagerSpace.Game
             {
                 GameFlow("Starting");
             }
-            if (Input.GetKeyDown(KeyCode.O))
+            else if (Input.GetKeyDown(KeyCode.O))
             {
                 control.OpenDoors();
+            }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                GameFlow("Scoring");
             }
 
         }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 using GameManagerSpace.Game.HunterGame;
+using GameManagerSpace.Score;
 using PlayerSpace.Game;
 using Rewired;
 
@@ -22,12 +25,9 @@ namespace GameManagerSpace.Game
         public void Init(Action<string> changeGameStateCallback)
         {
             changeGameStateAction = changeGameStateCallback;
-            for (int i = 0; i < activePlayerCounts; i++)
-            {
-                CoreModel.WinnerAvatars = new List<GameObject>();
-                model.GetCaughtRoles = new List<PlayerCharacter>();
-                model.GoalRoles = new List<PlayerCharacter>();
-            }
+            CoreModel.WinnerAvatars = new List<GameObject>();
+            model.GetCaughtRoles = new List<PlayerCharacter>();
+            model.GoalRoles = new List<PlayerCharacter>();
         }
 
         # region Game Listener
@@ -61,7 +61,8 @@ namespace GameManagerSpace.Game
         }
         public void GetGoal(PlayerCharacter role)
         {
-            model.GoalRoles.Add(role);
+            if (model.GoalRoles.Any(x => x.playerId == role.playerId) == false)
+                model.GoalRoles.Add(role);
             if (isGoaled) return;
             StartCoroutine(CountDown());
         }
@@ -71,6 +72,7 @@ namespace GameManagerSpace.Game
             float timer = CoreModel.goalCountDownDuration;
             while (timer >= 0)
             {
+                Debug.Log("Time left: " + timer);
                 timer -= Time.deltaTime;
                 yield return null;
             }
@@ -137,7 +139,7 @@ namespace GameManagerSpace.Game
 
         public IEnumerator SpawnPlayers()
         {
-            List<GameObject> _roles = new List<GameObject>();
+            List<PlayerCharacter> _roles = new List<PlayerCharacter>();
             List<Camera> cameras = new List<Camera>();
 
             for (int i = 0; i < CoreModel.RoleAvatars.Count; i++)
@@ -146,7 +148,7 @@ namespace GameManagerSpace.Game
                 go.GetComponentInChildren<PlayerCharacter>().AssignController(i);
                 go.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = model.startRoom.GetComponent<MapObjectData>().polygonCollider2D;
                 cameras.Add(go.GetComponentInChildren<Camera>());
-                _roles.Add(go);
+                _roles.Add(go.GetComponentInChildren<PlayerCharacter>());
             }
 
             model.roles = _roles;
@@ -161,7 +163,7 @@ namespace GameManagerSpace.Game
         public IEnumerator RandomPlayerAvatars()
         {
             model.hunter = model.roles.Random();
-            model.hunterPlayer = ReInput.players.GetPlayer(model.hunter.GetComponentInChildren<PlayerCharacter>().playerId);
+            model.hunterPlayer = ReInput.players.GetPlayer(model.hunter.GetComponent<PlayerCharacter>().playerId);
             model.escapers = model.roles.FindAll(x => (x != model.hunter));
             model.escaperPlayers = CoreModel.ActivePlayers.FindAll(x => x != model.hunterPlayer);
 
@@ -179,8 +181,8 @@ namespace GameManagerSpace.Game
             changeLevelActions.Add(TeleportNext);
             changeLevelActions.Add(TeleportPrev);
 
-            model.hunter.GetComponentInChildren<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions);
-            model.escapers.ForEach(x => x.GetComponentInChildren<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions));
+            model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions);
+            model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions));
 
             model.mainCam.enabled = false;
 
@@ -208,23 +210,16 @@ namespace GameManagerSpace.Game
                 Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + (i < model.blocks.Count - 1 ? new Vector3(100, 100, 0) : Vector3.zero);
                 model.blocks[i].transform.position = pos;
             }
-            model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().exit.gameObject.SetActive(false);
+            model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().nextCollider.gameObject.SetActive(false);
             yield return null;
         }
         #endregion
 
         #region Game starting
-        public IEnumerator InitGameObstacle()
-        {
-            foreach (var go in FindObjectsOfType<MapObjectCore>())
-            {
-                go.Init();
-            }
-            yield return null;
-        }
+
         public IEnumerator HunterGameSetup()
         {
-            HunterGameSetup hunterGameSetup = FindObjectOfType<HunterGameSetup>();
+            HunterGameSetup hunterGameSetup = model.hunter.transform.parent.GetComponentInChildren<HunterGameSetup>();
             hunterGameSetup.Generator(model.hunterPlayer, OpenDoors);
             yield return null;
         }
@@ -254,53 +249,48 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Game playing
-        public IEnumerator InitGame()
-        {
-            foreach (var s in FindObjectsOfType<MapObjectCore>())
-            {
-                s.Init();
-            }
-            yield return null;
-        }
         #endregion
 
         #region Game scoring
-        public IEnumerator Scoring()
+        public IEnumerator BeforeScoring()
         {
-            for (int i = 0; i < activePlayerCounts; i++)
+            Camera[] cameras = FindObjectsOfType<Camera>();
+
+            foreach (Camera cam in cameras)
             {
-                int score = 0;
-                GameObject go = CoreModel.RoleAvatars[i];
-                if (model.hunter == go)
-                {
-                    score += model.GetCaughtRoles.Count;
-                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? CoreModel.goalScore : 0;
-                }
-                else if (model.escapers.Contains(go))
-                {
-                    score += (model.GoalRoles.Contains(go.GetComponentInChildren<PlayerCharacter>())) ? CoreModel.goalScore : 0;
-                }
-                CoreModel.TotalScores[i] += score;
-                Debug.Log("P" + (i + 1) + " score : " + CoreModel.TotalScores);
-                if (CoreModel.TotalScores[i] >= CoreModel.winningScore) CoreModel.WinnerAvatars.Add(go);
+                cam.enabled = false;
             }
+
+            model.mainCam.enabled = true;
             yield return null;
         }
-        public IEnumerator GameJudge()
+        public IEnumerator Scoring()
         {
-            if (CoreModel.WinnerAvatars.Count > 1)
+            yield return (SceneManager.LoadSceneAsync("ScoreScene", LoadSceneMode.Additive));
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            scoreManager.Init(activePlayerCounts, CalculateScores, changeGameStateAction);
+
+            yield return scoreManager.StartScoring();
+        }
+
+        List<int> CalculateScores
+        {
+            get
             {
-                changeGameStateAction("GameDraw");
+                List<int> scores = new List<int>();
+                for (int i = 0; i < CoreModel.activePlayersCount; i++)
+                {
+                    int score = 0;
+                    PlayerCharacter role = model.roles[i];
+                    if (role.teamId == 1)
+                    {
+                        score += model.GetCaughtRoles.Count;
+                    }
+                    score += (model.GoalRoles.Any(x => x.playerId == role.playerId)) ? CoreModel.goalScore : 0;
+                    scores.Add(score);
+                }
+                return scores;
             }
-            else if (CoreModel.WinnerAvatars.Count > 0)
-            {
-                changeGameStateAction("GameOver");
-            }
-            else
-            {
-                changeGameStateAction("NewGame");
-            }
-            yield return null;
         }
         #endregion
 

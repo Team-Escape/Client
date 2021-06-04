@@ -1936,6 +1936,7 @@ MonoBehaviour:
   endpoint: {fileID: 1312063126411992158}
   entrance: {fileID: 694718504467213551}
   exit: {fileID: 5679601380102700476}
+  nextCollider: {fileID: 5497503867862727048}
   polygonCollider2D: {fileID: 8615607058943739664}
 --- !u!1 &1312063126906617330
 GameObject:
