@@ -112,22 +112,7 @@ namespace GameManagerSpace.Game
                 yield return null;
             }
 
-            string name1 = blocks[blocks.Count - 1].name;
-            switch (name1.Split(',')[2])
-            {
-                case "left":
-                    blocks.Add(model.destinationRoomRight.gameObject);
-                    break;
-                case "right":
-                    blocks.Add(model.destinationRoomLeft.gameObject);
-                    break;
-                case "up":
-                    blocks.Add(model.destinationRoomDown.gameObject);
-                    break;
-                case "down":
-                    blocks.Add(model.destinationRoomUp.gameObject);
-                    break;
-            }
+            blocks.Add(model.destination.gameObject);
 
             model.blocks = blocks;
 
@@ -204,13 +189,11 @@ namespace GameManagerSpace.Game
         {
             for (int i = 0; i < model.blocks.Count; i++)
             {
-                if (i < model.blocks.Count - 1)
-                    model.blocks[i].GetComponent<MapObjectData>().id = i;
+                model.blocks[i].GetComponent<MapObjectData>().id = i;
                 if (i == 0) continue;
-                Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + (i < model.blocks.Count - 1 ? new Vector3(100, 100, 0) : Vector3.zero);
+                Vector2 pos = model.blocks[i - 1].GetComponent<MapObjectData>().endpoint.position + new Vector3(100, 100, 0);
                 model.blocks[i].transform.position = pos;
             }
-            model.blocks[model.blocks.Count - 2].GetComponent<MapObjectData>().nextCollider.gameObject.SetActive(false);
             yield return null;
         }
         #endregion
