@@ -315,6 +315,12 @@ namespace GameManagerSpace.Hall
             view = GetComponent<View>();
             model = new Model();
             join = new JoinHandler();
+            Reset();
+        }
+
+        void Reset()
+        {
+            ReInput.players.AssignAllPlayersToSystemPlayer();
         }
     }
 }
