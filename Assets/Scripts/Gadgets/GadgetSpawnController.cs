@@ -34,11 +34,14 @@ public class GadgetSpawnController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (gadget == null) return;
         if (other.GetComponent<InteractWithGadget>() != null)
         {
+            Debug.Log("get");
             if (other.GetComponent<InteractWithGadget>().PickUp(gadget.GetComponent<IGadget>()))
             {
+                
                 this.gadget.transform.parent = other.gameObject.transform;
                 this.gadget.transform.position = new Vector2(0, 0);
                 this.gadget = null;

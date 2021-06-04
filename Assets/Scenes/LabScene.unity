@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -794,6 +794,8 @@ MonoBehaviour:
   destinationRoomRight: {fileID: 1727602207809885701, guid: 88be1132dd24f4b4f978f73a626da7b2,
     type: 3}
   destinationRoomLeft: {fileID: 2940396477434515441, guid: f5a6e6c80f0f645b69d2b9e9448eee44,
+    type: 3}
+  destination: {fileID: 371592732266960633, guid: 1554de97877814e808ff1f2422549c99,
     type: 3}
   roomSize: 6
   blockContainer:

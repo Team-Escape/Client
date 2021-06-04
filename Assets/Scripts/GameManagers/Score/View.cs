@@ -32,8 +32,6 @@ namespace GameManagerSpace.Score
                 }
                 catch
                 {
-                    if (callback != null)
-                        callback(id);
                     yield break;
                 }
                 if (go != null)

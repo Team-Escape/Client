@@ -36,6 +36,7 @@ namespace Gadget.slot
         }
         public void SetSprite(Sprite sprite)
         {
+            Debug.Log("set in slot");
             icon.sprite = sprite;
         }
         public IGadget Tackout()

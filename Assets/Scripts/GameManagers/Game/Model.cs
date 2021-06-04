@@ -41,6 +41,7 @@ namespace GameManagerSpace.Game
         public Transform destinationRoomDown = null;
         public Transform destinationRoomRight = null;
         public Transform destinationRoomLeft = null;
+        public Transform destination = null;
         #endregion        
 
         #region Rooms
