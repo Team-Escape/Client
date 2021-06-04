@@ -59,11 +59,11 @@ namespace GameManagerSpace.Game
         public Transform hunterSpawn = null;
         public Transform escaperSpawn = null;
         [HideInInspector]
-        public List<GameObject> roles = null;
+        public List<PlayerCharacter> roles = null;
         [HideInInspector]
-        public GameObject hunter = null;
+        public PlayerCharacter hunter = null;
         [HideInInspector]
-        public List<GameObject> escapers = new List<GameObject>();
+        public List<PlayerCharacter> escapers = new List<PlayerCharacter>();
         [HideInInspector]
         public Player hunterPlayer = null;
         [HideInInspector]

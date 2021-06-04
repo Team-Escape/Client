@@ -229,11 +229,7 @@ namespace GameManagerSpace.Hall
             if (model.AbleToStart)
             {
                 model.isStarting = true;
-
                 CoreModel.activePlayersCount = model.activePlayers.Count;
-                CoreModel.ActivePlayers = model.activePlayers;
-                CoreModel.ActiveController = model.activeController;
-                CoreModel.choosenMapName = model.mapName;
 
                 List<GameObject> playerPrefabs = new List<GameObject>();
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
@@ -242,6 +238,8 @@ namespace GameManagerSpace.Hall
                     playerPrefabs[i].GetComponentInChildren<PlayerCharacter>().AssignController(0);
                 }
                 CoreModel.RoleAvatars = playerPrefabs;
+                CoreModel.ActivePlayers = model.activePlayers;
+                CoreModel.ActiveController = model.activeController;
 
                 InitCoreModelDatas();
 
@@ -270,6 +268,7 @@ namespace GameManagerSpace.Hall
             float counter = duration;
 
             yield return StartCoroutine(MapPolling());
+            CoreModel.choosenMapName = model.mapName;
 
             while (counter >= 0)
             {
@@ -277,7 +276,7 @@ namespace GameManagerSpace.Hall
                 counter -= Time.unscaledDeltaTime;
             }
 
-            if (model.AbleToStart) loadSceneAction(model.mapName, true);
+            if (model.AbleToStart) loadSceneAction(CoreModel.choosenMapName, true);
             else model.isStarting = false;
         }
 
