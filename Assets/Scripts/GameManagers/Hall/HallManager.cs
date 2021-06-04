@@ -43,6 +43,13 @@ namespace GameManagerSpace.Hall
         {
             for (int i = 0; i < ReInput.players.playerCount; i++)
             {
+                if (model.activePlayers.Count <= 0)
+                {
+                    if (ReInput.players.SystemPlayer.GetButtonDown("StateBack"))
+                    {
+                        loadSceneAction("MenuScene", false);
+                    }
+                }
                 if (ReInput.players.GetPlayer(i).GetButtonDown("StateBack"))
                 {
                     StateBack(i);

@@ -28,7 +28,6 @@ namespace GameManagerSpace.Game
             CoreModel.WinnerAvatars = new List<GameObject>();
             model.GetCaughtRoles = new List<PlayerCharacter>();
             model.GoalRoles = new List<PlayerCharacter>();
-            Debug.Log(model.GoalRoles);
         }
 
         # region Game Listener
@@ -279,11 +278,6 @@ namespace GameManagerSpace.Game
             get
             {
                 List<int> scores = new List<int>();
-                Debug.Log("Gola Counts: " + model.GoalRoles.Count);
-                for (int i = 0; i < model.GoalRoles.Count; i++)
-                {
-                    Debug.Log(model.GoalRoles[i].name);
-                }
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
                 {
                     int score = 0;

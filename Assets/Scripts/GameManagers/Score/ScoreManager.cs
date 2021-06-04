@@ -11,15 +11,13 @@ namespace GameManagerSpace.Score
         public System.Action<string> changeGameStateAction = null;
         public System.Action scoreFinishedAction = null;
 
-        [SerializeField] Camera selfCamera = null;
-        [SerializeField] Canvas selfCanvas = null;
         [SerializeField] Transform scoreObject = null;
         [SerializeField] string nameOfScoreDisplay = "ScoreDisplay";
 
         View view = null;
         Model model = new Model();
 
-        List<Player> goalPlayers = new List<Player>();
+        List<GameObject> goalPlayers = new List<GameObject>();
         Camera gameSceneMainCamera = null;
 
         public void Init(int n, List<int> obtainScores, System.Action<string> callback)
@@ -58,12 +56,14 @@ namespace GameManagerSpace.Score
 
         public IEnumerator StartScoring()
         {
+            model.ObtainScores = new List<int>();
+            model.ObtainScores.Add(2);
             yield return StartCoroutine(ScoringCoroutine(model.ObtainScores));
         }
 
         public void RegisterGoalPlayerCallback(int id)
         {
-            goalPlayers.Add(ReInput.players.GetPlayer(id));
+            goalPlayers.Add(CoreModel.RoleAvatars[id]);
         }
 
         public void GameOver()
@@ -74,9 +74,11 @@ namespace GameManagerSpace.Score
                     changeGameStateAction("NewGame");
                     return;
                 case 1:
+                    CoreModel.WinnerAvatars = goalPlayers;
                     changeGameStateAction("GameOver");
                     break;
                 default:
+                    CoreModel.WinnerAvatars = goalPlayers;
                     changeGameStateAction("GameDraw");
                     break;
             }

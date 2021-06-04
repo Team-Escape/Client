@@ -66,6 +66,7 @@ namespace GameManagerSpace
                     var menu = FindObjectOfType<MenuManager>();
                     menu.Init(MaskChangeScene, () => audioManager.ChangeAudio("Menu"));
 
+                    coreView.MaskOut();
                     break;
                 case SceneState.HallScene:
                     ChangeInputMaps("Hall");
@@ -94,6 +95,7 @@ namespace GameManagerSpace
                     var award = FindObjectOfType<AwardManager>();
                     award.Init(ChangeScene);
 
+                    coreView.MaskOut();
                     break;
             }
         }

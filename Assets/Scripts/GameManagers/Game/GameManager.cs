@@ -93,7 +93,6 @@ namespace GameManagerSpace.Game
 
         IEnumerator NewGame()
         {
-            Debug.Log(CoreModel.choosenMapName);
             loadSceneAction(CoreModel.choosenMapName, false);
             yield return null;
         }
@@ -107,7 +106,6 @@ namespace GameManagerSpace.Game
 
         private void Awake()
         {
-            Debug.Log(CoreModel.choosenMapName);
             control = GetComponent<Control>();
             control.Init(
                 (string name) => GameFlow(name)
