@@ -9,55 +9,42 @@ namespace Gadget.Effector
     {
         Model playerModel;
         bool effect;
+        
 
-        HashSet<int> effs;
-        [SerializeField] int MaxEffectCount = 10;
-        [SerializeField] Camera cam;
-        [SerializeField] GadgetEffect[] gadgets;
-
-        [SerializeField] GameObject player;
-        public GameObject GetPlayer()
-        {
-            return player;
-        }
+        [SerializeField]int MaxEffectCount = 10;
+        [SerializeField]Camera camera;
+        [SerializeField]GadgetEffect[] gadgets ;
+        Dictionary<int,GadgetEffect> gadgetDict;
+        [SerializeField]GameObject player;
+        
         private void Awake()
         {
-            gadgets = GetComponents<GadgetEffect>();
-            effs = new HashSet<int>();
-
+            gadgetDict = new Dictionary<int, GadgetEffect>();
+            
+            foreach (GadgetEffect item in GetComponents<GadgetEffect>())
+            {
+                
+                gadgetDict.Add(item.GetId(),item);
+            }
+            gadgets = new GadgetEffect[gadgetDict.Count];
+            gadgetDict.Values.CopyTo(gadgets,0);
             playerModel = GetComponent<Model>();
             effect = false;
-
+            
         }
-        public Camera GetCamera()
-        {
-            return cam;
+        public Camera GetCamera(){
+            return camera;
         }
-        public Model GetModel()
-        {
-            return playerModel;
+        public GameObject GetPlayer(){
+            return player;
         }
-        public bool SetEffect(int id)
-        {
-            if (!effs.Contains(id))
-            {
-                effs.Add(id);
-                return true;
-            }
-            return false;
+        
+        public void UseGadget(int gid){
+            
+            gadgetDict[gid].enabled = true;
         }
-        public void DistoryEffect(int id)
-        {
-            effs.Remove(id);
-        }
-        public void UseGadget(int gid)
-        {
-
-            gadgets[gid].enabled = true;
-        }
-        public Sprite GetSprite(int gid)
-        {
-            return gadgets[gid].GetSprite();
+        public Sprite GetSprite(int gid){
+            return gadgetDict[gid].GetSprite();
         }
     }
 }
