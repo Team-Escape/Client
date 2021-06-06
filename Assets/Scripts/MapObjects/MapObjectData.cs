@@ -8,6 +8,5 @@ public class MapObjectData : MonoBehaviour
     public Transform endpoint;
     public Transform entrance;
     public Transform exit;
-    public Transform nextCollider;
     public PolygonCollider2D polygonCollider2D;
 }
