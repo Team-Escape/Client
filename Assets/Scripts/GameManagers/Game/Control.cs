@@ -20,6 +20,7 @@ namespace GameManagerSpace.Game
         Action<string> changeGameStateAction = null;
         int activePlayerCounts = 0;
         int playerGotStartItemCounts = 0;
+        bool isStarted = false;
         bool isGoaled = false;
 
         public void Init(Action<string> changeGameStateCallback)
@@ -45,6 +46,7 @@ namespace GameManagerSpace.Game
         }
         public void GetStartItemCallback(PlayerCharacter role)
         {
+            if (isStarted) return;
             playerGotStartItemCounts++;
             if (playerGotStartItemCounts >= activePlayerCounts - 1)
             {
@@ -202,6 +204,7 @@ namespace GameManagerSpace.Game
 
         public IEnumerator HunterGameSetup()
         {
+            isStarted = true;
             HunterGameSetup hunterGameSetup = model.hunter.transform.parent.GetComponentInChildren<HunterGameSetup>();
             hunterGameSetup.Generator(model.hunterPlayer, OpenDoors);
             yield return null;
