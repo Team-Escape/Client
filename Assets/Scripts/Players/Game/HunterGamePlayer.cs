@@ -31,10 +31,10 @@ namespace PlayerSpace.HunterGame
             GetComponent<RectTransform>().sizeDelta = size;
             GetComponent<CircleCollider2D>().radius = size.x / 2;
             ChangeInputMap("HunterGame");
-            border.Add(screeSize.x);
-            border.Add(screeSize.y);
-            border.Add(-(screeSize.x));
-            border.Add(-(screeSize.y));
+            border.Add(screeSize.x * 1.25f);
+            border.Add(screeSize.y * 1.25f);
+            border.Add(-(screeSize.x * 1.25f));
+            border.Add(-(screeSize.y * 1.25f));
             foreach (var a in border)
             {
                 Debug.Log(a);
