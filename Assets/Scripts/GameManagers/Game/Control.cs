@@ -35,14 +35,16 @@ namespace GameManagerSpace.Game
         public void TeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
         {
             role.currentRoomId++;
-            confiner.m_BoundingShape2D = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().polygonCollider2D;
-            role.transform.position = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().entrance.position;
+            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            confiner.m_BoundingShape2D = m_data.polygonCollider2D;
+            role.transform.position = m_data.entrance.position;
         }
         public void TeleportPrev(PlayerCharacter role, CinemachineConfiner confiner)
         {
             role.currentRoomId--;
-            confiner.m_BoundingShape2D = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().polygonCollider2D;
-            role.transform.position = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().exit.position;
+            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            confiner.m_BoundingShape2D = m_data.polygonCollider2D;
+            role.transform.position = m_data.exit.position;
         }
         public void GetStartItemCallback(PlayerCharacter role)
         {

@@ -111,6 +111,10 @@ namespace PlayerSpace.Game
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.tag == "Confiner")
+            {
+                confiner.m_BoundingShape2D = other.GetComponent<PolygonCollider2D>();
+            }
             switch (other.tag)
             {
                 case "PlayerWeapon":

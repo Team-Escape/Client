@@ -6875,8 +6875,8 @@ MonoBehaviour:
   endpoint: {fileID: 1031244516960297807}
   entrance: {fileID: 8655665455447490347}
   exit: {fileID: 4094030487567197023}
-  nextCollider: {fileID: 4339806011837810616}
   polygonCollider2D: {fileID: 9096693278979412246}
+  fieldOfView: 25
 --- !u!1 &1031244517153929411
 GameObject:
   m_ObjectHideFlags: 0
@@ -9871,7 +9871,7 @@ GameObject:
   - component: {fileID: 9096693278979412246}
   m_Layer: 0
   m_Name: Confiner
-  m_TagString: Untagged
+  m_TagString: Confiner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
