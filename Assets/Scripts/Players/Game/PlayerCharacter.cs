@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using Cinemachine;
+using GameManagerSpace;
 
 namespace PlayerSpace.Game
 {

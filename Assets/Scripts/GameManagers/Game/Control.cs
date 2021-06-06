@@ -235,6 +235,11 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Game scoring
+        public IEnumerator StopHunterGame()
+        {
+            model.hunter.transform.parent.GetComponentInChildren<HunterGameSetup>().gameObject.SetActive(false);
+            yield return null;
+        }
         public IEnumerator BeforeScoring()
         {
             Camera[] cameras = FindObjectsOfType<Camera>();

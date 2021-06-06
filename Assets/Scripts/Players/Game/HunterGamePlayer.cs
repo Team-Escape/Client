@@ -16,9 +16,7 @@ namespace PlayerSpace.HunterGame
         RectTransform selfTransform = null;
         private int score = 0;
         private string targetName = "Dot";
-        private float[] border = {
-            -105, 105, -55, 55
-        };
+        private List<float> border = new List<float>();
 
         public void ExitHunterGame()
         {
@@ -27,13 +25,21 @@ namespace PlayerSpace.HunterGame
             this.gameObject.SetActive(false);
         }
 
-        public void Init(Player p, Vector2 size)
+        public void Init(Player p, Vector2 screeSize, Vector2 size)
         {
-            Debug.Log(p);
             player = p;
             GetComponent<RectTransform>().sizeDelta = size;
             GetComponent<CircleCollider2D>().radius = size.x / 2;
             ChangeInputMap("HunterGame");
+            border.Add(screeSize.x);
+            border.Add(screeSize.y);
+            border.Add(-(screeSize.x));
+            border.Add(-(screeSize.y));
+            foreach (var a in border)
+            {
+                Debug.Log(a);
+            }
+
         }
 
         void ChangeInputMap(string map)
@@ -56,7 +62,11 @@ namespace PlayerSpace.HunterGame
         {
             moveVector.x = player.GetAxis("H-MoveX") * speed;
             moveVector.y = player.GetAxis("H-MoveY") * speed;
+
             selfTransform.position += moveVector;
+
+            if (selfTransform.localPosition.x > border[0] || selfTransform.localPosition.x < border[2] || selfTransform.localPosition.y > border[1] || selfTransform.localPosition.y < border[3])
+                selfTransform.localPosition = new Vector3(0, 0, 0);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -73,6 +83,11 @@ namespace PlayerSpace.HunterGame
             score = 0;
             selfTransform = GetComponent<RectTransform>();
             selfCamera = transform.parent.GetComponentInChildren<Camera>();
+        }
+
+        private void OnDisable()
+        {
+            ChangeInputMap("GamePlay");
         }
     }
 }
