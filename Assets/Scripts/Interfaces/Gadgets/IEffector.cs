@@ -1,6 +1,7 @@
 
 using PlayerSpace.Game;
 using UnityEngine;
+using System.Collections.Generic;
 namespace Gadget.Effector
 {
     public interface IEffector
@@ -12,6 +13,7 @@ namespace Gadget.Effector
         void UseGadget(int gid);
         GameObject GetPlayer();
         Sprite GetSprite(int gid);
+        GadgetEffect[] GetGadgetEffects();
     }
 
 }

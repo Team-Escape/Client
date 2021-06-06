@@ -11,12 +11,13 @@ public abstract class GadgetEffect : MonoBehaviour
     [SerializeField] protected int id;
     protected void Awake()
     {
-
+        enabled = false;
         effecter = GetComponent<IEffector>();
+        if(effecter.GetPlayer()==null) return;
         model = effecter.GetPlayer().GetComponent<Model>();
         owner = effecter.GetPlayer();
         camera = effecter.GetCamera();
-        enabled = false;
+        
     }
     protected void OnEnable()
     {
