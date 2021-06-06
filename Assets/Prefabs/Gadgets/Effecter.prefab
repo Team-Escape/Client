@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 5112823643066247704}
   - component: {fileID: 8511587722760436030}
   - component: {fileID: 8511587722760436031}
-  - component: {fileID: 8511587722760436025}
   - component: {fileID: 3910196700195730660}
+  - component: {fileID: 8511587722760436025}
   m_Layer: 8
   m_Name: Effecter
   m_TagString: Untagged
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495db06ae836e2740b9a373145270c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b2b2ecb97a96b4606aa4cfacd2000ba6, type: 3}
+  sprite: {fileID: 1505697053397224213, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 5
   delay: 3
   divition: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a652855d151914dbbc1ef9521ce47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 68e999f83b6dd4ae6b92e2f478d9e0dc, type: 3}
+  sprite: {fileID: 8494959238671389771, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 3
   during: 4
 --- !u!114 &8511587722760436029
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbc098152272844f936d3b38c20a9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5582f6f8500f94f35aa02fe766ebad0d, type: 3}
+  sprite: {fileID: 7082830240635931932, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 0
   healMax: 2
   healperTime: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52c3983382b85349a295cde4eb166ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 7264137721363454e87f10998b0a8b28, type: 3}
+  sprite: {fileID: 2608748674303681055, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 1
   during: 2
 --- !u!114 &8511587722760436027
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ef84e4f0e497a49878003905274596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 8b5d8e5d705154274a556c523b20df61, type: 3}
+  sprite: {fileID: -7213447755484889320, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 4
   delay: 5
   addition: 0.5
@@ -166,6 +166,22 @@ MonoBehaviour:
   camera: {fileID: 0}
   gadgets: []
   player: {fileID: 0}
+--- !u!114 &3910196700195730660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af269b449f5c2a740bb86e5a36abfc0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 2656242685623351417, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  id: 7
+  delay: 5
+  addition: -0.5
 --- !u!70 &8511587722760436025
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -182,19 +198,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 3}
   m_Direction: 0
---- !u!114 &3910196700195730660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8511587722760436018}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af269b449f5c2a740bb86e5a36abfc0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  id: 7
-  delay: 5
-  addition: -0.5
