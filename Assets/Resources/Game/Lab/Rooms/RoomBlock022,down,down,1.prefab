@@ -985,6 +985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3329540067691474293}
+  - component: {fileID: 7635627792853945731}
   m_Layer: 0
   m_Name: RoomBlock022,down,down,1
   m_TagString: Untagged
@@ -1010,6 +1011,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7635627792853945731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329540067691474292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26ad43e0cc484b4987929d08f5bd8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  endpoint: {fileID: 3329540069383425894}
+  entrance: {fileID: 9050749405979602383}
+  exit: {fileID: 892402696047693433}
+  nextCollider: {fileID: 2644042210765238148}
+  polygonCollider2D: {fileID: 2138553620424935829}
 --- !u!1 &3329540067747409610
 GameObject:
   m_ObjectHideFlags: 0
