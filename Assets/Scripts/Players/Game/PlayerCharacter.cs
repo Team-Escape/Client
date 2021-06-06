@@ -89,7 +89,7 @@ namespace PlayerSpace.Game
         void Update()
         {
             if (input == null || control == null) return;
-            // DevInput();
+            DevInput();
             MoveInput();
             CombatInput();
         }
