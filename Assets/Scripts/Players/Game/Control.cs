@@ -141,6 +141,7 @@ namespace PlayerSpace.Game
                         model.AddItemSpeedGain = -0.1f;
                         model.AddItemJumpGain = -0.1f;
                         model.MaxHealth += 2;
+                        model.CurrentHealth += 2;
                         model.Armor = true;
                         break;
                     case "LightnessShoe":
@@ -178,7 +179,8 @@ namespace PlayerSpace.Game
         }
         public void ItemReceived(GameObject target)
         {
-            target.SetActive(false);
+            if (model.IsGetStartItem == false)
+                target.SetActive(false);   
         }
         public void CancelItem()
         {

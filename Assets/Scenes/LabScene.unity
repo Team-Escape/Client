@@ -823,6 +823,8 @@ MonoBehaviour:
     - {fileID: 3695950407919174723, guid: 850bc9a963f3c9248b49263746c4abef, type: 3}
     - {fileID: 1312063126895967820, guid: dd7cb5991bac9eb4bb75aa86239f9c57, type: 3}
     - {fileID: 8863045641119396375, guid: 796041b83dba69449bf102276288399d, type: 3}
+    - {fileID: 3329540067691474292, guid: 32b50eaa0580ffe42934f4385f5dbbb4, type: 3}
+    - {fileID: 4547553327413624134, guid: 09ee232478375494f9553d746127e061, type: 3}
   hunterSpawn: {fileID: 259729428}
   escaperSpawn: {fileID: 10077022}
   roles: []
@@ -838,10 +840,22 @@ MonoBehaviour:
     name: IceSkate
   - display: {fileID: -1490221186039758273, guid: d6998357f759c49d585d96a00d77e6b1,
       type: 3}
-    name: IceSkate
+    name: EnergyDrink
   - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
       type: 3}
-    name: IceSkate
+    name: Shield
+  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
+      type: 3}
+    name: SlimeShoe
+  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
+      type: 3}
+    name: Armor
+  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
+      type: 3}
+    name: LightnessShoe
+  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
+      type: 3}
+    name: RocketShoe
 --- !u!114 &2017760367
 MonoBehaviour:
   m_ObjectHideFlags: 0
