@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8511587722760436030}
   - component: {fileID: 8511587722760436031}
   - component: {fileID: 8511587722760436025}
+  - component: {fileID: 3910196700195730660}
   m_Layer: 8
   m_Name: Effecter
   m_TagString: Untagged
@@ -116,8 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8b5d8e5d705154274a556c523b20df61, type: 3}
   id: 4
-  delay: 2
-  addition: -0.9
+  delay: 5
+  addition: 0.5
 --- !u!114 &5112823643066247704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +182,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 3}
   m_Direction: 0
+--- !u!114 &3910196700195730660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af269b449f5c2a740bb86e5a36abfc0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  id: 7
+  delay: 5
+  addition: -0.5
