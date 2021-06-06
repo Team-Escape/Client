@@ -18,7 +18,6 @@ namespace GameManagerSpace.Score
         Model model = new Model();
 
         List<GameObject> goalPlayers = new List<GameObject>();
-        Camera gameSceneMainCamera = null;
 
         public void Init(int n, List<int> obtainScores, System.Action<string> callback)
         {
@@ -56,9 +55,9 @@ namespace GameManagerSpace.Score
 
         public IEnumerator StartScoring()
         {
-            List<int> test = new List<int>();
-            test.Add(3);
-            model.ObtainScores = test;
+            // List<int> test = new List<int>();
+            // test.Add(3);
+            // model.ObtainScores = test;
             yield return StartCoroutine(ScoringCoroutine(model.ObtainScores));
         }
 

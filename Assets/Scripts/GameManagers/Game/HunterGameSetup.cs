@@ -31,6 +31,7 @@ namespace GameManagerSpace.Game.HunterGame
 
             float width = 1920 / 2 * cam.rect.width;
             float height = 1080 / 2 * cam.rect.height;
+            Vector2 screenSize = new Vector2(width, height);
             Vector2 pos = new Vector2(width, height + sizeY);
             // RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Vector2.zero, cam, out pos);
 
@@ -58,13 +59,13 @@ namespace GameManagerSpace.Game.HunterGame
             }
 
             if (callback != null) callback();
-            ActivePlayer(player, new Vector2(sizeX, sizeY));
+            ActivePlayer(player, screenSize, new Vector2(sizeX, sizeY));
         }
 
-        void ActivePlayer(Player player, Vector2 size)
+        void ActivePlayer(Player player, Vector2 screenSize, Vector2 size)
         {
             hunterGamePlayer.gameObject.SetActive(true);
-            hunterGamePlayer.Init(player, size);
+            hunterGamePlayer.Init(player, screenSize, size);
         }
     }
 

@@ -81,6 +81,7 @@ namespace GameManagerSpace.Game
 
         IEnumerator Scoring()
         {
+            yield return StartCoroutine(control.StopHunterGame());
             yield return StartCoroutine(control.BeforeScoring());
             yield return StartCoroutine(control.Scoring());
         }
