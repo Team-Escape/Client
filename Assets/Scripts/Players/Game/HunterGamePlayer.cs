@@ -65,8 +65,14 @@ namespace PlayerSpace.HunterGame
 
             selfTransform.position += moveVector;
 
-            if (selfTransform.localPosition.x > border[0] || selfTransform.localPosition.x < border[2] || selfTransform.localPosition.y > border[1] || selfTransform.localPosition.y < border[3])
-                selfTransform.localPosition = new Vector3(0, 0, 0);
+            if (selfTransform.localPosition.x > border[0])
+                selfTransform.localPosition = new Vector3(border[2], selfTransform.localPosition.y, 0);
+            else if (selfTransform.localPosition.x < border[2])
+                selfTransform.localPosition = new Vector3(border[0], selfTransform.localPosition.y, 0);
+            if (selfTransform.localPosition.y > border[1])
+                selfTransform.localPosition = new Vector3(selfTransform.localPosition.x, border[3], 0);
+            else if (selfTransform.localPosition.y < border[3])
+                selfTransform.localPosition = new Vector3(selfTransform.localPosition.x, border[1], 0);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -5,7 +5,6 @@ using Gadget.Effector;
 
 public class InteractWithGadget : MonoBehaviour
 {
-
     [SerializeField] GameObject slotObj;
 
     IEffector Effecter;
@@ -38,12 +37,12 @@ public class InteractWithGadget : MonoBehaviour
 
     public bool PickUp(IGadget gadget)
     {
-        
+
         if (slot == null) return false;
-        
+
         if (slot.Store(gadget))
         {
-            
+
             slot.SetSprite(Effecter.GetSprite(gadget.GetID()));
             return true;
         }
