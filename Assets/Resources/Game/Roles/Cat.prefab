@@ -722,7 +722,6 @@ GameObject:
   - component: {fileID: 7216071692968425979}
   - component: {fileID: 1072816318424556871}
   - component: {fileID: 3304357365883645285}
-  - component: {fileID: 9117249634434045153}
   - component: {fileID: 9058565962954244871}
   m_Layer: 8
   m_Name: Body
@@ -969,21 +968,6 @@ MonoBehaviour:
     healthBar: {fileID: 8494698628607317248}
     enduranceBar: {fileID: 8494698627609508971}
     decoration: {fileID: 0}
---- !u!114 &9117249634434045153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4053613534227834909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ffb4674de3a0904992099fc17c4b62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testMode: 0
-  testState: 0
-  weapon: {fileID: 3067787406669679685}
 --- !u!114 &9058565962954244871
 MonoBehaviour:
   m_ObjectHideFlags: 0
