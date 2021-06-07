@@ -55,7 +55,7 @@ namespace PlayerSpace.Game
         public void DevInput()
         {
             /* Remember to remove before deployment */
-            if (Input.GetKeyDown(KeyCode.H)) control.Hurt(new Vector2(transform.localScale.x * 10, 10f));
+            if (Input.GetKeyDown(KeyCode.H)) control.Hurt(new Vector2(transform.localScale.x * 10, 10f), GetCaught);
             if (Input.GetKeyDown(KeyCode.C)) control.CancelItem();
             if (Input.GetKeyDown(KeyCode.B))
             {
@@ -77,8 +77,6 @@ namespace PlayerSpace.Game
 
             if (input.GetButtonDown("Run")) control.Run(true);
             else if (input.GetButtonUp("Run")) control.Run(false);
-
-            if (input.GetButtonDown("Execution")) executionManager.DoExecution();
         }
 
         public void CombatInput()
@@ -119,7 +117,7 @@ namespace PlayerSpace.Game
             {
                 case "PlayerWeapon":
                     Vector2 force = (transform.position - other.transform.parent.position);
-                    control.Hurt(new Vector2(force.x, 1) * 12);
+                    control.Hurt(new Vector2(force.x, 1) * 12, GetCaught);
                     break;
                 case "Flag":
                     Goal();

@@ -277,7 +277,8 @@ namespace GameManagerSpace.Game
                     PlayerCharacter role = model.roles[i];
                     if (role.teamId == 1)
                     {
-                        score += model.GetCaughtRoles.Count;
+                        if (model.GetCaughtRoles.Count == model.escaperPlayers.Count) score += CoreModel.goalScore;
+                        else score += model.GetCaughtRoles.Count;
                     }
                     score += (model.GoalRoles.Any(x => x.playerId == role.playerId)) ? CoreModel.goalScore : 0;
                     scores.Add(score);

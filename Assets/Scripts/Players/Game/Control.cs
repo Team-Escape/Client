@@ -11,7 +11,7 @@ namespace PlayerSpace.Game
         Animator animator = null;
         Rigidbody2D rb = null;
         Mover mover = new Mover();
-        Mover _tempMover = null;
+        Mover tempMover = null;
         Combat combat = new Combat();
 
         bool isAttacking = false;
@@ -75,42 +75,52 @@ namespace PlayerSpace.Game
 
             combat.Attack();
         }
-        public void Hurt(Vector2 force)
+        public void Hurt(Vector2 force, System.Action callback)
         {
-            if (OnDisable) return;
+            if (isHurting)
+                return;
+            else if (model.PlayerState == PlayerState.Dead)
+            {
+                callback();
+                Mutate();
+            }
+            else if (OnDisable)
+                return;
+            else
+            {
+                isHurting = true;
+                this.AbleToDo(1f, () => isHurting = false);
 
-            if (isHurting) return;
-            isHurting = true;
-            this.AbleToDo(1f, () => isHurting = false);
-
-            mover.Inertance(force);
-            combat.Hurt(Dead);
+                mover.Inertance(force);
+                combat.Hurt(Dead);
+            }
         }
         public void Dead()
         {
-            if (OnDisable) return;
-            combat.Dead();
-            _tempMover = mover;
-            //_tempCombat = combat;
-            mover = null;
-            //combat = null;
-            this.AbleToDo(model.RebornDuration, Reborn);
-            // View.UpdateDead();
+            if (model.PlayerState == PlayerState.Dead)
+                Mutate();
+            else if (OnDisable)
+                return;
+            else
+            {
+                combat.Dead();
+                tempMover = mover;
+                mover = null;
+                this.AbleToDo(model.RebornDuration, Reborn);
+                // View.UpdateDead();
+            }
         }
         public void Reborn()
         {
-            mover = _tempMover;
-            //combat = _tempCombat;
+            mover = tempMover;
             combat.Reborn();
         }
         public void Mutate()
         {
-            //if (OnDisable) return;
             combat.Mutate(
                 transform
             );
             view.UpdaetShaderRenderer("GHOST_ON");
-            //Reborn();
         }
         public void GetStartItem(string name, System.Action callback)
         {
@@ -180,7 +190,7 @@ namespace PlayerSpace.Game
         public void ItemReceived(GameObject target)
         {
             if (model.IsGetStartItem == false)
-                target.SetActive(false);   
+                target.SetActive(false);
         }
         public void CancelItem()
         {

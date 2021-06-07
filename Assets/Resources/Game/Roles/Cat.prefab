@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScore: 180
-  speed: 0.2
+  speed: 0.75
 --- !u!1 &2524946354142030169
 GameObject:
   m_ObjectHideFlags: 0
