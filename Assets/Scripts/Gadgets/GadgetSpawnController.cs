@@ -21,12 +21,14 @@ public class GadgetSpawnController : MonoBehaviour
     [SerializeField] int currId;
     [SerializeField] GameObject gadget;
     [SerializeField] bool curreffectToOwner;
-    
+    [SerializeField] float delayWhenTackOut;
+    [SerializeField]float currentCounter;
     private void Awake()
     {
         
         effector.GetComponent<InteractWithGadget>().enabled = false;
         effector.SetActive(false);
+        currentCounter = Time.time;
     }
     private void Start()
     {
@@ -35,7 +37,11 @@ public class GadgetSpawnController : MonoBehaviour
     }
     private void Update()
     {
-        Spawn();
+        
+        if (gadget == null&&Time.time-currentCounter>=delayWhenTackOut){
+            Spawn();
+        }
+        
 
     }
     void LoadEffects(){
@@ -76,6 +82,7 @@ public class GadgetSpawnController : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite =effector.GetComponent<IEffector>().GetSprite(id[idIndex]);
             currId = id[idIndex];
             curreffectToOwner = effectToOwner;
+            
         }
     }
 
@@ -92,7 +99,8 @@ public class GadgetSpawnController : MonoBehaviour
                 this.gadget.transform.parent = other.gameObject.transform;
                 this.gadget.transform.position = new Vector2(0, 0);
                 this.gadget = null;
-                //GetComponent<SpriteRenderer>().sprite =null;
+                currentCounter = Time.time;
+                GetComponent<SpriteRenderer>().sprite =null;
             }
 
         }
