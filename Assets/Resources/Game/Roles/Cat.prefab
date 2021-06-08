@@ -92,7 +92,7 @@ Camera:
   far clip plane: 1000
   field of view: 25
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScore: 180
-  speed: 0.2
+  speed: 0.75
 --- !u!1 &2524946354142030169
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +722,6 @@ GameObject:
   - component: {fileID: 7216071692968425979}
   - component: {fileID: 1072816318424556871}
   - component: {fileID: 3304357365883645285}
-  - component: {fileID: 9117249634434045153}
   - component: {fileID: 9058565962954244871}
   m_Layer: 8
   m_Name: Body
@@ -969,21 +968,6 @@ MonoBehaviour:
     healthBar: {fileID: 8494698628607317248}
     enduranceBar: {fileID: 8494698627609508971}
     decoration: {fileID: 0}
---- !u!114 &9117249634434045153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4053613534227834909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ffb4674de3a0904992099fc17c4b62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testMode: 0
-  testState: 0
-  weapon: {fileID: 3067787406669679685}
 --- !u!114 &9058565962954244871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,7 +1145,7 @@ MonoBehaviour:
   m_Follow: {fileID: 4053613534227834914}
   m_Lens:
     FieldOfView: 25
-    OrthographicSize: 5
+    OrthographicSize: 7.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2110,15 +2094,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c659264fcad1142a7c6f950b71be03, type: 3}
---- !u!1 &4908662350420308302 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7795310077394882927, guid: 56c659264fcad1142a7c6f950b71be03,
-    type: 3}
-  m_PrefabInstance: {fileID: 2896258008424636449}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6936214168364812597 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5220781758100629780, guid: 56c659264fcad1142a7c6f950b71be03,
+    type: 3}
+  m_PrefabInstance: {fileID: 2896258008424636449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4908662350420308302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7795310077394882927, guid: 56c659264fcad1142a7c6f950b71be03,
     type: 3}
   m_PrefabInstance: {fileID: 2896258008424636449}
   m_PrefabAsset: {fileID: 0}

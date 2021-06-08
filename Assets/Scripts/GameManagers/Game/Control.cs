@@ -20,6 +20,7 @@ namespace GameManagerSpace.Game
         Action<string> changeGameStateAction = null;
         int activePlayerCounts = 0;
         int playerGotStartItemCounts = 0;
+        bool isStarted = false;
         bool isGoaled = false;
 
         public void Init(Action<string> changeGameStateCallback)
@@ -34,17 +35,20 @@ namespace GameManagerSpace.Game
         public void TeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
         {
             role.currentRoomId++;
-            confiner.m_BoundingShape2D = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().polygonCollider2D;
-            role.transform.position = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().entrance.position;
+            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            confiner.m_BoundingShape2D = m_data.polygonCollider2D;
+            role.transform.position = m_data.entrance.position;
         }
         public void TeleportPrev(PlayerCharacter role, CinemachineConfiner confiner)
         {
             role.currentRoomId--;
-            confiner.m_BoundingShape2D = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().polygonCollider2D;
-            role.transform.position = model.blocks[role.currentRoomId].GetComponent<MapObjectData>().exit.position;
+            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            confiner.m_BoundingShape2D = m_data.polygonCollider2D;
+            role.transform.position = m_data.exit.position;
         }
         public void GetStartItemCallback(PlayerCharacter role)
         {
+            if (isStarted) return;
             playerGotStartItemCounts++;
             if (playerGotStartItemCounts >= activePlayerCounts - 1)
             {
@@ -202,6 +206,7 @@ namespace GameManagerSpace.Game
 
         public IEnumerator HunterGameSetup()
         {
+            isStarted = true;
             HunterGameSetup hunterGameSetup = model.hunter.transform.parent.GetComponentInChildren<HunterGameSetup>();
             hunterGameSetup.Generator(model.hunterPlayer, OpenDoors);
             yield return null;
@@ -272,7 +277,8 @@ namespace GameManagerSpace.Game
                     PlayerCharacter role = model.roles[i];
                     if (role.teamId == 1)
                     {
-                        score += model.GetCaughtRoles.Count;
+                        if (model.GetCaughtRoles.Count == model.escaperPlayers.Count) score += CoreModel.goalScore;
+                        else score += model.GetCaughtRoles.Count;
                     }
                     score += (model.GoalRoles.Any(x => x.playerId == role.playerId)) ? CoreModel.goalScore : 0;
                     scores.Add(score);
