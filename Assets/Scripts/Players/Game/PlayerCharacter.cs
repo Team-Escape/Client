@@ -4,6 +4,7 @@ using UnityEngine;
 using Rewired;
 using Cinemachine;
 using GameManagerSpace;
+using Gadget.Effector;
 
 namespace PlayerSpace.Game
 {
@@ -16,6 +17,7 @@ namespace PlayerSpace.Game
         Player input = null;
         Control control = null;
         ExecutionManager executionManager = null;
+        InteractWithGadget interactWithGadget = null;
 
         List<System.Action<PlayerCharacter>> gameActions = null;
         List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevel = null;
@@ -83,13 +85,14 @@ namespace PlayerSpace.Game
 
         public void CombatInput()
         {
+            if (input.GetButtonDown("MapItem")) interactWithGadget.UseGadget();
             if (input.GetButtonDown("Attack")) control.Attack();
         }
 
         void Update()
         {
             if (input == null || control == null) return;
-            DevInput();
+            //DevInput();
             MoveInput();
             CombatInput();
         }
@@ -181,6 +184,7 @@ namespace PlayerSpace.Game
 
         private void Awake()
         {
+            interactWithGadget = GetComponentInChildren<InteractWithGadget>();
             control = GetComponent<Control>();
             executionManager = GetComponent<ExecutionManager>();
             if (testMode)

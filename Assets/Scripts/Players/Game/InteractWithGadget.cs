@@ -21,7 +21,7 @@ public class InteractWithGadget : MonoBehaviour
         //todo:call when input to use the gadget
         if (!slot.IsEmpty())
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 UseGadget();
             }
