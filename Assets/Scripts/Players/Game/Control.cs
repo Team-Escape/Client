@@ -13,6 +13,7 @@ namespace PlayerSpace.Game
         Mover mover = new Mover();
         Mover tempMover = null;
         Combat combat = new Combat();
+        AudioPlayer audioPlayer = null;
 
         bool isAttacking = false;
         bool isHurting = false;
@@ -23,6 +24,19 @@ namespace PlayerSpace.Game
             {
                 if (mover == null || combat == null) return true;
                 else return false;
+            }
+        }
+
+        public void PlaySoundEffect(string name)
+        {
+            switch (name)
+            {
+                case "attack":
+                    audioPlayer.PlaySF(this.gameObject, model.attackClip);
+                    break;
+                case "damge":
+                    audioPlayer.PlaySF(this.gameObject, model.damgeClip);
+                    break;
             }
         }
 
@@ -71,6 +85,7 @@ namespace PlayerSpace.Game
             if (OnDisable) return;
             if (isAttacking) return;
             isAttacking = true;
+
             this.AbleToDo(1f, () => isAttacking = false);
 
             combat.Attack();
@@ -258,6 +273,7 @@ namespace PlayerSpace.Game
             model = GetComponent<Model>();
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            audioPlayer = GetComponent<AudioPlayer>();
 
             // Class Move in old version
             mover = new Mover(this, model, rb, animator);
