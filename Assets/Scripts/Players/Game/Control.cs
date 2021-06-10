@@ -34,7 +34,7 @@ namespace PlayerSpace.Game
                 case "attack":
                     audioPlayer.PlaySF(this.gameObject, model.attackClip);
                     break;
-                case "damge":
+                case "damage":
                     audioPlayer.PlaySF(this.gameObject, model.damgeClip);
                     break;
             }
