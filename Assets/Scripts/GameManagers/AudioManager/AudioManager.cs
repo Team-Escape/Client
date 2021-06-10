@@ -27,6 +27,7 @@ namespace GameManagerSpace.Audio
                 default:
                     break;
             }
+            Debug.Log(audioInScene);
             audioSource.Play();
         }
 

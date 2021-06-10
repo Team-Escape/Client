@@ -173,7 +173,7 @@ namespace GameManagerSpace.Game
             model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions);
             model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions));
 
-            model.mainCam.enabled = false;
+            // model.mainCam.enabled = false;
 
             yield return null;
         }

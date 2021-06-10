@@ -901,6 +901,7 @@ GameObject:
   - component: {fileID: 4566925046371189305}
   - component: {fileID: 4194881827630755966}
   - component: {fileID: 1451125523101401555}
+  - component: {fileID: 1694439643649712128}
   m_Layer: 8
   m_Name: Body
   m_TagString: Player
@@ -1086,6 +1087,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: c7e165236ce9b421d917a551b9f97fb7, type: 2}
+  attackClip: {fileID: 8300000, guid: 8e8c1497320934ab6b1994c4936f7978, type: 3}
+  damgeClip: {fileID: 8300000, guid: 4184b05fb4220427084ad0bcef99be42, type: 3}
   currentHealth: 3
   maxHealth: 3
   endurance: 3
@@ -1161,6 +1164,19 @@ MonoBehaviour:
   normalStrenght: 5
   normalSmoothing: 1
   computingNormal: 0
+--- !u!114 &1694439643649712128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5896416214095162057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2f104b294fa4c859492cf4973f666d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testclip1: {fileID: 0}
 --- !u!1 &6934008827521837391
 GameObject:
   m_ObjectHideFlags: 0

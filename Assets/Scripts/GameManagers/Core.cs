@@ -82,10 +82,9 @@ namespace GameManagerSpace
                         Destroy(FindObjectOfType<ScoreManager>());
                     }
                     ChangeInputMaps("Game");
-                    audioManager.ChangeAudio("Game");
 
                     var lab = FindObjectOfType<GameManager>();
-                    lab.Init(MaskChangeScene, () => audioManager.ChangeAudio("Hall"));
+                    lab.Init(MaskChangeScene, () => audioManager.ChangeAudio("Game"));
 
                     coreView.MaskOut();
                     break;
