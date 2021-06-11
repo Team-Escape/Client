@@ -7,21 +7,24 @@ using Gadget.Effector;
 
 public class GadgetSpawnController : MonoBehaviour
 {
+    [Header("GameObject linking")]
     [SerializeField] GameObject effector;
-    [SerializeField] int size;
+    [Header("Setting")]
+    [SerializeField] bool loadAllEffect;
+    [SerializeField] int[] effectId;
+    [SerializeField] bool isSpawnGadgetRelatedWithEffectId;
     [SerializeField] GameObject[] spawnGadget;
-    [SerializeField] int[] id;
+    [SerializeField] bool isEffectToOwnerRelatedWithEffectId;
     [SerializeField] bool[] effectToOwner;
    
+    [SerializeField] float delayWhenTakeOut;
     
-    [SerializeField] bool loadAllEffect;
-    [SerializeField] bool isUsefunctionRandom;
-    [SerializeField] bool isEffectToOwnerRandom;
-
+    
+    [Header("Runtime")]
     [SerializeField] int currId;
     [SerializeField] GameObject gadget;
     [SerializeField] bool curreffectToOwner;
-    [SerializeField] float delayWhenTackOut;
+    
     [SerializeField]float currentCounter;
     private void Awake()
     {
@@ -38,7 +41,7 @@ public class GadgetSpawnController : MonoBehaviour
     private void Update()
     {
         
-        if (gadget == null&&Time.time-currentCounter>=delayWhenTackOut){
+        if (gadget == null&&Time.time-currentCounter>=delayWhenTakeOut){
             Spawn();
         }
         
@@ -48,44 +51,44 @@ public class GadgetSpawnController : MonoBehaviour
         if(!loadAllEffect) return;
         
         GadgetEffect[] effects = effector.GetComponent<IEffector>().GetGadgetEffects();
-        size = effects.Length;
-        id = new int[size];
+        int size = effects.Length;
+        effectId = new int[size];
         for(int i=0;i<size;i++){
-            id[i] = effects[i].GetId();
+            effectId[i] = effects[i].GetId();
         }
         
     }
     void Spawn()
     {
-        if(spawnGadget.Length==0||id.Length==0
-        ||this.effectToOwner.Length==0&&!isEffectToOwnerRandom) return;
+        if(spawnGadget.Length==0||effectId.Length==0
+        ||this.effectToOwner.Length==0&&isEffectToOwnerRelatedWithEffectId) return;
         if (gadget == null)
         {
-            //int index = Random.Range(0,size);
             
-            int idIndex = Random.Range(0,id.Length);
+            
+            int idIndex = Random.Range(0,effectId.Length);
             int spawnGadgetIndex = idIndex;
             int effectToOwnerIndex = idIndex;
-            bool effectToOwner;
-            if(isUsefunctionRandom)spawnGadgetIndex = Random.Range(0,spawnGadget.Length);
-            if(isEffectToOwnerRandom){
-                effectToOwner = Random.Range(0,2)==1;
+            
+            if(!isSpawnGadgetRelatedWithEffectId)spawnGadgetIndex = Random.Range(0,spawnGadget.Length);
+            if(!isEffectToOwnerRelatedWithEffectId){
+                effectToOwnerIndex = Random.Range(0,this.effectToOwner.Length);
             }
-            else{
-                effectToOwner = this.effectToOwner[effectToOwnerIndex];
-            }
+            
+            
+            
             
             gadget = GadgetPool.GetObject(spawnGadget[spawnGadgetIndex].GetComponent<IPoolObject>().GetPID());
-            gadget.GetComponent<IGadget>().InitGadget(id[idIndex], effectToOwner);
+            gadget.GetComponent<IGadget>().InitGadget(effectId[idIndex], effectToOwner[effectToOwnerIndex]);
             gadget.transform.position = transform.position;
             
-            GetComponent<SpriteRenderer>().sprite =effector.GetComponent<IEffector>().GetSprite(id[idIndex]);
-            currId = id[idIndex];
-            curreffectToOwner = effectToOwner;
+            GetComponent<SpriteRenderer>().sprite =effector.GetComponent<IEffector>().GetSprite(effectId[idIndex]);
+            currId = effectId[idIndex];
+            curreffectToOwner = effectToOwner[effectToOwnerIndex];
             
         }
     }
-
+/*
     private void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -104,6 +107,22 @@ public class GadgetSpawnController : MonoBehaviour
             }
 
         }
-    }
+    }*/
+    private void OnTriggerStay2D(Collider2D other) {
+        if (gadget == null) return;
+        if (other.GetComponent<InteractWithGadget>() != null)
+        {
+            Debug.Log("get");
+            if (other.GetComponent<InteractWithGadget>().PickUp(gadget.GetComponent<IGadget>()))
+            {
+                
+                this.gadget.transform.parent = other.gameObject.transform;
+                this.gadget.transform.position = new Vector2(0, 0);
+                this.gadget = null;
+                currentCounter = Time.time;
+                GetComponent<SpriteRenderer>().sprite =null;
+            }
 
+        }
+    }
 }

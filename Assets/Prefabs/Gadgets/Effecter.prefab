@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3150950638436653140}
   - component: {fileID: 8511587722760436029}
   - component: {fileID: 8511587722760436024}
-  - component: {fileID: 8511587722760436027}
   - component: {fileID: 5112823643066247704}
   - component: {fileID: 8511587722760436030}
+  - component: {fileID: 8524000154173112078}
+  - component: {fileID: 6123668079980385978}
   - component: {fileID: 8511587722760436031}
-  - component: {fileID: 3910196700195730660}
   - component: {fileID: 8511587722760436025}
   m_Layer: 8
   m_Name: Effecter
@@ -103,22 +103,6 @@ MonoBehaviour:
   sprite: {fileID: 2608748674303681055, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 1
   during: 2
---- !u!114 &8511587722760436027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8511587722760436018}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ef84e4f0e497a49878003905274596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: -7213447755484889320, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
-  id: 4
-  delay: 5
-  addition: 0.5
 --- !u!114 &5112823643066247704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +134,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotObj: {fileID: 0}
+--- !u!114 &8524000154173112078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9031f3882fb1f4ea33c708afa79c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -7100987897581253769, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  id: 4
+  delay: 5
+  addition: 0.5
+--- !u!114 &6123668079980385978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511587722760436018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9031f3882fb1f4ea33c708afa79c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -8718220592887175988, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  id: 10
+  delay: 5
+  addition: -0.5
 --- !u!114 &8511587722760436031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,22 +182,6 @@ MonoBehaviour:
   camera: {fileID: 0}
   gadgets: []
   player: {fileID: 0}
---- !u!114 &3910196700195730660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8511587722760436018}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af269b449f5c2a740bb86e5a36abfc0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 2656242685623351417, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
-  id: 7
-  delay: 5
-  addition: -0.5
 --- !u!70 &8511587722760436025
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

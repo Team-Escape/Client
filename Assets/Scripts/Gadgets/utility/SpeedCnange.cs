@@ -4,7 +4,7 @@ using PlayerSpace.Game;
 using System.Collections;
 namespace Gadget.Utility
 {
-    public class SpeedUp : GadgetEffect
+    public class SpeedCnange : GadgetEffect
     {
         [SerializeField] public float delay;
         [SerializeField] private float addition;
@@ -18,11 +18,11 @@ namespace Gadget.Utility
         IEnumerator SpeedUpIEum()
         {
             float speed = addition;
-            model.SpeedGain += speed;
+            model.SpeedGain =(Mathf.Abs(model.SpeedGain)+speed)*(Mathf.Sign(model.SpeedGain));
 
             yield return new WaitForSeconds(delay);
 
-            model.SpeedGain -= speed;
+            model.SpeedGain = (Mathf.Abs(model.SpeedGain)-speed)*(Mathf.Sign(model.SpeedGain));
             yield return null;
             enabled = false;
         }
