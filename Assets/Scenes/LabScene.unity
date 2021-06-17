@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -825,6 +825,7 @@ MonoBehaviour:
     - {fileID: 8863045641119396375, guid: 796041b83dba69449bf102276288399d, type: 3}
     - {fileID: 3329540067691474292, guid: 32b50eaa0580ffe42934f4385f5dbbb4, type: 3}
     - {fileID: 4547553327413624134, guid: 09ee232478375494f9553d746127e061, type: 3}
+    - {fileID: 2657973547446778178, guid: c9b3dc2cdbed44c49902885e7ec8df82, type: 3}
   hunterSpawn: {fileID: 259729428}
   escaperSpawn: {fileID: 10077022}
   roles: []
@@ -38267,7 +38268,6 @@ MonoBehaviour:
   endpoint: {fileID: 1752376603}
   entrance: {fileID: 7187864249778094811}
   exit: {fileID: 7698713363491826621}
-  nextCollider: {fileID: 0}
   polygonCollider2D: {fileID: 5873800768281915931}
 --- !u!61 &7335992533295437990
 BoxCollider2D:
