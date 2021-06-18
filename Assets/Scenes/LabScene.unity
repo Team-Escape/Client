@@ -797,7 +797,7 @@ MonoBehaviour:
     type: 3}
   destination: {fileID: 371592732266960633, guid: 1554de97877814e808ff1f2422549c99,
     type: 3}
-  roomSize: 6
+  roomSize: 15
   blockContainer:
     left:
     - {fileID: 5365444304533818404, guid: 020c6766f59a71147bcb264d97713348, type: 3}
@@ -826,6 +826,7 @@ MonoBehaviour:
     - {fileID: 3329540067691474292, guid: 32b50eaa0580ffe42934f4385f5dbbb4, type: 3}
     - {fileID: 4547553327413624134, guid: 09ee232478375494f9553d746127e061, type: 3}
     - {fileID: 2657973547446778178, guid: c9b3dc2cdbed44c49902885e7ec8df82, type: 3}
+    - {fileID: 5598913255855048943, guid: 33aa40fa531335c47987c60ba466de9f, type: 3}
   hunterSpawn: {fileID: 259729428}
   escaperSpawn: {fileID: 10077022}
   roles: []
