@@ -12,6 +12,7 @@ TagManager:
   - StartItem
   - Confiner
   - DashItem
+  - Fields
   layers:
   - Default
   - TransparentFX
