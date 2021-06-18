@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3187553764166715506}
   - component: {fileID: 8395780106934679750}
   - component: {fileID: 713839402023884336}
-  - component: {fileID: 2615434153299255292}
+  - component: {fileID: 4478322351003074017}
   m_Layer: 18
   m_Name: Collider Tilemap (ice)
   m_TagString: Untagged
@@ -388,7 +388,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &2615434153299255292
+--- !u!114 &4478322351003074017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,11 +397,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3093379086590806151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70379906661cadb42a629f49003f8a98, type: 3}
+  m_Script: {fileID: 11500000, guid: c9d6238a0685c48cd8a9372d0570f958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlace: {fileID: 3209106621160083828}
-  endPlace: {fileID: 6525450704397610395}
+  mode: 1
+  testEvniorment: 1
+  unscaledTime: 0
+  startTime: 0
+  duration: 4
+  loopTimes: -1
+  movePos: {x: 35, y: 0}
+  rotateAngle: 360
+  destination: {fileID: 0}
+  activeObject: {fileID: 0}
+  activeState: 0
+  activeFunction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3131912496412107999
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +543,7 @@ GameObject:
   - component: {fileID: 8125881543011566812}
   - component: {fileID: 1998042941270970165}
   - component: {fileID: 5119535372300680978}
-  - component: {fileID: 1808266274141227443}
+  - component: {fileID: 8958165865619639141}
   m_Layer: 18
   m_Name: Collider Tilemap (ice)
   m_TagString: Untagged
@@ -818,7 +830,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &1808266274141227443
+--- !u!114 &8958165865619639141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -827,11 +839,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3617759536222286144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70379906661cadb42a629f49003f8a98, type: 3}
+  m_Script: {fileID: 11500000, guid: c9d6238a0685c48cd8a9372d0570f958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlace: {fileID: 8730168186448337575}
-  endPlace: {fileID: 5299327022471327359}
+  mode: 1
+  testEvniorment: 1
+  unscaledTime: 0
+  startTime: 0
+  duration: 4
+  loopTimes: -1
+  movePos: {x: -35, y: 0}
+  rotateAngle: 360
+  destination: {fileID: 0}
+  activeObject: {fileID: 0}
+  activeState: 0
+  activeFunction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3697575895573476340
 GameObject:
   m_ObjectHideFlags: 0
@@ -11145,10 +11169,6 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 53, y: 19}
-      - {x: 17, y: 19}
-      - {x: 17, y: 9}
-      - {x: 0, y: 9}
+      - {x: 0, y: 19}
       - {x: 0, y: -1}
-      - {x: 36, y: -1}
-      - {x: 36, y: 8}
-      - {x: 53, y: 8}
+      - {x: 53, y: -1}
