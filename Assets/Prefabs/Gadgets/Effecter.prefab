@@ -54,8 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1505697053397224213, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 5
-  delay: 3
-  divition: 0
+  delay: 5
+  divition: 0.5
 --- !u!114 &3150950638436653140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 8494959238671389771, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 3
-  during: 4
+  during: 5
 --- !u!114 &8511587722760436029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2608748674303681055, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 1
-  during: 2
+  during: 5
 --- !u!114 &8511587722760436027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,9 +134,9 @@ MonoBehaviour:
   sprite: {fileID: -227550921408885086, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
   id: 2
   during: 0.1
-  smallerScale: 0.1
-  stay: 2
-  limitScale: 0.9
+  smallerScale: 0.5
+  stay: 5
+  limitScale: 0.5
 --- !u!114 &8511587722760436030
 MonoBehaviour:
   m_ObjectHideFlags: 0
