@@ -32,6 +32,13 @@ namespace GameManagerSpace.Game
         }
 
         # region Game Listener
+        public void ItemTeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
+        {
+            role.currentRoomId--;
+            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            confiner.m_BoundingShape2D = m_data.polygonCollider2D;
+            role.transform.position = m_data.entrance.position;
+        }
         public void TeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
         {
             role.currentRoomId++;
@@ -169,6 +176,7 @@ namespace GameManagerSpace.Game
             List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelActions = new List<Action<PlayerCharacter, CinemachineConfiner>>();
             changeLevelActions.Add(TeleportNext);
             changeLevelActions.Add(TeleportPrev);
+            changeLevelActions.Add(ItemTeleportNext);
 
             model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions);
             model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions));
