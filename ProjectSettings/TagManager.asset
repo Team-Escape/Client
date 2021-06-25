@@ -11,6 +11,8 @@ TagManager:
   - RoomTeleport
   - StartItem
   - Confiner
+  - DashItem
+  - Fields
   layers:
   - Default
   - TransparentFX

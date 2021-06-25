@@ -797,7 +797,7 @@ MonoBehaviour:
     type: 3}
   destination: {fileID: 371592732266960633, guid: 1554de97877814e808ff1f2422549c99,
     type: 3}
-  roomSize: 6
+  roomSize: 15
   blockContainer:
     left:
     - {fileID: 5365444304533818404, guid: 020c6766f59a71147bcb264d97713348, type: 3}
@@ -813,6 +813,7 @@ MonoBehaviour:
     - {fileID: 2870275761539636961, guid: 4d96a99780641924098caae55aa9f7fd, type: 3}
     - {fileID: 8103294273405931249, guid: 7462783a28914cc4696180b0484069ec, type: 3}
     - {fileID: 8550201741223017235, guid: d28668affde9860469fa14f1f34237d1, type: 3}
+    - {fileID: 1416391397928533902, guid: a3dd6599cc56aa442bf44b7d8b135188, type: 3}
     up:
     - {fileID: 1923847988472588807, guid: e85ba6163d21a2d4d88ef5f9f163c03f, type: 3}
     - {fileID: 6542310110286390514, guid: 33693ac41c1988246950591aad34ea4b, type: 3}
@@ -825,6 +826,8 @@ MonoBehaviour:
     - {fileID: 8863045641119396375, guid: 796041b83dba69449bf102276288399d, type: 3}
     - {fileID: 3329540067691474292, guid: 32b50eaa0580ffe42934f4385f5dbbb4, type: 3}
     - {fileID: 4547553327413624134, guid: 09ee232478375494f9553d746127e061, type: 3}
+    - {fileID: 2657973547446778178, guid: c9b3dc2cdbed44c49902885e7ec8df82, type: 3}
+    - {fileID: 5598913255855048943, guid: 33aa40fa531335c47987c60ba466de9f, type: 3}
   hunterSpawn: {fileID: 259729428}
   escaperSpawn: {fileID: 10077022}
   roles: []
@@ -38267,7 +38270,6 @@ MonoBehaviour:
   endpoint: {fileID: 1752376603}
   entrance: {fileID: 7187864249778094811}
   exit: {fileID: 7698713363491826621}
-  nextCollider: {fileID: 0}
   polygonCollider2D: {fileID: 5873800768281915931}
 --- !u!61 &7335992533295437990
 BoxCollider2D:

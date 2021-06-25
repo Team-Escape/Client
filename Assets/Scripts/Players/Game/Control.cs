@@ -52,6 +52,7 @@ namespace PlayerSpace.Game
                 case 1:
                     model.PlayerState = PlayerState.Hunter;
                     model.MaxHealth = 5;
+                    model.CurrentHealth = 5;
                     model.StateSpeedGain = 1.05f;
                     model.StateJumpGain = 1f;
                     break;
