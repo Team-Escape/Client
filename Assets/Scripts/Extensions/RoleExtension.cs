@@ -59,7 +59,7 @@ namespace PlayerSpace
         }
         public static void DoControlMove(this Rigidbody2D rb, float force)
         {
-            rb.DoAddforce(new Vector2(rb.velocity.x, rb.velocity.y));
+            rb.DoAddforce(new Vector2(force, rb.velocity.y));
         }
         public static void DoAddforce(this Rigidbody2D rb, Vector2 force)
         {

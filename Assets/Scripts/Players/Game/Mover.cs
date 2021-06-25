@@ -45,7 +45,7 @@ namespace PlayerSpace.Game
         {
             get
             {
-                if (rb.velocity.magnitude > 40 || isInertancing)
+                if (rb.velocity.magnitude > 20 || isInertancing)
                     return true;
                 return false;
             }
@@ -114,7 +114,7 @@ namespace PlayerSpace.Game
             switch (GroundState)
             {
                 case GroundState.Controled:
-                    rb.DoControlMove(horizontalInput);
+                    rb.DoControlMove(horizontalInput*7+rb.velocity.x*-1.5f);
                     break;
                 case GroundState.Air:
                 case GroundState.Normal:
