@@ -13124,7 +13124,7 @@ PrefabInstance:
     - target: {fileID: 7493793006389232841, guid: cebb775e5b525fc4a9d9f75b31ae147f,
         type: 3}
       propertyPath: loadAllEffect
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493793006389232841, guid: cebb775e5b525fc4a9d9f75b31ae147f,
         type: 3}
@@ -13141,6 +13141,11 @@ PrefabInstance:
       propertyPath: delayWhenTakeOut
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7493793006389232841, guid: cebb775e5b525fc4a9d9f75b31ae147f,
+        type: 3}
+      propertyPath: effector
+      value: 
+      objectReference: {fileID: 6134070913524453582}
     - target: {fileID: 8344018434988428930, guid: cebb775e5b525fc4a9d9f75b31ae147f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13213,6 +13218,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cebb775e5b525fc4a9d9f75b31ae147f, type: 3}
+--- !u!1 &6134070913524453582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8344018434988428942, guid: cebb775e5b525fc4a9d9f75b31ae147f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2804458827416968768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6134070913524453570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8344018434988428930, guid: cebb775e5b525fc4a9d9f75b31ae147f,
