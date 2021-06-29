@@ -28,7 +28,7 @@ namespace Gadget.Effector
             }
             gadgets = new GadgetEffect[gadgetDict.Count];
             gadgetDict.Values.CopyTo(gadgets,0);
-            playerModel = GetComponent<Model>();
+            //playerModel = GetComponent<Model>();
             effect = false;
             
         }
@@ -45,6 +45,11 @@ namespace Gadget.Effector
         }
         public Sprite GetSprite(int gid){
             return gadgetDict[gid].GetSprite();
+        }
+        public GadgetEffect[] GetGadgetEffects(){
+            //GadgetEffect[] effects = new GadgetEffect[gadgetDict.Count];
+            //gadgetDict.Values.CopyTo(effects,0);
+            return gadgets;
         }
     }
 }
