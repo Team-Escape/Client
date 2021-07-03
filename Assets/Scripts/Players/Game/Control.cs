@@ -28,6 +28,8 @@ namespace PlayerSpace.Game
             }
         }
 
+        public void ChangePlayerState(PlayerState state) => model.PlayerState = state;
+
         public void PlaySoundEffect(string name)
         {
             switch (name)

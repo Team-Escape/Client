@@ -113,6 +113,7 @@ namespace PlayerSpace.Game
         public void Goal()
         {
             gameActions[2](this);
+            control.ChangePlayerState(PlayerState.Lockblood);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

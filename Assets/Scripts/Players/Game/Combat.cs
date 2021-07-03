@@ -44,14 +44,27 @@ namespace PlayerSpace.Game
             if (PlayerState == PlayerState.Spectator) return;
             if (model.Shielding == false)
             {
-                model.CurrentHealth--;
-                if (model.CurrentHealth <= 0)
+                switch (PlayerState)
                 {
-                    model.CurrentHealth = 0;
-                    callback();
-                    return;
+                    case PlayerState.Invincible:
+                        animator.DoAnimation("invincible");
+                        return;
+                    case PlayerState.Lockblood:
+                        if (model.CurrentHealth > 1)
+                            model.CurrentHealth--;
+                        animator.DoAnimation("hurt");
+                        break;
+                    default:
+                        model.CurrentHealth--;
+                        if (model.CurrentHealth <= 0)
+                        {
+                            model.CurrentHealth = 0;
+                            callback();
+                            return;
+                        }
+                        animator.DoAnimation("hurt");
+                        break;
                 }
-                animator.DoAnimation("hurt");
             }
             else model.Shielding = false;
         }
