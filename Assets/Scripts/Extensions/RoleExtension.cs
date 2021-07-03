@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PlayerSpace
 {
-    public enum PlayerState { Waiting, Escaper, Hunter, Dead, Reborn, Spectator };
+    public enum PlayerState { Waiting, Escaper, Hunter, Dead, Reborn, Spectator, Lockblood, Invincible };
     public enum GroundState { Controled, Air, Normal, Ice, Slime };
     public enum FrontState { Controled, Air, Normal, Ice, Slime };
     public enum JumpState { PreWallSliding, IsWallSliding, PreWallJumping, IsWallJumping, PreGrounded, IsGrounded, PreJumping, IsJumping, PreFalling, IsFalling };

@@ -77,6 +77,7 @@ namespace GameManagerSpace.Game
             if (isGoaled) return;
             StartCoroutine(CountDown());
         }
+
         IEnumerator CountDown()
         {
             isGoaled = true;
