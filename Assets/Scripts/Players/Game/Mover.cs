@@ -278,7 +278,7 @@ namespace PlayerSpace.Game
                     if (OnWall == false || OnGround) JumpState = JumpState.PreFalling;
                     break;
                 case JumpState.IsWallJumping:
-                    if (wallJumpTimeCounter < model.WallJumpTime)
+                    if (wallJumpTimeCounter < model.WallJumpTime && wallJumpPos * horizontalInput<0)
                     {
                         wallJumpTimeCounter += Time.deltaTime;
                         rb.DoMove(new Vector2(
@@ -287,12 +287,18 @@ namespace PlayerSpace.Game
                             * model.JumpGain
                             * model.StateJumpGain
                             * model.WallJumpGain
-                            *(1.5f-wallJumpTimeCounter*10)
+                            *(2.2f-wallJumpTimeCounter*10)
                         , model.WallJumpForce.y
                             * model.ItemJumpGain
                             * model.JumpGain
                             * model.StateJumpGain
                             * model.WallJumpGain));
+                    }
+                    else if (wallJumpPos * horizontalInput > 0)
+                    {
+                        
+                        isWallJumping = false;
+                        JumpState = JumpState.IsJumping;
                     }
                     else
                     {
