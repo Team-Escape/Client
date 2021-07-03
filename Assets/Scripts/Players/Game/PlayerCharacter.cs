@@ -46,12 +46,17 @@ namespace PlayerSpace.Game
             follow.gameObject.layer = layer;
         }
 
-        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks, List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelCallbacks)
+        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks, List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelCallbacks,int currentEscaperCount)
         {
             teamId = id;
             gameActions = callbacks;
             changeLevel = changeLevelCallbacks;
-            control.GameSetup(id);
+            control.GameSetup(id,currentEscaperCount);
+        }
+
+        public void hunterDebuff(int currentEscaperCount)
+        {
+            control.hunterDebuff(currentEscaperCount);
         }
 
         public void DevInput()

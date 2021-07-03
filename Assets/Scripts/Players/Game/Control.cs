@@ -15,6 +15,7 @@ namespace PlayerSpace.Game
         Combat combat = new Combat();
         AudioPlayer audioPlayer = null;
 
+
         bool isAttacking = false;
         bool isHurting = false;
 
@@ -40,7 +41,7 @@ namespace PlayerSpace.Game
             }
         }
 
-        public void GameSetup(int id)
+        public void GameSetup(int id,int currentEscaperCount)
         {
             model.TeamID = id;
             switch (id)
@@ -51,15 +52,21 @@ namespace PlayerSpace.Game
                     break;
                 case 1:
                     model.PlayerState = PlayerState.Hunter;
-                    model.MaxHealth = 5;
-                    model.CurrentHealth = 5;
-                    model.StateSpeedGain = 1.05f;
-                    model.StateJumpGain = 1f;
+                    model.MaxHealth = 10;
+                    model.CurrentHealth = 10;
+                    model.StateSpeedGain = 1.1f+currentEscaperCount*0.1f;
+                    model.StateJumpGain = 0.9f+currentEscaperCount*0.1f;
                     break;
                 default:
                     Debug.Log("Player teamID errors");
                     break;
             }
+        }
+
+        public void hunterDebuff(int currentEscaperCount)
+        {
+            model.StateSpeedGain = 1.1f + currentEscaperCount * 0.1f;
+            model.StateJumpGain = 0.9f + currentEscaperCount * 0.1f;
         }
         public void Move(float value)
         {
