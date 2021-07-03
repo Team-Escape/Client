@@ -287,6 +287,7 @@ namespace PlayerSpace.Game
                             * model.JumpGain
                             * model.StateJumpGain
                             * model.WallJumpGain
+                            *(1.5f-wallJumpTimeCounter*10)
                         , model.WallJumpForce.y
                             * model.ItemJumpGain
                             * model.JumpGain
