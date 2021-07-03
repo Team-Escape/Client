@@ -128,12 +128,11 @@ namespace GameManagerSpace.Game
             {
                 control.OpenDoors();
             }
-            else
-            */
-            if (Input.GetKeyDown(KeyCode.I))
+            else if (Input.GetKeyDown(KeyCode.I))
             {
                 GameFlow("Scoring");
             }
+            */
         }
     }
 }

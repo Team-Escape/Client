@@ -310,7 +310,7 @@ namespace GameManagerSpace.Game
                     score += (model.GoalRoles.Any(x => x.playerId == role.playerId)) ? CoreModel.goalScore : 0;
                     scores.Add(score);
                 }
-                scores = new List<int> { 5, 1 };
+                // scores = new List<int> { 5, 1 };
                 return scores;
             }
         }

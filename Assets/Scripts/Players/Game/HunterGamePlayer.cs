@@ -18,6 +18,8 @@ namespace PlayerSpace.HunterGame
         private string targetName = "Dot";
         private List<float> border = new List<float>();
 
+        bool ableToExit = false;
+
         public void ExitHunterGame()
         {
             ChangeInputMap("GamePlay");
@@ -39,7 +41,7 @@ namespace PlayerSpace.HunterGame
             {
                 Debug.Log(a);
             }
-
+            this.AbleToDo(1f, () => this.ableToExit = true);
         }
 
         void ChangeInputMap(string map)
@@ -53,8 +55,9 @@ namespace PlayerSpace.HunterGame
             if (player != null)
             {
                 Move();
-                if (player.GetButtonDown("ExitHunterGame"))
-                    ExitHunterGame();
+                if (ableToExit)
+                    if (player.GetButtonDown("ExitHunterGame"))
+                        ExitHunterGame();
             }
         }
 
