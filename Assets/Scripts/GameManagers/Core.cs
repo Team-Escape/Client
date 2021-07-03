@@ -71,6 +71,8 @@ namespace GameManagerSpace
                 case SceneState.HallScene:
                     ChangeInputMaps("Hall");
 
+                    if (audioManager.isPausing) audioManager.ChangeAudio("Menu");
+
                     var hall = FindObjectOfType<HallManager>();
                     hall.Init(MaskChangeScene, coreView.MaskOut);
 
@@ -90,6 +92,7 @@ namespace GameManagerSpace
                     break;
                 case SceneState.AwardScene:
                     ChangeInputMaps("Award");
+                    audioManager.DoPause();
 
                     var award = FindObjectOfType<AwardManager>();
                     award.Init(ChangeScene);

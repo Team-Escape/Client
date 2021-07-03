@@ -10,6 +10,8 @@ namespace GameManagerSpace.Audio
         AudioInScene audioInScene = new AudioInScene();
         AudioSource audioSource = null;
 
+        public bool isPausing => !audioSource.isPlaying;
+
         public void ChangeAudio(string newState)
         {
             audioInScene.Change(newState);
@@ -29,6 +31,11 @@ namespace GameManagerSpace.Audio
             }
             Debug.Log(audioInScene);
             audioSource.Play();
+        }
+
+        public void DoPause()
+        {
+            audioSource.Pause();
         }
 
         private void Awake()

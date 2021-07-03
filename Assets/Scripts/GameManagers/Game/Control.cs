@@ -197,7 +197,7 @@ namespace GameManagerSpace.Game
             changeLevelActions.Add(TeleportPrev);
             changeLevelActions.Add(ItemTeleportNext);
 
-            model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions, activePlayerCounts - model.GetCaughtRoles.Count-1);
+            model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions, activePlayerCounts - model.GetCaughtRoles.Count - 1);
             model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions, 0));
 
             // model.mainCam.enabled = false;
@@ -310,6 +310,7 @@ namespace GameManagerSpace.Game
                     score += (model.GoalRoles.Any(x => x.playerId == role.playerId)) ? CoreModel.goalScore : 0;
                     scores.Add(score);
                 }
+                scores = new List<int> { 5, 1 };
                 return scores;
             }
         }

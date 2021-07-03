@@ -124,27 +124,32 @@ namespace GameManagerSpace.Hall
                     view.MapContainerEffect(currentIndex, true);
                     model.containers.GetID(id).choosenMap = view.GetMapName(currentIndex);
                     model.containers.GetID(id).selfSelectState++;
+                    Debug.Log("Choose Map: " + id);
                 }
                 // Update index to change direction.
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
                     index = 1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectL Map: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
                     index = -1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectR Map: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
                 {
                     index = -rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectU Map: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
                 {
                     index = rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectD Map: " + id);
                 }
             }
         }
@@ -172,28 +177,31 @@ namespace GameManagerSpace.Hall
                     string path = "Game/Roles/";
                     model.containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(currentIndex));
                     model.containers.GetID(id).selfSelectState++;
-
                 }
                 // Update index to change direction.
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
                     index = 1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectR Role: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
                     index = -1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectL Role: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
                 {
                     index = rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectU Role: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
                 {
                     index = -rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectD Role: " + id);
                 }
             }
         }
@@ -310,17 +318,21 @@ namespace GameManagerSpace.Hall
             GameStart();
         }
 
+        private void InitCurrentPlayers()
+        {
+            for (int i = 0; i < CoreModel.activePlayersCount; i++)
+            {
+                AssignController(CoreModel.ActivePlayers[i], CoreModel.ActiveController[i]);
+            }
+        }
+
         private void Awake()
         {
             view = GetComponent<View>();
             model = new Model();
             join = new JoinHandler();
-            Reset();
-        }
-
-        void Reset()
-        {
-            ReInput.players.AssignAllPlayersToSystemPlayer();
+            if (CoreModel.ActivePlayers != null)
+                InitCurrentPlayers();
         }
     }
 }
