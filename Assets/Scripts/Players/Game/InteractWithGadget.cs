@@ -38,11 +38,13 @@ public class InteractWithGadget : MonoBehaviour
     public bool PickUp(IGadget gadget)
     {
 
-        if (slot == null) return false;
+        if (slot == null)
+        {
+            return true;
+        }
 
         if (slot.Store(gadget))
         {
-
             slot.SetSprite(Effecter.GetSprite(gadget.GetID()));
             return true;
         }
