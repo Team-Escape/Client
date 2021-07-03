@@ -69,6 +69,7 @@ namespace GameManagerSpace.Game
             {
                 changeGameStateAction("Scoring");
             }
+            else model.hunter.hunterDebuff(activePlayerCounts - 1);
         }
         public void GetGoal(PlayerCharacter role)
         {
@@ -196,8 +197,8 @@ namespace GameManagerSpace.Game
             changeLevelActions.Add(TeleportPrev);
             changeLevelActions.Add(ItemTeleportNext);
 
-            model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions);
-            model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions));
+            model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions, activePlayerCounts - model.GetCaughtRoles.Count-1);
+            model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions, 0));
 
             // model.mainCam.enabled = false;
 
