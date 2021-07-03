@@ -787,13 +787,13 @@ MonoBehaviour:
   - {x: 19, y: -2, z: 0}
   - {x: 19, y: -1, z: 0}
   - {x: 19, y: 0, z: 0}
-  destinationRoomUp: {fileID: 5557714060602914948, guid: 4809cd4229e78433db1c9624e2b560da,
+  destinationRoomUp: {fileID: 8474397215196110326, guid: ebb5390f5d5bd4644b9496d38bc1ee4a,
     type: 3}
-  destinationRoomDown: {fileID: 1556017340571046616, guid: 092a2b67988cf4946bcf5eb7c9c1dad5,
+  destinationRoomDown: {fileID: 5513605994075778682, guid: 072762445eb02422985bae102907ee2b,
     type: 3}
-  destinationRoomRight: {fileID: 1727602207809885701, guid: 88be1132dd24f4b4f978f73a626da7b2,
+  destinationRoomRight: {fileID: 8091153188966885074, guid: 111c5a605f499495081881036b5ff812,
     type: 3}
-  destinationRoomLeft: {fileID: 2940396477434515441, guid: f5a6e6c80f0f645b69d2b9e9448eee44,
+  destinationRoomLeft: {fileID: 371592732266960633, guid: 1554de97877814e808ff1f2422549c99,
     type: 3}
   destination: {fileID: 371592732266960633, guid: 1554de97877814e808ff1f2422549c99,
     type: 3}

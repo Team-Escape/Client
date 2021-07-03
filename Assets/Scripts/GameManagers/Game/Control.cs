@@ -124,7 +124,24 @@ namespace GameManagerSpace.Game
                 yield return null;
             }
 
-            blocks.Add(model.destination.gameObject);
+            GameObject go1 = null;
+            string name1 = blocks[index].name;
+            switch (name1.Split(',')[2])
+            {
+                case "left":
+                    go1 = model.destinationRoomRight.gameObject;
+                    break;
+                case "right":
+                    go1 = model.destinationRoomLeft.gameObject;
+                    break;
+                case "up":
+                    go1 = model.destinationRoomDown.gameObject;
+                    break;
+                case "down":
+                    go1 = model.destinationRoomUp.gameObject;
+                    break;
+            }
+            blocks.Add(go1);
 
             model.blocks = blocks;
 
