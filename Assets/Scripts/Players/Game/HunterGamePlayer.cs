@@ -7,6 +7,7 @@ namespace PlayerSpace.HunterGame
 {
     public class HunterGamePlayer : MonoBehaviour
     {
+        [SerializeField] GameObject hintUI = null;
         [SerializeField] int targetScore = 180;
         [SerializeField] float speed = 5;
 
@@ -22,14 +23,22 @@ namespace PlayerSpace.HunterGame
 
         public void ExitHunterGame()
         {
+            hintUI.SetActive(false);
             ChangeInputMap("GamePlay");
-
             this.gameObject.SetActive(false);
         }
 
         public void Init(Player p, Vector2 screeSize, Vector2 size)
         {
             player = p;
+            if (p.controllers.joystickCount > 0)
+            {
+                hintUI.GetComponent<UIHintControl>().SetCurrentControllerImage(0);
+            }
+            else
+            {
+                hintUI.GetComponent<UIHintControl>().SetCurrentControllerImage(1);
+            }
             GetComponent<RectTransform>().sizeDelta = size;
             GetComponent<CircleCollider2D>().radius = size.x / 2;
             ChangeInputMap("HunterGame");
@@ -92,6 +101,7 @@ namespace PlayerSpace.HunterGame
             score = 0;
             selfTransform = GetComponent<RectTransform>();
             selfCamera = transform.parent.GetComponentInChildren<Camera>();
+            hintUI.SetActive(true);
         }
 
         private void OnDisable()
