@@ -14,6 +14,7 @@ namespace PlayerSpace.Game
 
         [SerializeField] bool testMode = false;
         [SerializeField] CinemachineConfiner confiner = null;
+
         Player input = null;
         Control control = null;
         ExecutionManager executionManager = null;
@@ -46,12 +47,12 @@ namespace PlayerSpace.Game
             follow.gameObject.layer = layer;
         }
 
-        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks, List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelCallbacks,int currentEscaperCount)
+        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks, List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelCallbacks, int currentEscaperCount)
         {
             teamId = id;
             gameActions = callbacks;
             changeLevel = changeLevelCallbacks;
-            control.GameSetup(id,currentEscaperCount);
+            control.GameSetup(id, currentEscaperCount);
         }
 
         public void hunterDebuff(int currentEscaperCount)
@@ -158,6 +159,7 @@ namespace PlayerSpace.Game
                     break;
             }
         }
+
         private void OnTriggerStay2D(Collider2D other)
         {
             if (other.tag == "StartItem")

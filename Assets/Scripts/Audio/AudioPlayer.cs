@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    public AudioClip testclip1;
     public void PlaySF(GameObject go, AudioClip clip)
     {
         AudioSource audioSource = go.AddComponent<AudioSource>();

@@ -6,8 +6,6 @@ using Rewired;
 
 public class UIHintControl : MonoBehaviour
 {
-    public bool doDectectPlayer = false;
-
     public Sprite keyboard = null;
     public Sprite joystick = null;
     Image image;
@@ -27,6 +25,11 @@ public class UIHintControl : MonoBehaviour
 
     private void Awake()
     {
+        SetComponent();
+    }
+
+    void SetComponent()
+    {
         if (GetComponent<Image>())
         {
             image = GetComponent<Image>();
@@ -34,33 +37,6 @@ public class UIHintControl : MonoBehaviour
         else if (GetComponentInChildren<Image>())
         {
             image = GetComponentInChildren<Image>();
-        }
-        image.enabled = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (doDectectPlayer == false) return;
-        if (other.tag == "Player")
-        {
-            image.enabled = true;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (doDectectPlayer == false) return;
-        if (other.tag == "Player")
-        {
-            image.enabled = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            image.enabled = false;
         }
     }
 }

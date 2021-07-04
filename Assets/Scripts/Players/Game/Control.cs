@@ -43,7 +43,7 @@ namespace PlayerSpace.Game
             }
         }
 
-        public void GameSetup(int id,int currentEscaperCount)
+        public void GameSetup(int id, int currentEscaperCount)
         {
             model.TeamID = id;
             switch (id)
@@ -56,8 +56,8 @@ namespace PlayerSpace.Game
                     model.PlayerState = PlayerState.Hunter;
                     model.MaxHealth = 10;
                     model.CurrentHealth = 10;
-                    model.StateSpeedGain = 1.1f+currentEscaperCount*0.1f;
-                    model.StateJumpGain = 0.9f+currentEscaperCount*0.1f;
+                    model.StateSpeedGain = 1.1f + currentEscaperCount * 0.1f;
+                    model.StateJumpGain = 0.9f + currentEscaperCount * 0.1f;
                     break;
                 default:
                     Debug.Log("Player teamID errors");
