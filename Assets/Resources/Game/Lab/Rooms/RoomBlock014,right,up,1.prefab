@@ -10237,6 +10237,32 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &3031319363543653661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8595997887256916064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa60a7c729ddb54e96d122a59e9020a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effector: {fileID: 2229173676117506667}
+  loadAllEffect: 0
+  effectId: 000000000100000002000000030000000400000005000000
+  isSpawnGadgetRelatedWithEffectId: 0
+  spawnGadget:
+  - {fileID: 2046662227075249136, guid: 63badd2dea0993542b332b3d8a2bdaf2, type: 3}
+  - {fileID: 2046662227075249136, guid: eaddaf24eb8f4e445be4546edcdacdc8, type: 3}
+  isEffectToOwnerRelatedWithEffectId: 0
+  effectToOwner: 01
+  delayWhenTakeOut: 3
+  currId: 0
+  gadget: {fileID: 0}
+  curreffectToOwner: 0
+  currentCounter: 0
 --- !u!1001 &324529679056715502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10259,6 +10285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: id
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493793006389232841, guid: cebb775e5b525fc4a9d9f75b31ae147f,
+        type: 3}
+      propertyPath: loadAllEffect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344018434988428930, guid: cebb775e5b525fc4a9d9f75b31ae147f,
         type: 3}
@@ -10330,11 +10361,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7493793006389232841, guid: cebb775e5b525fc4a9d9f75b31ae147f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cebb775e5b525fc4a9d9f75b31ae147f, type: 3}
 --- !u!4 &8595997887256916076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8344018434988428930, guid: cebb775e5b525fc4a9d9f75b31ae147f,
+    type: 3}
+  m_PrefabInstance: {fileID: 324529679056715502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8595997887256916064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8344018434988428942, guid: cebb775e5b525fc4a9d9f75b31ae147f,
+    type: 3}
+  m_PrefabInstance: {fileID: 324529679056715502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2229173676117506667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1904859518926161029, guid: cebb775e5b525fc4a9d9f75b31ae147f,
     type: 3}
   m_PrefabInstance: {fileID: 324529679056715502}
   m_PrefabAsset: {fileID: 0}
