@@ -135,7 +135,7 @@ MonoBehaviour:
   currId: 0
   gadget: {fileID: 0}
   curreffectToOwner: 0
-  currentCounter: 0
+  currentCounter: 5
 --- !u!1001 &7813833674610949559
 PrefabInstance:
   m_ObjectHideFlags: 0

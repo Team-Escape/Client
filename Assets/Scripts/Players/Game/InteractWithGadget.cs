@@ -30,8 +30,8 @@ public class InteractWithGadget : MonoBehaviour
     public void UseGadget()
     {
         IGadget gadget = slot.Tackout();
-        //Effecter.UseGadget(gadget.GetID());
-        gadget.Use(Effecter.GetPlayer());
+        if(gadget!=null)
+            gadget.Use(Effecter.GetPlayer());
 
     }
 

@@ -16,7 +16,7 @@ public class GadgetSpawnController : MonoBehaviour
     [SerializeField] GameObject[] spawnGadget;
     [SerializeField] bool isEffectToOwnerRelatedWithEffectId;
     [SerializeField] bool[] effectToOwner;
-   
+    
     [SerializeField] float delayWhenTakeOut;
     
     
@@ -26,9 +26,10 @@ public class GadgetSpawnController : MonoBehaviour
     [SerializeField] bool curreffectToOwner;
     
     [SerializeField]float currentCounter;
+    Sprite sprite ;
     private void Awake()
     {
-        
+        sprite = GetComponent<SpriteRenderer>().sprite;
         effector.GetComponent<InteractWithGadget>().enabled = false;
         effector.SetActive(false);
         currentCounter = Time.time;
@@ -82,7 +83,7 @@ public class GadgetSpawnController : MonoBehaviour
             gadget.GetComponent<IGadget>().InitGadget(effectId[idIndex], effectToOwner[effectToOwnerIndex]);
             gadget.transform.position = transform.position;
             
-            GetComponent<SpriteRenderer>().sprite =effector.GetComponent<IEffector>().GetSprite(effectId[idIndex]);
+            GetComponent<SpriteRenderer>().sprite =sprite;//effector.GetComponent<IEffector>().GetSprite(effectId[idIndex]);
             currId = effectId[idIndex];
             curreffectToOwner = effectToOwner[effectToOwnerIndex];
             

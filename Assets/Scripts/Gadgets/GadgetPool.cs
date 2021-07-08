@@ -5,7 +5,7 @@ namespace ObjectPool{
     public class GadgetPool:MonoBehaviour{
         [SerializeField]
         GameObject[] preObject;
-        
+        [SerializeField] int count;
         static GameObject statictMyself;
         Dictionary<int,Queue<GameObject>> list; 
         static Dictionary<int,Queue<GameObject>> staticlist = new Dictionary<int, Queue<GameObject>>(); 
@@ -22,7 +22,7 @@ namespace ObjectPool{
             {  
                 Queue<GameObject> queue = new Queue<GameObject>();
                 
-                for(int i=0;i<10;i++){
+                for(int i=0;i<count;i++){
                     GameObject instance = Instantiate(curr,transform);
                     queue.Enqueue(instance);
                     instance.GetComponent<IPoolObject>().Recycle();
