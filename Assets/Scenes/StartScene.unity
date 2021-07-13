@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingDataAsset: {fileID: 112000000, guid: f781a68f5a9bd426585e6eb643a6cc71,
+    type: 2}
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1092,7 +1093,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 3
     - _id: 24
-      _name: H-Move Horizontal
+      _name: H-MoveX
       _type: 0
       _descriptiveName: Move Horizontal
       _positiveDescriptiveName: Move Right
@@ -1101,9 +1102,9 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 6
     - _id: 25
-      _name: H-Move Vertical
+      _name: H-MoveY
       _type: 0
-      _descriptiveName: Action0
+      _descriptiveName: Move Vertical
       _positiveDescriptiveName: Move Top
       _negativeDescriptiveName: Move Down
       _behaviorId: 0
@@ -1729,6 +1730,28 @@ MonoBehaviour:
         _elementType: 1
         _elementIdentifierId: 4
         _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 28
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 1
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 29
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 2
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 0
@@ -4531,7 +4554,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4991,7 +5014,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1081}
-  m_SizeDelta: {x: 1921, y: 1080}
+  m_SizeDelta: {x: 1921, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1576730658
 MonoBehaviour:
@@ -5065,7 +5088,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1420, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 1920, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653886329
 MonoBehaviour:
@@ -5139,7 +5162,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -1081}
-  m_SizeDelta: {x: 1921, y: 1080}
+  m_SizeDelta: {x: 1921, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677385329
 MonoBehaviour:
@@ -5289,6 +5312,7 @@ GameObject:
   - component: {fileID: 1761167065}
   - component: {fileID: 1761167064}
   - component: {fileID: 1761167067}
+  - component: {fileID: 1761167068}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5392,6 +5416,20 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1761167068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761167063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f689d34b8a940f4af68a6d9f2484f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wantedAspectRatio: 1.6
+  landscapeModeOnly: 1
 --- !u!1 &1784733324
 GameObject:
   m_ObjectHideFlags: 0
@@ -5589,7 +5627,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1420, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 1920, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2059607162
 MonoBehaviour:

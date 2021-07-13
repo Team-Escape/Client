@@ -40,6 +40,16 @@ namespace PlayerSpace.Game
         /// Attritubes
         /// </summary>
         ///█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+        [Header("Audio")]
+        public AudioClip attackClip;
+        public AudioClip damgeClip;
+
+        ///█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+        /// <summary>
+        /// Attritubes
+        /// </summary>
+        ///█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+        [Header("Attritubes")]
         [SerializeField] int currentHealth = 3;
         public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
         [SerializeField] int maxHealth = 3;

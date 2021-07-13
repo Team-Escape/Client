@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using Cinemachine;
+using GameManagerSpace;
+using Gadget.Effector;
 
 namespace PlayerSpace.Game
 {
@@ -10,33 +13,31 @@ namespace PlayerSpace.Game
         public Player GetPlayer { get { return input; } }
 
         [SerializeField] bool testMode = false;
+        [SerializeField] CinemachineConfiner confiner = null;
+
         Player input = null;
         Control control = null;
         ExecutionManager executionManager = null;
+        InteractWithGadget interactWithGadget = null;
 
         List<System.Action<PlayerCharacter>> gameActions = null;
+        List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevel = null;
         public int playerId = 0;
         public int teamId = 0;
+        public int currentRoomId = 0;
+        bool isTeleporting = false;
 
         public void AssignController(int id)
         {
             playerId = id;
             input = ReInput.players.GetPlayer(playerId);
-            Debug.Log("id: " + id);
-            Debug.Log("player: " + ReInput.players.GetPlayer(playerId));
             SetCamera();
         }
 
         void SetCamera()
         {
-            LayerMask layer = 10 + playerId;
+            LayerMask layer = LayerMask.NameToLayer("P" + (playerId + 1) + "Cam");
             Camera camera = transform.parent.GetComponentInChildren<Camera>();
-
-            // Close layer on culling mask of layer ~ layer+4
-            for (int i = 0; i < 4; i++)
-            {
-                camera.cullingMask &= ~(1 << layer + i);
-            }
 
             // Open the layer of layer + playerId
             camera.cullingMask |= 1 << layer;
@@ -46,17 +47,23 @@ namespace PlayerSpace.Game
             follow.gameObject.layer = layer;
         }
 
-        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks)
+        public void AssignTeam(int id, List<System.Action<PlayerCharacter>> callbacks, List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelCallbacks, int currentEscaperCount)
         {
             teamId = id;
             gameActions = callbacks;
-            control.GameSetup(id);
+            changeLevel = changeLevelCallbacks;
+            control.GameSetup(id, currentEscaperCount);
+        }
+
+        public void hunterDebuff(int currentEscaperCount)
+        {
+            control.hunterDebuff(currentEscaperCount);
         }
 
         public void DevInput()
         {
             /* Remember to remove before deployment */
-            if (Input.GetKeyDown(KeyCode.H)) control.Hurt(new Vector2(transform.localScale.x * 10, 10f));
+            if (Input.GetKeyDown(KeyCode.H)) control.Hurt(new Vector2(transform.localScale.x * 10, 10f), GetCaught);
             if (Input.GetKeyDown(KeyCode.C)) control.CancelItem();
             if (Input.GetKeyDown(KeyCode.B))
             {
@@ -78,20 +85,18 @@ namespace PlayerSpace.Game
 
             if (input.GetButtonDown("Run")) control.Run(true);
             else if (input.GetButtonUp("Run")) control.Run(false);
-
-            if (input.GetButtonDown("MapItem")) control.UseItem();
-            if (input.GetButtonDown("Execution")) executionManager.DoExecution();
         }
 
         public void CombatInput()
         {
+            if (input.GetButtonDown("MapItem")) interactWithGadget.UseGadget();
             if (input.GetButtonDown("Attack")) control.Attack();
         }
 
         void Update()
         {
             if (input == null || control == null) return;
-            DevInput();
+            //DevInput();
             MoveInput();
             CombatInput();
         }
@@ -109,15 +114,20 @@ namespace PlayerSpace.Game
         public void Goal()
         {
             gameActions[2](this);
+            control.ChangePlayerState(PlayerState.Lockblood);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.tag == "Confiner")
+            {
+                confiner.m_BoundingShape2D = other.GetComponent<PolygonCollider2D>();
+            }
             switch (other.tag)
             {
                 case "PlayerWeapon":
                     Vector2 force = (transform.position - other.transform.parent.position);
-                    control.Hurt(new Vector2(force.x, 1) * 12);
+                    control.Hurt(new Vector2(force.x, 1) * 12, GetCaught);
                     break;
                 case "Flag":
                     Goal();
@@ -133,8 +143,23 @@ namespace PlayerSpace.Game
                         forceY
                     ));
                     break;
+                case "RoomTeleport":
+                    if (changeLevel == null || isTeleporting) return;
+                    isTeleporting = true;
+                    switch (other.name)
+                    {
+                        case "NextCollider":
+                            changeLevel[0](this, confiner);
+                            break;
+                        case "PrevCollider":
+                            changeLevel[1](this, confiner);
+                            break;
+                    }
+                    this.AbleToDo(0.1f, () => isTeleporting = false);
+                    break;
             }
         }
+
         private void OnTriggerStay2D(Collider2D other)
         {
             if (other.tag == "StartItem")
@@ -156,6 +181,7 @@ namespace PlayerSpace.Game
                     case "Detector":
                         if (input.GetButtonDown("Item"))
                         {
+                            Debug.Log("Get item");
                             control.ItemReceived(other.gameObject);
                             control.GetStartItem(other.name, GetItemSuccess);
                         }
@@ -165,8 +191,10 @@ namespace PlayerSpace.Game
                 }
             }
         }
+
         private void Awake()
         {
+            interactWithGadget = GetComponentInChildren<InteractWithGadget>();
             control = GetComponent<Control>();
             executionManager = GetComponent<ExecutionManager>();
             if (testMode)

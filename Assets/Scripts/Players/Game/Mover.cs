@@ -45,7 +45,7 @@ namespace PlayerSpace.Game
         {
             get
             {
-                if (rb.velocity.magnitude > 40 || isInertancing)
+                if (rb.velocity.magnitude > 20 || isInertancing)
                     return true;
                 return false;
             }
@@ -114,7 +114,7 @@ namespace PlayerSpace.Game
             switch (GroundState)
             {
                 case GroundState.Controled:
-                    rb.DoControlMove(horizontalInput);
+                    rb.DoControlMove(horizontalInput*7+rb.velocity.x*-1.5f);
                     break;
                 case GroundState.Air:
                 case GroundState.Normal:
@@ -278,7 +278,7 @@ namespace PlayerSpace.Game
                     if (OnWall == false || OnGround) JumpState = JumpState.PreFalling;
                     break;
                 case JumpState.IsWallJumping:
-                    if (wallJumpTimeCounter < model.WallJumpTime)
+                    if (wallJumpTimeCounter < model.WallJumpTime && wallJumpPos * horizontalInput<0)
                     {
                         wallJumpTimeCounter += Time.deltaTime;
                         rb.DoMove(new Vector2(
@@ -287,11 +287,18 @@ namespace PlayerSpace.Game
                             * model.JumpGain
                             * model.StateJumpGain
                             * model.WallJumpGain
+                            *(2.2f-wallJumpTimeCounter*10)
                         , model.WallJumpForce.y
                             * model.ItemJumpGain
                             * model.JumpGain
                             * model.StateJumpGain
                             * model.WallJumpGain));
+                    }
+                    else if (wallJumpPos * horizontalInput > 0)
+                    {
+                        
+                        isWallJumping = false;
+                        JumpState = JumpState.IsJumping;
                     }
                     else
                     {

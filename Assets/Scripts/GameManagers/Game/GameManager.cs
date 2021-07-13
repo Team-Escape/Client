@@ -44,13 +44,13 @@ namespace GameManagerSpace.Game
                     StartCoroutine(Starting());
                     break;
                 case GameState.Playing:
-                    StartCoroutine(Playing());
+                    // StartCoroutine(Playing());
                     break;
                 case GameState.Scoring:
                     StartCoroutine(Scoring());
                     break;
                 case GameState.NewGame:
-                    loadSceneAction(CoreModel.choosenMapName, false);
+                    StartCoroutine(NewGame());
                     break;
                 case GameState.GameOver:
                     StartCoroutine(GameOver());
@@ -74,26 +74,27 @@ namespace GameManagerSpace.Game
 
         IEnumerator Starting()
         {
-            yield return StartCoroutine(control.InitGameObstacle());
             yield return StartCoroutine(control.HunterGameSetup());
             yield return StartCoroutine(control.OpenEscaperRoomsDoor());
             yield return StartCoroutine(control.OpenHunterRoomsDoor());
         }
 
-        IEnumerator Playing()
-        {
-            yield return StartCoroutine(control.InitGame());
-        }
-
         IEnumerator Scoring()
         {
+            yield return StartCoroutine(control.StopHunterGame());
+            yield return StartCoroutine(control.BeforeScoring());
             yield return StartCoroutine(control.Scoring());
-            yield return StartCoroutine(control.GameJudge());
         }
 
         IEnumerator GameOver()
         {
             loadSceneAction(awardScene, false);
+            yield return null;
+        }
+
+        IEnumerator NewGame()
+        {
+            loadSceneAction(CoreModel.choosenMapName, false);
             yield return null;
         }
 
@@ -115,6 +116,23 @@ namespace GameManagerSpace.Game
         private void Start()
         {
             GameFlow("Setting");
+        }
+
+        private void Update()
+        {
+            /*if (Input.GetKeyDown(KeyCode.P))
+            {
+                GameFlow("Starting");
+            }
+            else if (Input.GetKeyDown(KeyCode.O))
+            {
+                control.OpenDoors();
+            }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                GameFlow("Scoring");
+            }
+            */
         }
     }
 }

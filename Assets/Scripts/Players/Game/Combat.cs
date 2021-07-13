@@ -36,22 +36,35 @@ namespace PlayerSpace.Game
 
         public void Attack()
         {
-            if (PlayerState.StateCompare("Hunter") == false) return;
-            animator.DoAnimation("attack");
+            if (PlayerState == PlayerState.Hunter)
+                animator.DoAnimation("attack");
         }
         public void Hurt(System.Action callback)
         {
             if (PlayerState == PlayerState.Spectator) return;
             if (model.Shielding == false)
             {
-                model.CurrentHealth--;
-                if (model.CurrentHealth <= 0)
+                switch (PlayerState)
                 {
-                    model.CurrentHealth = 0;
-                    callback();
-                    return;
+                    case PlayerState.Invincible:
+                        animator.DoAnimation("invincible");
+                        return;
+                    case PlayerState.Lockblood:
+                        if (model.CurrentHealth > 1)
+                            model.CurrentHealth--;
+                        animator.DoAnimation("hurt");
+                        break;
+                    default:
+                        model.CurrentHealth--;
+                        if (model.CurrentHealth <= 0)
+                        {
+                            model.CurrentHealth = 0;
+                            callback();
+                            return;
+                        }
+                        animator.DoAnimation("hurt");
+                        break;
                 }
-                animator.DoAnimation("hurt");
             }
             else model.Shielding = false;
         }
@@ -76,12 +89,14 @@ namespace PlayerSpace.Game
         {
             PlayerState = PlayerState.Spectator;
 
-            int playerLayer = 24;
-            int specatorLayer = 23;
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int specatorLayer = LayerMask.NameToLayer("Invisible");
 
             // Open all layer on culling mask.
             Camera cam = transform.parent.GetChild(1).GetComponent<Camera>();
             cam.cullingMask = -1;
+
+            animator.DoAnimation("reborn");
 
             // Set all layers to invisible
             SearchForAllChild(transform.parent, playerLayer, specatorLayer);

@@ -20,7 +20,8 @@ namespace GameManagerSpace
 
         #region  Game judgementss (passed by different classes with different scenes)
         public static List<GameObject> WinnerAvatars { get; set; }
-        public static int winningScore = 3;
+        public static int goalScore = 2;
+        public static int winningScore = 5;
         public static List<int> TotalScores { get; set; }
         public static float goalCountDownDuration = 10f;
         #endregion

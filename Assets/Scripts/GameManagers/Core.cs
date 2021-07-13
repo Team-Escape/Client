@@ -7,6 +7,8 @@ using GameManagerSpace.Audio;
 using GameManagerSpace.Menu;
 using GameManagerSpace.Hall;
 using GameManagerSpace.Game;
+using GameManagerSpace.Score;
+using GameManagerSpace.Award;
 
 namespace GameManagerSpace
 {
@@ -64,9 +66,12 @@ namespace GameManagerSpace
                     var menu = FindObjectOfType<MenuManager>();
                     menu.Init(MaskChangeScene, () => audioManager.ChangeAudio("Menu"));
 
+                    coreView.MaskOut();
                     break;
                 case SceneState.HallScene:
                     ChangeInputMaps("Hall");
+
+                    if (audioManager.isPausing) audioManager.ChangeAudio("Menu");
 
                     var hall = FindObjectOfType<HallManager>();
                     hall.Init(MaskChangeScene, coreView.MaskOut);
@@ -74,11 +79,23 @@ namespace GameManagerSpace
                     coreView.MaskOut();
                     break;
                 case SceneState.LabScene:
+                    if (FindObjectOfType<ScoreManager>())
+                    {
+                        Destroy(FindObjectOfType<ScoreManager>());
+                    }
                     ChangeInputMaps("Game");
-                    audioManager.ChangeAudio("Game");
 
                     var lab = FindObjectOfType<GameManager>();
-                    lab.Init(MaskChangeScene, () => audioManager.ChangeAudio("Hall"));
+                    lab.Init(MaskChangeScene, () => audioManager.ChangeAudio("Game"));
+
+                    coreView.MaskOut();
+                    break;
+                case SceneState.AwardScene:
+                    ChangeInputMaps("Award");
+                    audioManager.DoPause();
+
+                    var award = FindObjectOfType<AwardManager>();
+                    award.Init(ChangeScene);
 
                     coreView.MaskOut();
                     break;
