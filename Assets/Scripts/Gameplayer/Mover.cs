@@ -152,7 +152,6 @@ namespace PlayerSpace.Gameplayer
             }
             else if (OnIceGrounded)
             {
-                Debug.Log("iceground");
                 CurrentGroundState = GroundState.Ice;
                 model.groundSpeedGain = 1f;
                 model.groundJumpGain = 1f;
@@ -170,11 +169,10 @@ namespace PlayerSpace.Gameplayer
 
             if (OnAnyGrounded)
             {
-                Debug.Log("anyg");
                 jumpTimeCounter = 0;
-                ableToJump = true;
                 isFalling = false;
                 isJumping = false;
+                ableToJump = true;
                 isDoubleJumping = false;
             }
         }
@@ -207,14 +205,21 @@ namespace PlayerSpace.Gameplayer
             if (jumpTimeCounter < model.jumpTime)
             {
                 jumpTimeCounter += Time.deltaTime;
-                rb.DoMoveY(
-                    Vector2.up.y
+                float force = Vector2.up.y
                     * model.jumpForce
                     * model.itemJumpGain
                     * model.groundJumpGain
                     * model.jumpGain
-                    * model.playerStateJumpGain
-                );
+                    * model.playerStateJumpGain;
+                switch (CurrentGroundState)
+                {
+                    case GroundState.Ice:
+                        rb.DoAddforceImpulse(new Vector2(rb.velocity.x, force));
+                        break;
+                    default:
+                        rb.DoMoveY(force);
+                        break;
+                }
             }
             else
             {
