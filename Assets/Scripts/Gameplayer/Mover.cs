@@ -152,15 +152,36 @@ namespace PlayerSpace.Gameplayer
             }
             else if (OnIceGrounded)
             {
-                CurrentGroundState = GroundState.Ice;
                 model.groundSpeedGain = 1f;
                 model.groundJumpGain = 1f;
 
-                // if(model.icsk)
+                if (model.iceSkate)
+                {
+                    CurrentGroundState = GroundState.Normal;
+                }
+                else
+                {
+                    CurrentGroundState = GroundState.Ice;
+                    if (isFalling)
+                    {
+                        rb.DoAddforceX(model.transform.localScale.x * 100);
+                    }
+                }
             }
             else if (OnSlimeGrounded)
             {
-                CurrentGroundState = GroundState.Slime;
+                if (model.slimeShoe)
+                {
+                    CurrentGroundState = GroundState.Normal;
+                    model.groundSpeedGain = 1f;
+                    model.groundJumpGain = 1f;
+                }
+                else
+                {
+                    CurrentGroundState = GroundState.Slime;
+                    model.groundSpeedGain = 0.5f;
+                    model.groundJumpGain = 0.2f;
+                }
             }
             else
             {
@@ -232,6 +253,19 @@ namespace PlayerSpace.Gameplayer
             if (wallJumpTimeCounter < model.wallJumpTime && wallJumpPos * xInput < 0)
             {
                 wallJumpTimeCounter += Time.deltaTime;
+                switch (CurrentFrontState)
+                {
+                    case FrontState.Controled:
+                        break;
+                    case FrontState.Ice:
+                        break;
+                    case FrontState.Normal:
+                        break;
+                    case FrontState.Slime:
+                        break;
+                    case FrontState.Air:
+                        break;
+                }
                 rb.DoMove(new Vector2(
                     model.wallJumpForce.x * wallJumpPos
                     * model.itemJumpGain
@@ -264,7 +298,7 @@ namespace PlayerSpace.Gameplayer
                 switch (CurrentGroundState)
                 {
                     case GroundState.Controled:
-                        MoveControledHandler();
+                        ControledMoveHandler();
                         break;
                     case GroundState.Ice:
                         IceMoveHandle();
@@ -280,7 +314,7 @@ namespace PlayerSpace.Gameplayer
             }
         }
 
-        public void MoveControledHandler()
+        public void ControledMoveHandler()
         {
 
         }
@@ -313,6 +347,12 @@ namespace PlayerSpace.Gameplayer
         {
             this.view = view;
             this.model = model;
+        }
+
+        private void Awake()
+        {
+            if (OnAnyGrounded)
+                isFalling = true;
         }
     }
 }
