@@ -19,7 +19,40 @@ namespace PlayerSpace.Gameplayer
         bool isDoubleJumping = false;
 
         GroundState preGroundState = new GroundState();
+        public Mover(View view, Model model)
+        {
+            this.view = view;
+            this.model = model;
+        }
 
+        #region Unity Native APIs
+        private void Awake()
+        {
+            if (OnAnyGrounded)
+                isFalling = true;
+        }
+
+        public void Update()
+        {
+            GroundCheck();
+            FrontCheck();
+            UpdatePreGroundState();
+        }
+
+
+        public void FixedUpdate()
+        {
+            if (OnControl)
+                ControledMoveHandler();
+            else
+            {
+                DoMove();
+                DoJump();
+            }
+        }
+        #endregion
+
+        #region Movement Implement
         public float SetInput
         {
             set
@@ -75,87 +108,6 @@ namespace PlayerSpace.Gameplayer
             get
             {
                 return rb.velocity.magnitude > 30f;
-            }
-        }
-
-        #region GroundChecker
-        public bool OnAnyGrounded
-        {
-            get
-            {
-                return OnGrounded || OnIceGrounded || OnSlimeGrounded;
-            }
-        }
-        public bool OnGrounded
-        {
-            get
-            {
-                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsGround)
-                || Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsBox);
-            }
-        }
-        public bool OnIceGrounded
-        {
-            get
-            {
-                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsIceGround);
-            }
-        }
-        public bool OnSlimeGrounded
-        {
-            get
-            {
-                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsSlimeGround);
-            }
-        }
-
-        public bool OnAnyFronted
-        {
-            get
-            {
-                return OnFronted || OnIceFronted || OnSlimeFronted;
-            }
-        }
-        public bool OnFronted
-        {
-            get
-            {
-                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsGround)
-                || Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsBox);
-            }
-        }
-        public bool OnIceFronted
-        {
-            get
-            {
-                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsIceGround);
-            }
-        }
-        public bool OnSlimeFronted
-        {
-            get
-            {
-                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsSlimeGround);
-            }
-        }
-        #endregion
-
-        public void Update()
-        {
-            GroundCheck();
-            FrontCheck();
-            UpdatePreGroundState();
-        }
-
-
-        public void FixedUpdate()
-        {
-            if (OnControl)
-                ControledMoveHandler();
-            else
-            {
-                DoMove();
-                DoJump();
             }
         }
 
@@ -423,17 +375,68 @@ namespace PlayerSpace.Gameplayer
                 * model.slideSpeedGain
             );
         }
+        #endregion
 
-        public Mover(View view, Model model)
+        #region GroundChecker
+        public bool OnAnyGrounded
         {
-            this.view = view;
-            this.model = model;
+            get
+            {
+                return OnGrounded || OnIceGrounded || OnSlimeGrounded;
+            }
+        }
+        public bool OnGrounded
+        {
+            get
+            {
+                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsGround)
+                || Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsBox);
+            }
+        }
+        public bool OnIceGrounded
+        {
+            get
+            {
+                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsIceGround);
+            }
+        }
+        public bool OnSlimeGrounded
+        {
+            get
+            {
+                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsSlimeGround);
+            }
         }
 
-        private void Awake()
+        public bool OnAnyFronted
         {
-            if (OnAnyGrounded)
-                isFalling = true;
+            get
+            {
+                return OnFronted || OnIceFronted || OnSlimeFronted;
+            }
         }
+        public bool OnFronted
+        {
+            get
+            {
+                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsGround)
+                || Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsBox);
+            }
+        }
+        public bool OnIceFronted
+        {
+            get
+            {
+                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsIceGround);
+            }
+        }
+        public bool OnSlimeFronted
+        {
+            get
+            {
+                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsSlimeGround);
+            }
+        }
+        #endregion
     }
 }
