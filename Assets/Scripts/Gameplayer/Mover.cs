@@ -18,6 +18,8 @@ namespace PlayerSpace.Gameplayer
         bool isJumpButtonReleased = true;
         bool isDoubleJumping = false;
 
+        GroundState preGroundState = new GroundState();
+
         public float SetInput
         {
             set
@@ -72,7 +74,7 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return rb.velocity.magnitude > 25f;
+                return rb.velocity.magnitude > 30f;
             }
         }
 
@@ -142,7 +144,9 @@ namespace PlayerSpace.Gameplayer
         {
             GroundCheck();
             FrontCheck();
+            UpdatePreGroundState();
         }
+
 
         public void FixedUpdate()
         {
@@ -154,6 +158,27 @@ namespace PlayerSpace.Gameplayer
                 DoJump();
             }
         }
+
+        public void GrounStateChanged(GroundState newState)
+        {
+            switch (newState)
+            {
+                case GroundState.Ice:
+                    rb.DoAddforceX(model.transform.localScale.x * 20);
+                    break;
+                case GroundState.Slime:
+                    rb.DoMove(Vector2.zero);
+                    break;
+            }
+        }
+
+        public void UpdatePreGroundState()
+        {
+            if (preGroundState != model.CurrentGroundState)
+                GrounStateChanged(model.CurrentGroundState);
+            preGroundState = model.CurrentGroundState;
+        }
+
 
         public void GroundCheck()
         {
@@ -175,10 +200,6 @@ namespace PlayerSpace.Gameplayer
                 else
                 {
                     CurrentGroundState = GroundState.Ice;
-                    if (isFalling)
-                    {
-                        rb.DoAddforceX(model.transform.localScale.x * 20);
-                    }
                 }
             }
             else if (OnSlimeGrounded)
@@ -194,6 +215,10 @@ namespace PlayerSpace.Gameplayer
                     CurrentGroundState = GroundState.Slime;
                     model.groundSpeedGain = 0.5f;
                     model.groundJumpGain = 0.2f;
+                    if (isFalling)
+                    {
+                        rb.DoMove(Vector2.zero);
+                    }
                 }
             }
             else
@@ -295,7 +320,7 @@ namespace PlayerSpace.Gameplayer
                 switch (CurrentGroundState)
                 {
                     case GroundState.Ice:
-                        rb.DoAddforceImpulse(new Vector2(rb.velocity.x, force));
+                        rb.DoMove(new Vector2(rb.velocity.x, force));
                         break;
                     default:
                         rb.DoMoveY(force);
