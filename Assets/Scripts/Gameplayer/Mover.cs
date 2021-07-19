@@ -33,7 +33,7 @@ namespace PlayerSpace.Gameplayer
             {
                 if (value == true)
                 {
-                    if (OnFronted && isWallJumping == false && isJumping == false)
+                    if (OnAnyFronted && OnIceFronted == false && isWallJumping == false && isJumping == false)
                     {
                         if (isJumpButtonReleased)
                         {
@@ -202,6 +202,47 @@ namespace PlayerSpace.Gameplayer
         {
             if (OnFronted)
             {
+                model.wallSpeedGain = 1f;
+                model.wallJumpGain = 1f;
+                model.wallSlideGain = 1f;
+            }
+            else if (OnIceFronted)
+            {
+                if (model.iceSkate)
+                {
+                    model.wallSpeedGain = 1f;
+                    model.wallJumpGain = 1f;
+                    model.wallSlideGain = 1f;
+                }
+                else
+                {
+                    model.wallSpeedGain = 1.3f;
+                    model.wallJumpGain = 0f;
+                    model.wallSlideGain = 10f;
+                }
+            }
+            else if (OnSlimeFronted)
+            {
+                if (model.slimeShoe)
+                {
+                    model.wallSpeedGain = 1f;
+                    model.wallJumpGain = 1f;
+                    model.wallSlideGain = 1f;
+                }
+                else
+                {
+                    model.wallSpeedGain = 0.7f;
+                    model.wallJumpGain = 0.7f;
+                    model.wallSlideGain = 0.1f;
+                }
+            }
+            else
+            {
+                CurrentFrontState = FrontState.Air;
+            }
+
+            if (OnAnyFronted)
+            {
                 if (isJumpButtonReleased)
                     isWallJumping = false;
                 wallJumpTimeCounter = 0;
@@ -253,19 +294,6 @@ namespace PlayerSpace.Gameplayer
             if (wallJumpTimeCounter < model.wallJumpTime && wallJumpPos * xInput < 0)
             {
                 wallJumpTimeCounter += Time.deltaTime;
-                switch (CurrentFrontState)
-                {
-                    case FrontState.Controled:
-                        break;
-                    case FrontState.Ice:
-                        break;
-                    case FrontState.Normal:
-                        break;
-                    case FrontState.Slime:
-                        break;
-                    case FrontState.Air:
-                        break;
-                }
                 rb.DoMove(new Vector2(
                     model.wallJumpForce.x * wallJumpPos
                     * model.itemJumpGain
@@ -288,13 +316,12 @@ namespace PlayerSpace.Gameplayer
 
         public void DoMove()
         {
-            if (OnFronted)
+            if (OnAnyFronted)
             {
-                rb.DoMove(new Vector2(0, Vector2.down.y));
+                WallSliding();
             }
             else
             {
-                // rb.DoMoveX(xInput * model.moveSpeed);
                 switch (CurrentGroundState)
                 {
                     case GroundState.Controled:
@@ -312,6 +339,16 @@ namespace PlayerSpace.Gameplayer
 
                 }
             }
+        }
+
+        public void WallSliding()
+        {
+            rb.DoMove(Vector2.down
+                * model.itemJumpGain
+                * (2 - model.groundJumpGain)
+                * model.jumpGain
+                * model.wallSlideGain
+            );
         }
 
         public void ControledMoveHandler()
