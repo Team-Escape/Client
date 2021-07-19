@@ -135,10 +135,25 @@ namespace PlayerSpace.Gameplayer
             }
         }
 
+        public void GroundStateContinuous(GroundState newState)
+        {
+            switch (newState)
+            {
+                case GroundState.Ice:
+                    rb.DoAddforceX(-rb.velocity.x);
+                    break;
+                case GroundState.Slime:
+                    break;
+            }
+        }
+
         public void UpdatePreGroundState()
         {
             if (preGroundState != model.CurrentGroundState)
                 GrounStateChanged(model.CurrentGroundState);
+            else
+                GroundStateContinuous(model.CurrentGroundState);
+
             preGroundState = model.CurrentGroundState;
         }
 
