@@ -68,6 +68,14 @@ namespace PlayerSpace.Gameplayer
             }
         }
 
+        public bool OnControl
+        {
+            get
+            {
+                return rb.velocity.magnitude > 25f;
+            }
+        }
+
         #region GroundChecker
         public bool OnAnyGrounded
         {
@@ -138,8 +146,13 @@ namespace PlayerSpace.Gameplayer
 
         public void FixedUpdate()
         {
-            DoMove();
-            DoJump();
+            if (OnControl)
+                ControledMoveHandler();
+            else
+            {
+                DoMove();
+                DoJump();
+            }
         }
 
         public void GroundCheck()
@@ -164,7 +177,7 @@ namespace PlayerSpace.Gameplayer
                     CurrentGroundState = GroundState.Ice;
                     if (isFalling)
                     {
-                        rb.DoAddforceX(model.transform.localScale.x * 100);
+                        rb.DoAddforceX(model.transform.localScale.x * 20);
                     }
                 }
             }
@@ -250,8 +263,14 @@ namespace PlayerSpace.Gameplayer
             }
         }
 
+        public void DoDash(Vector2 force)
+        {
+            rb.DoAddforceImpulse(force);
+        }
+
         public void DoJump()
         {
+
             if (isWallJumping)
             {
                 WallJump();
@@ -353,7 +372,7 @@ namespace PlayerSpace.Gameplayer
 
         public void ControledMoveHandler()
         {
-
+            rb.DoAddforce(-rb.velocity * xInput);
         }
 
         public void MoveHandler()

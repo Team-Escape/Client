@@ -4,19 +4,14 @@ using UnityEngine;
 
 namespace PlayerSpace.Gameplayer
 {
-    public class Combat
+    public class Combat : GameplayerComponent
     {
-        // Start is called before the first frame update
-        void Start()
+        public Combat(View view, Model model)
         {
-
+            this.view = view;
+            this.model = model;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
     }
-
 }

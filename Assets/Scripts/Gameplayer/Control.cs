@@ -12,17 +12,6 @@ namespace PlayerSpace.Gameplayer
         Mover mover;
         Combat combat;
 
-        public void Jump(bool isJumping)
-        {
-            mover.SetJumping = isJumping;
-        }
-
-        public void Move(float movement)
-        {
-            SetLocalScaleXByMovement = movement;
-            mover.SetInput = movement;
-        }
-
         public float SetLocalScaleXByMovement
         {
             set
@@ -35,6 +24,22 @@ namespace PlayerSpace.Gameplayer
             }
         }
 
+        public void Jump(bool isJumping)
+        {
+            mover.SetJumping = isJumping;
+        }
+
+        public void Move(float movement)
+        {
+            SetLocalScaleXByMovement = movement * model.reverseInput;
+            mover.SetInput = movement * model.reverseInput;
+        }
+
+        public void DoDash(Vector2 force)
+        {
+            mover.DoDash(force * model.dashPower);
+        }
+
         private void Awake()
         {
             view = GetComponent<View>();
@@ -44,7 +49,7 @@ namespace PlayerSpace.Gameplayer
         private void OnEnable()
         {
             mover = new Mover(view, model);
-            // combat = new Mover(view, model);
+            combat = new Combat(view, model);
         }
 
         private void Update()
@@ -58,8 +63,3 @@ namespace PlayerSpace.Gameplayer
         }
     }
 }
-
-
-/*
-User -> control -> view | model | mover 
-*/

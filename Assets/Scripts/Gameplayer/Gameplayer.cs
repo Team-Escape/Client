@@ -59,9 +59,17 @@ namespace PlayerSpace.Gameplayer
         #region OnTriggerFuncs
         private void OnTriggerEnter2D(Collider2D other)
         {
-
+            switch (other.tag)
+            {
+                case "DashItem":
+                    string[] nameSplice = other.name.Split(',');
+                    float forceX, forceY = 0;
+                    forceX = (string.Compare("n", nameSplice[0]) == 0) ? transform.lossyScale.x : float.Parse(nameSplice[0]);
+                    forceY = (string.Compare("n", nameSplice[1]) == 0) ? transform.lossyScale.y : float.Parse(nameSplice[1]);
+                    control.DoDash(new Vector2(forceX, forceY));
+                    break;
+            }
         }
-
         private void OnTriggerStay2D(Collider2D other)
         {
 

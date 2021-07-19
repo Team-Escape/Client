@@ -36,11 +36,13 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region Transform
+        [Header("Transform Related")]
         public Transform selfTransform;
         public float characterSize = 1f;
         #endregion
 
         #region Movement
+        [Header("Movement Related")]
         public float distToGround = 0;
         public float distToGroundOffset = 0;
         public float distToWall = 0;
@@ -50,6 +52,7 @@ namespace PlayerSpace.Gameplayer
         public float jumpForce = 15f;
         public Vector2 wallJumpForce = new Vector2(12, 20);
         public float wallJumpTime = 0.2f;
+        public float dashPower = 25f;
         #endregion
 
         #region Layer
@@ -60,6 +63,7 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region Gains
+        [Header("Movement Gains")]
         public float speedGain = 1f;
         public float jumpGain = 1f;
         public float playerStateSpeedGain = 1f;
@@ -74,7 +78,16 @@ namespace PlayerSpace.Gameplayer
         public float slideSpeedGain = 1f;
         #endregion
 
+        #region ItemsRelated
+        [Header("Item Related")]
+        /// <summary>
+        /// Reverse horizontal moving, 1 is normal, -1 reverse
+        /// </summary>
+        public float reverseInput = 1;
+        #endregion
+
         #region StartItemRelated
+        [Header("StartItem")]
         public bool hasGotStartItem = false;
         public bool isShielding = false;
         #endregion
