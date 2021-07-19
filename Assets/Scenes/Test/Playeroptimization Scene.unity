@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 241435360}
   - component: {fileID: 241435359}
   m_Layer: 0
-  m_Name: DashItem
+  m_Name: 2,0,Dash001
   m_TagString: DashItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241435358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.1, y: 0.5, z: 0}
+  m_LocalPosition: {x: -21.1, y: -2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3764,6 +3764,7 @@ GameObject:
   - component: {fileID: 8454525889628951388}
   - component: {fileID: 8454525889628951387}
   - component: {fileID: 8454525889628951386}
+  - component: {fileID: 8454525889628951394}
   m_Layer: 10
   m_Name: Bear
   m_TagString: Player
@@ -3812,6 +3813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e9cd1376bb94659b17a363e696eae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 6104790488600125237}
   rb: {fileID: 0}
   anim: {fileID: 0}
   selfTransform: {fileID: 0}
@@ -3850,9 +3852,13 @@ MonoBehaviour:
   wallSpeedGain: 1
   wallJumpGain: 1
   slideSpeedGain: 1
+  teamID: 0
+  health: 3
+  maxHealth: 3
+  rebornDuration: 3
   reverseInput: 1
   hasGotStartItem: 0
-  isShielding: 0
+  sheildColdDuration: 5
   iceSkate: 0
   slimeShoe: 0
   swiftnessBoot: 0
@@ -3998,6 +4004,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8454525889628951394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454525889628951384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrenght: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!114 &8974718018665910105
 MonoBehaviour:
   m_ObjectHideFlags: 0

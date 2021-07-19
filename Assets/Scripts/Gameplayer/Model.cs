@@ -24,10 +24,13 @@ namespace PlayerSpace.Gameplayer
             distToGround = GetComponent<Collider2D>().bounds.extents.y;
         }
 
+        #region Unity Components
+        public Camera cam;
         [HideInInspector]
         public Rigidbody2D rb;
         [HideInInspector]
         public Animator anim;
+        #endregion
 
         #region Enum
         public PlayerState CurrentPlayerState { get; set; }
@@ -43,8 +46,10 @@ namespace PlayerSpace.Gameplayer
 
         #region Movement
         [Header("Movement Related")]
+        [HideInInspector]
         public float distToGround = 0;
         public float distToGroundOffset = 0;
+        [HideInInspector]
         public float distToWall = 0;
         public float distToWallOffset = 0;
         public float moveSpeed = 10f;
@@ -78,6 +83,14 @@ namespace PlayerSpace.Gameplayer
         public float slideSpeedGain = 1f;
         #endregion
 
+        #region Combat
+        [Header("Combat")]
+        public int teamID = 0;
+        public int health = 3;
+        public int maxHealth = 3;
+        public float rebornDuration = 3f;
+        #endregion
+
         #region ItemsRelated
         [Header("Item Related")]
         /// <summary>
@@ -89,7 +102,7 @@ namespace PlayerSpace.Gameplayer
         #region StartItemRelated
         [Header("StartItem")]
         public bool hasGotStartItem = false;
-        public bool isShielding = false;
+        public float sheildColdDuration = 5f;
         #endregion
 
         #region StartItems

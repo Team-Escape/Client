@@ -15,6 +15,7 @@ namespace PlayerSpace.Gameplayer
         bool isJumping = false;
         bool isWallJumping = false;
         bool isFalling = false;
+        bool isInertancing = false;
         bool isJumpButtonReleased = true;
         bool isDoubleJumping = false;
 
@@ -53,6 +54,15 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region Movement Implement
+        public void Inertance(Vector2 force)
+        {
+            isInertancing = true;
+            CurrentGroundState = GroundState.Controled;
+            rb.DoAddforceImpulse(force);
+            AbleToDo(0.2f, () => CurrentGroundState = GroundState.Normal);
+            AbleToDo(0.2f, () => isInertancing = false);
+        }
+
         public float SetInput
         {
             set
@@ -116,7 +126,8 @@ namespace PlayerSpace.Gameplayer
             switch (newState)
             {
                 case GroundState.Ice:
-                    rb.DoAddforceX(model.transform.localScale.x * 20);
+                    float force = (rb.velocity.x > 10) ? 10 : 30;
+                    rb.DoAddforceX(transform.localScale.x * force);
                     break;
                 case GroundState.Slime:
                     rb.DoMove(Vector2.zero);
@@ -176,6 +187,7 @@ namespace PlayerSpace.Gameplayer
             else
             {
                 CurrentGroundState = GroundState.Air;
+                isFalling = true;
             }
 
             if (OnAnyGrounded)
@@ -389,22 +401,22 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsGround)
-                || Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsBox);
+                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsGround)
+                || Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsBox);
             }
         }
         public bool OnIceGrounded
         {
             get
             {
-                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsIceGround);
+                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsIceGround);
             }
         }
         public bool OnSlimeGrounded
         {
             get
             {
-                return Physics2D.Raycast(model.transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsSlimeGround);
+                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsSlimeGround);
             }
         }
 
@@ -419,22 +431,22 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsGround)
-                || Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsBox);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsGround)
+                || Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsBox);
             }
         }
         public bool OnIceFronted
         {
             get
             {
-                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsIceGround);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsIceGround);
             }
         }
         public bool OnSlimeFronted
         {
             get
             {
-                return Physics2D.Raycast(model.transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsSlimeGround);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsSlimeGround);
             }
         }
         #endregion

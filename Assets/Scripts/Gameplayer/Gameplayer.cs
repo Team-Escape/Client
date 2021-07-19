@@ -20,6 +20,11 @@ namespace PlayerSpace.Gameplayer
             input = ReInput.players.GetPlayer(playerID);
         }
 
+        public void AssignTeam(int id)
+        {
+            control.AssignTeam(id);
+        }
+
         private void Awake()
         {
             if (testMode) AssignController(0);
@@ -61,6 +66,10 @@ namespace PlayerSpace.Gameplayer
         {
             switch (other.tag)
             {
+                case "PlayerWeapon":
+                    Vector2 force = (transform.position - other.transform.parent.position);
+                    control.Hurt(force);
+                    break;
                 case "DashItem":
                     string[] nameSplice = other.name.Split(',');
                     float forceX, forceY = 0;

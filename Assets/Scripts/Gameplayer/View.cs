@@ -12,5 +12,11 @@ namespace PlayerSpace.Gameplayer
         {
             anim = GetComponent<Animator>();
         }
+
+        public void UpdateShaderRender(string effect)
+        {
+            Material material = GetComponent<Renderer>().material;
+            material.EnableKeyword(effect);
+        }
     }
 }

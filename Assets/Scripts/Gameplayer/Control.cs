@@ -8,7 +8,6 @@ namespace PlayerSpace.Gameplayer
     {
         View view;
         Model model;
-
         Mover mover;
         Combat combat;
 
@@ -22,6 +21,18 @@ namespace PlayerSpace.Gameplayer
                     value <= 0 ? model.characterSize * -1 : model.characterSize
                 , model.characterSize);
             }
+        }
+
+        public void AssignTeam(int id)
+        {
+            model.teamID = id;
+        }
+
+        public void Hurt(Vector2 force)
+        {
+            if (combat.isHurting) return;
+            mover.Inertance(force);
+            combat.Hurt();
         }
 
         public void Jump(bool isJumping)
@@ -55,6 +66,18 @@ namespace PlayerSpace.Gameplayer
         private void Update()
         {
             mover.Update();
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                combat.Hurt();
+            }
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                combat.Dead();
+            }
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                combat.Mutate();
+            }
         }
 
         private void FixedUpdate()

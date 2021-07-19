@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PlayerSpace
 {
+    [System.Serializable]
     public enum PlayerState { Waiting, Escaper, Hunter, Dead, Reborn, Spectator, Lockblood, Invincible };
     public enum GroundState { Controled, Air, Normal, Ice, Slime };
     public enum FrontState { Controled, Air, Normal, Ice, Slime };
@@ -37,6 +38,10 @@ namespace PlayerSpace
         public static void DoAnimation(this Animator animator, string name, float value)
         {
             animator.SetFloat(name, value);
+        }
+        public static float CurrentAnimationClipLength(this Animator animator)
+        {
+            return animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         }
     }
     public static class RoleMoveExtension
