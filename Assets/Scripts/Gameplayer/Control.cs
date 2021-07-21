@@ -72,6 +72,8 @@ namespace PlayerSpace.Gameplayer
                         break;
                     case "SwiftnessBoot":
                         model.swiftnessBoot = true;
+                        model.itemSpeedGain += 0.1f;
+                        model.itemJumpGain += 0.1f;
                         break;
                     case "RocketShoe":
                         model.rocketShoe = true;
@@ -87,6 +89,10 @@ namespace PlayerSpace.Gameplayer
                         break;
                     case "Armor":
                         model.armor = true;
+                        model.itemSpeedGain -= 0.1f;
+                        model.itemJumpGain -= 0.1f;
+                        model.maxHealth += 2;
+                        model.health += 2;
                         break;
                     case "InspectorChance":
                         model.inspectorsChance = true;
