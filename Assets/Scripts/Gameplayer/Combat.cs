@@ -66,8 +66,16 @@ namespace PlayerSpace.Gameplayer
                     model.health--;
                     if (model.health <= 0)
                     {
-                        model.health = 0;
-                        Dead();
+                        if (model.extraLife)
+                        {
+                            model.extraLife = false;
+                            Reborn();
+                        }
+                        else
+                        {
+                            model.health = 0;
+                            Dead();
+                        }
                         return;
                     }
                     break;
