@@ -74,7 +74,7 @@ namespace PlayerSpace.Gameplayer
             }
             isHurting = true;
             anim.DoAnimation("hurt");
-            AbleToDo(1f, () => isHurting = false);
+            AbleToDo(anim.CurrentAnimationClipLength("Hurt"), () => isHurting = false);
         }
 
         public void Dead()
@@ -88,9 +88,16 @@ namespace PlayerSpace.Gameplayer
         {
             if (CurrentPlayerState != AsDead) return;
 
+            if (model.deathWithStronger)
+            {
+                model.speedGain += model.deadWithStrongerGain;
+                AbleToDo(model.deadWithStrongerDuration, () => model.speedGain -= model.deadWithStrongerGain);
+            }
+
+            model.health = model.maxHealth;
             CurrentPlayerState = AsReborn;
             anim.DoAnimation("reborn");
-            AbleToDo(anim.CurrentAnimationClipLength(),
+            AbleToDo(anim.CurrentAnimationClipLength("Reborn"),
                 () => CurrentPlayerState = (model.teamID == 1)
                 ? AsHunter
                 : AsEscaper

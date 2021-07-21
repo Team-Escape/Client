@@ -2,27 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace PlayerSpace.Gameplayer
 {
     public class Model : MonoBehaviour
     {
-        private void Awake()
-        {
-            rb = GetComponent<Rigidbody2D>();
-            anim = GetComponent<Animator>();
-
-            SetVariables();
-        }
-
-        private void SetVariables()
-        {
-            CurrentPlayerState = new PlayerState();
-            CurrentFrontState = new FrontState();
-            CurrentGroundState = new GroundState();
-
-            selfTransform = transform;
-            distToGround = GetComponent<Collider2D>().bounds.extents.y;
-        }
+        #region TestValues
+        [HideInInspector]
+        public PlayerState TestState = PlayerState.Waiting;
+        #endregion
 
         #region Unity Components
         public Camera cam;
@@ -44,6 +35,26 @@ namespace PlayerSpace.Gameplayer
         public float characterSize = 1f;
         #endregion
 
+        #region Unity Native APIs
+        private void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
+
+            SetVariables();
+        }
+
+        private void SetVariables()
+        {
+            CurrentPlayerState = new PlayerState();
+            CurrentFrontState = new FrontState();
+            CurrentGroundState = new GroundState();
+
+            selfTransform = transform;
+            distToGround = GetComponent<Collider2D>().bounds.extents.y;
+        }
+        #endregion
+
         #region Movement
         [Header("Movement Related")]
         [HideInInspector]
@@ -58,6 +69,7 @@ namespace PlayerSpace.Gameplayer
         public Vector2 wallJumpForce = new Vector2(12, 20);
         public float wallJumpTime = 0.2f;
         public float dashPower = 25f;
+        public float endurance = 3f;
         #endregion
 
         #region Layer
@@ -103,6 +115,8 @@ namespace PlayerSpace.Gameplayer
         [Header("StartItem")]
         public bool hasGotStartItem = false;
         public float sheildColdDuration = 5f;
+        public float deadWithStrongerGain = 0.2f;
+        public float deadWithStrongerDuration = 4f;
         #endregion
 
         #region StartItems
@@ -157,4 +171,33 @@ namespace PlayerSpace.Gameplayer
         #endregion
     }
 
+#if UNITY_EDITOR
+    [CustomEditor(typeof(Model)), CanEditMultipleObjects]
+    public class ModelEditor : Editor
+    {
+        Model model;
+
+        public SerializedProperty testStateProp;
+
+        private void OnEnable()
+        {
+            model = (Model)target;
+
+            testStateProp = serializedObject.FindProperty("TestState");
+        }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            EditorGUILayout.PropertyField(testStateProp);
+            if (GUILayout.Button("Change state"))
+            {
+                model.CurrentPlayerState = (PlayerState)testStateProp.enumValueIndex;
+                Debug.Log(model.CurrentPlayerState);
+            }
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+#endif
 }
+

@@ -6,78 +6,108 @@ namespace PlayerSpace.Gameplayer
 {
     public class Mover : GameplayerComponent
     {
-        float xInput = 0;
-        float jumpTimeCounter = 0f;
-        float wallJumpTimeCounter = 0f;
-        float wallJumpPos = 0;
+        public float xInput = 0;
+        public float jumpTimeCounter = 0f;
+        public float wallJumpTimeCounter = 0f;
+        public float wallJumpPos = 0;
+        public float endurance = 3f;
 
-        bool ableToJump = true;
-        bool isJumping = false;
-        bool isWallJumping = false;
-        bool isFalling = false;
-        bool isInertancing = false;
-        bool isJumpButtonReleased = true;
-        bool isDoubleJumping = false;
+        public bool ableToJump = true;
+        public bool isRunning = false;
+        public bool isAbleToRecoveryEndurance = false;
+        public bool isJumping = false;
+        public bool isWallJumping = false;
+        public bool isFalling = false;
+        public bool isInertancing = false;
+        public bool isJumpButtonReleased = true;
+        public bool isDoubleJumping = false;
 
         GroundState preGroundState = new GroundState();
+
+        #region Const variables. Game balance related.
+        const float RunSpeedGain = 0.2f;
+        const float RunJumpGain = 0.1f;
+
+        const float NormalGroundSpeedGain = 1f;
+        const float NormalGroundJumpGain = 1f;
+
+        const float SlimeGroundSpeedGain = 0.5f;
+        const float SlimeGroundJumpGain = 0.2f;
+
+        const float NormalWallSpeedGain = 1f;
+        const float NormalWallJumpGain = 1f;
+        const float NormalWallSlideGain = 1f;
+
+        const float IceWallSpeedGain = 1.3f;
+        const float IceWallJumpGain = 0f;
+        const float IceWallSlideGain = 10f;
+
+        const float SlimeWallSpeedGain = 0.7f;
+        const float SlimeWallJumpGain = 0.7f;
+        const float SlimeWallSlideGain = 1f;
+        #endregion
+
         public Mover(View view, Model model)
         {
             this.view = view;
             this.model = model;
+            OnEnable();
         }
-
-        #region Unity Native APIs
-        private void Awake()
+        #region Unity APIs Imitate
+        public void OnEnable()
         {
-            if (OnAnyGrounded)
-                isFalling = true;
+            endurance = model.endurance;
         }
-
         public void Update()
         {
             GroundCheck();
             FrontCheck();
             UpdatePreGroundState();
+            EnduranceHandler();
         }
-
-
         public void FixedUpdate()
         {
-            if (OnControl)
-                ControledMoveHandler();
-            else
+            switch (OnControlled)
             {
-                DoMove();
-                DoJump();
+                case true:
+                    ControledMoveHandler();
+                    break;
+                case false:
+                    DoMove();
+                    DoJump();
+                    break;
             }
         }
         #endregion
 
         #region Movement Implement
-        public void Inertance(Vector2 force)
+        public void SetInput(float value)
         {
-            isInertancing = true;
-            CurrentGroundState = GroundState.Controled;
-            rb.DoAddforceImpulse(force);
-            AbleToDo(0.2f, () => CurrentGroundState = GroundState.Normal);
-            AbleToDo(0.2f, () => isInertancing = false);
+            xInput = value;
+            anim.DoAnimation("movement", Mathf.Abs(xInput));
         }
-
-        public float SetInput
+        public void SetRunning(bool value)
         {
-            set
+            if (value && isRunning == false)
             {
-                xInput = value;
-                anim.DoAnimation("movement", Mathf.Abs(xInput));
+                isRunning = true;
+                isAbleToRecoveryEndurance = false;
+                model.speedGain += RunSpeedGain;
+                model.jumpGain += RunJumpGain;
+            }
+            else if (value == false && isRunning)
+            {
+                isRunning = false;
+                AbleToDo(1f, () => isAbleToRecoveryEndurance = true);
+                model.speedGain -= RunSpeedGain;
+                model.jumpGain -= RunJumpGain;
             }
         }
-
-        public bool SetJumping
+        public void SetJumping(bool value)
         {
-            set
+            switch (value)
             {
-                if (value == true)
-                {
+                case true:
                     if (OnAnyFronted && OnIceFronted == false && isWallJumping == false && isJumping == false)
                     {
                         if (isJumpButtonReleased)
@@ -100,27 +130,17 @@ namespace PlayerSpace.Gameplayer
                         anim.DoAnimation("jump");
                     }
                     isJumpButtonReleased = false;
-                }
-                else if (value == false)
-                {
+                    break;
+                case false:
                     isJumpButtonReleased = true;
                     isFalling = true;
                     isJumping = false;
                     isWallJumping = false;
                     wallJumpTimeCounter = 0;
                     anim.DoAnimation("exit");
-                }
+                    break;
             }
         }
-
-        public bool OnControl
-        {
-            get
-            {
-                return rb.velocity.magnitude > 30f;
-            }
-        }
-
         public void GrounStateChanged(GroundState newState)
         {
             switch (newState)
@@ -142,8 +162,6 @@ namespace PlayerSpace.Gameplayer
                 case GroundState.Ice:
                     rb.DoAddforceX(-rb.velocity.x);
                     break;
-                case GroundState.Slime:
-                    break;
             }
         }
 
@@ -157,20 +175,16 @@ namespace PlayerSpace.Gameplayer
             preGroundState = model.CurrentGroundState;
         }
 
-
         public void GroundCheck()
         {
             if (OnGrounded)
             {
                 CurrentGroundState = GroundState.Normal;
-                model.groundSpeedGain = 1f;
-                model.groundJumpGain = 1f;
+                model.groundSpeedGain = NormalGroundSpeedGain;
+                model.groundJumpGain = NormalGroundJumpGain;
             }
             else if (OnIceGrounded)
             {
-                model.groundSpeedGain = 1f;
-                model.groundJumpGain = 1f;
-
                 if (model.iceSkate)
                 {
                     CurrentGroundState = GroundState.Normal;
@@ -179,20 +193,22 @@ namespace PlayerSpace.Gameplayer
                 {
                     CurrentGroundState = GroundState.Ice;
                 }
+                model.groundSpeedGain = 1f;
+                model.groundJumpGain = 1f;
             }
             else if (OnSlimeGrounded)
             {
                 if (model.slimeShoe)
                 {
                     CurrentGroundState = GroundState.Normal;
-                    model.groundSpeedGain = 1f;
-                    model.groundJumpGain = 1f;
+                    model.groundSpeedGain = NormalGroundSpeedGain;
+                    model.groundJumpGain = NormalGroundJumpGain;
                 }
                 else
                 {
                     CurrentGroundState = GroundState.Slime;
-                    model.groundSpeedGain = 0.5f;
-                    model.groundJumpGain = 0.2f;
+                    model.groundSpeedGain = SlimeGroundSpeedGain;
+                    model.groundJumpGain = SlimeGroundJumpGain;
                     if (isFalling)
                     {
                         rb.DoMove(Vector2.zero);
@@ -211,6 +227,7 @@ namespace PlayerSpace.Gameplayer
                 isFalling = false;
                 isJumping = false;
                 ableToJump = true;
+                isWallJumping = false;
                 isDoubleJumping = false;
             }
         }
@@ -219,38 +236,38 @@ namespace PlayerSpace.Gameplayer
         {
             if (OnFronted)
             {
-                model.wallSpeedGain = 1f;
-                model.wallJumpGain = 1f;
-                model.wallSlideGain = 1f;
+                model.wallSpeedGain = NormalWallSpeedGain;
+                model.wallJumpGain = NormalWallJumpGain;
+                model.wallSlideGain = NormalWallSlideGain;
             }
             else if (OnIceFronted)
             {
                 if (model.iceSkate)
                 {
-                    model.wallSpeedGain = 1f;
-                    model.wallJumpGain = 1f;
-                    model.wallSlideGain = 1f;
+                    model.wallSpeedGain = NormalWallSpeedGain;
+                    model.wallJumpGain = NormalWallJumpGain;
+                    model.wallSlideGain = NormalWallSlideGain;
                 }
                 else
                 {
-                    model.wallSpeedGain = 1.3f;
-                    model.wallJumpGain = 0f;
-                    model.wallSlideGain = 10f;
+                    model.wallSpeedGain = IceWallSpeedGain;
+                    model.wallJumpGain = IceWallJumpGain;
+                    model.wallSlideGain = IceWallSlideGain;
                 }
             }
             else if (OnSlimeFronted)
             {
                 if (model.slimeShoe)
                 {
-                    model.wallSpeedGain = 1f;
-                    model.wallJumpGain = 1f;
-                    model.wallSlideGain = 1f;
+                    model.wallSpeedGain = NormalWallSpeedGain;
+                    model.wallJumpGain = NormalWallJumpGain;
+                    model.wallSlideGain = NormalWallSlideGain;
                 }
                 else
                 {
-                    model.wallSpeedGain = 0.7f;
-                    model.wallJumpGain = 0.7f;
-                    model.wallSlideGain = 0.1f;
+                    model.wallSpeedGain = SlimeWallSpeedGain;
+                    model.wallJumpGain = SlimeWallJumpGain;
+                    model.wallSlideGain = SlimeWallSlideGain;
                 }
             }
             else
@@ -262,19 +279,60 @@ namespace PlayerSpace.Gameplayer
             {
                 if (isJumpButtonReleased)
                     isWallJumping = false;
+
                 wallJumpTimeCounter = 0;
                 wallJumpPos = -xInput;
             }
         }
+        /// <summary>
+        /// Control Endurance
+        /// </summary>
+        public void EnduranceHandler()
+        {
+            if (isRunning && endurance > 0)
+            {
+                endurance -= Time.deltaTime;
+            }
+            if (isRunning == false && isAbleToRecoveryEndurance && endurance < model.endurance)
+            {
+                SetRunning(false);
+                if (model.energyDrink) endurance += Time.deltaTime;
+                endurance += Time.deltaTime;
+            }
+        }
 
+        /// <summary>
+        /// Enforce to move with a force.
+        /// </summary>
+        /// <param name="force"></param>
+        public void Inertance(Vector2 force)
+        {
+            isInertancing = true;
+            CurrentGroundState = GroundState.Controled;
+            rb.DoAddforceImpulse(force);
+            AbleToDo(0.2f, () => CurrentGroundState = GroundState.Normal);
+            AbleToDo(0.2f, () => isInertancing = false);
+        }
+        /// <summary>
+        /// Impluse rigibody with a force.
+        /// </summary>
+        /// <param name="force"></param>
         public void DoDash(Vector2 force)
         {
             rb.DoAddforceImpulse(force);
         }
-
+        /// <summary>
+        /// Force veloity to zero
+        /// </summary>
+        public void DoForceStop()
+        {
+            rb.DoMove(Vector2.zero);
+        }
+        /// <summary>
+        /// Jump control handler
+        /// </summary>
         public void DoJump()
         {
-
             if (isWallJumping)
             {
                 WallJump();
@@ -284,7 +342,9 @@ namespace PlayerSpace.Gameplayer
                 Jump();
             }
         }
-
+        /// <summary>
+        /// Implement a jump action.
+        /// </summary>
         public void Jump()
         {
             if (jumpTimeCounter < model.jumpTime)
@@ -311,7 +371,9 @@ namespace PlayerSpace.Gameplayer
                 isJumping = false;
             }
         }
-
+        /// <summary>
+        ///  Impletment a wall jumping action.
+        /// </summary>
         public void WallJump()
         {
             if (wallJumpTimeCounter < model.wallJumpTime && wallJumpPos * xInput < 0)
@@ -336,7 +398,9 @@ namespace PlayerSpace.Gameplayer
                 isWallJumping = false;
             }
         }
-
+        /// <summary>
+        /// Move control handler
+        /// </summary>
         public void DoMove()
         {
             if (OnAnyFronted)
@@ -363,7 +427,9 @@ namespace PlayerSpace.Gameplayer
                 }
             }
         }
-
+        /// <summary>
+        /// Implemetn a wall sliding action.
+        /// </summary>
         public void WallSliding()
         {
             rb.DoMove(Vector2.down
@@ -373,12 +439,16 @@ namespace PlayerSpace.Gameplayer
                 * model.wallSlideGain
             );
         }
-
+        /// <summary>
+        /// Implement move action on controlled state.
+        /// </summary>
         public void ControledMoveHandler()
         {
             rb.DoAddforce(-rb.velocity * xInput);
         }
-
+        /// <summary>
+        /// Usual moving action implement.
+        /// </summary>
         public void MoveHandler()
         {
             rb.DoMoveX(xInput
@@ -390,7 +460,9 @@ namespace PlayerSpace.Gameplayer
                 * model.slideSpeedGain
             );
         }
-
+        /// <summary>
+        /// Moving action implement on ice material .
+        /// </summary>
         public void IceMoveHandle()
         {
             rb.DoAddforceX(xInput * 3
@@ -404,7 +476,14 @@ namespace PlayerSpace.Gameplayer
         }
         #endregion
 
-        #region GroundChecker
+        #region Getters
+        public bool OnControlled
+        {
+            get
+            {
+                return rb.velocity.magnitude > 30f;
+            }
+        }
         public bool OnAnyGrounded
         {
             get

@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections;
 using UnityEngine;
 
 namespace PlayerSpace
@@ -39,9 +39,10 @@ namespace PlayerSpace
         {
             animator.SetFloat(name, value);
         }
-        public static float CurrentAnimationClipLength(this Animator animator)
+        public static float CurrentAnimationClipLength(this Animator animator, string clipName)
         {
-            return animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            Debug.Log(animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name == clipName));
+            return animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name == clipName).length;
         }
     }
     public static class RoleMoveExtension
@@ -97,10 +98,6 @@ namespace PlayerSpace
         public static void DoSlide(this Rigidbody2D rb)
         {
             rb.DoAddMove(rb.velocity * -0.1f);
-        }
-        public static void DoDash(this Rigidbody2D rb, float force)
-        {
-
         }
     }
 }

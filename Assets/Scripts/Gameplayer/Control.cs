@@ -11,6 +11,13 @@ namespace PlayerSpace.Gameplayer
         Mover mover;
         Combat combat;
 
+        bool isInputKeyboard = false;
+        bool ableToMove = true;
+
+        #region UI render
+        /// <summary>
+        /// Set faceing position with localScaleX.
+        /// </summary>
         public float SetLocalScaleXByMovement
         {
             set
@@ -22,10 +29,85 @@ namespace PlayerSpace.Gameplayer
                 , model.characterSize);
             }
         }
+        /// <summary>
+        /// Active UI to hint player press the button.
+        /// </summary>
+        /// <param name="isActive"></param>
+        public void ActiveHintUI(bool isActive) => view.UpdateHintUI(isActive);
+        #endregion
+
+        #region GameControl
+        public void AssignControllerType(bool isKeyboard)
+        {
+            view.Init(isKeyboard);
+            isInputKeyboard = isKeyboard;
+        }
 
         public void AssignTeam(int id)
         {
             model.teamID = id;
+        }
+
+        /// <summary>
+        /// Get startitem implement
+        /// </summary>
+        /// <param name="go"></param>
+        /// <param name="callback"></param>
+        public void GetStartItem(GameObject go, System.Action callback)
+        {
+            if (model.hasGotStartItem == false)
+            {
+                model.hasGotStartItem = true;
+
+                string name = go.name;
+                go.SetActive(false);
+
+                switch (name)
+                {
+                    case "IceSkate":
+                        model.iceSkate = true;
+                        break;
+                    case "SlimeShoe":
+                        model.slimeShoe = true;
+                        break;
+                    case "SwiftnessBoot":
+                        model.swiftnessBoot = true;
+                        break;
+                    case "RocketShoe":
+                        model.rocketShoe = true;
+                        break;
+                    case "Shield":
+                        model.shield = true;
+                        break;
+                    case "EnergyDringk":
+                        model.energyDrink = true;
+                        break;
+                    case "ExtralLife":
+                        model.extraLife = true;
+                        break;
+                    case "Armor":
+                        model.armor = true;
+                        break;
+                    case "InspectorChance":
+                        model.inspectorsChance = true;
+                        break;
+                    case "DeathWithStronger":
+                        model.deathWithStronger = true;
+                        break;
+                    case "Balloon":
+                        model.balloon = true;
+                        break;
+                }
+
+                callback();
+            }
+        }
+        #endregion
+
+        #region Combat
+        public void Attack()
+        {
+            combat.Attack();
         }
 
         public void Hurt(Vector2 force)
@@ -34,23 +116,70 @@ namespace PlayerSpace.Gameplayer
             mover.Inertance(force);
             combat.Hurt();
         }
+        #endregion
 
+        #region Mover
         public void Jump(bool isJumping)
         {
-            mover.SetJumping = isJumping;
+            mover.SetJumping(isJumping);
+        }
+
+        public void Run(bool isRunning)
+        {
+            mover.SetRunning(isRunning);
         }
 
         public void Move(float movement)
         {
             SetLocalScaleXByMovement = movement * model.reverseInput;
-            mover.SetInput = movement * model.reverseInput;
+            mover.SetInput(movement * model.reverseInput);
         }
 
         public void DoDash(Vector2 force)
         {
             mover.DoDash(force * model.dashPower);
         }
+        #endregion
 
+        #region PlayerState
+        public void OnPlayerStateChaned(PlayerState newState)
+        {
+            switch (newState)
+            {
+                case PlayerState.Dead:
+                    ableToMove = false;
+                    mover.DoForceStop();
+                    break;
+                case PlayerState.Reborn:
+                    ableToMove = false;
+                    break;
+                case PlayerState.Hunter:
+                    ableToMove = true;
+                    break;
+                case PlayerState.Escaper:
+                    ableToMove = true;
+                    break;
+                case PlayerState.Lockblood:
+                    ableToMove = true;
+                    break;
+                case PlayerState.Invincible:
+                    ableToMove = true;
+                    break;
+                case PlayerState.Spectator:
+                    ableToMove = true;
+                    break;
+            }
+        }
+        public void PlayerStateHandler()
+        {
+            if (prePlayerState != playerState)
+                OnPlayerStateChaned(playerState);
+
+            prePlayerState = playerState;
+        }
+        #endregion
+
+        #region Unity Native APIs
         private void Awake()
         {
             view = GetComponent<View>();
@@ -63,9 +192,8 @@ namespace PlayerSpace.Gameplayer
             combat = new Combat(view, model);
         }
 
-        private void Update()
+        void DevInput()
         {
-            mover.Update();
             if (Input.GetKeyDown(KeyCode.T))
             {
                 combat.Hurt();
@@ -80,9 +208,27 @@ namespace PlayerSpace.Gameplayer
             }
         }
 
+
+        private void Update()
+        {
+            DevInput();
+            PlayerStateHandler();
+
+            if (ableToMove)
+                mover.Update();
+
+        }
+
         private void FixedUpdate()
         {
-            mover.FixedUpdate();
+            if (ableToMove)
+                mover.FixedUpdate();
         }
+        #endregion
+
+        #region Getters
+        PlayerState playerState { get { return model.CurrentPlayerState; } }
+        PlayerState prePlayerState = new PlayerState();
+        #endregion
     }
 }
