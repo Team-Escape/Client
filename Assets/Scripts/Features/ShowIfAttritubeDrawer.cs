@@ -1,10 +1,11 @@
 ﻿using System.Reflection;
-using UnityEditor;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 [CustomPropertyDrawer(typeof(ShowIfAttribute), true)]
 public class ShowIfAttributeDrawer : PropertyDrawer
 {

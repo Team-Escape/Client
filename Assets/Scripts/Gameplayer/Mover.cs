@@ -22,6 +22,8 @@ namespace PlayerSpace.Gameplayer
         public bool isJumpButtonReleased = true;
         public bool isDoubleJumping = false;
 
+        float preEndurance = 0;
+
         GroundState preGroundState = new GroundState();
 
         #region Const variables. Game balance related.
@@ -284,6 +286,10 @@ namespace PlayerSpace.Gameplayer
                 wallJumpPos = -xInput;
             }
         }
+        public void OnEnduranceChanged(float newVal)
+        {
+            view.UpdateEndurancebar(newVal);
+        }
         /// <summary>
         /// Control Endurance
         /// </summary>
@@ -299,6 +305,11 @@ namespace PlayerSpace.Gameplayer
                 if (model.energyDrink) endurance += Time.deltaTime;
                 endurance += Time.deltaTime;
             }
+
+            if (preEndurance != model.endurance)
+                OnEnduranceChanged(model.endurance);
+
+            preEndurance = model.endurance;
         }
 
         /// <summary>

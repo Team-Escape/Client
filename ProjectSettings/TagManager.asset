@@ -13,6 +13,7 @@ TagManager:
   - Confiner
   - DashItem
   - Fields
+  - GameItem
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,8 @@ namespace PlayerSpace.Gameplayer
         Mover mover;
         Combat combat;
 
+        public GameItemControl gameItem = null;
+
         bool isInputKeyboard = false;
         bool ableToMove = true;
 
@@ -42,12 +44,10 @@ namespace PlayerSpace.Gameplayer
             view.Init(isKeyboard);
             isInputKeyboard = isKeyboard;
         }
-
         public void AssignTeam(int id)
         {
             model.teamID = id;
         }
-
         /// <summary>
         /// Get startitem implement
         /// </summary>
@@ -110,12 +110,25 @@ namespace PlayerSpace.Gameplayer
         }
         #endregion
 
+        #region In-Game Item
+        public void SetGameItem(GameItemControl item)
+        {
+            if (gameItem == null)
+                gameItem = item;
+        }
+        public void UseGameItem()
+        {
+            if (gameItem == null) return;
+            gameItem.Use();
+            this.gameItem = null;
+        }
+        #endregion
+
         #region Combat
         public void Attack()
         {
             combat.Attack();
         }
-
         public void Hurt(Vector2 force)
         {
             if (combat.isHurting) return;
@@ -129,18 +142,15 @@ namespace PlayerSpace.Gameplayer
         {
             mover.SetJumping(isJumping);
         }
-
         public void Run(bool isRunning)
         {
             mover.SetRunning(isRunning);
         }
-
         public void Move(float movement)
         {
             SetLocalScaleXByMovement = movement * model.reverseInput;
             mover.SetInput(movement * model.reverseInput);
         }
-
         public void DoDash(Vector2 force)
         {
             mover.DoDash(force * model.dashPower);
@@ -191,13 +201,11 @@ namespace PlayerSpace.Gameplayer
             view = GetComponent<View>();
             model = GetComponent<Model>();
         }
-
         private void OnEnable()
         {
             mover = new Mover(view, model);
             combat = new Combat(view, model);
         }
-
         void DevInput()
         {
             if (Input.GetKeyDown(KeyCode.T))
@@ -213,8 +221,6 @@ namespace PlayerSpace.Gameplayer
                 combat.Mutate();
             }
         }
-
-
         private void Update()
         {
             DevInput();
@@ -223,12 +229,14 @@ namespace PlayerSpace.Gameplayer
             if (ableToMove)
                 mover.Update();
 
+            combat.Update();
         }
-
         private void FixedUpdate()
         {
             if (ableToMove)
                 mover.FixedUpdate();
+
+            combat.FixedUpdate();
         }
         #endregion
 

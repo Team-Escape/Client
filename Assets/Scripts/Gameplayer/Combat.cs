@@ -21,13 +21,38 @@ namespace PlayerSpace.Gameplayer
         public bool isHurting = false;
         public bool isShielding = false;
 
+        float preHealth = 0;
+        float preEndurance = 0;
+
+        #region Listener
+        public void HealthBarHandler()
+        {
+            if (preHealth != model.health)
+                OnHealthChanged(model.health);
+
+            preHealth = model.health;
+        }
+        public void OnHealthChanged(float newVal)
+        {
+            view.UpdateHealthbar(newVal);
+        }
+        #endregion
+
+        #region Unity Native Imitate
+        public void Update()
+        {
+            HealthBarHandler();
+        }
+        public void FixedUpdate() { }
+        #endregion
+
+        #region Combat Implement
         public Combat(View view, Model model)
         {
             this.view = view;
             this.model = model;
             ActiveStartItemIfEquip();
         }
-
         public void ActiveStartItemIfEquip()
         {
             if (model.shield)
@@ -35,7 +60,6 @@ namespace PlayerSpace.Gameplayer
                 isShielding = true;
             }
         }
-
         public void Attack()
         {
             if (isAttacking) return;
@@ -46,7 +70,6 @@ namespace PlayerSpace.Gameplayer
                 AbleToDo(1f, () => isAttacking = false);
             }
         }
-
         public void Hurt()
         {
             if (isHurting) return;
@@ -84,14 +107,12 @@ namespace PlayerSpace.Gameplayer
             anim.DoAnimation("hurt");
             AbleToDo(anim.CurrentAnimationClipLength("Hurt"), () => isHurting = false);
         }
-
         public void Dead()
         {
             CurrentPlayerState = AsDead;
             anim.DoAnimation("dead");
             AbleToDo(model.rebornDuration, Reborn);
         }
-
         public void Reborn()
         {
             if (CurrentPlayerState != AsDead) return;
@@ -111,7 +132,6 @@ namespace PlayerSpace.Gameplayer
                 : AsEscaper
             );
         }
-
         public void Mutate()
         {
             CurrentPlayerState = AsSpectator;
@@ -127,7 +147,6 @@ namespace PlayerSpace.Gameplayer
 
             SearchForAllChild(transform, playerLayer, sepecatorLayer);
         }
-
         public void SearchForAllChild(Transform t, int layerToBeChanged, int layerToChange)
         {
             foreach (Transform c in t)
@@ -139,5 +158,6 @@ namespace PlayerSpace.Gameplayer
                 }
             }
         }
+        #endregion
     }
 }

@@ -11,6 +11,18 @@ namespace PlayerSpace
     public enum JumpState { PreWallSliding, IsWallSliding, PreWallJumping, IsWallJumping, PreGrounded, IsGrounded, PreJumping, IsJumping, PreFalling, IsFalling };
     public static class RoleExtension
     {
+        // public static void SetValueInTime<T>(this T source, float sec, ref float currentVal, float endVal) where T : MonoBehaviour
+        // {
+        //     source.StartCoroutine(AddValbyTime(sec, currentVal, endVal));
+        // }
+        // public static IEnumerator AddValbyTime(float sec, float currentVal, float endVal)
+        // {
+        //     while (Mathf.Abs(startVal - endVal) > 0.01f)
+        //     {
+        //         startVal += Time.deltaTime;
+        //         yield return new WaitForSecondsRealtime(Time.deltaTime / sec);
+        //     }
+        // }
         public static void AbleToDo<T>(this T source, float sec, System.Action action) where T : MonoBehaviour
         {
             source.StartCoroutine(DelaySec(sec, action));

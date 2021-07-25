@@ -45,13 +45,13 @@ namespace PlayerSpace.Gameplayer
         {
             control = GetComponent<Control>();
         }
-
         private void OnEnable()
         {
             if (testMode) AssignController(0);
         }
         private void Update()
         {
+            ItemHandler();
             MoveHandler();
             CombatHandler();
         }
@@ -103,10 +103,25 @@ namespace PlayerSpace.Gameplayer
                         break;
                 }
             }
+
+            if (other.tag == "GameItem")
+            {
+                control.ActiveHintUI(true);
+                if (input.GetButtonDown("Item"))
+                {
+                    // GameItemControl itemControl = other.GetComponent<>();
+                    // control.SetGameItem();
+                    // control.UseGameItem();
+                }
+            }
         }
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.tag == "StartItem")
+            {
+                control.ActiveHintUI(false);
+            }
+            if (other.tag == "GameItem")
             {
                 control.ActiveHintUI(false);
             }
@@ -115,6 +130,13 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region Input Implement
+        private void ItemHandler()
+        {
+            if (input.GetButtonDown("Item"))
+            {
+                control.UseGameItem();
+            }
+        }
         private void MoveHandler()
         {
             if (input.GetButton("MoveR"))
