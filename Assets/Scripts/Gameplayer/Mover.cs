@@ -455,6 +455,10 @@ namespace PlayerSpace.Gameplayer
         /// </summary>
         public void ControledMoveHandler()
         {
+            if (OnAnyFronted)
+            {
+                WallSliding();
+            }
             rb.DoAddforce(-rb.velocity * xInput);
         }
         /// <summary>

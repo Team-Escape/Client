@@ -189,6 +189,9 @@ namespace PlayerSpace.Gameplayer
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+
+            EditorGUILayout.Space();
+            GUILayout.Label("Test Variables");
             EditorGUILayout.PropertyField(testStateProp);
             if (GUILayout.Button("Change state"))
             {

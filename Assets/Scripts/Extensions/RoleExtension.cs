@@ -11,18 +11,57 @@ namespace PlayerSpace
     public enum JumpState { PreWallSliding, IsWallSliding, PreWallJumping, IsWallJumping, PreGrounded, IsGrounded, PreJumping, IsJumping, PreFalling, IsFalling };
     public static class RoleExtension
     {
-        // public static void SetValueInTime<T>(this T source, float sec, ref float currentVal, float endVal) where T : MonoBehaviour
-        // {
-        //     source.StartCoroutine(AddValbyTime(sec, currentVal, endVal));
-        // }
-        // public static IEnumerator AddValbyTime(float sec, float currentVal, float endVal)
-        // {
-        //     while (Mathf.Abs(startVal - endVal) > 0.01f)
-        //     {
-        //         startVal += Time.deltaTime;
-        //         yield return new WaitForSecondsRealtime(Time.deltaTime / sec);
-        //     }
-        // }
+        public delegate bool ConditionFunc();
+        /// <summary>
+        /// Loop calling callback until condition meets
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="conditionCallback"></param>
+        /// <param name="callback"></param>
+        public static void AbleToDoCondition<T>(this T source, ConditionFunc condition, System.Action action, System.Action callback) where T : MonoBehaviour
+        {
+            source.StartCoroutine(LoopWithCondition(condition, action, callback));
+        }
+        public static IEnumerator LoopWithCondition(ConditionFunc condition, System.Action action, System.Action callback)
+        {
+            Debug.Log("contidion: " + condition());
+            while (condition())
+            {
+                Debug.Log("looping");
+                action();
+                yield return null;
+            }
+            callback();
+        }
+        /// <summary>
+        /// Loop calling callback serveral times with duration.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="times"></param>
+        /// <param name="duration"></param>
+        /// <param name="callback"></param>
+        public static void AbleToDoTimes<T>(this T source, float times, float duration, System.Action callback) where T : MonoBehaviour
+        {
+            source.StartCoroutine(LoopTimes(times, duration, callback));
+        }
+        public static IEnumerator LoopTimes(float times, float duration, System.Action callback)
+        {
+            while (times > 0)
+            {
+                callback();
+                yield return new WaitForSecondsRealtime(duration);
+                times--;
+            }
+        }
+        /// <summary>
+        /// Simple delay sec then excute callback.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="sec"></param>
+        /// <param name="action"></param>
         public static void AbleToDo<T>(this T source, float sec, System.Action action) where T : MonoBehaviour
         {
             source.StartCoroutine(DelaySec(sec, action));

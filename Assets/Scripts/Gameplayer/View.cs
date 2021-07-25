@@ -34,19 +34,23 @@ namespace PlayerSpace.Gameplayer
 
         public void UpdateHintUI(bool isActive)
         {
+            if (uiHint.image == null) return;
             uiHint.image.gameObject.SetActive(isActive);
         }
         public void UpdateHintUI(bool isActive, Transform pos)
         {
+            if (uiHint.image == null) return;
             uiHint.image.gameObject.SetActive(isActive);
         }
 
         public void UpdateHealthbar(float amount)
         {
+            if (healthBar.health == null) return;
             healthBar.health.fillAmount = amount;
         }
         public void UpdateEndurancebar(float amount)
         {
+            if (healthBar.endurance == null) return;
             healthBar.endurance.fillAmount = amount;
         }
     }

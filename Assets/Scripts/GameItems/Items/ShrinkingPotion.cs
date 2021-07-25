@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace PlayerSpace.Gameplayer
@@ -7,8 +8,26 @@ namespace PlayerSpace.Gameplayer
     {
         public override void Use()
         {
-            // float currentScaleX = 0;
-            // model.transform.localScale = new Vector3();
+            RoleExtension.ConditionFunc condition = ShrinkCondition;
+
+            AbleToDoCondition(condition, Shirnk, () => AbleToDo(5f, ResetScale));
+        }
+
+        public void Shirnk()
+        {
+            model.characterSize *= 0.9f;
+        }
+
+        public void ResetScale()
+        {
+            model.characterSize = 1f;
+        }
+
+        public bool ShrinkCondition()
+        {
+            if (model.characterSize > 0.5f)
+                return true;
+            return false;
         }
     }
 }

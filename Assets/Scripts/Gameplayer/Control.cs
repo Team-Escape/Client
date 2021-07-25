@@ -115,6 +115,7 @@ namespace PlayerSpace.Gameplayer
         {
             if (gameItem == null)
                 gameItem = item;
+            gameItem.Init(model);
         }
         public void UseGameItem()
         {
@@ -218,7 +219,8 @@ namespace PlayerSpace.Gameplayer
             }
             if (Input.GetKeyDown(KeyCode.U))
             {
-                combat.Mutate();
+                SetGameItem(new ShrinkingPotion());
+                UseGameItem();
             }
         }
         private void Update()
