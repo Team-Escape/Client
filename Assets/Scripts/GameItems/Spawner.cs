@@ -32,8 +32,10 @@ namespace PlayerSpace.Gameplayer
         public void RegisterItems()
         {
             containers = new List<ItemContainer>();
-            Register(new HealthPotion(), "HealthPostion", useHealthPotion);
-            Register(new ShrinkingPotion(), "ShrinkingPostion", useShrinkingPotion);
+            if (useHealthPotion)
+                Register(new HealthPotion(), "HealthPostion", useHealthPotion);
+            if (useShrinkingPotion)
+                Register(new ShrinkingPotion(), "ShrinkingPostion", useShrinkingPotion);
         }
 
         private void Register(GameItemControl item, string name, bool isActive)

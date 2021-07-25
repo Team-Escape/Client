@@ -7,7 +7,7 @@ namespace PlayerSpace.Gameplayer
     {
         public override void Use()
         {
-            float currentScaleX = 0;
+            // float currentScaleX = 0;
             // model.transform.localScale = new Vector3();
         }
     }

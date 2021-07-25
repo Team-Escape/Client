@@ -155,17 +155,13 @@ MonoBehaviour:
     isActive: 1
     itemName: HealthPostion
     probability: 1
-  - id: 1
-    isActive: 1
-    itemName: ShrinkingPostion
-    probability: 1
   currentItem:
     id: 0
     isActive: 1
     itemName: 
     probability: 1
   useHealthPotion: 1
-  useShrinkingPotion: 1
+  useShrinkingPotion: 0
 --- !u!4 &34977609
 Transform:
   m_ObjectHideFlags: 0
