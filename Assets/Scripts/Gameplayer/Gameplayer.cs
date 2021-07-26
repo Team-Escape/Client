@@ -115,6 +115,17 @@ namespace PlayerSpace.Gameplayer
                     control.SetGameItem(itemControl);
                 }
             }
+
+            if (other.tag == "Flag")
+            {
+                if (control.isGoaled) return;
+                control.ActiveHintUI(true, other.transform.position);
+                if (input.GetButtonDown("Item"))
+                {
+                    control.ActiveHintUI(false);
+                    control.Goal(GoalCallback);
+                }
+            }
         }
         private void OnTriggerExit2D(Collider2D other)
         {
@@ -123,6 +134,10 @@ namespace PlayerSpace.Gameplayer
                 control.ActiveHintUI(false);
             }
             if (other.tag == "GameItem")
+            {
+                control.ActiveHintUI(false);
+            }
+            if (other.tag == "Flag")
             {
                 control.ActiveHintUI(false);
             }

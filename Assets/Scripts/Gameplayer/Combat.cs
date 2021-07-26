@@ -51,14 +51,25 @@ namespace PlayerSpace.Gameplayer
         {
             this.view = view;
             this.model = model;
-            ActiveStartItemIfEquip();
+            ActiveStartItemVariablesIfEquip();
         }
-        public void ActiveStartItemIfEquip()
+        /// <summary>
+        /// Some variables that would be used of start items. 
+        /// Set boolean to true if equipped
+        /// </summary>
+        public void ActiveStartItemVariablesIfEquip()
         {
             if (model.shield)
             {
                 isShielding = true;
             }
+        }
+        /// <summary>
+        /// Player goal func.
+        /// </summary>
+        public void Goal()
+        {
+            CurrentPlayerState = AsLockBlood;
         }
         public void Attack()
         {

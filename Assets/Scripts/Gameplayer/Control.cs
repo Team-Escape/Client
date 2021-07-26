@@ -7,6 +7,7 @@ namespace PlayerSpace.Gameplayer
     public class Control : MonoBehaviour
     {
         public GameItemControl gameItem = null;
+        public bool isGoaled = false;
 
         View view;
         Model model;
@@ -45,6 +46,11 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region GameControl
+        public void Goal(System.Action callback)
+        {
+            combat.Goal();
+            callback();
+        }
         public void AssignControllerType(bool isKeyboard)
         {
             view.Init(isKeyboard);
