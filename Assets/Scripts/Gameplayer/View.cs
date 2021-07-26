@@ -7,6 +7,7 @@ namespace PlayerSpace.Gameplayer
     {
         [SerializeField] UIHint uiHint;
         [SerializeField] HealthBar healthBar;
+        [SerializeField] Image gameItemUI;
 
         Animator anim;
 
@@ -26,23 +27,35 @@ namespace PlayerSpace.Gameplayer
         }
         #endregion
 
+        public void UpdateGameItemUI(Sprite sprite)
+        {
+            if (sprite == null)
+            {
+                gameItemUI.gameObject.SetActive(false);
+                gameItemUI.sprite = null;
+            }
+            else
+            {
+                gameItemUI.sprite = sprite;
+                gameItemUI.gameObject.SetActive(true);
+            }
+        }
         public void UpdateShaderRender(string effect)
         {
             Material material = GetComponent<Renderer>().material;
             material.EnableKeyword(effect);
         }
-
         public void UpdateHintUI(bool isActive)
         {
             if (uiHint.image == null) return;
             uiHint.image.gameObject.SetActive(isActive);
         }
-        public void UpdateHintUI(bool isActive, Transform pos)
+        public void UpdateHintUI(bool isActive, Vector2 pos)
         {
             if (uiHint.image == null) return;
+            uiHint.image.transform.position = pos;
             uiHint.image.gameObject.SetActive(isActive);
         }
-
         public void UpdateHealthbar(float amount)
         {
             if (healthBar.health == null) return;

@@ -457,9 +457,12 @@ namespace PlayerSpace.Gameplayer
         {
             if (OnAnyFronted)
             {
-                WallSliding();
+                DoMove();
             }
-            rb.DoAddforce(-rb.velocity * xInput);
+            else
+            {
+                rb.DoAddforce(-rb.velocity * xInput);
+            }
         }
         /// <summary>
         /// Usual moving action implement.

@@ -6,15 +6,16 @@ namespace PlayerSpace.Gameplayer
 {
     public class Control : MonoBehaviour
     {
+        public GameItemControl gameItem = null;
+
         View view;
         Model model;
         Mover mover;
         Combat combat;
-
-        public GameItemControl gameItem = null;
-
         bool isInputKeyboard = false;
         bool ableToMove = true;
+
+        Camera cam { get { return model.cam; } }
 
         #region UI render
         /// <summary>
@@ -36,6 +37,11 @@ namespace PlayerSpace.Gameplayer
         /// </summary>
         /// <param name="isActive"></param>
         public void ActiveHintUI(bool isActive) => view.UpdateHintUI(isActive);
+        public void ActiveHintUI(bool isActive, Vector3 pos)
+        {
+            Vector2 newPos = cam.WorldToScreenPoint(new Vector3(pos.x, pos.y, -10));
+            view.UpdateHintUI(isActive, newPos);
+        }
         #endregion
 
         #region GameControl
@@ -111,17 +117,25 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region In-Game Item
-        public void SetGameItem(GameItemControl item)
+        public void SetGameItem(Spawner spawner)
         {
-            if (gameItem == null)
-                gameItem = item;
+            if (gameItem != null || spawner.item == null)
+                return;
+
+            ActiveHintUI(false);
+
+            gameItem = spawner.item;
             gameItem.Init(model);
+            view.UpdateGameItemUI(gameItem.sprite);
+
+            spawner.GetItem();
         }
         public void UseGameItem()
         {
             if (gameItem == null) return;
             gameItem.Use();
             this.gameItem = null;
+            view.UpdateGameItemUI(null);
         }
         #endregion
 
@@ -130,11 +144,11 @@ namespace PlayerSpace.Gameplayer
         {
             combat.Attack();
         }
-        public void Hurt(Vector2 force)
+        public void Hurt(Vector2 force, System.Action callback)
         {
             if (combat.isHurting) return;
             mover.Inertance(force);
-            combat.Hurt();
+            combat.Hurt(callback);
         }
         #endregion
 
@@ -211,16 +225,11 @@ namespace PlayerSpace.Gameplayer
         {
             if (Input.GetKeyDown(KeyCode.T))
             {
-                combat.Hurt();
+                combat.Hurt(null);
             }
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 combat.Dead();
-            }
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                SetGameItem(new ShrinkingPotion());
-                UseGameItem();
             }
         }
         private void Update()

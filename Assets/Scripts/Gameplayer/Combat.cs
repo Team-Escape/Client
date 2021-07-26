@@ -70,7 +70,7 @@ namespace PlayerSpace.Gameplayer
                 AbleToDo(1f, () => isAttacking = false);
             }
         }
-        public void Hurt()
+        public void Hurt(System.Action callback)
         {
             if (isHurting) return;
             if (isShielding)
@@ -81,31 +81,42 @@ namespace PlayerSpace.Gameplayer
             }
             switch (CurrentPlayerState)
             {
+                case PlayerState.Spectator:
                 case PlayerState.Lockblood:
                     if (model.health > 1)
                         model.health--;
+                    isHurting = true;
+                    anim.DoAnimation("hurt");
+                    AbleToDo(anim.CurrentAnimationClipLength("Hurt"), () => isHurting = false);
+                    break;
+                case PlayerState.Dead:
+                    if (model.extraLife)
+                    {
+                        model.extraLife = false;
+                        Reborn();
+                        isHurting = true;
+                        AbleToDo(anim.CurrentAnimationClipLength("Reborn") + 1f, () => isHurting = false);
+                    }
+                    else
+                    {
+                        // Got Caught
+                        Mutate();
+                        callback();
+                    }
                     break;
                 default:
                     model.health--;
                     if (model.health <= 0)
                     {
-                        if (model.extraLife)
-                        {
-                            model.extraLife = false;
-                            Reborn();
-                        }
-                        else
-                        {
-                            model.health = 0;
-                            Dead();
-                        }
+                        model.health = 0;
+                        Dead();
                         return;
                     }
+                    isHurting = true;
+                    anim.DoAnimation("hurt");
+                    AbleToDo(anim.CurrentAnimationClipLength("Hurt"), () => isHurting = false);
                     break;
             }
-            isHurting = true;
-            anim.DoAnimation("hurt");
-            AbleToDo(anim.CurrentAnimationClipLength("Hurt"), () => isHurting = false);
         }
         public void Dead()
         {

@@ -25,10 +25,8 @@ namespace PlayerSpace
         }
         public static IEnumerator LoopWithCondition(ConditionFunc condition, System.Action action, System.Action callback)
         {
-            Debug.Log("contidion: " + condition());
             while (condition())
             {
-                Debug.Log("looping");
                 action();
                 yield return null;
             }

@@ -62,7 +62,7 @@ namespace PlayerSpace.Gameplayer
             {
                 case "PlayerWeapon":
                     Vector2 force = (transform.position - other.transform.parent.position);
-                    control.Hurt(force);
+                    control.Hurt(force, CaughtCallBack);
                     break;
                 case "DashItem":
                     string[] nameSplice = other.name.Split(',');
@@ -77,7 +77,7 @@ namespace PlayerSpace.Gameplayer
         {
             if (other.tag == "StartItem")
             {
-                control.ActiveHintUI(true);
+                control.ActiveHintUI(true, other.transform.position);
 
                 // Prevent unregister item.
                 switch (other.name)
@@ -106,12 +106,13 @@ namespace PlayerSpace.Gameplayer
 
             if (other.tag == "GameItem")
             {
-                control.ActiveHintUI(true);
+                Spawner itemControl = other.GetComponent<Spawner>();
+                if (itemControl.item == null || control.gameItem != null) return;
+
+                control.ActiveHintUI(true, other.transform.position);
                 if (input.GetButtonDown("Item"))
                 {
-                    // GameItemControl itemControl = other.GetComponent<>();
-                    // control.SetGameItem();
-                    // control.UseGameItem();
+                    control.SetGameItem(itemControl);
                 }
             }
         }
