@@ -158,11 +158,11 @@ MonoBehaviour:
   - id: 0
     isActive: 1
     name: HealthPotion
-    probability: 1
+    probability: 2
   - id: 1
     isActive: 1
     name: ShrinkingPotion
-    probability: 1
+    probability: 2
   useHealthPotion: 1
   useShrinkingPotion: 1
 --- !u!4 &34977609
@@ -1258,6 +1258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 562389449}
+  - component: {fileID: 562389450}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1279,6 +1280,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &562389450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562389448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e503bd7e0c93434a8c8291503ec3abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 5369785646716801242, guid: 5791a5679f3074fa7a47222c31a7b1e9, type: 3}
+  - {fileID: 3549328830176112758, guid: 4899a5d64deec4f0cb349db05fe2a72f, type: 3}
 --- !u!1 &579251913
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,7 @@ namespace PlayerSpace.Gameplayer
                     box.Add(index);
                 }
             }
-            currentItemID = Random.Range(0, box.Count);
+            currentItemID = box[Random.Range(0, box.Count)];
         }
 
         public void RegisterItems()

@@ -16,8 +16,7 @@ namespace PlayerSpace.Gameplayer
             else
                 Destroy(gameObject);
         }
-        public List<ItemScriptable> items;
-        public ItemScriptable GetItem(int id) => items[id];
-        public ShrinkingPotion sss;
+        public List<GameObject> items;
+        public GameItemControl GetItem(int id) => items[id].GetComponent<GameItemControl>();
     }
 }

@@ -140,8 +140,8 @@ namespace PlayerSpace.Gameplayer
         public void UseGameItem()
         {
             if (itemHandler.GameItemControl == null) return;
-            itemHandler.GameItemControl = null;
             itemHandler.GameItemControl.Use();
+            itemHandler.GameItemControl = null;
             view.UpdateGameItemUI(null);
         }
         #endregion
@@ -227,6 +227,7 @@ namespace PlayerSpace.Gameplayer
         {
             mover = new Mover(view, model);
             combat = new Combat(view, model);
+            itemHandler = new Slot();
         }
         void DevInput()
         {

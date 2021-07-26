@@ -70,6 +70,7 @@ namespace PlayerSpace.Gameplayer
         public float wallJumpTime = 0.2f;
         public float dashPower = 25f;
         public float endurance = 3f;
+        public float maxEndurance = 3f;
         #endregion
 
         #region Layer

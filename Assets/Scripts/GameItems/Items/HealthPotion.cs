@@ -7,6 +7,8 @@ namespace PlayerSpace.Gameplayer
     {
         public override void Use()
         {
+            if (model.health >= model.maxHealth)
+                return;
             model.health++;
         }
     }

@@ -12,11 +12,12 @@ namespace PlayerSpace.Gameplayer
         public Slot()
         {
             itemModel = ItemModel.instance;
+            GameItemControl = new GameItemControl();
         }
 
         public void SetGameItem(int id, Model playerModel)
         {
-            GameItemControl = itemModel.GetItem(id).item;
+            GameItemControl = itemModel.GetItem(id);
             GameItemControl.Init(playerModel);
         }
 

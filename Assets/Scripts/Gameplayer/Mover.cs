@@ -10,7 +10,6 @@ namespace PlayerSpace.Gameplayer
         public float jumpTimeCounter = 0f;
         public float wallJumpTimeCounter = 0f;
         public float wallJumpPos = 0;
-        public float endurance = 3f;
 
         public bool ableToJump = true;
         public bool isRunning = false;
@@ -58,7 +57,7 @@ namespace PlayerSpace.Gameplayer
         #region Unity APIs Imitate
         public void OnEnable()
         {
-            endurance = model.endurance;
+            model.endurance = model.maxEndurance;
         }
         public void Update()
         {
@@ -288,29 +287,29 @@ namespace PlayerSpace.Gameplayer
         }
         public void OnEnduranceChanged(float newVal)
         {
-            Debug.Log(newVal / model.endurance);
-            view.UpdateEndurancebar(newVal / model.endurance);
+            Debug.Log(newVal / model.maxEndurance);
+            view.UpdateEndurancebar(newVal / model.maxEndurance);
         }
         /// <summary>
         /// Control Endurance
         /// </summary>
         public void EnduranceHandler()
         {
-            if (isRunning && endurance > 0)
+            if (isRunning && model.endurance > 0)
             {
-                endurance -= Time.deltaTime;
+                model.endurance -= Time.deltaTime;
             }
-            if (isRunning == false && isAbleToRecoveryEndurance && endurance < model.endurance)
+            if (isRunning == false && isAbleToRecoveryEndurance && model.endurance < model.maxEndurance)
             {
                 SetRunning(false);
-                if (model.energyDrink) endurance += Time.deltaTime;
-                endurance += Time.deltaTime;
+                if (model.energyDrink) model.endurance += Time.deltaTime;
+                model.endurance += Time.deltaTime;
             }
 
-            if (preEndurance != endurance)
-                OnEnduranceChanged(endurance);
+            if (preEndurance != model.endurance)
+                OnEnduranceChanged(model.endurance);
 
-            preEndurance = endurance;
+            preEndurance = model.endurance;
         }
 
         /// <summary>
