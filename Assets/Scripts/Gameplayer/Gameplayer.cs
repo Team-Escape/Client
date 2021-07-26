@@ -106,19 +106,22 @@ namespace PlayerSpace.Gameplayer
 
             if (other.tag == "GameItem")
             {
-                Spawner itemControl = other.GetComponent<Spawner>();
-                if (itemControl.item == null || control.gameItem != null) return;
+                Spawner spawner = other.GetComponent<Spawner>();
+                if (spawner.currentItemID == -1 || control.IsItemNull())
+                    return;
 
                 control.ActiveHintUI(true, other.transform.position);
+
                 if (input.GetButtonDown("Item"))
                 {
-                    control.SetGameItem(itemControl);
+                    control.SetGameItem(spawner.currentItemID, spawner.ResetItem);
                 }
             }
 
             if (other.tag == "Flag")
             {
-                if (control.isGoaled) return;
+                if (control.IsGoaled()) return;
+
                 control.ActiveHintUI(true, other.transform.position);
                 if (input.GetButtonDown("Item"))
                 {

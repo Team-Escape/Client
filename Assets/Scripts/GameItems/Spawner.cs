@@ -11,7 +11,7 @@ namespace PlayerSpace.Gameplayer
     public class Spawner : MonoBehaviour
     {
         public float duration = 10f;
-        public GameItemControl item;
+        public int currentItemID = -1;
         public List<ItemContainer> containers = new List<ItemContainer>();
         [HideInInspector]
         public bool useHealthPotion = true;
@@ -28,10 +28,10 @@ namespace PlayerSpace.Gameplayer
         }
         #endregion
 
-        public void GetItem()
+        public void ResetItem()
         {
-            if (item == null) return;
-            item = null;
+            if (currentItemID == -1) return;
+            currentItemID = -1;
             this.AbleToDo(duration, () => RandomItem());
         }
 
@@ -40,21 +40,13 @@ namespace PlayerSpace.Gameplayer
             List<int> box = new List<int>();
             foreach (var item in containers)
             {
-                int index = 0;
+                int index = item.id;
                 for (int i = 0; i < item.probability; i++)
                 {
                     box.Add(index);
                 }
-                index++;
             }
-            int rnd = Random.Range(0, box.Count);
-            ItemContainer container = containers[rnd];
-
-            GameObject go = Resources.Load("Game/Items/" + container.name) as GameObject;
-            if (go == null)
-                Debug.Log("Prefab not found or registered yet, make sure the name is correct and item prefab exists");
-            else
-                item = go.GetComponent<GameItemControl>();
+            currentItemID = Random.Range(0, box.Count);
         }
 
         public void RegisterItems()

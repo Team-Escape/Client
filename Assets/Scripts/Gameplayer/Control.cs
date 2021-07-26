@@ -6,15 +6,17 @@ namespace PlayerSpace.Gameplayer
 {
     public class Control : MonoBehaviour
     {
-        public GameItemControl gameItem = null;
-        public bool isGoaled = false;
+        public bool IsItemNull() => (itemHandler.GameItemControl == null);
+        public bool IsGoaled() => isGoaled;
 
+        ISlot itemHandler;
         View view;
         Model model;
         Mover mover;
         Combat combat;
         bool isInputKeyboard = false;
         bool ableToMove = true;
+        bool isGoaled = false;
 
         Camera cam { get { return model.cam; } }
 
@@ -123,24 +125,23 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region In-Game Item
-        public void SetGameItem(Spawner spawner)
+        public void SetGameItem(int id, System.Action callback)
         {
-            if (gameItem != null || spawner.item == null)
+            if (itemHandler.GameItemControl != null)
                 return;
 
             ActiveHintUI(false);
 
-            gameItem = spawner.item;
-            gameItem.Init(model);
-            view.UpdateGameItemUI(gameItem.sprite);
+            itemHandler.SetGameItem(id, model);
+            view.UpdateGameItemUI(itemHandler.GameItemControl.GetSprite);
 
-            spawner.GetItem();
+            callback();
         }
         public void UseGameItem()
         {
-            if (gameItem == null) return;
-            gameItem.Use();
-            this.gameItem = null;
+            if (itemHandler.GameItemControl == null) return;
+            itemHandler.GameItemControl = null;
+            itemHandler.GameItemControl.Use();
             view.UpdateGameItemUI(null);
         }
         #endregion
