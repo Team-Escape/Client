@@ -288,7 +288,8 @@ namespace PlayerSpace.Gameplayer
         }
         public void OnEnduranceChanged(float newVal)
         {
-            view.UpdateEndurancebar(newVal);
+            Debug.Log(newVal / model.endurance);
+            view.UpdateEndurancebar(newVal / model.endurance);
         }
         /// <summary>
         /// Control Endurance
@@ -306,10 +307,10 @@ namespace PlayerSpace.Gameplayer
                 endurance += Time.deltaTime;
             }
 
-            if (preEndurance != model.endurance)
-                OnEnduranceChanged(model.endurance);
+            if (preEndurance != endurance)
+                OnEnduranceChanged(endurance);
 
-            preEndurance = model.endurance;
+            preEndurance = endurance;
         }
 
         /// <summary>

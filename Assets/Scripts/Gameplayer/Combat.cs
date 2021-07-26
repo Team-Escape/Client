@@ -34,7 +34,7 @@ namespace PlayerSpace.Gameplayer
         }
         public void OnHealthChanged(float newVal)
         {
-            view.UpdateHealthbar(newVal);
+            view.UpdateHealthbar(newVal / model.maxHealth);
         }
         #endregion
 
