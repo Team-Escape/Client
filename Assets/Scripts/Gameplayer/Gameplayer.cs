@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using Cinemachine;
 
 namespace PlayerSpace.Gameplayer
 {
@@ -11,6 +12,7 @@ namespace PlayerSpace.Gameplayer
         #region ID Variables
         public int playerID = 0;
         public int teamID = 0;
+        public int currentRoomID = 0;
         #endregion
 
         #region Classes Variables
@@ -20,9 +22,14 @@ namespace PlayerSpace.Gameplayer
 
         #region Callbacks
         List<Action<Gameplayer>> gameActions = null;
-        public void StartItemCallback() => gameActions[0](this);
-        public void CaughtCallBack() => gameActions[1](this);
-        public void GoalCallback() => gameActions[2](this);
+        void StartItemCallback() => gameActions[0](this);
+        void CaughtCallBack() => gameActions[1](this);
+        void GoalCallback() => gameActions[2](this);
+
+        List<Action<Gameplayer, CinemachineConfiner>> changeLevel = null;
+        void GoNextRoom() => changeLevel[0](this, control.GetConfiner());
+        void GoPrevRoom() => changeLevel[1](this, control.GetConfiner());
+        bool isTeleporting = false;
         #endregion
 
         #region OuterCall
@@ -34,9 +41,11 @@ namespace PlayerSpace.Gameplayer
             bool isKeyboard = input.controllers.joystickCount > 0 ? false : true;
             control.AssignControllerType(isKeyboard);
         }
-        public void AssignTeam(int id)
+        public void AssignTeam(int id, List<Action<Gameplayer>> callbacks, List<System.Action<Gameplayer, CinemachineConfiner>> changeLevelCallbacks)
         {
             control.AssignTeam(id);
+            gameActions = callbacks;
+            changeLevel = changeLevelCallbacks;
         }
         #endregion
 
@@ -70,6 +79,20 @@ namespace PlayerSpace.Gameplayer
                     forceX = (string.Compare("n", nameSplice[0]) == 0) ? transform.lossyScale.x : float.Parse(nameSplice[0]);
                     forceY = (string.Compare("n", nameSplice[1]) == 0) ? transform.lossyScale.y : float.Parse(nameSplice[1]);
                     control.DoDash(new Vector2(forceX, forceY));
+                    break;
+                case "RoomTeleport":
+                    if (changeLevel == null || isTeleporting) return;
+                    isTeleporting = true;
+                    switch (other.name)
+                    {
+                        case "NextCollider":
+                            GoNextRoom();
+                            break;
+                        case "PrevCollider":
+                            GoPrevRoom();
+                            break;
+                    }
+                    this.AbleToDo(0.1f, () => isTeleporting = false);
                     break;
             }
         }

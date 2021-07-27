@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -21,6 +22,7 @@ namespace PlayerSpace.Gameplayer
         public Rigidbody2D rb;
         [HideInInspector]
         public Animator anim;
+        public CinemachineConfiner confiner;
         #endregion
 
         #region Enum
@@ -40,6 +42,7 @@ namespace PlayerSpace.Gameplayer
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            confiner = GetComponentInChildren<CinemachineConfiner>();
 
             SetVariables();
         }

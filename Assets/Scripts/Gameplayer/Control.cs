@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 namespace PlayerSpace.Gameplayer
 {
@@ -8,6 +9,7 @@ namespace PlayerSpace.Gameplayer
     {
         public bool IsItemNull() => (itemHandler.GameItemControl == null);
         public bool IsGoaled() => isGoaled;
+        public CinemachineConfiner Confiner() => model.confiner;
 
         ISlot itemHandler;
         View view;
