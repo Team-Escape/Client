@@ -4524,6 +4524,7 @@ MonoBehaviour:
   cam: {fileID: 6104790488600125237}
   rb: {fileID: 0}
   anim: {fileID: 0}
+  confiner: {fileID: 0}
   selfTransform: {fileID: 0}
   characterSize: 1
   distToGround: 0
@@ -4537,6 +4538,7 @@ MonoBehaviour:
   wallJumpTime: 0.2
   dashPower: 25
   endurance: 3
+  maxEndurance: 3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 131072
@@ -4609,6 +4611,7 @@ MonoBehaviour:
   testMode: 1
   playerID: 0
   teamID: 0
+  currentRoomID: 0
 --- !u!70 &8454525889628951390
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

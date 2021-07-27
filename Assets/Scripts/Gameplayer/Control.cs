@@ -9,7 +9,7 @@ namespace PlayerSpace.Gameplayer
     {
         public bool IsItemNull() => (itemHandler.GameItemControl == null);
         public bool IsGoaled() => isGoaled;
-        public CinemachineConfiner Confiner() => model.confiner;
+        public CinemachineConfiner GetConfiner() => model.confiner;
 
         ISlot itemHandler;
         View view;
