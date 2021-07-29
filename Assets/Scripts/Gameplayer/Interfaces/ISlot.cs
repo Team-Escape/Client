@@ -9,6 +9,7 @@ namespace PlayerSpace.Gameplayer
         GameItemControl GameItemControl { get; set; }
         void SetGameItem(int id, Model playerModel);
         void Use();
+        void EffectBy(int itemID);
     }
 
 }

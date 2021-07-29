@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 namespace PlayerSpace.Gameplayer
 {
-    public class GameItemControl : MonoBehaviour, IGameItemControl
+    [CreateAssetMenu (menuName="item/GameItemControl")]
+    public class GameItemControl : ScriptableObject
     {
-        public Sprite sprite = null;
+        protected Sprite sprite = null;
         internal Model model = null;
         internal Action<float, Action> AbleToDo { get { return model.AbleToDo; } }
         internal Action<RoleExtension.ConditionFunc, Action, Action> AbleToDoCondition { get { return model.AbleToDoCondition; } }
@@ -24,4 +26,19 @@ namespace PlayerSpace.Gameplayer
         void Init(Model model);
         void Use();
     }
+    [CreateAssetMenu (menuName="item/container")]
+    public class GameItemContainer:ScriptableObject{
+        [System.Serializable]
+        public struct GameItemEntity{
+            int id;
+            public string name;
+            public GameItemControl itemControl;
+            public Sprite sprite;
+            
+            
+        }   
+        public List<GameItemEntity> items;
+        
+    }
+        
 }

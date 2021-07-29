@@ -7,23 +7,27 @@ namespace PlayerSpace.Gameplayer
     public class Slot : ISlot
     {
         public GameItemControl GameItemControl { get; set; }
-        ItemModel itemModel;
+        //ItemModel itemModel;
 
         public Slot()
         {
-            itemModel = ItemModel.instance;
-            GameItemControl = new GameItemControl();
+            //itemModel = ItemModel.instance;
+            //GameItemControl = new GameItemControl();
         }
 
         public void SetGameItem(int id, Model playerModel)
         {
-            GameItemControl = itemModel.GetItem(id);
+            GameItemControl = ItemModel.instance.GetItem(id);
             GameItemControl.Init(playerModel);
         }
 
         public void Use()
         {
             GameItemControl.Use();
+            GameItemControl = null;
+        }
+        public void EffectBy(int itemID){
+            
         }
     }
 }
