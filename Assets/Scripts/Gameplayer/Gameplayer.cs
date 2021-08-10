@@ -106,15 +106,16 @@ namespace PlayerSpace.Gameplayer
 
             if (other.tag == "GameItem")
             {
-                Spawner spawner = other.GetComponent<Spawner>();
-                if (spawner.currentItemID == -1 || control.IsItemNull() == false)
+                IitemSpawner spawner = other.GetComponent<IitemSpawner>();
+                if (spawner.IsEmpty() || control.IsItemNull() == false)
                     return;
 
                 control.ActiveHintUI(true, other.transform.position);
 
                 if (input.GetButtonDown("Item"))
                 {
-                    control.SetGameItem(spawner.currentItemID, spawner.ResetItem);
+                    control.SetGameItem(spawner.TackItem());
+                    
                 }
             }
 

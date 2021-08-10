@@ -1,10 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PlayerSpace.Gameplayer
 {
-    [CreateAssetMenu (menuName="item/HealthPotion")]
-    public class HealthPotion : GameItemControl
+    
+    public class HealthPotion : GameItemControl_Mono
     {
         [SerializeField] int addHealth = 0;
         public override void Use()
@@ -12,6 +11,7 @@ namespace PlayerSpace.Gameplayer
             if (model.health >= model.maxHealth)
                 return;
             model.health+=addHealth;
+            Recycle();
         }
     }
 }

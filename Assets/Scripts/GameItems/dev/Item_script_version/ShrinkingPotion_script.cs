@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
 using UnityEngine;
 
 namespace PlayerSpace.Gameplayer
 {
-    public class ShrinkingPotion : GameItemControl
+    [CreateAssetMenu (menuName="item/ShrinkingPotion")]
+    public class ShrinkingPotion_script : GameItemControl_Script
     {
         public override void Use()
         {

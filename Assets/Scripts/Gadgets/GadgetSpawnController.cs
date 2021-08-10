@@ -19,7 +19,6 @@ public class GadgetSpawnController : MonoBehaviour
     
     [SerializeField] float delayWhenTakeOut;
     
-    
     [Header("Runtime")]
     [SerializeField] int currId;
     [SerializeField] GameObject gadget;
@@ -109,6 +108,7 @@ public class GadgetSpawnController : MonoBehaviour
 
         }
     }*/
+    //public int GetItem 
     private void OnTriggerStay2D(Collider2D other) {
         if (gadget == null) return;
         if (other.GetComponent<InteractWithGadget>() != null)

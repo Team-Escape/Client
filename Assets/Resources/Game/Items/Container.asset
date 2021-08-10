@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Container
-  m_EditorClassIdentifier: Assembly-CSharp:PlayerSpace.Gameplayer:GameItemContainer
+  m_Script: {fileID: 11500000, guid: fa6a0fbb8bb87044b9c690b3009aa46b, type: 3}
+  m_Name: container
+  m_EditorClassIdentifier: 
   items:
   - name: Health
     itemControl: {fileID: 11400000, guid: c2151a89661a25e44989f93ec7299cfe, type: 2}
-    sprite: {fileID: 21300000, guid: 7264137721363454e87f10998b0a8b28, type: 3}
-  - name: 
-    itemControl: {fileID: 11400000, guid: c2151a89661a25e44989f93ec7299cfe, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: -8215399718941861873, guid: d6998357f759c49d585d96a00d77e6b1,
+      type: 3}
+  - name: Shrinking
+    itemControl: {fileID: 11400000, guid: 30f9261a1b1a13e4d859149cef62c315, type: 2}
+    sprite: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
+      type: 3}

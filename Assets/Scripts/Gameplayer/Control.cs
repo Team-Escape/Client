@@ -6,10 +6,10 @@ namespace PlayerSpace.Gameplayer
 {
     public class Control : MonoBehaviour
     {
-        public bool IsItemNull() => (itemHandler.GameItemControl == null);
+        public bool IsItemNull() => (itemHandler.isEmpty());
         public bool IsGoaled() => isGoaled;
 
-        ISlot itemHandler;
+        IitemHandler itemHandler;
         View view;
         Model model;
         Mover mover;
@@ -125,23 +125,22 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region In-Game Item
-        public void SetGameItem(int id, System.Action callback)
+        public void SetGameItem(ItemData item)
         {
-            if (itemHandler.GameItemControl != null)
+            if (!itemHandler.isEmpty())
                 return;
 
             ActiveHintUI(false);
 
-            itemHandler.SetGameItem(id, model);
-            view.UpdateGameItemUI(itemHandler.GameItemControl.GetSprite);
+            itemHandler.SetGameItem(1, model);//itemdata
+            view.UpdateGameItemUI(itemHandler.GetCurrentSprite());
 
-            callback();
+            
         }
         public void UseGameItem()
         {
-            if (itemHandler.GameItemControl == null) return;
-            itemHandler.GameItemControl.Use();
-            itemHandler.GameItemControl = null;
+            if (itemHandler.isEmpty()) return;
+            itemHandler.Use();
             view.UpdateGameItemUI(null);
         }
         #endregion
@@ -227,7 +226,7 @@ namespace PlayerSpace.Gameplayer
         {
             mover = new Mover(view, model);
             combat = new Combat(view, model);
-            itemHandler = new Slot();
+            itemHandler = new Slot(ItemModel.instance);
         }
         void DevInput()
         {

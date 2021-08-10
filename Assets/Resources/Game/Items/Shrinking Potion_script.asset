@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14afb3b1fe1c12042b3a3f7bf216da51, type: 3}
-  m_Name: health
+  m_Script: {fileID: 11500000, guid: 9fc6b1542e73e8440973d609cb5ba081, type: 3}
+  m_Name: Shrinking Potion_script
   m_EditorClassIdentifier: 
-  addHealth: 10

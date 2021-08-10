@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace PlayerSpace.Gameplayer
 {
-    public interface ISlot
+    public interface IitemHandler
     {
-        GameItemControl GameItemControl { get; set; }
+        
         void SetGameItem(int id, Model playerModel);
         void Use();
         void EffectBy(int itemID);
+        Sprite GetCurrentSprite();
+        bool isEmpty();
     }
 
 }
