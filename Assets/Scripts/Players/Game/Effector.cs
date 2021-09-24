@@ -2,12 +2,12 @@ using UnityEngine;
 using PlayerSpace.Game;
 
 using System.Collections.Generic;
-
+using PlayerSpace.Gameplayer;
 namespace Gadget.Effector
 {
     public class Effector : MonoBehaviour, IEffector
     {
-        Model playerModel;
+        PlayerSpace.Gameplayer.Model playerModel;
         bool effect;
         
 
@@ -51,5 +51,10 @@ namespace Gadget.Effector
             //gadgetDict.Values.CopyTo(effects,0);
             return gadgets;
         }
+        public void UseItem(ItemData itemdata){
+
+        }
+        //get sprite from item
+        
     }
 }

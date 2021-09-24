@@ -7,9 +7,9 @@ namespace PlayerSpace.Gameplayer
     public interface IitemHandler
     {
         
-        void SetGameItem(int id, Model playerModel);
+        void SetGameItem(ItemData id);
         void Use();
-        void EffectBy(int itemID);
+        void EffectBy(ItemData itemID);
         Sprite GetCurrentSprite();
         bool isEmpty();
     }

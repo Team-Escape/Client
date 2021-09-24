@@ -109,7 +109,6 @@ namespace PlayerSpace.Gameplayer
                 IitemSpawner spawner = other.GetComponent<IitemSpawner>();
                 if (spawner.IsEmpty() || control.IsItemNull() == false)
                     return;
-
                 control.ActiveHintUI(true, other.transform.position);
 
                 if (input.GetButtonDown("Item"))
@@ -118,7 +117,10 @@ namespace PlayerSpace.Gameplayer
                     
                 }
             }
-
+            if (other.tag == "ItemObject"){
+                ItemData data = other.GetComponent<ItemObj>().GetItemData();
+                control.EffectBy(data);
+            }
             if (other.tag == "Flag")
             {
                 if (control.IsGoaled()) return;

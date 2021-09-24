@@ -8,7 +8,7 @@ namespace PlayerSpace.Gameplayer
     {
         public bool IsItemNull() => (itemHandler.isEmpty());
         public bool IsGoaled() => isGoaled;
-
+        [SerializeField] GameObject itemSystem;
         IitemHandler itemHandler;
         View view;
         Model model;
@@ -132,16 +132,17 @@ namespace PlayerSpace.Gameplayer
 
             ActiveHintUI(false);
 
-            itemHandler.SetGameItem(1, model);//itemdata
+            itemHandler.SetGameItem(item);//itemdata
             view.UpdateGameItemUI(itemHandler.GetCurrentSprite());
-
-            
         }
         public void UseGameItem()
         {
             if (itemHandler.isEmpty()) return;
             itemHandler.Use();
             view.UpdateGameItemUI(null);
+        }
+        public void EffectBy(ItemData itemID){
+            itemHandler.EffectBy(itemID);
         }
         #endregion
 
@@ -226,7 +227,9 @@ namespace PlayerSpace.Gameplayer
         {
             mover = new Mover(view, model);
             combat = new Combat(view, model);
-            itemHandler = new Slot(ItemModel.instance);
+            ItemSystem itemsys = itemSystem.GetComponent<ItemSystem>();
+            itemsys.SetPlayerModel(model);
+            itemHandler = new Slot(itemsys);   
         }
         void DevInput()
         {

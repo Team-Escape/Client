@@ -7,33 +7,34 @@ namespace PlayerSpace.Gameplayer
     public class Slot : IitemHandler
     {
 
-        private int itemHash ;
-        static ItemSystemManager itemModel;
+        private ItemData itemData ;
+        private ItemSystem itemModel;
         // todo: change dependents on only ItemSystemManager not IGameItemControl
-        public Slot(ItemSystemManager itemSystem)
+        public Slot(ItemSystem itemSystem)
         {
             itemModel = itemSystem;
-            itemHash = -1;
+            itemData = null;
         }
-
-        public void SetGameItem(int id, Model playerModel)
+        public void EffectBy(ItemData itemData){
+            itemModel.EffectBy(itemData);
+        }
+        public void SetGameItem(ItemData itemData)
         {
-            itemHash = itemModel.GetItem(id,playerModel);
+            this.itemData = itemData;
+            //itemHash = itemModel.GetItem(id,playerModel);
         }
 
         public void Use()
         {
-            itemModel.UseItem(itemHash);
-            itemHash = -1;
+            itemModel.UseItem(itemData);
+            itemData = null;
         }
-        public void EffectBy(int itemID){
-            
-        }
+        
         public Sprite GetCurrentSprite(){
-            return itemModel.GetItemSprite(itemHash);
+            return itemModel.GetItemSprite(itemData);
         }
         public bool isEmpty(){
-            return itemHash==-1;
+            return itemData==null;
         }
     }
     /*
