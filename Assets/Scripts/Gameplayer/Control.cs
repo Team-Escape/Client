@@ -30,8 +30,8 @@ namespace PlayerSpace.Gameplayer
             {
                 transform.localScale = new Vector2(
                     transform.localScale.x >= 0 ?
-                    value >= 0 ? model.characterSize : model.characterSize * -1 :
-                    value <= 0 ? model.characterSize * -1 : model.characterSize
+                    (value >= 0 ? model.characterSize : model.characterSize * -1) :
+                    (value <= 0 ? model.characterSize * -1 : model.characterSize)
                 , model.characterSize);
             }
         }

@@ -9,7 +9,7 @@ namespace PlayerSpace.Gameplayer
 
         private ItemData itemData ;
         private ItemSystem itemModel;
-        // todo: change dependents on only ItemSystemManager not IGameItemControl
+        
         public Slot(ItemSystem itemSystem)
         {
             itemModel = itemSystem;
@@ -21,7 +21,7 @@ namespace PlayerSpace.Gameplayer
         public void SetGameItem(ItemData itemData)
         {
             this.itemData = itemData;
-            //itemHash = itemModel.GetItem(id,playerModel);
+            
         }
 
         public void Use()
@@ -37,36 +37,5 @@ namespace PlayerSpace.Gameplayer
             return itemData==null;
         }
     }
-    /*
-    public class Slot_scriptVersion: ISlot
-    {
-        public IGameItemControl GameItemControl { get; set; }
-        static ItemSystemManager itemModel;
-        // todo: new item model with script and load (singleton)
-        public Slot_scriptVersion(ItemSystemManager itemsys)
-        {
-            itemModel = itemsys;
-        }
-
-        public void SetGameItem(int id, Model playerModel)
-        {
-            GameItemControl = itemModel.GetItem(id);
-            GameItemControl.Init(playerModel);
-        }
-
-        public void Use()
-        {
-            GameItemControl.Use();
-            GameItemControl = null;
-        }
-        public void EffectBy(int itemID){
-            
-        }
-        public Sprite GetCurrentSprite(){
-            return GameItemControl.GetSprite();
-        }
-        public bool isEmpty(){
-            return GameItemControl==null;
-        }
-    }*/
+    
 }

@@ -1,11 +1,11 @@
 
 using UnityEngine;
-using Gadget.Effector;
+
 using System.Collections;
-namespace Gadget.Utility
+namespace PlayerSpace.Gameplayer
 {
     //not complete
-    public class FloatWhenNotGround : GadgetEffect
+    public class FloatWhenNotGround : ItemBase
     {
         [SerializeField] public float delay;
         [SerializeField] private float fallingDivition;
@@ -19,16 +19,16 @@ namespace Gadget.Utility
         IEnumerator JumpLowerIEum()
         {
             float force = fallingDivition;
-            float originSpeed = model.SpeedGain;
-            if (model.Grounded)
-                model.SpeedGain -= fallingDivition;
+            float originSpeed = model.speedGain;
+            if (false)
+                model.speedGain -= fallingDivition;
             else
 
                 yield return new WaitForSeconds(delay);
 
-            model.JumpGain += force;
+            model.jumpGain += force;
             yield return null;
-            enabled = false;
+            isenable = false;
         }
     }
 }

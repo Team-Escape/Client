@@ -118,7 +118,8 @@ namespace PlayerSpace.Gameplayer
                 }
             }
             if (other.tag == "ItemObject"){
-                ItemData data = other.GetComponent<ItemObj>().GetItemData();
+                ItemData data = other.GetComponentInParent<ItemObj>().GetItemData();
+                
                 control.EffectBy(data);
             }
             if (other.tag == "Flag")

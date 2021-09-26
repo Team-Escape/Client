@@ -30,7 +30,7 @@ namespace Gadget.Utility
             GameObject potion = GadgetPool.GetObject(this.potion.GetComponent<IPoolObject>().GetPID());
             //float speed =Mathf.Min(maxSpeed,ownerTransform.parent.GetComponent<Rigidbody2D>().velocity.magnitude/flyDivide+speedOffset);
             potion.transform.position = owner.position;
-            potion.GetComponent<PotionObj>().Setting(owner, ID, isEffectOwner);
+            //potion.GetComponent<PotionObj>().Setting(owner, ID, isEffectOwner);
             //CallWhenThrow();
         }
 

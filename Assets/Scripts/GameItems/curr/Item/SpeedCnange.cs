@@ -1,10 +1,9 @@
 using UnityEngine;
-using Gadget.Effector;
-using PlayerSpace.Game;
+
 using System.Collections;
-namespace Gadget.Utility
+namespace PlayerSpace.Gameplayer
 {
-    public class SpeedCnange : GadgetEffect
+    public class SpeedCnange : ItemBase
     {
         [SerializeField] public float delay;
         [SerializeField] private float addition;
@@ -18,13 +17,13 @@ namespace Gadget.Utility
         IEnumerator SpeedUpIEum()
         {
             float speed = addition;
-            model.SpeedGain =(Mathf.Abs(model.SpeedGain)+speed)*(Mathf.Sign(model.SpeedGain));
+            model.speedGain =(Mathf.Abs(model.speedGain)+speed)*(Mathf.Sign(model.speedGain));
 
             yield return new WaitForSeconds(delay);
 
-            model.SpeedGain = (Mathf.Abs(model.SpeedGain)-speed)*(Mathf.Sign(model.SpeedGain));
+            model.speedGain = (Mathf.Abs(model.speedGain)-speed)*(Mathf.Sign(model.speedGain));
             yield return null;
-            enabled = false;
+            isenable = false;
         }
     }
 }

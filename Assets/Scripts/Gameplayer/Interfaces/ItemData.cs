@@ -25,6 +25,8 @@ namespace PlayerSpace.Gameplayer
         HEALTH,
         JUMP_LOWER,
         FASS_TO_ASS,
-        REDUCTION
+        REDUCTION,
+        SPEED_CHANGE,
+
     }
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 using System.Collections;
 
-namespace Gadget.Utility
+namespace PlayerSpace.Gameplayer
 {
-    public class Invisible : GadgetEffect
+    public class Invisible : ItemBase
     {
         [SerializeField] private float during;
 
@@ -15,21 +15,21 @@ namespace Gadget.Utility
         protected override void CallWhenUse()
         {
 
-            defultLayerMask = camera.cullingMask;
+            defultLayerMask = model.cam.cullingMask;
             invisibleLayer = LayerMask.NameToLayer("Invisible");
-            defultLayer = owner.layer;
+            //defultLayer = owner.layer;
 
             StartCoroutine(InvisibleForSeconds(during));
         }
 
         IEnumerator InvisibleForSeconds(float during)
         {
-            camera.cullingMask = camera.cullingMask | (1 << invisibleLayer);
-            owner.layer = invisibleLayer;
+            model.cam.cullingMask = model.cam.cullingMask | (1 << invisibleLayer);
+            //owner.layer = invisibleLayer;
             yield return new WaitForSeconds(during);
-            camera.cullingMask = defultLayerMask;
-            owner.layer = defultLayer;
-            enabled = false;
+            model.cam.cullingMask = defultLayerMask;
+            //owner.layer = defultLayer;
+            isenable = false;
         }
     }
 }

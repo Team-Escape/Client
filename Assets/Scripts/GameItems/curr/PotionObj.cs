@@ -2,49 +2,52 @@ using UnityEngine;
 using Gadget.Effector;
 using System.Collections;
 using ObjectPool;
-
-public class PotionObj : MonoBehaviour, IPoolObject
+using PlayerSpace.Gameplayer;
+public class PotionObj : MonoBehaviour, IPoolObject,ItemObj
 {
     [SerializeField] Collider2D zone;
     [SerializeField] Collider2D body;
     [SerializeField] float staytime;
     [SerializeField] float force;
-    [SerializeField] int ID;
+
     [SerializeField] int pid;
+    [SerializeField]ItemData itemData;
     Transform owner;
     bool isEffectOwner;
     //CallWhenTrigger triggerMethod;
 
     float time;
-    private void Awake()
-    {
-
+    public ItemData GetItemData(){
+        return itemData;
     }
     public void Fly(Vector2 direction, float force)
     {
+        this.transform.position = owner.position;
         GetComponent<Rigidbody2D>().velocity = direction * force;
     }
     //public delegate void CallWhenTrigger(IEffecter effecter);
 
-    public void Setting(Transform owner, int id, bool isEffectOwner)
+    public void Setting(Transform owner, ItemData itemData)
     {
-        ID = id;
+        this.itemData = itemData;
         this.owner = owner;
-        this.isEffectOwner = isEffectOwner;
+        //this.isEffectOwner = isEffectOwner;
         //triggerMethod = trigger;
-        //zone.enabled = false;
-        //body.enabled = false;
-        Fly(owner.transform.localScale, force);
+        zone.enabled = false;
+        body.enabled = true;
+        
+        
+        Fly(owner.localScale, force);
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.Equals(owner)) return;
+        if (other.transform.Equals(owner)||other.gameObject.tag=="GameItem") return;
         zone.enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         body.enabled = false;
         time = Time.time;
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (zone.enabled == false) return;
 
@@ -59,7 +62,7 @@ public class PotionObj : MonoBehaviour, IPoolObject
             eff.UseGadget(ID);
 
         }
-    }
+    }*/
     private void Update()
     {
         if (time != -1 && Time.time >= time + staytime)
@@ -76,8 +79,6 @@ public class PotionObj : MonoBehaviour, IPoolObject
     }
     public void Init()
     {
-
-
         gameObject.SetActive(true);
     }
 
@@ -85,8 +86,5 @@ public class PotionObj : MonoBehaviour, IPoolObject
     {
         return pid;
     }
-    public void SetID(int id)
-    {
-        ID = id;
-    }
+    
 }

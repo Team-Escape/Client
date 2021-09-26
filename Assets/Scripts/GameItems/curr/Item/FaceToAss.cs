@@ -1,10 +1,10 @@
 using UnityEngine;
 
 using System.Collections;
-namespace Gadget.Utility
+namespace PlayerSpace.Gameplayer
 {
 
-    public class FaceToAss : GadgetEffect
+    public class FaceToAss : ItemBase
     {
         [SerializeField] private float during;
 
@@ -18,10 +18,12 @@ namespace Gadget.Utility
 
         IEnumerator FaceToAssForSeconds(float during)
         {
-            model.SpeedGain = Mathf.Abs(model.SpeedGain) * -1;
+            model.reverseInput=-1;
+            //model.speedGain = Mathf.Abs(model.speedGain) * -1;
             yield return new WaitForSeconds(during);
-            model.SpeedGain = Mathf.Abs(model.SpeedGain);
-            enabled = false;
+            //model.speedGain = Mathf.Abs(model.speedGain);
+            model.reverseInput=1;
+            isenable = false;
         }
     }
 }

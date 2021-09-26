@@ -1,10 +1,10 @@
 using UnityEngine;
-using Gadget.Effector;
+
 using System.Collections;
-namespace Gadget.Utility
+namespace PlayerSpace.Gameplayer
 {
 
-    public class JumpLower : GadgetEffect
+    public class JumpLower : ItemBase
     {
         [SerializeField] public float delay;
         [SerializeField] private float divition;
@@ -18,13 +18,13 @@ namespace Gadget.Utility
         IEnumerator JumpLowerIEum()
         {
             float force = divition;
-            model.JumpGain -= force;
+            model.jumpGain -= force;
 
             yield return new WaitForSeconds(delay);
 
-            model.JumpGain += force;
+            model.jumpGain += force;
             yield return null;
-            enabled = false;
+            isenable = false;
         }
     }
 }

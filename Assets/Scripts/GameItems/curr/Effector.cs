@@ -1,6 +1,6 @@
 using UnityEngine;
-using PlayerSpace.Game;
 
+using ObjectPool;
 using System.Collections.Generic;
 
 namespace PlayerSpace.Gameplayer
@@ -8,12 +8,12 @@ namespace PlayerSpace.Gameplayer
     public class Effector : MonoBehaviour,ItemSystem
     {
         Model playerModel;
-        bool effect;
+        [SerializeField]bool effect;
         
 
         //[SerializeField]int MaxEffectCount = 10;
-        
-        [SerializeField]ItemEffecActor[] gadgets ;
+        //[SerializeField] GameObject throwItem;
+        ItemEffecActor[] gadgets ;
         Dictionary<ItemEffect,ItemEffecActor> gadgetDict;
         
         [SerializeField]Sprite sprite;
@@ -28,23 +28,27 @@ namespace PlayerSpace.Gameplayer
             }
             gadgets = new ItemEffecActor[gadgetDict.Count];
             gadgetDict.Values.CopyTo(gadgets,0);
-            //playerModel = GetComponent<Model>();
+            
             effect = false;
             
         }
         
         public void UseItem(ItemData itemdata){
-            //Debug.Log("Use"+itemdata);
-            EffectBy(itemdata);
+            if(itemdata.action==ItemAction.EAT)
+                gadgetDict[itemdata.effect].Trigger(playerModel);
+            else if(itemdata.action==ItemAction.THROW){
+                GameObject go = GadgetPool.GetObject(1);
+                go.GetComponent<PotionObj>().Setting(playerModel.selfTransform,itemdata);
+                //Instantiate(throwItem,playerModel.selfTransform);
+            }
         }
         //get sprite from item
         public Sprite GetItemSprite(ItemData itemdata){
-            //Debug.Log("GetItemSprite "+itemdata);
-            return sprite;
+            
+            return gadgetDict[itemdata.effect].GetSprite();
         }
         public void EffectBy(ItemData itemdata){
-            //Debug.Log("EffectBy"+itemdata);
-            gadgetDict[itemdata.effect].Trigger();
+            gadgetDict[itemdata.effect].Trigger(playerModel);
         }
         public void SetPlayerModel(Model model){
             playerModel = model;

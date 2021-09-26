@@ -2,7 +2,7 @@ namespace PlayerSpace.Gameplayer
 {
     using UnityEngine;
     using System;
-    using Gadget.Effector;
+
     
     public class ItemSpawner : MonoBehaviour,IitemSpawner {
         [Header("GameObject linking")]
@@ -29,8 +29,8 @@ namespace PlayerSpace.Gameplayer
         {
             testingUI.SetActive(testingMode);
             defaultSprite = GetComponent<SpriteRenderer>().sprite;
-            effector.GetComponent<InteractWithGadget>().enabled = false;
-            effector.SetActive(false);
+            //effector.GetComponent<InteractWithGadget>().enabled = false;
+            //effector.SetActive(false);
             currentCounter = Time.time;
             currItem = NULLItem;
         }
@@ -63,7 +63,7 @@ namespace PlayerSpace.Gameplayer
         public void spawn()
         {
             setCurrentItem();
-            setSprite(searchSpriteFromDatabase(currItem.effect));
+            setSprite(searchSpriteFromDatabase(currItem));
         }
         bool check_Setting_is_legal(){
             bool islegal = !(actions.Length==0||effectIds.Length==0
@@ -90,8 +90,8 @@ namespace PlayerSpace.Gameplayer
                 );
                 
         }
-        Sprite searchSpriteFromDatabase(ItemEffect itemId){
-            return effector.GetComponent<IEffector>().GetSprite(((int)itemId));
+        Sprite searchSpriteFromDatabase(ItemData item){
+            return effector.GetComponent<ItemSystem>().GetItemSprite(item);
         }
         public ItemData TackItem(){
             ItemData outData = currItem;
