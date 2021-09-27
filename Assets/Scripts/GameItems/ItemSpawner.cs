@@ -51,9 +51,9 @@ namespace PlayerSpace.Gameplayer
             if(!loadAllEffect) return;
             
             Array itemEffects =Enum.GetValues(typeof(ItemEffect));
-            int size = itemEffects.Length;
+            int size = itemEffects.Length-1;
             effectIds = new ItemEffect[size];
-            for(int i=0;i<size-1;i++){
+            for(int i=0;i<size;i++){
                 ItemEffect getEffect = (ItemEffect)itemEffects.GetValue(i);
                 if(getEffect==ItemEffect.NULL) continue;
                 effectIds[i] = getEffect;

@@ -1,6 +1,4 @@
 using UnityEngine;
-using Gadget.Effector;
-using System.Collections;
 using ObjectPool;
 using PlayerSpace.Gameplayer;
 public class PotionObj : MonoBehaviour, IPoolObject,ItemObj
