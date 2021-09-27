@@ -12,25 +12,26 @@ public class PotionObj : MonoBehaviour, IPoolObject,ItemObj
 
     [SerializeField] int pid;
     [SerializeField]ItemData itemData;
-    Transform owner;
+    Transform ownertrans;
     bool isEffectOwner;
     //CallWhenTrigger triggerMethod;
-
+    string ownerHash;
     float time;
     public ItemData GetItemData(){
         return itemData;
     }
     public void Fly(Vector2 direction, float force)
     {
-        this.transform.position = owner.position;
+        this.transform.position = ownertrans.position;
         GetComponent<Rigidbody2D>().velocity = direction * force;
     }
     //public delegate void CallWhenTrigger(IEffecter effecter);
 
-    public void Setting(Transform owner, ItemData itemData)
+    public void Setting(Transform owner, ItemData itemData,string ownerHash)
     {
+        this.ownerHash = ownerHash;
         this.itemData = itemData;
-        this.owner = owner;
+        this.ownertrans = owner;
         //this.isEffectOwner = isEffectOwner;
         //triggerMethod = trigger;
         zone.enabled = false;
@@ -41,28 +42,15 @@ public class PotionObj : MonoBehaviour, IPoolObject,ItemObj
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.Equals(owner)||other.gameObject.tag=="GameItem") return;
+        if (other.transform.Equals(ownertrans)||other.gameObject.tag=="GameItem") return;
         zone.enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         body.enabled = false;
         time = Time.time;
     }
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (zone.enabled == false) return;
-
-        if (other.GetComponent<IEffector>() != null)
-        {
-            IEffector eff = other.GetComponent<IEffector>();
-            if (!isEffectOwner &&
-            eff.GetPlayer().transform.Equals(owner))
-            {
-                return;
-            }
-            eff.UseGadget(ID);
-
-        }
-    }*/
+    public string GetOwnerHash(){
+        return ownerHash;
+    }
     private void Update()
     {
         if (time != -1 && Time.time >= time + staytime)

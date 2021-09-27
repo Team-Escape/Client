@@ -15,7 +15,7 @@ namespace PlayerSpace.Gameplayer
             itemModel = itemSystem;
             itemData = null;
         }
-        public void EffectBy(ItemData itemData){
+        public void EffectBy(ItemObj itemData){
             itemModel.EffectBy(itemData);
         }
         public void SetGameItem(ItemData itemData)

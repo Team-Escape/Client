@@ -9,7 +9,7 @@ namespace PlayerSpace.Gameplayer
         //use a item with the hash
         void UseItem(ItemData itemdata);
         //use a item with the hash
-        void EffectBy(ItemData itemdata);
+        void EffectBy(ItemObj itemdata);
         //get sprite from item
         Sprite GetItemSprite(ItemData itemHash);
         void SetPlayerModel(Model playerModel);

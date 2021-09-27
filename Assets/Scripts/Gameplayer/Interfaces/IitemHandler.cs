@@ -9,7 +9,7 @@ namespace PlayerSpace.Gameplayer
         
         void SetGameItem(ItemData id);
         void Use();
-        void EffectBy(ItemData itemID);
+        void EffectBy(ItemObj itemID);
         Sprite GetCurrentSprite();
         bool isEmpty();
     }

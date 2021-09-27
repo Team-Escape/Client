@@ -38,7 +38,11 @@ namespace PlayerSpace.Gameplayer
                 gadgetDict[itemdata.effect].Trigger(playerModel);
             else if(itemdata.action==ItemAction.THROW){
                 GameObject go = GadgetPool.GetObject(1);
-                go.GetComponent<PotionObj>().Setting(playerModel.selfTransform,itemdata);
+                go.GetComponent<PotionObj>().Setting(
+                    playerModel.selfTransform,
+                    itemdata,
+                    playerModel.GetHashCode().ToString()
+                );
                 //Instantiate(throwItem,playerModel.selfTransform);
             }
         }
@@ -47,8 +51,13 @@ namespace PlayerSpace.Gameplayer
             
             return gadgetDict[itemdata.effect].GetSprite();
         }
-        public void EffectBy(ItemData itemdata){
-            gadgetDict[itemdata.effect].Trigger(playerModel);
+        public void EffectBy(ItemObj itemobj){
+            ItemData data = itemobj.GetItemData();
+            if(!data.isAffectOwner&&
+            itemobj.GetOwnerHash()==playerModel.GetHashCode().ToString())
+                return;
+            gadgetDict[data.effect].Trigger(playerModel);
+            
         }
         public void SetPlayerModel(Model model){
             playerModel = model;

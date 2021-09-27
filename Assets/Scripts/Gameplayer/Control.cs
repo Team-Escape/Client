@@ -141,8 +141,8 @@ namespace PlayerSpace.Gameplayer
             itemHandler.Use();
             view.UpdateGameItemUI(null);
         }
-        public void EffectBy(ItemData itemID){
-            itemHandler.EffectBy(itemID);
+        public void EffectBy(ItemObj item){
+            itemHandler.EffectBy(item);
         }
         #endregion
 
