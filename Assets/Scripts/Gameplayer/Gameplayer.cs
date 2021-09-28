@@ -129,18 +129,22 @@ namespace PlayerSpace.Gameplayer
 
             if (other.tag == "GameItem")
             {
-                Spawner spawner = other.GetComponent<Spawner>();
-                if (spawner.currentItemID == -1 || control.IsItemNull() == false)
+                IitemSpawner spawner = other.GetComponent<IitemSpawner>();
+                if (spawner.IsEmpty() || control.IsItemNull() == false)
                     return;
-
                 control.ActiveHintUI(true, other.transform.position);
 
                 if (input.GetButtonDown("Item"))
                 {
-                    control.SetGameItem(spawner.currentItemID, spawner.ResetItem);
+                    control.SetGameItem(spawner.TackItem());
+                    
                 }
             }
-
+            if (other.tag == "ItemObject"){
+                //ItemData data = .GetItemData();
+                
+                control.EffectBy(other.GetComponentInParent<ItemObj>());
+            }
             if (other.tag == "Flag")
             {
                 if (control.IsGoaled()) return;
@@ -193,7 +197,9 @@ namespace PlayerSpace.Gameplayer
             {
                 control.Move(0);
             }
-
+            else{
+                control.SetLocalScale();
+            }
             if (input.GetButtonDown("Run"))
             {
                 control.Run(true);

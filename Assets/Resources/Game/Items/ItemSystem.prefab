@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8163481502104585447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8163481502104585445}
+  - component: {fileID: 8163481502104585446}
+  - component: {fileID: 8163481502104585444}
+  - component: {fileID: 8163481502104585448}
+  - component: {fileID: 8163481502104585449}
+  - component: {fileID: 8163481502104585450}
+  - component: {fileID: 8163481502104585451}
+  m_Layer: 0
+  m_Name: ItemSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8163481502104585445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.6702223, y: 2.3341527, z: -23.878124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8163481502104585446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770cbcb9d995c8e4195b8ea4de78b004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: 0
+  sprite: {fileID: 0}
+--- !u!114 &8163481502104585444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7fdb008ce69f743b5cfecce8f57c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 2350736112299439981, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  effect: 3
+  isenable: 0
+  during: 0.1
+  smallerScale: 0.3
+  stay: 3
+  limitScale: 0.9
+--- !u!114 &8163481502104585448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9b510b07fc0bf42a53cf4843eaa1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -180891196323833494, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  effect: 4
+  isenable: 0
+  delay: 2
+  addition: 1
+--- !u!114 &8163481502104585449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b78efd4e7472048bd904bb8d1e41ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -8718220592887175988, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  effect: 2
+  isenable: 0
+  during: 2
+--- !u!114 &8163481502104585450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c0e2cd0eae8cc4eb43c18e34817489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -4019535776834472964, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  effect: 1
+  isenable: 0
+  delay: 3
+  divition: 0.5
+--- !u!114 &8163481502104585451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163481502104585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1519269045ef558498c70ca5aa2e1cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  effect: 0
+  isenable: 0
+  healMax: 5
+  healperTime: 1
+  timeset: 3
