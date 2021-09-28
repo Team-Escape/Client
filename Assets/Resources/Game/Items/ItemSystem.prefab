@@ -67,7 +67,7 @@ MonoBehaviour:
   isenable: 0
   during: 0.1
   smallerScale: 0.3
-  stay: 1
+  stay: 3
   limitScale: 0.9
 --- !u!114 &8163481502104585448
 MonoBehaviour:

@@ -20,7 +20,7 @@ namespace PlayerSpace.Gameplayer
         {
             float force = fallingDivition;
             float originSpeed = model.speedGain;
-            if (false)
+            if (true)
                 model.speedGain -= fallingDivition;
             else
 

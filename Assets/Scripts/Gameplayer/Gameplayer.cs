@@ -174,7 +174,9 @@ namespace PlayerSpace.Gameplayer
             {
                 control.Move(0);
             }
-
+            else{
+                control.SetLocalScale();
+            }
             if (input.GetButtonDown("Run"))
             {
                 control.Run(true);
