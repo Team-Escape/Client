@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
-using PlayerSpace.Game;
+
 namespace GameManagerSpace
 {
     public class CoreModel : MonoBehaviour
