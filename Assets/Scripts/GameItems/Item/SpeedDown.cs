@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 namespace PlayerSpace.Gameplayer
 {
-    public class SpeedCnange : ItemBase
+    public class SpeedDown : ItemBase
     {
         [SerializeField] public float delay;
         [SerializeField] private float addition;
@@ -11,12 +11,12 @@ namespace PlayerSpace.Gameplayer
         protected override void CallWhenUse()
         {
 
-            StartCoroutine(SpeedUpIEum());
+            StartCoroutine(SpeedDownIEum());
 
         }
-        IEnumerator SpeedUpIEum()
+        IEnumerator SpeedDownIEum()
         {
-            float speed = addition;
+            float speed = -addition;
             model.speedGain =(Mathf.Abs(model.speedGain)+speed)*(Mathf.Sign(model.speedGain));
 
             yield return new WaitForSeconds(delay);

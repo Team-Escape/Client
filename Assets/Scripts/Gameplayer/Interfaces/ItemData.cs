@@ -26,6 +26,9 @@ namespace PlayerSpace.Gameplayer
         JUMP_LOWER,
         FASS_TO_ASS,
         REDUCTION,
-        SPEED_CHANGE
+        BIGGER,
+        SPEED_UP,
+        SPEED_DOWN,
+        INVISIBLE,
     }
 }

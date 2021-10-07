@@ -17,7 +17,7 @@ namespace PlayerSpace.Gameplayer
 
             defultLayerMask = model.cam.cullingMask;
             invisibleLayer = LayerMask.NameToLayer("Invisible");
-            //defultLayer = owner.layer;
+            defultLayer = model.gameObject.layer;
 
             StartCoroutine(InvisibleForSeconds(during));
         }
@@ -25,10 +25,10 @@ namespace PlayerSpace.Gameplayer
         IEnumerator InvisibleForSeconds(float during)
         {
             model.cam.cullingMask = model.cam.cullingMask | (1 << invisibleLayer);
-            //owner.layer = invisibleLayer;
+            model.gameObject.layer = invisibleLayer;
             yield return new WaitForSeconds(during);
             model.cam.cullingMask = defultLayerMask;
-            //owner.layer = defultLayer;
+            model.gameObject.layer = defultLayer;
             isenable = false;
         }
     }
