@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerSpace.Game;
+using PlayerSpace.Gameplayer;
 using GameManagerSpace;
 
 public class SpriteHintControl : MonoBehaviour
@@ -15,10 +15,10 @@ public class SpriteHintControl : MonoBehaviour
         Debug.Log("123qwfwq[opmf[woq");
         if (other.tag == "Player")
         {
-            PlayerCharacter role = other.gameObject.GetComponentInChildren<PlayerCharacter>();
-            int mode = CoreModel.ActivePlayers[role.playerId].controllers.joystickCount > 0 ? 0 : 1;
-            sprites[role.playerId].sprite = mode == 0 ? joystick : keyboard;
-            sprites[role.playerId].gameObject.SetActive(true);
+            Gameplayer role = other.gameObject.GetComponentInChildren<Gameplayer>();
+            int mode = CoreModel.ActivePlayers[role.playerID].controllers.joystickCount > 0 ? 0 : 1;
+            sprites[role.playerID].sprite = mode == 0 ? joystick : keyboard;
+            sprites[role.playerID].gameObject.SetActive(true);
         }
     }
 
@@ -26,8 +26,8 @@ public class SpriteHintControl : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            PlayerCharacter role = other.gameObject.GetComponentInChildren<PlayerCharacter>();
-            sprites[role.playerId].gameObject.SetActive(false);
+            Gameplayer role = other.gameObject.GetComponentInChildren<Gameplayer>();
+            sprites[role.playerID].gameObject.SetActive(false);
         }
     }
 

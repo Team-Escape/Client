@@ -39,6 +39,7 @@ namespace PlayerSpace.Gameplayer
             input = ReInput.players.GetPlayer(playerID);
 
             bool isKeyboard = input.controllers.joystickCount > 0 ? false : true;
+            if(control==null)control = GetComponent<Control>();
             control.AssignControllerType(isKeyboard);
         }
         public void AssignTeam(int id, List<Action<Gameplayer>> callbacks, List<System.Action<Gameplayer, CinemachineConfiner>> changeLevelCallbacks)

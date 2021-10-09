@@ -56,6 +56,7 @@ namespace PlayerSpace.Gameplayer
         }
         public void AssignControllerType(bool isKeyboard)
         {
+            if(view==null)view = GetComponent<View>();
             view.Init(isKeyboard);
             isInputKeyboard = isKeyboard;
         }

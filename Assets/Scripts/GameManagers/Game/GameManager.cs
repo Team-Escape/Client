@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameManagerSpace.Game
@@ -44,7 +43,7 @@ namespace GameManagerSpace.Game
                     StartCoroutine(Starting());
                     break;
                 case GameState.Playing:
-                    // StartCoroutine(Playing());
+                    //StartCoroutine(Playing());
                     break;
                 case GameState.Scoring:
                     StartCoroutine(Scoring());
