@@ -1451,8 +1451,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09062159, y: -0.19131231}
-  m_Size: {x: 1.285388, y: 2.389533}
+  m_Offset: {x: -0.09062135, y: 0.010998964}
+  m_Size: {x: 1.851682, y: 2.7941556}
   m_Direction: 0
 --- !u!114 &5256499349845889173
 MonoBehaviour:
@@ -1466,9 +1466,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ca91f361fa740178f4966fc6fc956b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 1
+  testMode: 0
   playerID: 0
   teamID: 0
+  currentRoomID: 0
 --- !u!114 &5256499349845889172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,6 +1499,7 @@ MonoBehaviour:
   cam: {fileID: 7574709689565191421}
   rb: {fileID: 0}
   anim: {fileID: 0}
+  confiner: {fileID: 4695792828405419153}
   selfTransform: {fileID: 0}
   characterSize: 1
   distToGround: 0

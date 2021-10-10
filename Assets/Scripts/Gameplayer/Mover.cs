@@ -226,7 +226,7 @@ namespace PlayerSpace.Gameplayer
             {
                 jumpTimeCounter = 0;
                 isFalling = false;
-                isJumping = false;
+                //isJumping = false;
                 ableToJump = true;
                 isWallJumping = false;
                 isDoubleJumping = false;
@@ -367,6 +367,7 @@ namespace PlayerSpace.Gameplayer
                     * model.groundJumpGain
                     * model.jumpGain
                     * model.playerStateJumpGain;
+                Debug.Log(force);
                 switch (CurrentGroundState)
                 {
                     case GroundState.Ice:
