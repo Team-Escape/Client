@@ -54,11 +54,12 @@ namespace PlayerSpace.Gameplayer
             combat.Goal();
             callback();
         }
-        public void AssignControllerType(bool isKeyboard)
+        public void AssignControllerType(bool isKeyboard,int playerID)
         {
             if(view==null)view = GetComponent<View>();
             view.Init(isKeyboard);
             isInputKeyboard = isKeyboard;
+            SetCamera(playerID);
         }
         public void AssignTeam(int id)
         {
@@ -271,5 +272,21 @@ namespace PlayerSpace.Gameplayer
         PlayerState playerState { get { return model.CurrentPlayerState; } }
         PlayerState prePlayerState = new PlayerState();
         #endregion
+
+        #region privates
+        void SetCamera(int playerID)
+        {
+            LayerMask layer = LayerMask.NameToLayer("P" + (playerID + 1) + "Cam");
+            Camera camera = transform.parent.GetComponentInChildren<Camera>();
+
+            // Open the layer of layer + playerId
+            camera.cullingMask |= 1 << layer;
+
+            // Change cinemachine camera child object layer
+            Transform follow = transform.parent.GetChild(2);
+            follow.gameObject.layer = layer;
+        }
+        #endregion
+
     }
 }

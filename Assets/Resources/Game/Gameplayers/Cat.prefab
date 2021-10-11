@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4101678315029924425}
   - component: {fileID: 3179275245284481684}
   - component: {fileID: 7687599874999741095}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CM vcam
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 766e476b580fa2342a66ce531482d164, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -631,6 +631,7 @@ Transform:
   - {fileID: 7167425649273878183}
   - {fileID: 5935860737026821894}
   - {fileID: 4101678315029924425}
+  - {fileID: 1595203526948467032}
   - {fileID: 7846068065556241863}
   - {fileID: 1595203526701236024}
   m_Father: {fileID: 0}
@@ -744,7 +745,7 @@ RectTransform:
   - {fileID: 1595203525084726304}
   - {fileID: 1595203525485175113}
   m_Father: {fileID: 1595203525462759647}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -760,8 +761,8 @@ Canvas:
   m_GameObject: {fileID: 1595203526701236027}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 4799675831748328139}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -834,13 +835,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595203526948467035}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5939686620097519407}
-  m_Father: {fileID: 7167425649273878183}
-  m_RootOrder: 0
+  m_Father: {fileID: 1595203525462759647}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2857988292526645129
 GameObject:
@@ -871,7 +872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7167425649273878183}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &2849968359134679698
 CapsuleCollider2D:
@@ -918,7 +919,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7167425649273878183}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2745354531867197570
 CircleCollider2D:
@@ -1001,7 +1002,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 10471223
+    m_Bits: 10473271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1535,7 +1536,6 @@ Transform:
   m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1595203526948467032}
   - {fileID: 8188779746623016783}
   - {fileID: 7107839497799308641}
   - {fileID: 4122695765097240258}
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testMode: 0
-  playerID: 0
+  playerID: 1
   teamID: 0
   currentRoomID: 0
 --- !u!114 &7167425649273878178
@@ -2051,7 +2051,7 @@ RectTransform:
   - {fileID: 7846068064509720587}
   - {fileID: 7846068066163800850}
   m_Father: {fileID: 1595203525462759647}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2339,7 +2339,7 @@ PrefabInstance:
     - target: {fileID: 8163481502104585445, guid: a84e101a688e09647be65d03b8a809ed,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8163481502104585445, guid: a84e101a688e09647be65d03b8a809ed,
         type: 3}

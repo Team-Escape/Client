@@ -9,6 +9,7 @@ namespace PlayerSpace.Gameplayer
     public class Gameplayer : MonoBehaviour
     {
         [SerializeField] bool testMode = false;
+        private CinemachineConfiner confiner = null;
         #region ID Variables
         public int playerID = 0;
         public int teamID = 0;
@@ -27,8 +28,8 @@ namespace PlayerSpace.Gameplayer
         void GoalCallback() => gameActions[2](this);
 
         List<Action<Gameplayer, CinemachineConfiner>> changeLevel = null;
-        void GoNextRoom() => changeLevel[0](this, control.GetConfiner());
-        void GoPrevRoom() => changeLevel[1](this, control.GetConfiner());
+        void GoNextRoom() => changeLevel[0](this, confiner);
+        void GoPrevRoom() => changeLevel[1](this, confiner);
         bool isTeleporting = false;
         #endregion
 
@@ -40,7 +41,8 @@ namespace PlayerSpace.Gameplayer
 
             bool isKeyboard = input.controllers.joystickCount > 0 ? false : true;
             if(control==null)control = GetComponent<Control>();
-            control.AssignControllerType(isKeyboard);
+            control.AssignControllerType(isKeyboard,playerID);
+
         }
         public void AssignTeam(int id, List<Action<Gameplayer>> callbacks, List<System.Action<Gameplayer, CinemachineConfiner>> changeLevelCallbacks)
         {
@@ -54,6 +56,10 @@ namespace PlayerSpace.Gameplayer
         private void Awake()
         {
             control = GetComponent<Control>();
+            
+        }
+        private void Start() {
+            confiner = control.GetConfiner();    
         }
         private void OnEnable()
         {
@@ -70,6 +76,9 @@ namespace PlayerSpace.Gameplayer
         {
             switch (other.tag)
             {
+                case "Confiner":
+                    confiner.m_BoundingShape2D = other.GetComponent<PolygonCollider2D>();
+                    break;
                 case "PlayerWeapon":
                     Vector2 force = (transform.position - other.transform.parent.position);
                     control.Hurt(force, CaughtCallBack);

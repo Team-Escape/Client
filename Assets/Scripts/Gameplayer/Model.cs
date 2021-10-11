@@ -42,7 +42,7 @@ namespace PlayerSpace.Gameplayer
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
-            confiner = GetComponentInChildren<CinemachineConfiner>();
+            //confiner = GetComponentInChildren<CinemachineConfiner>();
 
             SetVariables();
         }

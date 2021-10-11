@@ -200,7 +200,7 @@ namespace GameManagerSpace.Game
             model.hunter.GetComponent<Gameplayer>().AssignTeam(1, actions, changeLevelActions);
             model.escapers.ForEach(x => x.GetComponent<Gameplayer>().AssignTeam(0, actions, changeLevelActions));
 
-            // model.mainCam.enabled = false;
+            //model.mainCam.enabled = false;
 
             yield return null;
         }
