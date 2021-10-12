@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 5737718802500339408}
   - component: {fileID: 3939163489006653065}
   - component: {fileID: 6252346128011668963}
+  - component: {fileID: 8712826298973967663}
   m_Layer: 20
   m_Name: obstacle
   m_TagString: Untagged
@@ -302,6 +303,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8712826298973967663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611167410835236589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cfaa6b33b4e39468f76709cd8b49c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2553684777509922606
 GameObject:
   m_ObjectHideFlags: 0
@@ -9507,6 +9520,7 @@ GameObject:
   - component: {fileID: 6914862511430171756}
   - component: {fileID: 7861963790639543586}
   - component: {fileID: 2965167067370581096}
+  - component: {fileID: 2109978117036083905}
   m_Layer: 20
   m_Name: obstacle (1)
   m_TagString: Untagged
@@ -9688,6 +9702,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2109978117036083905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063886070388371791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cfaa6b33b4e39468f76709cd8b49c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7712367926882389636
 GameObject:
   m_ObjectHideFlags: 0

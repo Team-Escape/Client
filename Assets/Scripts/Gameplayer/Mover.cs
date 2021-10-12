@@ -109,19 +109,20 @@ namespace PlayerSpace.Gameplayer
             switch (value)
             {
                 case true:
-                    if (OnAnyFronted && OnIceFronted == false && isWallJumping == false && isJumping == false)
+                    
+                    if (ableToJump && isWallJumping == false)
+                    {
+                        ableToJump = false;
+                        isJumping = true;
+                        anim.DoAnimation("jump");
+                    }
+                    else if (OnAnyFronted && OnIceFronted == false && isWallJumping == false && isJumping == false)
                     {
                         if (isJumpButtonReleased)
                         {
                             isWallJumping = true;
                             anim.DoAnimation("jump");
                         }
-                    }
-                    else if (ableToJump && isWallJumping == false)
-                    {
-                        ableToJump = false;
-                        isJumping = true;
-                        anim.DoAnimation("jump");
                     }
                     else if (isFalling && isDoubleJumping == false && model.rocketShoe)
                     {
