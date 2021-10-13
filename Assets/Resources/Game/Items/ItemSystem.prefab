@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1519269045ef558498c70ca5aa2e1cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  sprite: {fileID: 3643514920608578656, guid: ffcab0afe2952b549a45ec39133e852b, type: 3}
   effect: 0
   isenable: 0
   healMax: 5
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7fdb008ce69f743b5cfecce8f57c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 2350736112299439981, guid: d6998357f759c49d585d96a00d77e6b1, type: 3}
+  sprite: {fileID: 7829124088692640654, guid: 617fb9a218f641d4285d9befc624a20e, type: 3}
   effect: 3
   isenable: 0
   during: 0.1
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ab6dade48276a4dbb060e0a4444e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5582f6f8500f94f35aa02fe766ebad0d, type: 3}
+  sprite: {fileID: 7010617245534139418, guid: 617fb9a218f641d4285d9befc624a20e, type: 3}
   effect: 4
   isenable: 0
   during: 0.1
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc8dd4ba3f8c624cb4fde443172a50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: cdeae676186fb044e84430b63da2ca7e, type: 3}
+  sprite: {fileID: -858750978457612064, guid: ffcab0afe2952b549a45ec39133e852b, type: 3}
   effect: 5
   isenable: 0
   delay: 5
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d31144af69a68b4caf5f91d2ba85452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b8fcd7f36f25a494d82487b1e0a0693b, type: 3}
+  sprite: {fileID: -6306282405663924564, guid: ffcab0afe2952b549a45ec39133e852b, type: 3}
   effect: 7
   isenable: 0
   during: 5

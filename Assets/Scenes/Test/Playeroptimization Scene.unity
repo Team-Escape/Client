@@ -4966,6 +4966,7 @@ MonoBehaviour:
     health: {fileID: 120141242}
     endurance: {fileID: 1354770695}
   gameItemUI: {fileID: 1808846872}
+  startItemUI: {fileID: 0}
 --- !u!114 &1949252189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5030,6 +5031,7 @@ MonoBehaviour:
   sheildColdDuration: 5
   deadWithStrongerGain: 0.2
   deadWithStrongerDuration: 3
+  startItemSprites: []
   iceSkate: 0
   slimeShoe: 0
   swiftnessBoot: 0
@@ -7052,6 +7054,7 @@ MonoBehaviour:
     health: {fileID: 8845518760650786779}
     endurance: {fileID: 8845518759502180016}
   gameItemUI: {fileID: 1685628002}
+  startItemUI: {fileID: 0}
 --- !u!114 &8454525889628951387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7116,6 +7119,7 @@ MonoBehaviour:
   sheildColdDuration: 5
   deadWithStrongerGain: 0.2
   deadWithStrongerDuration: 3
+  startItemSprites: []
   iceSkate: 0
   slimeShoe: 0
   swiftnessBoot: 0

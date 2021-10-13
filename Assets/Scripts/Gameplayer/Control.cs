@@ -78,19 +78,22 @@ namespace PlayerSpace.Gameplayer
 
                 string name = go.name;
                 go.SetActive(false);
-
+                view.UpdateStartItemUI(go.GetComponent<SpriteRenderer>().sprite);
                 switch (name)
                 {
                     case "IceSkate":
                         model.iceSkate = true;
+                        
                         break;
                     case "SlimeShoe":
                         model.slimeShoe = true;
+                        
                         break;
                     case "SwiftnessBoot":
                         model.swiftnessBoot = true;
                         model.itemSpeedGain += 0.1f;
                         model.itemJumpGain += 0.1f;
+                        
                         break;
                     case "RocketShoe":
                         model.rocketShoe = true;
@@ -116,6 +119,9 @@ namespace PlayerSpace.Gameplayer
                         break;
                     case "DeathWithStronger":
                         model.deathWithStronger = true;
+                        break;
+                    case "ExtralScore":
+                        model.extralScore = true;
                         break;
                     case "Balloon":
                         model.balloon = true;
