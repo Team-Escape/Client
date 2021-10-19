@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4101678315029924425}
   - component: {fileID: 3179275245284481684}
   - component: {fileID: 7687599874999741095}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: CM vcam
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1663,7 +1663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testMode: 0
-  playerID: 1
+  playerID: 0
   teamID: 0
   currentRoomID: 0
 --- !u!114 &7167425649273878178

@@ -27,7 +27,7 @@ namespace PlayerSpace.Gameplayer
         ItemData NULLItem = new ItemData();
         private void Awake()
         {
-            testingUI.SetActive(testingMode);
+            //testingUI.SetActive(testingMode);
             defaultSprite = GetComponent<SpriteRenderer>().sprite;
             //effector.GetComponent<InteractWithGadget>().enabled = false;
             //effector.SetActive(false);
@@ -63,7 +63,7 @@ namespace PlayerSpace.Gameplayer
         public void spawn()
         {
             setCurrentItem();
-            setSprite(searchSpriteFromDatabase(currItem));
+            setSprite(defaultSprite);
         }
         bool check_Setting_is_legal(){
             bool islegal = !(actions.Length==0||effectIds.Length==0
@@ -101,7 +101,7 @@ namespace PlayerSpace.Gameplayer
         public void Reset(){
             currItem = NULLItem;
             currentCounter = Time.time;
-            setSprite(defaultSprite);
+            setSprite(null);
         }
         public bool IsEmpty(){
             return currItem==NULLItem;

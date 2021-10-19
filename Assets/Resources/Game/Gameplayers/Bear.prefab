@@ -749,7 +749,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 766e476b580fa2342a66ce531482d164, type: 3}
+  m_Sprite: {fileID: 8204041236427453285, guid: ecf461e568fa84aebb10317e470e584a,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2411,6 +2412,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879825264742375575, guid: d9b891c5dd785b440aac312627a0cb19,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879825264742375575, guid: d9b891c5dd785b440aac312627a0cb19,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879825264742375575, guid: d9b891c5dd785b440aac312627a0cb19,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879825264742375575, guid: d9b891c5dd785b440aac312627a0cb19,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9b891c5dd785b440aac312627a0cb19, type: 3}
