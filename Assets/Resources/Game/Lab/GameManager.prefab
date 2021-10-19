@@ -161,22 +161,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   startItemContainers:
-  - display: {fileID: -2437031719742495961, guid: d6998357f759c49d585d96a00d77e6b1,
-      type: 3}
+  - display: {fileID: 21300000, guid: 2cfd900ec48b5a2489f2d02c993a5d59, type: 3}
     name: IceSkate
-  - display: {fileID: 21300000, guid: 4989d42bd9ddc7046b700056fa500d1f, type: 3}
+  - display: {fileID: 21300000, guid: 1a642f233e1ab0f4289719ec3b45e0c7, type: 3}
     name: EnergyDrink
-  - display: {fileID: 21300000, guid: f7626090a61dc4c45843bc8bad354ca8, type: 3}
+  - display: {fileID: 21300000, guid: 38f4867fe82f53246b31a4d56528758d, type: 3}
     name: Shield
-  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
-      type: 3}
+  - display: {fileID: 21300000, guid: 265117f6ef89c654bb3ef7352d6bc169, type: 3}
     name: SlimeShoe
-  - display: {fileID: 4073958181317325537, guid: 11a57562d5cb5fb41bb9ed71c07a7f97,
-      type: 3}
+  - display: {fileID: 21300000, guid: 9486035dd290e624ebfcb89f758e2211, type: 3}
     name: Armor
-  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
-      type: 3}
+  - display: {fileID: 21300000, guid: d26f31a068c8c5d43b9e1e4ef494769c, type: 3}
     name: LightnessShoe
-  - display: {fileID: 8401637877751856281, guid: d6998357f759c49d585d96a00d77e6b1,
-      type: 3}
+  - display: {fileID: 21300000, guid: 7e8818a0a7b470e4b8a9fdcc2cbcede2, type: 3}
     name: RocketShoe
