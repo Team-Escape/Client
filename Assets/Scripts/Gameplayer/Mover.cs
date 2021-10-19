@@ -545,22 +545,22 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsGround)
-                || Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsBox);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround);
+                //|| Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.5f, model.whatIsBox);
             }
         }
         public bool OnIceFronted
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsIceGround);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsIceGround);
             }
         }
         public bool OnSlimeFronted
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsSlimeGround);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsSlimeGround);
             }
         }
         #endregion

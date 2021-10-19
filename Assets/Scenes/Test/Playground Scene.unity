@@ -586,10 +586,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 673350179}
     m_Modifications:
+    - target: {fileID: 136801303373258742, guid: 020c6766f59a71147bcb264d97713348,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136801303373258742, guid: 020c6766f59a71147bcb264d97713348,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136801303373258742, guid: 020c6766f59a71147bcb264d97713348,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 884973645850191673, guid: 020c6766f59a71147bcb264d97713348,
         type: 3}
       propertyPath: m_ShapeTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 884973645850191673, guid: 020c6766f59a71147bcb264d97713348,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116916972925316724, guid: 020c6766f59a71147bcb264d97713348,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5365444304533818404, guid: 020c6766f59a71147bcb264d97713348,
         type: 3}
@@ -650,6 +675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976262829500867061, guid: 020c6766f59a71147bcb264d97713348,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 020c6766f59a71147bcb264d97713348, type: 3}
