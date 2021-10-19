@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1519269045ef558498c70ca5aa2e1cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 3643514920608578656, guid: ffcab0afe2952b549a45ec39133e852b, type: 3}
+  sprite: {fileID: 21300000, guid: 2af9fe66e36c3024089e97a45e84abc0, type: 3}
   effect: 0
   isenable: 0
   healMax: 5
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7fdb008ce69f743b5cfecce8f57c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 7829124088692640654, guid: 617fb9a218f641d4285d9befc624a20e, type: 3}
+  sprite: {fileID: 21300000, guid: 460797d8584022b4089ca5d1486c97ca, type: 3}
   effect: 3
   isenable: 0
   during: 0.1
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d31144af69a68b4caf5f91d2ba85452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3674984b692fe814189a9860b8fb5fe1, type: 3}
+  sprite: {fileID: 21300000, guid: c6fff366303dd5f4da9e80c4c8d98be4, type: 3}
   effect: 7
   isenable: 0
   during: 5
