@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Rewired;
-using PlayerSpace.Game;
+using PlayerSpace.Gameplayer;
 
 namespace GameManagerSpace.Game
 {
@@ -60,17 +60,17 @@ namespace GameManagerSpace.Game
         public Transform hunterSpawn = null;
         public Transform escaperSpawn = null;
         [HideInInspector]
-        public List<PlayerCharacter> roles = null;
+        public List<Gameplayer> roles = null;
         [HideInInspector]
-        public PlayerCharacter hunter = null;
+        public Gameplayer hunter = null;
         [HideInInspector]
-        public List<PlayerCharacter> escapers = new List<PlayerCharacter>();
+        public List<Gameplayer> escapers = new List<Gameplayer>();
         [HideInInspector]
         public Player hunterPlayer = null;
         [HideInInspector]
         public List<Player> escaperPlayers = null;
-        public List<PlayerCharacter> GetCaughtRoles { get; set; }
-        public List<PlayerCharacter> GoalRoles { get; set; }
+        public List<Gameplayer> GetCaughtRoles { get; set; }
+        public List<Gameplayer> GoalRoles { get; set; }
         #endregion
 
         #region StartItem

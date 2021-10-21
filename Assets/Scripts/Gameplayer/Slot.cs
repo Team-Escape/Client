@@ -4,26 +4,38 @@ using UnityEngine;
 
 namespace PlayerSpace.Gameplayer
 {
-    public class Slot : ISlot
+    public class Slot : IitemHandler
     {
-        public GameItemControl GameItemControl { get; set; }
-        ItemModel itemModel;
 
-        public Slot()
+        private ItemData itemData ;
+        private ItemSystem itemModel;
+        
+        public Slot(ItemSystem itemSystem)
         {
-            itemModel = ItemModel.instance;
-            GameItemControl = new GameItemControl();
+            itemModel = itemSystem;
+            itemData = null;
         }
-
-        public void SetGameItem(int id, Model playerModel)
+        public void EffectBy(ItemObj itemData){
+            itemModel.EffectBy(itemData);
+        }
+        public void SetGameItem(ItemData itemData)
         {
-            GameItemControl = itemModel.GetItem(id);
-            GameItemControl.Init(playerModel);
+            this.itemData = itemData;
+            
         }
 
         public void Use()
         {
-            GameItemControl.Use();
+            itemModel.UseItem(itemData);
+            itemData = null;
+        }
+        
+        public Sprite GetCurrentSprite(){
+            return itemModel.GetItemSprite(itemData);
+        }
+        public bool isEmpty(){
+            return itemData==null;
         }
     }
+    
 }

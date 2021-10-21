@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 using GameManagerSpace.Game.HunterGame;
 using GameManagerSpace.Score;
-using PlayerSpace.Game;
+using PlayerSpace.Gameplayer;
 using Rewired;
 
 namespace GameManagerSpace.Game
 {
     public class Control : MonoBehaviour
     {
-        Model model = null;
-        View view = null;
+        GameManagerSpace.Game.Model model = null;
+        GameManagerSpace.Game.View view = null;
 
         Action<string> changeGameStateAction = null;
         int activePlayerCounts = 0;
@@ -27,33 +27,33 @@ namespace GameManagerSpace.Game
         {
             changeGameStateAction = changeGameStateCallback;
             CoreModel.WinnerAvatars = new List<GameObject>();
-            model.GetCaughtRoles = new List<PlayerCharacter>();
-            model.GoalRoles = new List<PlayerCharacter>();
+            model.GetCaughtRoles = new List<Gameplayer>();
+            model.GoalRoles = new List<Gameplayer>();
         }
 
         # region Game Listener
-        public void ItemTeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
+        public void ItemTeleportNext(Gameplayer role, CinemachineConfiner confiner)
         {
-            role.currentRoomId--;
-            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            role.currentRoomID--;
+            MapObjectData m_data = model.blocks[role.currentRoomID].GetComponent<MapObjectData>();
             confiner.m_BoundingShape2D = m_data.polygonCollider2D;
             role.transform.position = m_data.entrance.position;
         }
-        public void TeleportNext(PlayerCharacter role, CinemachineConfiner confiner)
+        public void TeleportNext(Gameplayer role, CinemachineConfiner confiner)
         {
-            role.currentRoomId++;
-            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            role.currentRoomID++;
+            MapObjectData m_data = model.blocks[role.currentRoomID].GetComponent<MapObjectData>();
             confiner.m_BoundingShape2D = m_data.polygonCollider2D;
             role.transform.position = m_data.entrance.position;
         }
-        public void TeleportPrev(PlayerCharacter role, CinemachineConfiner confiner)
+        public void TeleportPrev(Gameplayer role, CinemachineConfiner confiner)
         {
-            role.currentRoomId--;
-            MapObjectData m_data = model.blocks[role.currentRoomId].GetComponent<MapObjectData>();
+            role.currentRoomID--;
+            MapObjectData m_data = model.blocks[role.currentRoomID].GetComponent<MapObjectData>();
             confiner.m_BoundingShape2D = m_data.polygonCollider2D;
             role.transform.position = m_data.exit.position;
         }
-        public void GetStartItemCallback(PlayerCharacter role)
+        public void GetStartItemCallback(Gameplayer role)
         {
             if (isStarted) return;
             playerGotStartItemCounts++;
@@ -62,18 +62,18 @@ namespace GameManagerSpace.Game
                 changeGameStateAction("Starting");
             }
         }
-        public void GetCaught(PlayerCharacter role)
+        public void GetCaught(Gameplayer role)
         {
             model.GetCaughtRoles.Add(role);
             if (model.GetCaughtRoles.Count >= activePlayerCounts - 1)
             {
                 changeGameStateAction("Scoring");
             }
-            else model.hunter.hunterDebuff(activePlayerCounts - 1);
+            //else model.hunter.hunterDebuff(activePlayerCounts - 1);
         }
-        public void GetGoal(PlayerCharacter role)
+        public void GetGoal(Gameplayer role)
         {
-            if (model.GoalRoles.Any(x => x.playerId == role.playerId) == false)
+            if (model.GoalRoles.Any(x => x.playerID == role.playerID) == false)
                 model.GoalRoles.Add(role);
             if (isGoaled) return;
             StartCoroutine(CountDown());
@@ -154,16 +154,16 @@ namespace GameManagerSpace.Game
 
         public IEnumerator SpawnPlayers()
         {
-            List<PlayerCharacter> _roles = new List<PlayerCharacter>();
+            List<Gameplayer> _roles = new List<Gameplayer>();
             List<Camera> cameras = new List<Camera>();
 
             for (int i = 0; i < CoreModel.RoleAvatars.Count; i++)
             {
                 GameObject go = Instantiate(CoreModel.RoleAvatars[i]);
-                go.GetComponentInChildren<PlayerCharacter>().AssignController(i);
+                go.GetComponentInChildren<Gameplayer>().AssignController(i);
                 go.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = model.startRoom.GetComponent<MapObjectData>().polygonCollider2D;
                 cameras.Add(go.GetComponentInChildren<Camera>());
-                _roles.Add(go.GetComponentInChildren<PlayerCharacter>());
+                _roles.Add(go.GetComponentInChildren<Gameplayer>());
             }
 
             model.roles = _roles;
@@ -178,7 +178,7 @@ namespace GameManagerSpace.Game
         public IEnumerator RandomPlayerAvatars()
         {
             model.hunter = model.roles.Random();
-            model.hunterPlayer = ReInput.players.GetPlayer(model.hunter.GetComponent<PlayerCharacter>().playerId);
+            model.hunterPlayer = ReInput.players.GetPlayer(model.hunter.GetComponent<Gameplayer>().playerID);
             model.escapers = model.roles.FindAll(x => (x != model.hunter));
             model.escaperPlayers = CoreModel.ActivePlayers.FindAll(x => x != model.hunterPlayer);
 
@@ -187,20 +187,20 @@ namespace GameManagerSpace.Game
             model.hunter.transform.position = model.hunterSpawn.position;
             model.escapers.ForEach(x => x.transform.position = model.escaperSpawn.position);
 
-            List<System.Action<PlayerCharacter>> actions = new List<System.Action<PlayerCharacter>>();
+            List<System.Action<Gameplayer>> actions = new List<System.Action<Gameplayer>>();
             actions.Add(GetStartItemCallback);
             actions.Add(GetCaught);
             actions.Add(GetGoal);
 
-            List<System.Action<PlayerCharacter, CinemachineConfiner>> changeLevelActions = new List<Action<PlayerCharacter, CinemachineConfiner>>();
+            List<System.Action<Gameplayer, CinemachineConfiner>> changeLevelActions = new List<Action<Gameplayer, CinemachineConfiner>>();
             changeLevelActions.Add(TeleportNext);
             changeLevelActions.Add(TeleportPrev);
             changeLevelActions.Add(ItemTeleportNext);
 
-            model.hunter.GetComponent<PlayerCharacter>().AssignTeam(1, actions, changeLevelActions, activePlayerCounts - model.GetCaughtRoles.Count - 1);
-            model.escapers.ForEach(x => x.GetComponent<PlayerCharacter>().AssignTeam(0, actions, changeLevelActions, 0));
+            model.hunter.GetComponent<Gameplayer>().AssignTeam(1, actions, changeLevelActions);
+            model.escapers.ForEach(x => x.GetComponent<Gameplayer>().AssignTeam(0, actions, changeLevelActions));
 
-            // model.mainCam.enabled = false;
+            //model.mainCam.enabled = false;
 
             yield return null;
         }
@@ -301,13 +301,13 @@ namespace GameManagerSpace.Game
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
                 {
                     int score = 0;
-                    PlayerCharacter role = model.roles[i];
-                    if (role.teamId == 1)
+                    Gameplayer role = model.roles[i];
+                    if (role.teamID == 1)
                     {
                         if (model.GetCaughtRoles.Count == model.escaperPlayers.Count) score += CoreModel.goalScore;
                         else score += model.GetCaughtRoles.Count;
                     }
-                    score += (model.GoalRoles.Any(x => x.playerId == role.playerId)) ? CoreModel.goalScore : 0;
+                    score += (model.GoalRoles.Any(x => x.playerID == role.playerID)) ? CoreModel.goalScore : 0;
                     scores.Add(score);
                 }
                 // scores = new List<int> { 5, 1 };

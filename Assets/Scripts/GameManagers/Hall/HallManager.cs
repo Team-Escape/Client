@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Rewired;
-using PlayerSpace.Game;
+using PlayerSpace.Gameplayer;
 
 namespace GameManagerSpace.Hall
 {
@@ -175,7 +175,7 @@ namespace GameManagerSpace.Hall
                     view.UpdateRoleContainer(id, currentIndex, false);
                     view.UpdateMapContainer(id, model.containers.GetID(id).currentMapIndex, true);
 
-                    string path = "Game/Roles/";
+                    string path = "Game/Gameplayers/";
                     model.containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(currentIndex));
                     model.containers.GetID(id).selfSelectState++;
                 }
@@ -251,7 +251,7 @@ namespace GameManagerSpace.Hall
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
                 {
                     playerPrefabs.Add(model.containers[i].roleModel);
-                    playerPrefabs[i].GetComponentInChildren<PlayerCharacter>().AssignController(0);
+                    playerPrefabs[i].GetComponentInChildren<Gameplayer>().AssignController(i);
                 }
                 CoreModel.RoleAvatars = playerPrefabs;
                 CoreModel.ActivePlayers = model.activePlayers;

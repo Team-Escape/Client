@@ -8,7 +8,7 @@ namespace PlayerSpace.Gameplayer
         [SerializeField] UIHint uiHint;
         [SerializeField] HealthBar healthBar;
         [SerializeField] Image gameItemUI;
-
+        [SerializeField] SpriteRenderer startItemUI;
         Animator anim;
 
         #region Unity APIs
@@ -38,6 +38,19 @@ namespace PlayerSpace.Gameplayer
             {
                 gameItemUI.sprite = sprite;
                 gameItemUI.gameObject.SetActive(true);
+            }
+        }
+        public void UpdateStartItemUI(Sprite sprite)
+        {
+            if (sprite == null)
+            {
+                startItemUI.gameObject.SetActive(false);
+                startItemUI.sprite = null;
+            }
+            else
+            {
+                startItemUI.sprite = sprite;
+                startItemUI.gameObject.SetActive(true);
             }
         }
         public void UpdateShaderRender(string effect)

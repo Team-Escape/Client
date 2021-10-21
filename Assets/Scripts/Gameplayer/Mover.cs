@@ -20,6 +20,7 @@ namespace PlayerSpace.Gameplayer
         public bool isInertancing = false;
         public bool isJumpButtonReleased = true;
         public bool isDoubleJumping = false;
+        private Vector3 frontRay = new Vector3(0,0.5f,0) ;
 
         float preEndurance = 0;
 
@@ -109,19 +110,20 @@ namespace PlayerSpace.Gameplayer
             switch (value)
             {
                 case true:
-                    if (OnAnyFronted && OnIceFronted == false && isWallJumping == false && isJumping == false)
+                    
+                    if (ableToJump && isWallJumping == false)
+                    {
+                        ableToJump = false;
+                        isJumping = true;
+                        anim.DoAnimation("jump");
+                    }
+                    else if (OnAnyFronted && OnIceFronted == false && isWallJumping == false && isJumping == false)
                     {
                         if (isJumpButtonReleased)
                         {
                             isWallJumping = true;
                             anim.DoAnimation("jump");
                         }
-                    }
-                    else if (ableToJump && isWallJumping == false)
-                    {
-                        ableToJump = false;
-                        isJumping = true;
-                        anim.DoAnimation("jump");
                     }
                     else if (isFalling && isDoubleJumping == false && model.rocketShoe)
                     {
@@ -226,7 +228,7 @@ namespace PlayerSpace.Gameplayer
             {
                 jumpTimeCounter = 0;
                 isFalling = false;
-                isJumping = false;
+                //isJumping = false;
                 ableToJump = true;
                 isWallJumping = false;
                 isDoubleJumping = false;
@@ -367,6 +369,7 @@ namespace PlayerSpace.Gameplayer
                     * model.groundJumpGain
                     * model.jumpGain
                     * model.playerStateJumpGain;
+                Debug.Log(force);
                 switch (CurrentGroundState)
                 {
                     case GroundState.Ice:
@@ -543,22 +546,34 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsGround)
-                || Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsBox);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround);
+                //|| Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.5f, model.whatIsBox);
             }
         }
         public bool OnIceFronted
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsIceGround);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround);
             }
         }
         public bool OnSlimeFronted
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall, model.whatIsSlimeGround);
+                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround);
             }
         }
         #endregion

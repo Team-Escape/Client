@@ -14,6 +14,7 @@ TagManager:
   - DashItem
   - Fields
   - GameItem
+  - ItemObject
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ namespace PlayerSpace.Gameplayer
     public class Gameplayer : MonoBehaviour
     {
         [SerializeField] bool testMode = false;
+        private CinemachineConfiner confiner = null;
         #region ID Variables
         public int playerID = 0;
         public int teamID = 0;
@@ -27,8 +28,8 @@ namespace PlayerSpace.Gameplayer
         void GoalCallback() => gameActions[2](this);
 
         List<Action<Gameplayer, CinemachineConfiner>> changeLevel = null;
-        void GoNextRoom() => changeLevel[0](this, control.GetConfiner());
-        void GoPrevRoom() => changeLevel[1](this, control.GetConfiner());
+        void GoNextRoom() => changeLevel[0](this, confiner);
+        void GoPrevRoom() => changeLevel[1](this, confiner);
         bool isTeleporting = false;
         #endregion
 
@@ -39,7 +40,9 @@ namespace PlayerSpace.Gameplayer
             input = ReInput.players.GetPlayer(playerID);
 
             bool isKeyboard = input.controllers.joystickCount > 0 ? false : true;
-            control.AssignControllerType(isKeyboard);
+            if(control==null)control = GetComponent<Control>();
+            control.AssignControllerType(isKeyboard,playerID);
+
         }
         public void AssignTeam(int id, List<Action<Gameplayer>> callbacks, List<System.Action<Gameplayer, CinemachineConfiner>> changeLevelCallbacks)
         {
@@ -53,6 +56,10 @@ namespace PlayerSpace.Gameplayer
         private void Awake()
         {
             control = GetComponent<Control>();
+            
+        }
+        private void Start() {
+            confiner = control.GetConfiner();    
         }
         private void OnEnable()
         {
@@ -69,6 +76,9 @@ namespace PlayerSpace.Gameplayer
         {
             switch (other.tag)
             {
+                case "Confiner":
+                    confiner.m_BoundingShape2D = other.GetComponent<PolygonCollider2D>();
+                    break;
                 case "PlayerWeapon":
                     Vector2 force = (transform.position - other.transform.parent.position);
                     control.Hurt(force, CaughtCallBack);
@@ -129,18 +139,22 @@ namespace PlayerSpace.Gameplayer
 
             if (other.tag == "GameItem")
             {
-                Spawner spawner = other.GetComponent<Spawner>();
-                if (spawner.currentItemID == -1 || control.IsItemNull() == false)
+                IitemSpawner spawner = other.GetComponent<IitemSpawner>();
+                if (spawner.IsEmpty() || control.IsItemNull() == false)
                     return;
-
                 control.ActiveHintUI(true, other.transform.position);
 
                 if (input.GetButtonDown("Item"))
                 {
-                    control.SetGameItem(spawner.currentItemID, spawner.ResetItem);
+                    control.SetGameItem(spawner.TackItem());
+                    
                 }
             }
-
+            if (other.tag == "ItemObject"){
+                //ItemData data = .GetItemData();
+                
+                control.EffectBy(other.GetComponentInParent<ItemObj>());
+            }
             if (other.tag == "Flag")
             {
                 if (control.IsGoaled()) return;
@@ -193,7 +207,9 @@ namespace PlayerSpace.Gameplayer
             {
                 control.Move(0);
             }
-
+            else{
+                control.SetLocalScale();
+            }
             if (input.GetButtonDown("Run"))
             {
                 control.Run(true);

@@ -7,11 +7,11 @@ namespace PlayerSpace.Gameplayer
 {
     public class Control : MonoBehaviour
     {
-        public bool IsItemNull() => (itemHandler.GameItemControl == null);
+        public bool IsItemNull() => (itemHandler.isEmpty());
         public bool IsGoaled() => isGoaled;
         public CinemachineConfiner GetConfiner() => model.confiner;
-
-        ISlot itemHandler;
+        [SerializeField] GameObject itemSystem;
+        IitemHandler itemHandler;
         View view;
         Model model;
         Mover mover;
@@ -26,16 +26,15 @@ namespace PlayerSpace.Gameplayer
         /// <summary>
         /// Set faceing position with localScaleX.
         /// </summary>
-        public float SetLocalScaleXByMovement
+        public void SetLocalScaleXByMovement(float value)
         {
-            set
-            {
-                transform.localScale = new Vector2(
-                    transform.localScale.x >= 0 ?
-                    value >= 0 ? model.characterSize : model.characterSize * -1 :
-                    value <= 0 ? model.characterSize * -1 : model.characterSize
-                , model.characterSize);
-            }
+            
+            transform.localScale = new Vector2(
+                transform.localScale.x >= 0 ?
+                ( value >= 0 ? model.characterSize : model.characterSize * -1) :
+                ( value <= 0 ? model.characterSize * -1 : model.characterSize)
+            , model.characterSize);
+            
         }
         /// <summary>
         /// Active UI to hint player press the button.
@@ -55,10 +54,12 @@ namespace PlayerSpace.Gameplayer
             combat.Goal();
             callback();
         }
-        public void AssignControllerType(bool isKeyboard)
+        public void AssignControllerType(bool isKeyboard,int playerID)
         {
+            if(view==null)view = GetComponent<View>();
             view.Init(isKeyboard);
             isInputKeyboard = isKeyboard;
+            SetCamera(playerID);
         }
         public void AssignTeam(int id)
         {
@@ -77,19 +78,22 @@ namespace PlayerSpace.Gameplayer
 
                 string name = go.name;
                 go.SetActive(false);
-
+                view.UpdateStartItemUI(go.GetComponent<SpriteRenderer>().sprite);
                 switch (name)
                 {
                     case "IceSkate":
                         model.iceSkate = true;
+                        
                         break;
                     case "SlimeShoe":
                         model.slimeShoe = true;
+                        
                         break;
                     case "SwiftnessBoot":
                         model.swiftnessBoot = true;
                         model.itemSpeedGain += 0.1f;
                         model.itemJumpGain += 0.1f;
+                        
                         break;
                     case "RocketShoe":
                         model.rocketShoe = true;
@@ -116,6 +120,9 @@ namespace PlayerSpace.Gameplayer
                     case "DeathWithStronger":
                         model.deathWithStronger = true;
                         break;
+                    case "ExtralScore":
+                        model.extralScore = true;
+                        break;
                     case "Balloon":
                         model.balloon = true;
                         break;
@@ -127,24 +134,24 @@ namespace PlayerSpace.Gameplayer
         #endregion
 
         #region In-Game Item
-        public void SetGameItem(int id, System.Action callback)
+        public void SetGameItem(ItemData item)
         {
-            if (itemHandler.GameItemControl != null)
+            if (!itemHandler.isEmpty())
                 return;
 
             ActiveHintUI(false);
 
-            itemHandler.SetGameItem(id, model);
-            view.UpdateGameItemUI(itemHandler.GameItemControl.GetSprite);
-
-            callback();
+            itemHandler.SetGameItem(item);//itemdata
+            view.UpdateGameItemUI(itemHandler.GetCurrentSprite());
         }
         public void UseGameItem()
         {
-            if (itemHandler.GameItemControl == null) return;
-            itemHandler.GameItemControl.Use();
-            itemHandler.GameItemControl = null;
+            if (itemHandler.isEmpty()) return;
+            itemHandler.Use();
             view.UpdateGameItemUI(null);
+        }
+        public void EffectBy(ItemObj item){
+            itemHandler.EffectBy(item);
         }
         #endregion
 
@@ -172,8 +179,12 @@ namespace PlayerSpace.Gameplayer
         }
         public void Move(float movement)
         {
-            SetLocalScaleXByMovement = movement * model.reverseInput;
+            SetLocalScaleXByMovement(movement);
             mover.SetInput(movement * model.reverseInput);
+        }
+        public void SetLocalScale(){
+            int absLocalScale = (int)(transform.localScale.x/Mathf.Abs(transform.localScale.x));
+            SetLocalScaleXByMovement(absLocalScale);
         }
         public void DoDash(Vector2 force)
         {
@@ -229,7 +240,9 @@ namespace PlayerSpace.Gameplayer
         {
             mover = new Mover(view, model);
             combat = new Combat(view, model);
-            itemHandler = new Slot();
+            ItemSystem itemsys = itemSystem.GetComponent<ItemSystem>();
+            itemsys.SetPlayerModel(model);
+            itemHandler = new Slot(itemsys);   
         }
         void DevInput()
         {
@@ -265,5 +278,21 @@ namespace PlayerSpace.Gameplayer
         PlayerState playerState { get { return model.CurrentPlayerState; } }
         PlayerState prePlayerState = new PlayerState();
         #endregion
+
+        #region privates
+        void SetCamera(int playerID)
+        {
+            LayerMask layer = LayerMask.NameToLayer("P" + (playerID + 1) + "Cam");
+            Camera camera = transform.parent.GetComponentInChildren<Camera>();
+
+            // Open the layer of layer + playerId
+            camera.cullingMask |= 1 << layer;
+
+            // Change cinemachine camera child object layer
+            Transform follow = transform.parent.GetChild(2);
+            follow.gameObject.layer = layer;
+        }
+        #endregion
+
     }
 }
