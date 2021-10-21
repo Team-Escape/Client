@@ -73,6 +73,7 @@ namespace PlayerSpace.Gameplayer
         /// <param name="callback"></param>
         public void GetStartItem(GameObject go, System.Action callback)
         {
+            if(model.teamID==1)return;
             if (model.hasGotStartItem == false)
             {
                 model.hasGotStartItem = true;

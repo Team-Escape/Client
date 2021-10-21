@@ -119,6 +119,7 @@ namespace PlayerSpace.Gameplayer
                     case "SlimeShoe":
                     case "SwiftnessBoot":
                     case "RocketShoe":
+                    case "EnergyDrink":
                     case "Shield":
                     case "EnergyDringk":
                     case "ExtralLife":
@@ -126,6 +127,7 @@ namespace PlayerSpace.Gameplayer
                     case "InspectorChance":
                     case "DeathWithStronger":
                     case "Balloon":
+                    case "LightnessShoe":
                         if (input.GetButtonDown("Item"))
                         {
                             control.GetStartItem(other.gameObject, StartItemCallback);
