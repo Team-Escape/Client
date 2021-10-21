@@ -120,7 +120,7 @@ namespace GameManagerSpace.Game
 
         private void Update()
         {
-            /*if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 GameFlow("Starting");
             }
@@ -132,7 +132,6 @@ namespace GameManagerSpace.Game
             {
                 GameFlow("Scoring");
             }
-            */
         }
     }
 }

@@ -114,6 +114,7 @@ namespace GameManagerSpace.Hall
                 // Passing values to handler 
                 System.Action<int, int, bool> action = view.UpdateMapContainer;
                 int containerLength = view.GetMapLength;
+                Debug.Log("id + " + id);
                 ref int currentIndex = ref model.containers.GetID(id).currentMapIndex;
                 int index = 0;
                 // Passing values to handler
@@ -331,8 +332,6 @@ namespace GameManagerSpace.Hall
             view = GetComponent<View>();
             model = new Model();
             join = new JoinHandler();
-            if (CoreModel.ActivePlayers != null)
-                InitCurrentPlayers();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
 public class AnimationCore : MonoBehaviour
 {
     [SerializeField] string animationName = "";
@@ -118,3 +119,4 @@ public class AnimationCore : MonoBehaviour
         ableToPlay = false;
     }
 }
+#endif

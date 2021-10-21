@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Rewired;
 
 namespace GameManagerSpace.Award
 {
@@ -18,7 +19,8 @@ namespace GameManagerSpace.Award
 
         public void ChangeScene()
         {
-            loadSceneAction("HallScene");
+            Rewired.ReInput.Reset();
+            loadSceneAction("StartScene");
         }
 
         private void Awake()

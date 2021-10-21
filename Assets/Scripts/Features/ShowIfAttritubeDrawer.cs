@@ -6,6 +6,8 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ShowIfAttribute), true)]
 public class ShowIfAttributeDrawer : PropertyDrawer
 {
@@ -180,3 +182,4 @@ public enum ConditionOperator
     // A field is visible/enabled if at least ONE condition is true.
     Or,
 }
+#endif
