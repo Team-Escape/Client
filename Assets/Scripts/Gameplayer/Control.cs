@@ -64,6 +64,7 @@ namespace PlayerSpace.Gameplayer
         public void AssignTeam(int id)
         {
             model.teamID = id;
+            combat.AssignTeam();
         }
         /// <summary>
         /// Get startitem implement

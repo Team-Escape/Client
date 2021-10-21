@@ -67,6 +67,12 @@ namespace PlayerSpace.Gameplayer
         /// <summary>
         /// Player goal func.
         /// </summary>
+        public void AssignTeam()
+        {
+            CurrentPlayerState = (model.teamID == 1)
+                ? AsHunter
+                : AsEscaper;
+        }
         public void Goal()
         {
             CurrentPlayerState = AsLockBlood;
