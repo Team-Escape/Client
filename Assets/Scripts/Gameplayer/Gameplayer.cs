@@ -46,6 +46,7 @@ namespace PlayerSpace.Gameplayer
         }
         public void AssignTeam(int id, List<Action<Gameplayer>> callbacks, List<System.Action<Gameplayer, CinemachineConfiner>> changeLevelCallbacks)
         {
+            teamID = id;
             control.AssignTeam(id);
             gameActions = callbacks;
             changeLevel = changeLevelCallbacks;
