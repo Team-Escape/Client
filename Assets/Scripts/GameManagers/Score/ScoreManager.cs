@@ -50,6 +50,7 @@ namespace GameManagerSpace.Score
             yield return null;
             go.gameObject.SetActive(true);
             view.Init(go.gameObject, score);
+            yield return null;
         }
 
         public IEnumerator StartScoring()
@@ -81,6 +82,7 @@ namespace GameManagerSpace.Score
                     changeGameStateAction("GameDraw");
                     break;
             }
+            Destroy(gameObject);
         }
 
         IEnumerator ScoringCoroutine(List<int> scores)
