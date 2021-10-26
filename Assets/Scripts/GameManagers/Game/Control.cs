@@ -293,6 +293,8 @@ namespace GameManagerSpace.Game
             yield return scoreManager.StartScoring();
         }
 
+        public bool isScoreTest = false;
+
         List<int> CalculateScores
         {
             get
@@ -310,7 +312,11 @@ namespace GameManagerSpace.Game
                     score += (model.GoalRoles.Any(x => x.playerID == role.playerID)) ? CoreModel.goalScore : 0;
                     scores.Add(score);
                 }
-                // scores = new List<int> { 5, 1 };
+                if (isScoreTest)
+                {
+                    scores[0] = 5;
+                    isScoreTest = false;
+                }
                 return scores;
             }
         }
