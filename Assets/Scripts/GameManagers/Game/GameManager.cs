@@ -129,6 +129,7 @@ namespace GameManagerSpace.Game
             }
             else if (Input.GetKeyDown(KeyCode.I))
             {
+                control.isScoreTest = true;
                 GameFlow("Scoring");
             }
         }
