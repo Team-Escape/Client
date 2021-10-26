@@ -516,22 +516,26 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsGround)
-                || Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsBox);
+                float scaleFix = -(1-model.characterSize)*1.2f;
+                //Debug.DrawRay(transform.position, -Vector2.up*new Vector2(1,model.distToGround + model.distToGroundOffset-(1-model.characterSize)*1.2f),Color.red,1f);
+                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset+scaleFix, model.whatIsGround)
+                || Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset+scaleFix, model.whatIsBox);
             }
         }
         public bool OnIceGrounded
         {
             get
             {
-                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsIceGround);
+                float scaleFix = -(1-model.characterSize)*1.2f;
+                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset+scaleFix, model.whatIsIceGround);
             }
         }
         public bool OnSlimeGrounded
         {
             get
             {
-                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset, model.whatIsSlimeGround);
+                float scaleFix = -(1-model.characterSize)*1.2f;
+                return Physics2D.Raycast(transform.position, -Vector2.up, model.distToGround + model.distToGroundOffset+scaleFix, model.whatIsSlimeGround);
             }
         }
 
@@ -546,11 +550,14 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
-                    || Physics2D.Raycast(transform.position + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
-                    || Physics2D.Raycast(transform.position + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
-                    || Physics2D.Raycast(transform.position + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround)
-                    || Physics2D.Raycast(transform.position + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsGround);
+                Vector3 scaleFix = new Vector3(0,(1-model.characterSize)*1.1f,0);
+                float scaleFixdistance = (model.characterSize-1)*1.1f;
+                Debug.DrawRay(transform.position+new Vector3(0,(1-model.characterSize)*1.1f,0) ,Vector2.right * xInput+new Vector2(scaleFixdistance,0),Color.red,1f);
+                return Physics2D.Raycast(transform.position+scaleFix , Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsGround);
                 //|| Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.5f, model.whatIsBox);
             }
         }
@@ -558,22 +565,26 @@ namespace PlayerSpace.Gameplayer
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsIceGround)
-                    || Physics2D.Raycast(transform.position + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround)
-                    || Physics2D.Raycast(transform.position + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround)
-                    || Physics2D.Raycast(transform.position + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround)
-                    || Physics2D.Raycast(transform.position + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsIceGround);
+                float scaleFixdistance = (model.characterSize-1)*1.1f;
+                Vector3 scaleFix = new Vector3(0,(1-model.characterSize)*1.1f,0);
+                return Physics2D.Raycast(transform.position+scaleFix, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsIceGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsIceGround);
             }
         }
         public bool OnSlimeFronted
         {
             get
             {
-                return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsSlimeGround)
-                    || Physics2D.Raycast(transform.position + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround)
-                    || Physics2D.Raycast(transform.position + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround)
-                    || Physics2D.Raycast(transform.position + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround)
-                    || Physics2D.Raycast(transform.position + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f, model.whatIsSlimeGround);
+                float scaleFixdistance = (model.characterSize-1)*1.1f;
+                Vector3 scaleFix = new Vector3(0,(1-model.characterSize)*1.1f,0);
+                return Physics2D.Raycast(transform.position+scaleFix, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsSlimeGround)
+                    || Physics2D.Raycast(transform.position+scaleFix + frontRay * -2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, model.whatIsSlimeGround);
             }
         }
         #endregion
