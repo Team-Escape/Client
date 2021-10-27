@@ -156,15 +156,18 @@ namespace GameManagerSpace.Game
         {
             List<Gameplayer> _roles = new List<Gameplayer>();
             List<Camera> cameras = new List<Camera>();
-
+            Debug.Log("Got N Ava"+CoreModel.RoleAvatars.Count);
             for (int i = 0; i < CoreModel.RoleAvatars.Count; i++)
             {
                 GameObject go = Instantiate(CoreModel.RoleAvatars[i]);
+                Debug.Log(go.name);
                 go.GetComponentInChildren<Gameplayer>().AssignController(i);
                 go.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = model.startRoom.GetComponent<MapObjectData>().polygonCollider2D;
                 cameras.Add(go.GetComponentInChildren<Camera>());
                 _roles.Add(go.GetComponentInChildren<Gameplayer>());
             }
+
+            Debug.Log("C size: " +cameras.Count);
 
             model.roles = _roles;
 

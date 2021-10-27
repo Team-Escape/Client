@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5269501512929604439}
   - component: {fileID: 866950585324123300}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 5256499349845889171}
   - component: {fileID: 5256499349845889170}
   - component: {fileID: 5256499349845889194}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1713,7 +1713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7208241034958902218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: -10}
+  m_LocalPosition: {x: 2.5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4442331326874681065}
@@ -1750,7 +1750,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 10471223
+    m_Bits: 10404663
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2512,6 +2512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163481502104585447, guid: a84e101a688e09647be65d03b8a809ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a84e101a688e09647be65d03b8a809ed, type: 3}
