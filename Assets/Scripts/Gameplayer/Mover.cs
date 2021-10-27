@@ -581,13 +581,13 @@ namespace PlayerSpace.Gameplayer
         private bool frontCheck(LayerMask mask){
             float scaleFixdistance = (Mathf.Abs(model.characterSize)-1)*1.1f;
             float scaleFix = (model.characterSize);
-            Debug.DrawRay(transform.position+scaleFix*Vector3.one ,Vector2.right * xInput*new Vector2(model.distToGround + model.distToWall - 0.6f+scaleFixdistance, 0),Color.red,0.1f);
+            Debug.DrawRay(transform.position ,Vector2.right * xInput*new Vector2(model.distToGround + model.distToWall - 0.6f+scaleFixdistance, 0),Color.red,0.1f);
             Debug.DrawRay(transform.position+scaleFix * frontRay ,Vector2.right * xInput*new Vector2(model.distToGround + model.distToWall - 0.6f+scaleFixdistance, 0),Color.red,0.1f);
             Debug.DrawRay(transform.position+scaleFix * frontRay * -1,Vector2.right * xInput*new Vector2(model.distToGround + model.distToWall - 0.6f+scaleFixdistance, 0),Color.red,0.1f);
             Debug.DrawRay(transform.position+scaleFix * frontRay * 2 ,Vector2.right * xInput*new Vector2(model.distToGround + model.distToWall - 0.6f+scaleFixdistance, 0),Color.red,0.1f);
             Debug.DrawRay(transform.position+scaleFix * frontRay * -2,Vector2.right * xInput*new Vector2(model.distToGround + model.distToWall - 0.6f+scaleFixdistance, 0),Color.red,0.1f);
             
-            return Physics2D.Raycast(transform.position+scaleFix*Vector3.one, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, mask)
+            return Physics2D.Raycast(transform.position, Vector2.right * xInput, model.distToGround + model.distToWall-0.6f, mask)
                     || Physics2D.Raycast(transform.position+scaleFix * frontRay, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, mask)
                     || Physics2D.Raycast(transform.position+scaleFix * frontRay * 2, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, mask)
                     || Physics2D.Raycast(transform.position+scaleFix * frontRay * -1, Vector2.right * xInput, model.distToGround + model.distToWall - 0.6f+scaleFixdistance, mask)
