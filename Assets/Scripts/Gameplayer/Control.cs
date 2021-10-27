@@ -286,9 +286,14 @@ namespace PlayerSpace.Gameplayer
         {
             LayerMask layer = LayerMask.NameToLayer("P" + (playerID + 1) + "Cam");
             Camera camera = transform.parent.GetComponentInChildren<Camera>();
-
+            LayerMask layer1 = LayerMask.NameToLayer("P1Cam");
+            LayerMask layer2 = LayerMask.NameToLayer("P2Cam");
+            LayerMask layer3 = LayerMask.NameToLayer("P3Cam");
+            LayerMask layer4 = LayerMask.NameToLayer("P4Cam");
             // Open the layer of layer + playerId
-            camera.cullingMask |= 1 << layer;
+            camera.cullingMask &=~(1<<layer1)&~(1<<layer2)
+            &~(1<<layer3)&~(1<<layer4);
+            camera.cullingMask =camera.cullingMask | 1 << layer;
 
             // Change cinemachine camera child object layer
             Transform follow = transform.parent.GetChild(2);
