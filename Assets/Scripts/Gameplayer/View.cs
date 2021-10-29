@@ -12,6 +12,7 @@ namespace PlayerSpace.Gameplayer
         #region Player Number Display        
         [SerializeField] List<Sprite> playerHintSprite = null;
         [SerializeField] Image playerHintImage = null;
+        [SerializeField] Image playerWorldSpaceHintImage = null;
         #endregion
         Animator anim;
 
@@ -29,6 +30,7 @@ namespace PlayerSpace.Gameplayer
         {
             uiHint.image.sprite = isKeyboard ? uiHint.keyboardSprite : uiHint.joystickSprite;
             playerHintImage.sprite = playerHintSprite[id];
+            playerWorldSpaceHintImage.sprite = playerHintSprite[id];
         }
         #endregion
 
