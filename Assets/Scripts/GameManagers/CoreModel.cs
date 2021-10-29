@@ -23,7 +23,7 @@ namespace GameManagerSpace
         public static int goalScore = 2;
         public static int winningScore = 5;
         public static List<int> TotalScores { get; set; }
-        public static float goalCountDownDuration = 10f;
+        public static float goalCountDownDuration = 5f;
         #endregion
     }
     public enum SceneState

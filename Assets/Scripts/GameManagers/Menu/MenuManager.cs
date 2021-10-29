@@ -11,7 +11,7 @@ namespace GameManagerSpace.Menu
         public GameObject animationUI;
         public GameObject buttonUI;
         [SerializeField] string hallScene = "HallScene";
-        [SerializeField] string settingsScene = "SettingsScene";
+        [SerializeField] string settingsScene = "StartScene";
         System.Action<string, bool> loadSceneAction;
         System.Action audioAction;
 

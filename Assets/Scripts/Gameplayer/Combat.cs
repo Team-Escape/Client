@@ -72,6 +72,9 @@ namespace PlayerSpace.Gameplayer
             CurrentPlayerState = (model.teamID == 1)
                 ? AsHunter
                 : AsEscaper;
+            if(CurrentPlayerState==AsHunter){
+                this.model.playerStateSpeedGain=1.2f;
+            }
         }
         public void Goal()
         {

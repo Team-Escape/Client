@@ -129,7 +129,7 @@ public class MapObjectCore : MonoBehaviour
                     DoTrigger();
                     break;
                 case TargetMode.DelayTrigger:
-                    Invoke("DoTrigger", startTime);
+                    Invoke("DoReverseActive", startTime);
                     Invoke("DoReverseActive", startTime + duration);
                     break;
             }

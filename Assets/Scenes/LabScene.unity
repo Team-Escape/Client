@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -684,7 +684,7 @@ PrefabInstance:
     - target: {fileID: 4881619409011300323, guid: 4120ad30afa6d174d99afc957ad3542d,
         type: 3}
       propertyPath: count
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4120ad30afa6d174d99afc957ad3542d, type: 3}
@@ -1058,6 +1058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1816301702552115270, guid: 998f17943a6ba9f4ebacf77be19f6401,
         type: 3}
+      propertyPath: blockContainer.left.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816301702552115270, guid: 998f17943a6ba9f4ebacf77be19f6401,
+        type: 3}
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 29994503}
@@ -1096,6 +1101,11 @@ PrefabInstance:
       propertyPath: startItemGameObjects.Array.data[2]
       value: 
       objectReference: {fileID: 537069774}
+    - target: {fileID: 1816301702552115270, guid: 998f17943a6ba9f4ebacf77be19f6401,
+        type: 3}
+      propertyPath: roomSize
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 998f17943a6ba9f4ebacf77be19f6401, type: 3}
 --- !u!1001 &2503672693781255923

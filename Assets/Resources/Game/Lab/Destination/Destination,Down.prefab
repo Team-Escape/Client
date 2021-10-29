@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 897044015014344298}
   - component: {fileID: 1632042715777674343}
   - component: {fileID: 2554517604104433021}
-  m_Layer: 17
+  m_Layer: 0
   m_Name: Door
   m_TagString: Flag
   m_Icon: {fileID: 0}
@@ -4567,12 +4567,12 @@ PrefabInstance:
     - target: {fileID: 8773477458582183078, guid: 41c2d8afad05f4d85822f6e84a4f3a71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.89
+      value: -18.71
       objectReference: {fileID: 0}
     - target: {fileID: 8773477458582183078, guid: 41c2d8afad05f4d85822f6e84a4f3a71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.41
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 8799572058289620385, guid: 41c2d8afad05f4d85822f6e84a4f3a71,
         type: 3}
