@@ -13,6 +13,10 @@ namespace PlayerSpace.Game
         public Image EnduranceBar { get { return enduranceBar; } set { enduranceBar = value; } }
         public Image Decoration { get { return decoration; } set { decoration = value; } }
         [SerializeField] GameObject playerCanvas = null;
+        #region Player Number
+        [SerializeField] Sprite playerIndex = null;
+        [SerializeField] Image playerImage = null;
+        #endregion
         [SerializeField] Image healthBar = null;
         [SerializeField] Image enduranceBar = null;
         [SerializeField] Image decoration = null;

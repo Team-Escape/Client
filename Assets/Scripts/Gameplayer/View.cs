@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections.Generic;
 namespace PlayerSpace.Gameplayer
 {
     public class View : MonoBehaviour
@@ -9,6 +9,10 @@ namespace PlayerSpace.Gameplayer
         [SerializeField] HealthBar healthBar;
         [SerializeField] Image gameItemUI;
         [SerializeField] SpriteRenderer startItemUI;
+        #region Player Number Display        
+        [SerializeField] List<Sprite> playerHintSprite = null;
+        [SerializeField] Image playerHintImage = null;
+        #endregion
         Animator anim;
 
         #region Unity APIs
@@ -21,9 +25,10 @@ namespace PlayerSpace.Gameplayer
         /// Init stuff, decide controller type.
         /// </summary>
         /// <param name="isKeyboard"></param>
-        public void Init(bool isKeyboard)
+        public void Init(bool isKeyboard, int id)
         {
             uiHint.image.sprite = isKeyboard ? uiHint.keyboardSprite : uiHint.joystickSprite;
+            playerHintImage.sprite = playerHintSprite[id];
         }
         #endregion
 
