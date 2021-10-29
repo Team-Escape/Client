@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 1398666045359975551}
   - component: {fileID: 547772380962045090}
   - component: {fileID: 4695792828405419153}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: CM vcam
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ RectTransform:
   m_GameObject: {fileID: 4442331326852515710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4442331327034238892}
   m_Father: {fileID: 4442331327767173390}
@@ -535,7 +535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
+  m_AnchoredPosition: {x: 150, y: -150}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4442331326852515697
@@ -749,7 +749,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 766e476b580fa2342a66ce531482d164, type: 3}
+  m_Sprite: {fileID: 8204041236427453285, guid: ecf461e568fa84aebb10317e470e584a,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1325,7 +1326,6 @@ GameObject:
   - component: {fileID: 5256499349845889171}
   - component: {fileID: 5256499349845889170}
   - component: {fileID: 5256499349845889194}
-  - component: {fileID: 771927398006866967}
   m_Layer: 8
   m_Name: Body
   m_TagString: Player
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testMode: 0
-  playerID: 1
+  playerID: 2
   teamID: 0
   currentRoomID: 0
 --- !u!114 &5256499349845889172
@@ -1599,18 +1599,6 @@ MonoBehaviour:
   normalStrenght: 5
   normalSmoothing: 1
   computingNormal: 0
---- !u!114 &771927398006866967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256499349845889168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4cfaa6b33b4e39468f76709cd8b49c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5784030114299952263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,7 +1751,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 10406711
+    m_Bits: 10408759
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2533,15 +2521,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a84e101a688e09647be65d03b8a809ed, type: 3}
---- !u!1 &580403578980561911 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8163481502104585447, guid: a84e101a688e09647be65d03b8a809ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 8738253033863575312}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &580403578980561909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8163481502104585445, guid: a84e101a688e09647be65d03b8a809ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8738253033863575312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &580403578980561911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8163481502104585447, guid: a84e101a688e09647be65d03b8a809ed,
     type: 3}
   m_PrefabInstance: {fileID: 8738253033863575312}
   m_PrefabAsset: {fileID: 0}
