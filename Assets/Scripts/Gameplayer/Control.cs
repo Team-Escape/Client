@@ -28,13 +28,13 @@ namespace PlayerSpace.Gameplayer
         /// </summary>
         public void SetLocalScaleXByMovement(float value)
         {
-            
+
             transform.localScale = new Vector2(
                 transform.localScale.x >= 0 ?
-                ( value >= 0 ? model.characterSize : model.characterSize * -1) :
-                ( value <= 0 ? model.characterSize * -1 : model.characterSize)
+                (value >= 0 ? model.characterSize : model.characterSize * -1) :
+                (value <= 0 ? model.characterSize * -1 : model.characterSize)
             , model.characterSize);
-            
+
         }
         /// <summary>
         /// Active UI to hint player press the button.
@@ -54,10 +54,10 @@ namespace PlayerSpace.Gameplayer
             combat.Goal();
             callback();
         }
-        public void AssignControllerType(bool isKeyboard,int playerID)
+        public void AssignControllerType(bool isKeyboard, int playerID)
         {
-            if(view==null)view = GetComponent<View>();
-            view.Init(isKeyboard);
+            if (view == null) view = GetComponent<View>();
+            view.Init(isKeyboard, playerID);
             isInputKeyboard = isKeyboard;
             SetCamera(playerID);
         }
@@ -73,7 +73,7 @@ namespace PlayerSpace.Gameplayer
         /// <param name="callback"></param>
         public void GetStartItem(GameObject go, System.Action callback)
         {
-            if(model.teamID==1)return;
+            if (model.teamID == 1) return;
             if (model.hasGotStartItem == false)
             {
                 model.hasGotStartItem = true;
@@ -85,17 +85,17 @@ namespace PlayerSpace.Gameplayer
                 {
                     case "IceSkate":
                         model.iceSkate = true;
-                        
+
                         break;
                     case "SlimeShoe":
                         model.slimeShoe = true;
-                        
+
                         break;
                     case "SwiftnessBoot":
                         model.swiftnessBoot = true;
                         model.itemSpeedGain += 0.1f;
                         model.itemJumpGain += 0.1f;
-                        
+
                         break;
                     case "RocketShoe":
                         model.rocketShoe = true;
@@ -152,7 +152,8 @@ namespace PlayerSpace.Gameplayer
             itemHandler.Use();
             view.UpdateGameItemUI(null);
         }
-        public void EffectBy(ItemObj item){
+        public void EffectBy(ItemObj item)
+        {
             itemHandler.EffectBy(item);
         }
         #endregion
@@ -184,8 +185,9 @@ namespace PlayerSpace.Gameplayer
             SetLocalScaleXByMovement(movement);
             mover.SetInput(movement * model.reverseInput);
         }
-        public void SetLocalScale(){
-            int absLocalScale = (int)(transform.localScale.x/Mathf.Abs(transform.localScale.x));
+        public void SetLocalScale()
+        {
+            int absLocalScale = (int)(transform.localScale.x / Mathf.Abs(transform.localScale.x));
             SetLocalScaleXByMovement(absLocalScale);
         }
         public void DoDash(Vector2 force)
@@ -244,7 +246,7 @@ namespace PlayerSpace.Gameplayer
             combat = new Combat(view, model);
             ItemSystem itemsys = itemSystem.GetComponent<ItemSystem>();
             itemsys.SetPlayerModel(model);
-            itemHandler = new Slot(itemsys);   
+            itemHandler = new Slot(itemsys);
         }
         void DevInput()
         {
@@ -286,14 +288,14 @@ namespace PlayerSpace.Gameplayer
         {
             LayerMask layer = LayerMask.NameToLayer("P" + (playerID + 1) + "Cam");
             Camera camera = transform.parent.GetComponentInChildren<Camera>();
+
             LayerMask layer1 = LayerMask.NameToLayer("P1Cam");
             LayerMask layer2 = LayerMask.NameToLayer("P2Cam");
             LayerMask layer3 = LayerMask.NameToLayer("P3Cam");
             LayerMask layer4 = LayerMask.NameToLayer("P4Cam");
             // Open the layer of layer + playerId
-            camera.cullingMask &=~(1<<layer1)&~(1<<layer2)
-            &~(1<<layer3)&~(1<<layer4);
-            camera.cullingMask =camera.cullingMask | 1 << layer;
+            camera.cullingMask &= ~(1<<layer1)&~(1<<layer2)&~(1<<layer3)&~(1<<layer4);
+            camera.cullingMask |= 1 << layer;
 
             // Change cinemachine camera child object layer
             Transform follow = transform.parent.GetChild(2);

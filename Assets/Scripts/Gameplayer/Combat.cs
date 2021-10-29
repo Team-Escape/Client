@@ -171,12 +171,26 @@ namespace PlayerSpace.Gameplayer
             int sepecatorLayer = LayerMask.NameToLayer("Invisible");
 
             Camera cam = model.cam;
-            cam.cullingMask = -1;
+            LayerMask invisibleLayer = LayerMask.NameToLayer("Invisible");
+            cam.cullingMask |= 1 << invisibleLayer;
+            foreach (Transform t in transform.parent)
+            {
+                ChangeLayer(t, sepecatorLayer);
+            }
 
             anim.DoAnimation("reborn");
             view.UpdateShaderRender("GHOST_ON");
 
             SearchForAllChild(transform, playerLayer, sepecatorLayer);
+        }
+        void ChangeLayer(Transform t, int layer)
+        {
+            t.gameObject.layer = layer;
+            if (t.childCount <= 0) return;
+            foreach (Transform t1 in t)
+            {
+                ChangeLayer(t1, layer);
+            }
         }
         public void SearchForAllChild(Transform t, int layerToBeChanged, int layerToChange)
         {
