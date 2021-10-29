@@ -163,11 +163,11 @@ namespace PlayerSpace.Gameplayer
                 if (control.IsGoaled()) return;
 
                 control.ActiveHintUI(true, other.transform.position);
-                if (input.GetButtonDown("Item"))
-                {
+                //if (input.GetButtonDown("Item"))
+                //{
                     control.ActiveHintUI(false);
                     control.Goal(GoalCallback);
-                }
+                //}
             }
         }
         private void OnTriggerExit2D(Collider2D other)

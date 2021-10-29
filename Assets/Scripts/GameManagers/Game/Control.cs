@@ -83,12 +83,15 @@ namespace GameManagerSpace.Game
         {
             isGoaled = true;
             float timer = CoreModel.goalCountDownDuration;
+            view.StartCount();
             while (timer >= 0)
             {
-                Debug.Log("Time left: " + timer);
+                view.CountDown(timer);
+                //Debug.Log("Time left: " + timer);
                 timer -= Time.deltaTime;
                 yield return null;
             }
+            view.EndCount();
             changeGameStateAction("Scoring");
         }
         # endregion
