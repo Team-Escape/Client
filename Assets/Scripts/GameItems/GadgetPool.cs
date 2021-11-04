@@ -7,10 +7,8 @@ namespace ObjectPool{
         GameObject[] preObject;
         [SerializeField] int count;
         static GameObject statictMyself;
-        Dictionary<int,Queue<GameObject>> list; 
         static Dictionary<int,Queue<GameObject>> staticlist = new Dictionary<int, Queue<GameObject>>(); 
         private void Awake() {
-            list = new Dictionary<int, Queue<GameObject>>();
             statictMyself = gameObject;
             LoadObjects();
         }
@@ -18,6 +16,12 @@ namespace ObjectPool{
             
         }
         private void LoadObjects(){
+            if(transform.childCount>0){
+                foreach(Transform child in transform){
+                    Destroy(child.gameObject);
+                }
+            }
+            GadgetPool.staticlist.Clear();
             foreach (GameObject curr in preObject)
             {  
                 Queue<GameObject> queue = new Queue<GameObject>();
@@ -31,7 +35,7 @@ namespace ObjectPool{
             }
         }
         static public GameObject GetObject(int type){
-            
+            if(GadgetPool.staticlist[type].Count<=0)return null;
             GameObject obj = GadgetPool.staticlist[type].Dequeue();
             obj.GetComponent<IPoolObject>().Init();
             

@@ -175,7 +175,8 @@ namespace PlayerSpace.Gameplayer
             cam.cullingMask |= 1 << invisibleLayer;
             foreach (Transform t in transform.parent)
             {
-                ChangeLayer(t, sepecatorLayer);
+                if(t.gameObject.name!="Camera"&&t.gameObject.name!="CM vcam")
+                    ChangeLayer(t, sepecatorLayer);
             }
 
             anim.DoAnimation("reborn");

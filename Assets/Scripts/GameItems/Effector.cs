@@ -38,6 +38,7 @@ namespace PlayerSpace.Gameplayer
                 gadgetDict[itemdata.effect].Trigger(playerModel);
             else if(itemdata.action==ItemAction.THROW){
                 GameObject go = GadgetPool.GetObject(1);
+                if(go==null) return;
                 go.GetComponent<PotionObj>().Setting(
                     playerModel.selfTransform,
                     itemdata,

@@ -26,7 +26,8 @@ namespace PlayerSpace.Gameplayer
 
         public void Use()
         {
-            itemModel.UseItem(itemData);
+            if(itemData!=null)
+                itemModel.UseItem(itemData);
             itemData = null;
         }
         
