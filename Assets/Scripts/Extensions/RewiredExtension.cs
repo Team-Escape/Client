@@ -54,5 +54,16 @@ namespace GameManagerSpace
             }
             return ps;
         }
+        public static void AssignAllPlayersToSystemPlayer<T>(this T player)
+        {
+            if (CoreModel.ActiveController == null || CoreModel.ActiveController.Count <= 0) return;
+            foreach (var source in CoreModel.ActiveController)
+            {
+                ReInput.players.SystemPlayer.controllers.AddController(
+                source.controller,
+                true
+            );
+            }
+        }
     }
 }

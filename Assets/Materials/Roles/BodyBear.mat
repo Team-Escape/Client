@@ -91,7 +91,7 @@ Material:
     - _FlickerFreq: 0.2
     - _FlickerPercent: 0.05
     - _GhostColorBoost: 1
-    - _GhostTransparency: 0
+    - _GhostTransparency: 0.07
     - _GlitchAmount: 3
     - _GlitchSize: 1
     - _Glow: 10

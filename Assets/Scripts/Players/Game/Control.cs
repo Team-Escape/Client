@@ -11,8 +11,10 @@ namespace PlayerSpace.Game
         Animator animator = null;
         Rigidbody2D rb = null;
         Mover mover = new Mover();
-        Mover _tempMover = null;
+        Mover tempMover = null;
         Combat combat = new Combat();
+        AudioPlayer audioPlayer = null;
+
 
         bool isAttacking = false;
         bool isHurting = false;
@@ -26,7 +28,22 @@ namespace PlayerSpace.Game
             }
         }
 
-        public void GameSetup(int id)
+        public void ChangePlayerState(PlayerState state) => model.PlayerState = state;
+
+        public void PlaySoundEffect(string name)
+        {
+            switch (name)
+            {
+                case "attack":
+                    audioPlayer.PlaySF(this.gameObject, model.attackClip);
+                    break;
+                case "damage":
+                    audioPlayer.PlaySF(this.gameObject, model.damgeClip);
+                    break;
+            }
+        }
+
+        public void GameSetup(int id, int currentEscaperCount)
         {
             model.TeamID = id;
             switch (id)
@@ -37,18 +54,21 @@ namespace PlayerSpace.Game
                     break;
                 case 1:
                     model.PlayerState = PlayerState.Hunter;
-                    model.MaxHealth = 5;
-                    model.StateSpeedGain = 1.05f;
-                    model.StateJumpGain = 1f;
+                    model.MaxHealth = 10;
+                    model.CurrentHealth = 10;
+                    model.StateSpeedGain = 1.1f + currentEscaperCount * 0.1f;
+                    model.StateJumpGain = 0.9f + currentEscaperCount * 0.1f;
                     break;
                 default:
                     Debug.Log("Player teamID errors");
                     break;
             }
         }
-        public void UseItem()
-        {
 
+        public void hunterDebuff(int currentEscaperCount)
+        {
+            model.StateSpeedGain = 1.1f + currentEscaperCount * 0.1f;
+            model.StateJumpGain = 0.9f + currentEscaperCount * 0.1f;
         }
         public void Move(float value)
         {
@@ -73,49 +93,59 @@ namespace PlayerSpace.Game
         public void Attack()
         {
             if (OnDisable) return;
-
             if (isAttacking) return;
             isAttacking = true;
+
             this.AbleToDo(1f, () => isAttacking = false);
 
             combat.Attack();
         }
-        public void Hurt(Vector2 force)
+        public void Hurt(Vector2 force, System.Action callback)
         {
-            if (OnDisable) return;
+            if (isHurting)
+                return;
+            else if (model.PlayerState == PlayerState.Dead)
+            {
+                callback();
+                Mutate();
+            }
+            else if (OnDisable)
+                return;
+            else
+            {
+                isHurting = true;
+                this.AbleToDo(1f, () => isHurting = false);
 
-            if (isHurting) return;
-            isHurting = true;
-            this.AbleToDo(1f, () => isHurting = false);
-
-            mover.Inertance(force);
-            combat.Hurt(Dead);
+                mover.Inertance(force);
+                combat.Hurt(Dead);
+            }
         }
         public void Dead()
         {
-            if (OnDisable) return;
-            combat.Dead();
-            _tempMover = mover;
-            //_tempCombat = combat;
-            mover = null;
-            //combat = null;
-            this.AbleToDo(model.RebornDuration, Reborn);
-            // View.UpdateDead();
+            if (model.PlayerState == PlayerState.Dead)
+                Mutate();
+            else if (OnDisable)
+                return;
+            else
+            {
+                combat.Dead();
+                tempMover = mover;
+                mover = null;
+                this.AbleToDo(model.RebornDuration, Reborn);
+                // View.UpdateDead();
+            }
         }
         public void Reborn()
         {
-            mover = _tempMover;
-            //combat = _tempCombat;
+            mover = tempMover;
             combat.Reborn();
         }
         public void Mutate()
         {
-            //if (OnDisable) return;
             combat.Mutate(
                 transform
             );
             view.UpdaetShaderRenderer("GHOST_ON");
-            //Reborn();
         }
         public void GetStartItem(string name, System.Action callback)
         {
@@ -146,6 +176,7 @@ namespace PlayerSpace.Game
                         model.AddItemSpeedGain = -0.1f;
                         model.AddItemJumpGain = -0.1f;
                         model.MaxHealth += 2;
+                        model.CurrentHealth += 2;
                         model.Armor = true;
                         break;
                     case "LightnessShoe":
@@ -183,7 +214,8 @@ namespace PlayerSpace.Game
         }
         public void ItemReceived(GameObject target)
         {
-            target.SetActive(false);
+            if (model.IsGetStartItem == false)
+                target.SetActive(false);
         }
         public void CancelItem()
         {
@@ -251,6 +283,7 @@ namespace PlayerSpace.Game
             model = GetComponent<Model>();
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            audioPlayer = GetComponent<AudioPlayer>();
 
             // Class Move in old version
             mover = new Mover(this, model, rb, animator);

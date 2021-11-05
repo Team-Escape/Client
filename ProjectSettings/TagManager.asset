@@ -7,6 +7,14 @@ TagManager:
   - MapObject
   - Flag
   - PlayerWeapon
+  - GadgetSpawner
+  - RoomTeleport
+  - StartItem
+  - Confiner
+  - DashItem
+  - Fields
+  - GameItem
+  - ItemObject
   layers:
   - Default
   - TransparentFX
@@ -22,8 +30,8 @@ TagManager:
   - P2Cam
   - P3Cam
   - P4Cam
-  - 
-  - 
+  - HunterGame
+  - Confiner
   - 
   - Ground
   - IceGround
@@ -31,8 +39,8 @@ TagManager:
   - Box
   - 
   - 
-  - 
-  - 
+  - StartItem
+  - Invisible
   - 
   - 
   - 

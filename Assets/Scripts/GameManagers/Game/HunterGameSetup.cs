@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using PlayerSpace.HunterGame;
 using Rewired;
@@ -19,24 +18,19 @@ namespace GameManagerSpace.Game.HunterGame
             canvas.GetComponent<Canvas>().worldCamera = cam;
         }
 
-        private void Update()
-        {
-            // if (Input.GetKeyDown(KeyCode.Space)) Generator(ReInput.players.GetPlayer(0), null);
-        }
-
         public void Generator(Player player, System.Action callback)
         {
-            StartCoroutine(GeneratorCoroutine(player, callback));
+            GeneratorCoroutine(player, callback);
         }
 
-        IEnumerator GeneratorCoroutine(Player player, System.Action callback)
+        void GeneratorCoroutine(Player player, System.Action callback)
         {
-            yield return null;
             float sizeX = 100 * cam.rect.width;
-            float sizeY = 100 * cam.rect.height;
+            float sizeY = sizeX;// 100 * cam.rect.height;
 
             float width = 1920 / 2 * cam.rect.width;
             float height = 1080 / 2 * cam.rect.height;
+            Vector2 screenSize = new Vector2(width, height);
             Vector2 pos = new Vector2(width, height + sizeY);
             // RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Vector2.zero, cam, out pos);
 
@@ -58,20 +52,19 @@ namespace GameManagerSpace.Game.HunterGame
                     go.GetComponent<RectTransform>().localPosition = pos;
                     go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                     pos += new Vector2(sizeX, 0);
-                    yield return null;
                 }
                 pos = new Vector2(-width, pos.y);
                 pos += new Vector2(0, -sizeY);
             }
 
             if (callback != null) callback();
-            ActivePlayer(player, new Vector2(sizeX, sizeY));
+            ActivePlayer(player, screenSize, new Vector2(sizeX, sizeY));
         }
 
-        void ActivePlayer(Player player, Vector2 size)
+        void ActivePlayer(Player player, Vector2 screenSize, Vector2 size)
         {
             hunterGamePlayer.gameObject.SetActive(true);
-            hunterGamePlayer.Init(player, size);
+            hunterGamePlayer.Init(player, screenSize, size);
         }
     }
 

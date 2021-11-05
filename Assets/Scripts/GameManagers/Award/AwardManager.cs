@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Rewired;
 
 namespace GameManagerSpace.Award
 {
@@ -18,7 +19,15 @@ namespace GameManagerSpace.Award
 
         public void ChangeScene()
         {
-            loadSceneAction("HallScene");
+            // Rewired.ReInput.Reset();
+            foreach (Joystick j in ReInput.controllers.Joysticks)
+            {
+                Debug.Log(j);
+                ReInput.players.SystemPlayer.controllers.AddController(j, true);
+            }
+            Keyboard k = ReInput.controllers.Keyboard;
+            ReInput.players.SystemPlayer.controllers.AddController(k, true);
+            loadSceneAction("StartScene");
         }
 
         private void Awake()

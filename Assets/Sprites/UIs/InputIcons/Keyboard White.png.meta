@@ -1,0 +1,248 @@
+fileFormatVersion: 2
+guid: 3174f92b9512b49f3882a5c1618e026b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4296054131848424467
+    second: Keyboard White_0
+  - first:
+      213: -4667445717181053203
+    second: Keyboard White_1
+  - first:
+      213: 6366641577002778976
+    second: Keyboard White_2
+  - first:
+      213: 4138639158220522740
+    second: Keyboard White_3
+  - first:
+      213: -4006268686584129988
+    second: Keyboard White_4
+  - first:
+      213: -378187272119749779
+    second: Keyboard White_5
+  - first:
+      213: -3144752551408821868
+    second: Keyboard White_6
+  - first:
+      213: -8635681764973437331
+    second: Keyboard White_7
+  - first:
+      213: 1715999342811207778
+    second: Keyboard White_8
+  - first:
+      213: -8187764044106944656
+    second: Keyboard White_9
+  - first:
+      213: 1156791206837837467
+    second: Keyboard White_10
+  - first:
+      213: 4134420545192626598
+    second: Keyboard White_11
+  - first:
+      213: -1818107271890273951
+    second: Keyboard White_12
+  - first:
+      213: -4804319203401567968
+    second: Keyboard White_13
+  - first:
+      213: -5071755493891495517
+    second: Keyboard White_14
+  - first:
+      213: 5364307388802757030
+    second: Keyboard White_15
+  - first:
+      213: 4466523897078045299
+    second: Keyboard White_16
+  - first:
+      213: -704501679422941437
+    second: Keyboard White_17
+  - first:
+      213: -292158890340105225
+    second: Keyboard White_18
+  - first:
+      213: 1882609615091605108
+    second: Keyboard White_19
+  - first:
+      213: 7158458645439608010
+    second: Keyboard White_20
+  - first:
+      213: -6261163523975419177
+    second: Keyboard White_21
+  - first:
+      213: -5162455038189278318
+    second: Keyboard White_22
+  - first:
+      213: 3435477843361164629
+    second: Keyboard White_23
+  - first:
+      213: -6903204217668709478
+    second: Keyboard White_24
+  - first:
+      213: 5665506138214075501
+    second: Keyboard White_25
+  - first:
+      213: 5459425766104288568
+    second: Keyboard White_26
+  - first:
+      213: -2292951314989447566
+    second: Keyboard White_27
+  - first:
+      213: -3558781180380846195
+    second: Keyboard White_28
+  - first:
+      213: -5081917409466507
+    second: Keyboard White_29
+  - first:
+      213: 1506040422465665108
+    second: Keyboard White_30
+  - first:
+      213: 1275502526853808922
+    second: Keyboard White_31
+  - first:
+      213: 8698951145499077697
+    second: Keyboard White_32
+  - first:
+      213: -5796089560427676786
+    second: Keyboard White_33
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Keyboard White_0
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3535f47895164c0800000000000000
+      internalID: -4296054131848424467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keyboard White_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6410379d6e93fb0800000000000000
+      internalID: -4667445717181053203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

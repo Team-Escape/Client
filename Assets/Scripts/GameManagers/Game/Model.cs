@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Rewired;
-using PlayerSpace.Game;
+using PlayerSpace.Gameplayer;
 
 namespace GameManagerSpace.Game
 {
@@ -26,6 +26,7 @@ namespace GameManagerSpace.Game
     {
         public Camera mainCam = null;
 
+        #region  Game Level : Rooms
         #region StartRoomStuff
         [Header("Start room")]
         public Transform startRoom = null;
@@ -35,10 +36,12 @@ namespace GameManagerSpace.Game
         #endregion
 
         #region Destination
+        [Header("Destination")]
         public Transform destinationRoomUp = null;
         public Transform destinationRoomDown = null;
         public Transform destinationRoomRight = null;
         public Transform destinationRoomLeft = null;
+        public Transform destination = null;
         #endregion        
 
         #region Rooms
@@ -47,9 +50,9 @@ namespace GameManagerSpace.Game
         public int roomSize = 5;
         public BlockContainer blockContainer = null;
         #endregion
+        #endregion
 
         #region Game Logic
-        public int goalScore = 2;
         #endregion
 
         #region PlayerStuff
@@ -57,17 +60,17 @@ namespace GameManagerSpace.Game
         public Transform hunterSpawn = null;
         public Transform escaperSpawn = null;
         [HideInInspector]
-        public List<GameObject> roles = null;
+        public List<Gameplayer> roles = null;
         [HideInInspector]
-        public GameObject hunter = null;
+        public Gameplayer hunter = null;
         [HideInInspector]
-        public List<GameObject> escapers = new List<GameObject>();
+        public List<Gameplayer> escapers = new List<Gameplayer>();
         [HideInInspector]
         public Player hunterPlayer = null;
         [HideInInspector]
         public List<Player> escaperPlayers = null;
-        public List<PlayerCharacter> GetCaughtRoles { get; set; }
-        public List<PlayerCharacter> GoalRoles { get; set; }
+        public List<Gameplayer> GetCaughtRoles { get; set; }
+        public List<Gameplayer> GoalRoles { get; set; }
         #endregion
 
         #region StartItem

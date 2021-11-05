@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Rewired;
-using PlayerSpace.Game;
+using PlayerSpace.Gameplayer;
 
 namespace GameManagerSpace.Hall
 {
@@ -43,6 +43,13 @@ namespace GameManagerSpace.Hall
         {
             for (int i = 0; i < ReInput.players.playerCount; i++)
             {
+                if (model.activePlayers.Count <= 0)
+                {
+                    if (ReInput.players.SystemPlayer.GetButtonDown("StateBack"))
+                    {
+                        loadSceneAction("MenuScene", false);
+                    }
+                }
                 if (ReInput.players.GetPlayer(i).GetButtonDown("StateBack"))
                 {
                     StateBack(i);
@@ -107,6 +114,7 @@ namespace GameManagerSpace.Hall
                 // Passing values to handler 
                 System.Action<int, int, bool> action = view.UpdateMapContainer;
                 int containerLength = view.GetMapLength;
+                Debug.Log("id + " + id);
                 ref int currentIndex = ref model.containers.GetID(id).currentMapIndex;
                 int index = 0;
                 // Passing values to handler
@@ -114,30 +122,35 @@ namespace GameManagerSpace.Hall
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Choose"))
                 {
                     view.UpdateMapContainer(id, currentIndex, false);
-                    view.MapContainerEffect(id, true);
-                    model.containers.GetID(id).choosenMap = view.GetMapName(id);
+                    view.MapContainerEffect(currentIndex, true);
+                    model.containers.GetID(id).choosenMap = view.GetMapName(currentIndex);
                     model.containers.GetID(id).selfSelectState++;
+                    Debug.Log("Choose Map: " + id);
                 }
                 // Update index to change direction.
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
                     index = 1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectL Map: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
                     index = -1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectR Map: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
                 {
                     index = -rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectU Map: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
                 {
                     index = rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectD Map: " + id);
                 }
             }
         }
@@ -162,31 +175,34 @@ namespace GameManagerSpace.Hall
                     view.UpdateRoleContainer(id, currentIndex, false);
                     view.UpdateMapContainer(id, model.containers.GetID(id).currentMapIndex, true);
 
-                    string path = "Game/Roles/";
+                    string path = "Game/Gameplayers/";
                     model.containers.GetID(id).roleModel = Resources.Load<GameObject>(path + view.GetRoleName(currentIndex));
                     model.containers.GetID(id).selfSelectState++;
-
                 }
                 // Update index to change direction.
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorR"))
                 {
                     index = 1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectR Role: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorL"))
                 {
                     index = -1;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectL Role: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorU"))
                 {
                     index = rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectU Role: " + id);
                 }
                 else if (ReInput.players.GetPlayer(i).GetButtonDown("SelectorD"))
                 {
                     index = -rows;
                     model.containers.GetID(id).UpdateUIHandler(action, containerLength, ref currentIndex, index);
+                    Debug.Log("SelectD Role: " + id);
                 }
             }
         }
@@ -229,19 +245,17 @@ namespace GameManagerSpace.Hall
             if (model.AbleToStart)
             {
                 model.isStarting = true;
-
                 CoreModel.activePlayersCount = model.activePlayers.Count;
-                CoreModel.ActivePlayers = model.activePlayers;
-                CoreModel.ActiveController = model.activeController;
-                CoreModel.choosenMapName = model.mapName;
 
                 List<GameObject> playerPrefabs = new List<GameObject>();
                 for (int i = 0; i < CoreModel.activePlayersCount; i++)
                 {
                     playerPrefabs.Add(model.containers[i].roleModel);
-                    playerPrefabs[i].GetComponentInChildren<PlayerCharacter>().AssignController(0);
+                    playerPrefabs[i].GetComponentInChildren<Gameplayer>().AssignController(i);
                 }
                 CoreModel.RoleAvatars = playerPrefabs;
+                CoreModel.ActivePlayers = model.activePlayers;
+                CoreModel.ActiveController = model.activeController;
 
                 InitCoreModelDatas();
 
@@ -270,6 +284,7 @@ namespace GameManagerSpace.Hall
             float counter = duration;
 
             yield return StartCoroutine(MapPolling());
+            CoreModel.choosenMapName = model.mapName;
 
             while (counter >= 0)
             {
@@ -277,7 +292,7 @@ namespace GameManagerSpace.Hall
                 counter -= Time.unscaledDeltaTime;
             }
 
-            if (model.AbleToStart) loadSceneAction(model.mapName, true);
+            if (model.AbleToStart) loadSceneAction(CoreModel.choosenMapName, true);
             else model.isStarting = false;
         }
 
@@ -302,6 +317,14 @@ namespace GameManagerSpace.Hall
             SelectMap();
             SelectRole();
             GameStart();
+        }
+
+        private void InitCurrentPlayers()
+        {
+            for (int i = 0; i < CoreModel.activePlayersCount; i++)
+            {
+                AssignController(CoreModel.ActivePlayers[i], CoreModel.ActiveController[i]);
+            }
         }
 
         private void Awake()
