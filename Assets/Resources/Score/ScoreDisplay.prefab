@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6732459182619233919}
   - component: {fileID: 6732459182619233916}
   m_Layer: 5
-  m_Name: Score Image
+  m_Name: ScoreDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,8 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1030384364550024354, guid: d6998357f759c49d585d96a00d77e6b1,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90595afdc43010647aba4fddf846f720, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
